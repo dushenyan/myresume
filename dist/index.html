@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://dushenyan.me/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="https://dushenyan.me/favicon.png" type="image/png">
+    <title>杜审言 - Résumé</title>
+    <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC|Nunito+Sans:400,700&display=swap" rel="stylesheet">
+    <style>.clear-margin {
+  margin: 0;
+}
+.space-top {
+  margin-top: 10px;
+}
+.space-right {
+  margin-right: 10px;
+}
+.icon-left {
+  margin-right: 5px;
+}
+.icon-right {
+  margin-left: 5px;
+}
+.labels {
+  word-spacing: 5px;
+  line-height: 2;
+}
+.label-keyword {
+  display: inline-block;
+  background: #7eb0db;
+  color: white;
+  font-size: 0.9em;
+  padding: 5px;
+  border: 1px solid #357ebd;
+}
+.link-disguise {
+  color: inherit;
+}
+.link-disguise:hover {
+  color: inherit;
+}
+.clear-margin-sm {
+  margin-bottom: 0;
+}
+body {
+  font-family: 'Nunito Sans', "Helvetica Neue", Helvetica, Arial, 'Noto Sans SC', sans-serif;
+  color: #333;
+  font-size: 16px;
+}
+.text-bolder {
+  font-weight: bold;
+}
+.enumeration:last-child:after {
+  content: '' !important;
+}
+.name-and-profession .name {
+  font-size: 2.8rem;
+  margin-bottom: 0;
+}
+.name-and-profession .job {
+  margin-bottom: 0.5rem;
+}
+@media only screen {
+  .container {
+    display: grid;
+    grid-template-columns: auto 15fr 50fr auto;
+  }
+  .container .page {
+    max-width: 50em;
+  }
+}
+@media (max-width: 768px) {
+  ul {
+    padding-left: 25px;
+  }
+  .container {
+    display: block;
+  }
+  .card {
+    padding: 1em !important;
+  }
+  .background-details {
+    display: block;
+  }
+  .background-details .icon {
+    max-width: inherit;
+    min-width: inherit;
+    text-align: left;
+  }
+  .background-details .icon,
+  .background-details .info {
+    display: block;
+    padding: 10px 0;
+  }
+  .background-details .title {
+    display: none;
+  }
+  .card-nested {
+    padding: 5px 0;
+  }
+}
+.profile-card {
+  width: 100%;
+  text-align: left;
+}
+.profile-pic {
+  display: block;
+  padding: 1rem;
+}
+.profile-pic img {
+  width: 100px;
+  height: 100px;
+}
+.contact-details .detail {
+  display: block;
+  line-height: 2;
+}
+.contact-details .detail .icon {
+  padding-right: 7px;
+  color: #888;
+}
+.contact-details .detail .info {
+  font-size: 0.8em;
+}
+.social-links {
+  margin-top: 1.5rem;
+}
+.social-link {
+  padding: 0 0.6rem;
+  color: inherit;
+  opacity: 0.7;
+}
+.social-link:hover,
+.social-link:focus {
+  opacity: 1;
+}
+.social-link:first-child {
+  padding-left: 0;
+}
+.social-link:last-child {
+  padding-right: 0;
+}
+.social-link > * {
+  vertical-align: middle;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+a:not(.icon) {
+  border-bottom: 1px dashed #0005;
+}
+a:hover,
+a:focus {
+  text-decoration: none;
+}
+.background-card h4 {
+  line-height: 1.2;
+  font-size: 1em;
+}
+.background-card h4 .title {
+  background: black !important;
+  color: white !important;
+  display: inline-block;
+  padding: 2px 12px 0 3px;
+  font-weight: bold;
+}
+.background-card h4:not(:first-child) {
+  margin-top: 2em;
+}
+.content {
+  line-height: 1.5;
+}
+.card {
+  background: white;
+  padding: 2em 3.5em;
+}
+.card-nested {
+  padding: 0.8rem 0 0.8rem 2rem;
+}
+.card-nested.relax {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+.card-wrapper {
+  padding: 5px;
+}
+.enumeration:not(:last-child):after {
+  content: ", ";
+}
+.enumeration:last-child:after {
+  content: ".";
+}
+.github-stars {
+  opacity: 0.6;
+  font-size: 0.9em;
+}
+.projects {
+  padding: 1rem 0;
+}
+.projects .text-muted {
+  margin-bottom: 0.4rem;
+}
+.projects .icon {
+  margin-right: 2px;
+}
+.px10 {
+  height: 10px;
+}
+.skill-table {
+  display: grid;
+  grid-template-columns: max-content auto;
+  grid-gap: 1.5rem 1rem;
+}
+.skill-table .name {
+  font-weight: bold;
+  text-align: right;
+}
+.project-table {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem 1rem;
+}
+.print-only {
+  display: none;
+}
+@media only screen and (max-width: 768px) {
+  .profile-card,
+  .contact-details,
+  .profile-pic {
+    display: block;
+    text-align: center;
+  }
+  .card-nested {
+    padding-left: 0;
+  }
+  .project-table {
+    display: block;
+  }
+}
+.card-skills {
+  position: relative;
+}
+.skill-info {
+  margin-left: 20px;
+}
+@media (max-width: 768px) {
+  .quote {
+    font-size: inherit;
+  }
+}
+@media print {
+  .name-and-profession .name {
+    margin-top: -2rem;
+  }
+  .page {
+    margin-top: -4rem;
+  }
+  .social-links {
+    margin-top: 0.5rem;
+  }
+  body {
+    font-size: 10pt;
+  }
+  a[href]:after {
+    content: none !important;
+  }
+  .pagebreak {
+    page-break-before: always;
+  }
+  .card {
+    border: 0;
+    padding: 0;
+  }
+  .text-muted {
+    color: #777 !important;
+  }
+  .text-muted * {
+    color: inherit !important;
+  }
+  .container {
+    max-width: 100%;
+    width: 100%;
+  }
+  .contact-details .detail .icon {
+    color: #888 !important;
+  }
+  .labels {
+    display: inline;
+  }
+  .skill-info {
+    margin-left: 0;
+  }
+  .profile-card {
+    text-align: center;
+  }
+  .print-only {
+    display: inherit;
+  }
+  .no-print {
+    display: none;
+  }
+  .project-table {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 0.8rem 1rem;
+  }
+  .highlight {
+    margin-top: -0.3rem;
+  }
+  blockquote {
+    font-size: 100%;
+  }
+  .card-nested {
+    padding: 0.1rem 0 0.1rem 1rem;
+  }
+  .card-nested.relax {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+  .skill-table {
+    grid-gap: 0.8rem 0.5rem;
+  }
+  .background-card h4:not(:first-child) {
+    margin-top: 1em;
+  }
+  #work-projects-group {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: 2fr 4fr;
+    page-break-after: always;
+  }
+}
+</style>
+  </head>
+
+  <body itemscope itemtype="http://schema.org/Person">
+    
+    <div class="container">
+      <section class="row">
+        <div class="card-wrapper">
+          <div class="card">
+            <div class="profile-card">
+                <div class="profile-pic">
+                  <img class="media-object img-circle center-block"  data-src="holder.js/100x100"
+                    alt="杜审言" src="https://avatars.githubusercontent.com/u/63347504" itemprop="image">
+                </div>
+                <div class="contact-details">
+                  <div class="name-and-profession">
+                    <h3 class="text-bolder name" itemprop="name"> 杜审言</h3>
+                    <div class="text-muted job" itemprop="jobTitle">前端开发工程师</div>
+                  </div>
+
+                    <div class="text-muted info" itemprop="address" style="font-size:0.9em">江西南昌</div>
+
+                    <div class="detail">
+                      <span class="info">
+                        <a href="mailto:dushenyan88@gmail.com" class="link-disguise" itemprop="email" target="_blank">dushenyan88@gmail.com</a>
+                      </span>
+                    </div>
+
+
+                </div>
+
+              <div class="social-links">
+                  <a class="social-link icon" href="https://github.com/dushenyan" target="_blank">
+                    <span class="iconify" data-icon="ri:github-fill"></span>
+                    <!--<span class="social-link-text print-only">dushenyan</span>-->
+                  </a>
+                  <a class="social-link icon" href="https://twitter.com/dushenyan" target="_blank">
+                    <span class="iconify" data-icon="ri:twitter-fill"></span>
+                    <!--<span class="social-link-text print-only">dushenyan</span>-->
+                  </a>
+                  <a class="social-link icon" href="https://instagram.com/dushenyan" target="_blank">
+                    <span class="iconify" data-icon="ri:instagram-line"></span>
+                    <!--<span class="social-link-text print-only">dushenyan</span>-->
+                  </a>
+                  <a class="social-link icon" href="https://antfu.me" target="_blank">
+                    <span class="iconify" data-icon="ri:account-circle-fill"></span>
+                    <!--<span class="social-link-text print-only">antfu.me</span>-->
+                  </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <section class="row page">
+        <div class="card-wrapper">
+          <div class="card background-card">
+
+            <h4 id="about"></span> <span class="title">About</span> </h4>
+            <div class="card-nested" itemprop="description">
+              <p> My name is Anthony Fu, a master of computer science student and a freelance software engineer. My passion for software lies with dreaming up ideas and making them come true with elegant interfaces. I take great care in the experience, architecture, and code quality of the things I build.<br><br>I am also an open-source enthusiast and maintainer. I love how collaboration and knowledge sharing happens through open-source and I am happy to see what I do could eventually feedback to the community and industry. </p>
+            </div>
+
+            <div id="work-projects-group">
+              <div id="projects">
+                <h4><span class="title">Projects</span></h4>
+                <div class="list-unstyled projects">
+                  <div class="project-table">
+                    <li class="card-nested ">
+                      <div class="content has-sidebar">
+                        <p class="clear-margin-sm" itemprop="award">
+                          <strong>Vitest</strong>&nbsp
+                            <a href="https://github.com/vitest-dev/vitest" class='icon' target="_blank">
+                              <span class="iconify" data-icon="ri:github-fill"></span>
+                            </a>
+                            <a href="https://vitest.dev/" class='icon' target="_blank">
+                              <span class="iconify" data-icon="ri:arrow-right-up-line"></span>
+                            </a>
+                        </p>
+                        <p class="text-muted">
+                          <small> A blazing fast unit test framework powered by Vite. </small>
+                        </p>
+                          <p class="github-stars">
+                            <span class="iconify" data-icon="ri:star-fill"></span>
+                          </p>
+                      </div>
+                    </li>
+                    <li class="card-nested ">
+                      <div class="content has-sidebar">
+                        <p class="clear-margin-sm" itemprop="award">
+                          <strong>Slidev</strong>&nbsp
+                            <a href="https://github.com/slidevjs/slidev" class='icon' target="_blank">
+                              <span class="iconify" data-icon="ri:github-fill"></span>
+                            </a>
+                            <a href="https://sli.dev/" class='icon' target="_blank">
+                              <span class="iconify" data-icon="ri:arrow-right-up-line"></span>
+                            </a>
+                        </p>
+                        <p class="text-muted">
+                          <small> Presentation Slides for Developers. </small>
+                        </p>
+                          <p class="github-stars">
+                            <span class="iconify" data-icon="ri:star-fill"></span>
+                          </p>
+                      </div>
+                    </li>
+                    <li class="card-nested ">
+                      <div class="content has-sidebar">
+                        <p class="clear-margin-sm" itemprop="award">
+                          <strong>UnoCSS</strong>&nbsp
+                            <a href="https://github.com/unocss/unocss" class='icon' target="_blank">
+                              <span class="iconify" data-icon="ri:github-fill"></span>
+                            </a>
+                            <a href="https://uno.antfu.me/" class='icon' target="_blank">
+                              <span class="iconify" data-icon="ri:arrow-right-up-line"></span>
+                            </a>
+                        </p>
+                        <p class="text-muted">
+                          <small> Instant on-demand atomic CSS engine. </small>
+                        </p>
+                          <p class="github-stars">
+                            <span class="iconify" data-icon="ri:star-fill"></span>
+                          </p>
+                      </div>
+                    </li>
+                    <li class="card-nested ">
+                      <div class="content has-sidebar">
+                        <p class="clear-margin-sm" itemprop="award">
+                          <strong>VueUse</strong>&nbsp
+                            <a href="https://github.com/vueuse/vueuse" class='icon' target="_blank">
+                              <span class="iconify" data-icon="ri:github-fill"></span>
+                            </a>
+                            <a href="https://vueuse.org/" class='icon' target="_blank">
+                              <span class="iconify" data-icon="ri:arrow-right-up-line"></span>
+                            </a>
+                        </p>
+                        <p class="text-muted">
+                          <small> Collection of essential Vue Composition API utils. </small>
+                        </p>
+                          <p class="github-stars">
+                            <span class="iconify" data-icon="ri:star-fill"></span>
+                          </p>
+                      </div>
+                    </li>
+                    <li class="card-nested ">
+                      <div class="content has-sidebar">
+                        <p class="clear-margin-sm" itemprop="award">
+                          <strong>Nuxt</strong>&nbsp
+                            <a href="https://github.com/nuxt/framework" class='icon' target="_blank">
+                              <span class="iconify" data-icon="ri:github-fill"></span>
+                            </a>
+                            <a href="https://v3.nuxtjs.org/" class='icon' target="_blank">
+                              <span class="iconify" data-icon="ri:arrow-right-up-line"></span>
+                            </a>
+                        </p>
+                        <p class="text-muted">
+                          <small> The Hybrid Vue(3) Framework. </small>
+                        </p>
+                          <p class="github-stars">
+                            <span class="iconify" data-icon="ri:star-fill"></span>
+                          </p>
+                      </div>
+                    </li>
+                    <li class="card-nested ">
+                      <div class="content has-sidebar">
+                        <p class="clear-margin-sm" itemprop="award">
+                          <strong>Vite</strong>&nbsp
+                            <a href="https://github.com/vitejs/vite" class='icon' target="_blank">
+                              <span class="iconify" data-icon="ri:github-fill"></span>
+                            </a>
+                            <a href="https://vitejs.dev/" class='icon' target="_blank">
+                              <span class="iconify" data-icon="ri:arrow-right-up-line"></span>
+                            </a>
+                        </p>
+                        <p class="text-muted">
+                          <small> Next generation frontend tooling. </small>
+                        </p>
+                          <p class="github-stars">
+                            <span class="iconify" data-icon="ri:star-fill"></span>
+                          </p>
+                      </div>
+                    </li>
+                  </div>
+                    <li class="card-nested text-muted">
+                      <a href="https://github.com/dushenyan" target="_blank">More Projects...</a>
+                    </li>
+                  <div class='px10'></div>
+                </div>
+              </div>
+
+              <div id="work-experience">
+                <h4> <span class="title">Work Experience</span> </h4>
+                <ul class="list-unstyled">
+                    <li class="card-nested relax">
+                      <div class="content has-sidebar">
+                        <p class="clear-margin-sm">
+                          <strong><a href="https://nuxtlabs.com/" target="_blank">NuxtLabs</a></strong>
+                          <span class="text-muted" style="margin-left: 0.3em">Software Engineer</span>
+                        </p>
+                        <p class="text-muted">
+                          <small>
+                            <span class="space-right"> Sep 2021 - Present | Remote</span>
+                          </small>
+                        </p>
+                        <p></p>
+                          <ul class='highlight'>
+                              <li> Integrated Vite into Nuxt 3 resulted in 50x faster development time. </li>
+                              <li> Authored &#x60;unplugin&#x60; unifing the API between Webpack and Vite. </li>
+                              <li> Created Vitest that improved the developer experience on testing. </li>
+                          </ul>
+                      </div>
+
+                    </li>
+                    <li class="card-nested relax">
+                      <div class="content has-sidebar">
+                        <p class="clear-margin-sm">
+                          <strong><a href="https://github.com/antfu" target="_blank">Open Source</a></strong>
+                          <span class="text-muted" style="margin-left: 0.3em">OSS Developer</span>
+                        </p>
+                        <p class="text-muted">
+                          <small>
+                            <span class="space-right"> Jan 2015 - Present | Github</span>
+                          </small>
+                        </p>
+                        <p></p>
+                          <ul class='highlight'>
+                              <li> Vue.js &amp; Vite.js Core Team Member </li>
+                              <li> Received 15,000+ stars on personal projects </li>
+                              <li> Maintaining numerous popular projects </li>
+                          </ul>
+                      </div>
+
+                    </li>
+                    <li class="card-nested relax">
+                      <div class="content has-sidebar">
+                        <p class="clear-margin-sm">
+                          <strong><a href="https://www.bytedance.com/" target="_blank">ByteDance Ltd.</a></strong>
+                          <span class="text-muted" style="margin-left: 0.3em">Front-end Development Intern</span>
+                        </p>
+                        <p class="text-muted">
+                          <small>
+                            <span class="space-right"> Jun 2020 - Sep 2020 | Shanghai, China</span>
+                          </small>
+                        </p>
+                        <p>In Product R &amp; D and Engineering Architecture Department</p>
+                          <ul class='highlight'>
+                              <li> Developed a marketplace for low-code/no-code platforms with integrated documentation site, demo and coding playground. </li>
+                          </ul>
+                      </div>
+
+                    </li>
+                    <li class="card-nested relax">
+                      <div class="content has-sidebar">
+                        <p class="clear-margin-sm">
+                          <strong><a href="http://www.foremostgroups.com/" target="_blank">Foremost Groups, Inc.</a></strong>
+                          <span class="text-muted" style="margin-left: 0.3em">Technical Consultant</span>
+                        </p>
+                        <p class="text-muted">
+                          <small>
+                            <span class="space-right"> Oct 2019 - Jun 2020 | Taipei, Taiwan (Remote)</span>
+                          </small>
+                        </p>
+                        <p>Provided technical support on market data collecting and analyzing</p>
+                      </div>
+
+                    </li>
+                    <li class="card-nested relax">
+                      <div class="content has-sidebar">
+                        <p class="clear-margin-sm">
+                          <strong><a href="http://www.fastfish.com/" target="_blank">Fastfish Ltd.</a></strong>
+                          <span class="text-muted" style="margin-left: 0.3em">Software Engineer Intern</span>
+                        </p>
+                        <p class="text-muted">
+                          <small>
+                            <span class="space-right"> Jul 2016 - Sep 2016 | Hangzhou, China</span>
+                          </small>
+                        </p>
+                        <p>Worked on developing POS system in C#.NET and ASP.NET</p>
+                          <ul class='highlight'>
+                              <li> Improved back-end ASP.NET server performance by optimization SQL compounding algorithm </li>
+                          </ul>
+                      </div>
+
+                    </li>
+                </ul>
+              </div>
+            </div>
+
+            <h4 id="skills"><span class="title">Stacks</span> </h4>
+            <div class="card-nested" itemprop="description">
+              <div class="skill-table">
+                    <div class='name'>Frontend</div> 
+                    <div>TypeScript, JavaScript, Vue, React, Vite</div>
+                    <div class='name'>Backend</div> 
+                    <div>Node, MongoDB, MySQL, Serverless, Nginx, Docker</div>
+                    <div class='name'>Mobile</div> 
+                    <div>Android, Kotlin, PWA</div>
+                    <div class='name'>DevOps</div> 
+                    <div>Firebase, AWS, Azure, AliCloud</div>
+                    <div class='name'>Languages</div> 
+                    <div>Python, Java</div>
+              </div>
+            </div>
+            <div class='px10'></div>
+
+            <div id="education">
+              <h4><span class="title">Education</span></h4>
+              <ul class="list-unstyled">
+                  <li class="card-nested">
+                    <div class="content has-sidebar">
+                      <p class="clear-margin-sm">
+                        <strong> Computer Science, Bachelor of Science</strong>,&nbsp;
+                        Tamkang University, New Taipei
+                      </p>
+                      <p class="text-muted clear-margin-sm">
+                        <small>
+                          Sep 2015 -  Jun 2019 
+                        </small>
+                      </p>
+                      <div></div>
+                      <i></i>
+                      <div class="space-top labels">
+                        
+                      </div>
+                    </div>
+                  </li>
+              </ul>
+            </div>
+
+
+            <h4 id="publications"><span class="title">Talks</span> </h4>
+            <ul class="list-unstyled">
+                <li class="card-nested" style="margin-bottom: 0.5em">
+                  <div class="content has-sidebar">
+                    <p class="clear-margin-sm">
+                      <strong><a href="https://vuejslive.com/" target="_blank">New Ways to Vue</a></strong>,&nbsp;
+                      Vue London 2021
+                    </p>
+                    <p class="text-muted clear-margin-sm">
+                      <small> Oct 20, 2021 </small>
+                      <small>,&nbsp;<a href="https://antfu.me/posts/new-ways-to-vue-london-2021" target="_blank">Slides</a></small>
+                    </p>
+                    <p class="clear-margin">How the new tools and techniques affect the way we view and build applications</p>
+                  </div>
+                </li>
+                <li class="card-nested" style="margin-bottom: 0.5em">
+                  <div class="content has-sidebar">
+                    <p class="clear-margin-sm">
+                      <strong><a href="https://2021.vueday.it/" target="_blank">Composable Vue</a></strong>,&nbsp;
+                      VueDay 2021
+                    </p>
+                    <p class="text-muted clear-margin-sm">
+                      <small> Apr 29, 2021 </small>
+                      <small>,&nbsp;<a href="https://antfu.me/posts/composable-vue-vueday-2021" target="_blank">Slides</a></small>
+                    </p>
+                    <p class="clear-margin">Talked about the reactivity system and Composition API in Vue.js</p>
+                  </div>
+                </li>
+                <li class="card-nested" style="margin-bottom: 0.5em">
+                  <div class="content has-sidebar">
+                    <p class="clear-margin-sm">
+                      <strong><a href="https://twitter.com/beijing_vue" target="_blank">Develop with Vite</a></strong>,&nbsp;
+                      Vue Beijing 2021
+                    </p>
+                    <p class="text-muted clear-margin-sm">
+                      <small> Mar 29, 2021 </small>
+                      <small>,&nbsp;<a href="https://antfu.me/posts/vue-beijing-2021" target="_blank">Slides</a></small>
+                    </p>
+                    <p class="clear-margin">Introduce to Vite, the next generation frontend tooling</p>
+                  </div>
+                </li>
+                <li class="card-nested" style="margin-bottom: 0.5em">
+                  <div class="content has-sidebar">
+                    <p class="clear-margin-sm">
+                      <strong><a href="https://wemp.app/posts/5ec27920-8201-4ef2-9027-92b09b136fab" target="_blank">Binjiang Front-End Developer Salon, Hangzhou</a></strong>,&nbsp;
+                      Bingjiang Front-End Union
+                    </p>
+                    <p class="text-muted clear-margin-sm">
+                      <small> Sep 26, 2020 </small>
+                      <small>,&nbsp;<a href="https://antfu.me/posts/binfe-2020-zh/" target="_blank">Slides</a></small>
+                    </p>
+                    <p class="clear-margin">Talked about the reactivity system and Composition API in Vue.js</p>
+                  </div>
+                </li>
+            </ul>
+
+            <h4 id="awards"><span class="title">Awards</span></h4>
+            <ul class="list-unstyled">
+                <li class="card-nested">
+                  <div class="content has-sidebar">
+                    <p class="clear-margin-sm" itemprop="award">
+                      <strong>Idea Maker Competition Masterpiece Award</strong>,&nbsp;
+                      Oriental Institute of Technology
+                    </p>
+                    <p class="text-muted clear-margin-sm">
+                      <small> Oct 2018 </small>
+                    </p>
+                    
+                  </div>
+                </li>
+                <li class="card-nested">
+                  <div class="content has-sidebar">
+                    <p class="clear-margin-sm" itemprop="award">
+                      <strong>Graduation Project Competition Masterpiece Award</strong>,&nbsp;
+                      Tamkang University
+                    </p>
+                    <p class="text-muted clear-margin-sm">
+                      <small> Jun 2018 </small>
+                    </p>
+                    
+                  </div>
+                </li>
+                <li class="card-nested">
+                  <div class="content has-sidebar">
+                    <p class="clear-margin-sm" itemprop="award">
+                      <strong>First Class Scholarship for Academics (top one)</strong>,&nbsp;
+                      Tamkang University
+                    </p>
+                    <p class="text-muted clear-margin-sm">
+                      <small> Nov 2016 </small>
+                    </p>
+                    
+                  </div>
+                </li>
+            </ul>
+
+
+
+
+            <h4 id="languages"><span class="title">Languages</span> </h4>
+            <p class="card-nested">
+                <span class="enumeration"><strong>Chinese</strong> (Native speaker)</span>
+                <span class="enumeration"><strong>English</strong> (Fluent)</span>
+                <span class="enumeration"><strong>Japanese</strong> (Intermediate)</span>
+            </p>
+
+            <div style="text-align:center">
+              <div class="detail no-print" style="font-size:1.5rem;margin-top:2rem;">
+                <a href="https://resume.dushenyan.me/resume.pdf" class="info" itemprop="pdf" target="_blank">
+                  PDF Version
+                </a>
+              </div>
+               <div class="detail print-only" style="font-size:1.5rem;margin-top:2rem;" >
+                <a href="https://resume.dushenyan.me" class="info" itemprop="pdf" target="_blank">
+                  Online Version
+                </a>
+              </div>
+              <div style="opacity:0.7; font-size:1.2rem;margin-top:1rem;">Last updated at 2023-04-09, 09:18</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    
+    <script>
+      async function updateStars(){
+        await Promise.all(
+          Array.from(document.querySelectorAll('[data-gh-api]'))
+            .map(async (e) => {
+              const api = e.dataset.ghApi
+              const r = await fetch(api)
+              const json = await r.json()
+              if (json.stargazers_count)
+                e.innerText = json.stargazers_count
+              console.info(`${api} - ${json.stargazers_count}`)
+            })
+        )
+      }
+      window.addEventListener('load', updateStars)
+    </script>
+  </body>
+</html>
