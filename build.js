@@ -37,7 +37,7 @@ async function buildPDF(html) {
   })
   await browser.close()
   console.log('开始生成简历...')
-  fs.writeFileSync('./dist/杜审言-深圳-前端-社招.pdf', pdf)
+  fs.writeFileSync('./dist/杜审言-前端-社招-深圳.pdf', pdf)
   console.log('完成!')
   return pdf
 }
