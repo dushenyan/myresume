@@ -191,17 +191,17 @@
   ],
   "education": [
     {
-      "institution": "Tamkang University, New Taipei",
-      "area": "Computer Science",
-      "studyType": "Bachelor of Science",
-      "startDate": "2015-09-01",
-      "endDate": "2019-06-01",
+      "institution": "江西交通职业技术学院",
+      "area": "计算机网络技术",
+      "studyType": "专科",
+      "startDate": "2018-09-01",
+      "endDate": "2021-06-01",
       "start": {
-        "year": 2015,
+        "year": 2018,
         "month": 9
       },
       "end": {
-        "year": 2019,
+        "year": 2021,
         "month": 6
       },
       "description": "",

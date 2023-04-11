@@ -110,7 +110,7 @@ async function render(resume) {
       "codepen", "foursquare", "reddit", "spotify",
       "dribble", "dribbble", "facebook", "angellist",
       "bitbucket", "skype"],
-    date_format = 'MMM YYYY';
+    date_format = 'YYYY.MM';
 
   if (!resume.basics.picture && hasEmail(resume)) {
     resume.basics.picture = gravatar.url(resume.basics.email.replace('(at)', '@'), {
