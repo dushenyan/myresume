@@ -201,12 +201,6 @@ a:focus {
 }
 .skill-table {
   display: grid;
-  grid-template-columns: max-content auto;
-  grid-gap: 1.5rem 1rem;
-}
-.skill-table .name {
-  font-weight: bold;
-  text-align: right;
 }
 .project-table {
   display: grid;

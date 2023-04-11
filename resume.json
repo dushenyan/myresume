@@ -30,56 +30,16 @@
     ]
   },
   "skills": [
-    {
-      "keywords": [
-        "TypeScript",
-        "JavaScript",
-        "Vue",
-        "React",
-        "Vite"
-      ],
-      "level": "Senior",
-      "name": "Frontend"
-    },
-    {
-      "keywords": [
-        "Node",
-        "MongoDB",
-        "MySQL",
-        "Serverless",
-        "Nginx",
-        "Docker"
-      ],
-      "level": "Senior",
-      "name": "Backend"
-    },
-    {
-      "keywords": [
-        "Android",
-        "Kotlin",
-        "PWA"
-      ],
-      "level": "Intermediate",
-      "name": "Mobile"
-    },
-    {
-      "keywords": [
-        "Firebase",
-        "AWS",
-        "Azure",
-        "AliCloud"
-      ],
-      "level": "Intermediate",
-      "name": "DevOps"
-    },
-    {
-      "keywords": [
-        "Python",
-        "Java"
-      ],
-      "level": "Intermediate",
-      "name": "Languages"
-    }
+    "掌握HTML5+CSS3+JavaScript前端三件套，具有良好的编程⻛格和习惯",
+    "掌握EcmaScript6扩展语⾔，涉及析构赋值、箭头函数、Promise、扩展⽅法",
+    "掌握TypeScipt语⾔，涉及接⼝、泛型、枚举、⼯作空间，并且⼯作中有实际开发经验",
+    "了解MVC/MVVM开发模式，有着对Vue2源码阅读经验",
+    "熟悉使⽤Webpack、Vite进⾏项⽬构建打包以及前端包管理⼯具命令的使⽤",
+    "熟悉使⽤BootstrapUI库，熟悉使⽤ElementUI、AntDesign等前端组件库",
+    "熟练Vue全家桶使⽤，包括Vue、Vue3、VueRouter、VueX等",
+    "了解常⽤的Linux和部分终端Git等命令以及在Github进⾏代码托管，⾃⾏在阿⾥云部署了⾃⼰的博客",
+    "了解前后端分离技术，及其Cookie、Session、Ajax、前端路由、跨域等相关技术",
+    "熟练使⽤前端代码开发⼯具、代码托管⼯具以及数据库图形化⼯具Navicat等软件"
   ],
   "projects": [
     {
