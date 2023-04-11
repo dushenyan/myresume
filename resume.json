@@ -4,13 +4,13 @@
     "picture": "https://avatars.githubusercontent.com/u/63347504",
     "label": "前端开发工程师",
     "headline": "A ship in harbor is safe, but that is not what ships are built for.",
-    "summary": "My name is Anthony Fu, a master of computer science student and a freelance software engineer. My passion for software lies with dreaming up ideas and making them come true with elegant interfaces. I take great care in the experience, architecture, and code quality of the things I build.\n\nI am also an open-source enthusiast and maintainer. I love how collaboration and knowledge sharing happens through open-source and I am happy to see what I do could eventually feedback to the community and industry.",
+    "summary": "My name is Dushenyan, a master of computer science student and a freelance software engineer. My passion for software lies with dreaming up ideas and making them come true with elegant interfaces. I take great care in the experience, architecture, and code quality of the things I build.\n\nI am also an open-source enthusiast and maintainer. I love how collaboration and knowledge sharing happens through open-source and I am happy to see what I do could eventually feedback to the community and industry.",
     "website": "https://duhenyanblog.netlify.app/",
     "address": "江西南昌",
     "projects_url": "https://github.com/dushenyan",
     "username": "dushenyan",
     "email": "dushenyan88@gmail.com",
-    "html_title":"杜审言-前端-社招-深圳",
+    "html_title": "杜审言-前端-社招-深圳",
     "profiles": [
       {
         "network": "GitHub",
@@ -32,59 +32,67 @@
   "skills": [
     "掌握HTML5+CSS3+JavaScript前端三件套，具有良好的编程⻛格和习惯",
     "掌握EcmaScript6扩展语⾔，涉及析构赋值、箭头函数、Promise、扩展⽅法",
-    "掌握TypeScipt语⾔，涉及接⼝、泛型、枚举、⼯作空间，并且⼯作中有实际开发经验",
-    "了解MVC/MVVM开发模式，有着对Vue2源码阅读经验",
-    "熟悉使⽤Webpack、Vite进⾏项⽬构建打包以及前端包管理⼯具命令的使⽤",
+    "掌握TypeScipt语⾔，涉及接⼝、泛型、枚举、⼯作空间，并且有项目实际开发经验",
+    "熟悉使⽤Webpack、Vite进⾏项⽬构建打包以及前端包管理⼯具命令使⽤",
     "熟悉使⽤BootstrapUI库，熟悉使⽤ElementUI、AntDesign等前端组件库",
-    "熟练Vue全家桶使⽤，包括Vue、Vue3、VueRouter、VueX等",
-    "了解常⽤的Linux和部分终端Git等命令以及在Github进⾏代码托管，⾃⾏在阿⾥云部署了⾃⼰的博客",
+    "熟练Vue多生态库使⽤，包括Vue、VueCli、VueRouter、VueX等",
+    "了解MVC/MVVM开发模式，有着对Vue2源码阅读经验",
+    "了解常⽤Linux和部分终端Git等命令以及在Github进⾏代码托管，阿⾥云部署博客",
     "了解前后端分离技术，及其Cookie、Session、Ajax、前端路由、跨域等相关技术",
     "熟练使⽤前端代码开发⼯具、代码托管⼯具以及数据库图形化⼯具Navicat等软件"
   ],
+  "selfEvaluate": [
+    "乐观开朗，适应能⼒强，能接受短期加班和出差",
+    "有良好的设计和编码习惯，并且热爱开源代码",
+    "技术视野开阔，学习能⼒好，对业界新技术敏感",
+    "喜欢专研，具有良好的学习能⼒并注重团队合作",
+    "具备良好的沟通能⼒和⾼度的团队合作意识，能快速融⼊团队",
+    "⼯作中有着强烈的责任⼼，开拓创新意识强，能保持不断进取的精神，有⾼度执⾏⼒"
+  ],
   "projects": [
     {
-      "name": "vitest/vitest",
-      "displayName": "Vitest",
+      "name": "政府密码云服务平台",
+      "displayName": "政府密码云服务平台",
       "summary": "A blazing fast unit test framework powered by Vite.",
       "website": "https://vitest.dev/",
       "githubUrl": "https://github.com/vitest-dev/vitest",
       "primaryLanguage": "TypeScript"
     },
     {
-      "name": "slidevjs/slidev",
-      "displayName": "Slidev",
+      "name": "海南营商数据大屏",
+      "displayName": "海南营商数据大屏",
       "summary": "Presentation Slides for Developers.",
       "website": "https://sli.dev/",
       "githubUrl": "https://github.com/slidevjs/slidev",
       "primaryLanguage": "TypeScript"
     },
     {
-      "name": "unocss/unocss",
-      "displayName": "UnoCSS",
+      "name": "GrandTag保险服务网站",
+      "displayName": "GrandTag保险服务网站",
       "summary": "Instant on-demand atomic CSS engine.",
       "website": "https://uno.antfu.me/",
       "githubUrl": "https://github.com/unocss/unocss",
       "primaryLanguage": "TypeScript"
     },
     {
-      "name": "vueuse/vueuse",
-      "displayName": "VueUse",
+      "name": "创程零售业绩小程序",
+      "displayName": "创程零售业绩小程序",
       "summary": "Collection of essential Vue Composition API utils.",
       "website": "https://vueuse.org/",
       "githubUrl": "https://github.com/vueuse/vueuse",
       "primaryLanguage": "TypeScript"
     },
     {
-      "name": "nuxt/framework",
-      "displayName": "Nuxt",
+      "name": "自研办公管理系统",
+      "displayName": "自研办公管理系统",
       "summary": "The Hybrid Vue(3) Framework.",
       "website": "https://v3.nuxtjs.org/",
       "githubUrl": "https://github.com/nuxt/framework",
       "primaryLanguage": "TypeScript"
     },
     {
-      "name": "vitejs/vite",
-      "displayName": "Vite",
+      "name": "中科大报名活动网站",
+      "displayName": "中科大报名活动网站",
       "summary": "Next generation frontend tooling.",
       "website": "https://vitejs.dev/",
       "githubUrl": "https://github.com/vitejs/vite",
@@ -95,13 +103,14 @@
     {
       "company": "海南流云科技有限公司",
       "position": "前端开发工程师",
-      "website": "https://nuxtlabs.com/",
-      "location": "Remote",
+      "website": "http://www.hainanbi.com/",
+      "location": "海南海口",
       "isCurrentRole": true,
-      "startDate": "2021-09-01",
+      "startDate": "2022-07-01",
+      "endDate": "",
       "start": {
-        "year": 2021,
-        "month": 9
+        "year": 2022,
+        "month": 7
       },
       "end": {},
       "highlights": [
@@ -111,41 +120,23 @@
       ]
     },
     {
-      "company": "江西创程鞋业有限公司",
-      "position": "前端开发工程师",
-      "website": "https://github.com/antfu",
-      "location": "Github",
-      "isCurrentRole": true,
-      "startDate": "2015-01-01",
-      "start": {
-        "year": 2015,
-        "month": 1
-      },
-      "end": {},
-      "highlights": [
-        "Vue.js & Vite.js Core Team Member",
-        "Received 15,000+ stars on personal projects",
-        "Maintaining numerous popular projects"
-      ]
-    },
-    {
       "company": "江西蓝源科技有限公司",
       "position": "前端开发工程师",
-      "website": "https://www.bytedance.com/",
-      "location": "Shanghai, China",
+      "website": "http://blueorigintech.com/",
+      "location": "江西南昌",
       "summary": "In Product R & D and Engineering Architecture Department",
       "highlights": [
         "Developed a marketplace for low-code/no-code platforms with integrated documentation site, demo and coding playground."
       ],
-      "startDate": "2020-06-01",
-      "endDate": "2020-09-01",
+      "startDate": "2020-12-01",
+      "endDate": "2022-07-01",
       "start": {
         "year": 2020,
-        "month": 6
+        "month": 12
       },
       "end": {
-        "year": 2020,
-        "month": 9
+        "year": 2022,
+        "month": 7
       }
     }
   ],
@@ -153,6 +144,7 @@
     {
       "institution": "江西交通职业技术学院",
       "area": "计算机网络技术",
+      "department": "信息工程系",
       "studyType": "专科",
       "startDate": "2018-09-01",
       "endDate": "2021-06-01",
@@ -173,33 +165,13 @@
   "volunteer": [],
   "awards": [
     {
-      "title": "Idea Maker Competition Masterpiece Award",
+      "title": "全国⼤学⽣数学建模",
       "summary": "",
-      "awarder": "Oriental Institute of Technology",
-      "date": "2018-10-01",
+      "awarder": "省⼆等奖",
+      "date": "2019-10-01",
       "fullDate": {
-        "year": 2018,
+        "year": 2019,
         "month": 10
-      }
-    },
-    {
-      "title": "Graduation Project Competition Masterpiece Award",
-      "summary": "",
-      "awarder": "Tamkang University",
-      "date": "2018-06-01",
-      "fullDate": {
-        "year": 2018,
-        "month": 6
-      }
-    },
-    {
-      "title": "First Class Scholarship for Academics (top one)",
-      "summary": "",
-      "awarder": "Tamkang University",
-      "date": "2016-11-01",
-      "fullDate": {
-        "year": 2016,
-        "month": 11
       }
     }
   ],

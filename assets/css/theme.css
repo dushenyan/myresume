@@ -199,13 +199,14 @@ a:focus {
 .px10 {
   height: 10px;
 }
-.skill-table {
+.skill-table,
+.self-evaluate-table {
   display: grid;
 }
 .project-table {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 1rem 1rem;
+  grid-template-columns: 1fr;
+  grid-gap: 1rem;
 }
 .print-only {
   display: none;

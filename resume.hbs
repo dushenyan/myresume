@@ -89,7 +89,7 @@
             <div id="work-projects-group">
               {{#if resume.projects}}
               <div id="projects">
-                <h4><span class="title">项目经验</span></h4>
+                <h4><span class="title">项目经历</span></h4>
                 <div class="list-unstyled projects">
                   <div class="project-table">
                   {{#each resume.projects}}
@@ -111,21 +111,10 @@
                         <p class="text-muted">
                           <small> {{summary}} </small>
                         </p>
-                        {{#if githubUrl}}
-                          <p class="github-stars">
-                            <span class="iconify" data-icon="ri:star-fill"></span>
-                            {{!-- <span class="stars" data-gh-api="{{getGithubApi githubUrl}}">{{stars}}</span> --}}
-                          </p>
-                        {{/if}}
                       </div>
                     </li>
                   {{/each}}
                   </div>
-                  {{#if resume.basics.projects_url}}
-                    <li class="card-nested text-muted">
-                      <a href="{{resume.basics.projects_url}}" target="_blank">More Projects...</a>
-                    </li>
-                  {{/if}}
                   <div class='px10'></div>
                 </div>
               </div>
@@ -143,7 +132,7 @@
                         </p>
                         <p class="text-muted">
                           <small>
-                            <span class="space-right"> {{startDate}} - {{#if endDate}}{{endDate}}{{else}}Present{{/if}} | {{location}}</span>
+                            <span class="space-right"> {{startDate}} - {{#if endDate}}{{endDate}}{{else}}至今{{/if}} | {{location}}</span>
                           </small>
                         </p>
                         <p>{{summary}}</p>
@@ -167,7 +156,16 @@
               <ul class="skill-table">
                 {{#each resume.skills}}
                     <li>{{.}}</> 
-                    {{!-- <div>{{join keywords}}</div> --}}
+                {{/each}}
+              </>
+            </div>
+            <div class='px10'></div>
+
+            <h4 id="skills self-evaluate"><span class="title">自我评价</span> </h4>
+            <div class="card-nested" itemprop="description">
+              <ul class="self-evaluate-table">
+                {{#each resume.selfEvaluate}}
+                  <li>{{.}}</>
                 {{/each}}
               </>
             </div>
@@ -180,11 +178,11 @@
                   <li class="card-nested">
                     <div class="content has-sidebar">
                       <p class="clear-margin-sm">
-                        <strong>{{institution}}, {{#if area}} {{area}}, {{/if}}{{studyType}}</strong>&nbsp;
+                        <strong>{{institution}}&nbsp;{{department}}&nbsp;{{#if area}}{{area}}</strong>
                       </p>
                       <p class="text-muted clear-margin-sm">
                         <small>
-                          {{startDate}} 至 {{#if endDate}} {{endDate}} {{else}} Currently Pursuing {{/if}}
+                          {{startDate}} 至 {{#if endDate}} {{endDate}}{{/if}}&nbsp;{{studyType}}{{else}} 还在待业中... {{/if}}
                         </small>
                       </p>
                       <div>{{description}}</div>
@@ -205,7 +203,7 @@
                 <li class="card-nested">
                   <div class="content has-sidebar">
                     <p class="clear-margin-sm" itemprop="award">
-                      <strong>{{title}}</strong>,&nbsp;
+                      <strong>{{title}}</strong>&nbsp;
                       {{awarder}}
                     </p>
                     <p class="text-muted clear-margin-sm">
@@ -292,23 +290,11 @@
         </div>
       </section>
     </div>
-
-    
     <script>
-      async function updateStars(){
-        await Promise.all(
-          Array.from(document.querySelectorAll('[data-gh-api]'))
-            .map(async (e) => {
-              const api = e.dataset.ghApi
-              const r = await fetch(api)
-              const json = await r.json()
-              if (json.stargazers_count)
-                e.innerText = json.stargazers_count
-              console.info(`${api} - ${json.stargazers_count}`)
-            })
-        )
+      async function consoleWecome(){
+        console.log(`欢迎调试查看我的简历!`)
       }
-      window.addEventListener('load', updateStars)
+      window.addEventListener('load', consoleWecome)
     </script>
   </body>
 </html>

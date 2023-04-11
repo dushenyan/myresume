@@ -233,7 +233,7 @@ async function render(resume) {
   })
 
   Handlebars.registerHelper('getBuildDate', function () {
-    return moment().format('YYYY-MM-DD, hh:mm')
+    return moment().format('YYYY-MM-DD hh:mm')
   })
 
   return Handlebars.compile(template)({

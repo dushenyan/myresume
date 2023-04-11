@@ -51,7 +51,7 @@
     padding-right: 0;
   }
 
-  & > * {
+  &>* {
     vertical-align: middle;
   }
 }
@@ -63,6 +63,7 @@ a {
   &:not(.icon) {
     border-bottom: 1px dashed #0005;
   }
+
   &:hover,
   &:focus {
     text-decoration: none;
@@ -72,7 +73,7 @@ a {
 .background-card h4 {
   line-height: 1.2;
   font-size: 1em;
-  
+
   .title {
     background: black !important;
     color: white !important;
@@ -113,6 +114,7 @@ a {
 .enumeration:not(:last-child):after {
   content: ", ";
 }
+
 .enumeration:last-child:after {
   content: ".";
 }
@@ -124,9 +126,11 @@ a {
 
 .projects {
   padding: 1rem 0;
+
   .text-muted {
     margin-bottom: 0.4rem;
   }
+
   .icon {
     margin-right: 2px;
   }
@@ -136,7 +140,8 @@ a {
   height: 10px;
 }
 
-.skill-table {
+.skill-table,
+.self-evaluate-table {
   display: grid;
 }
 
@@ -151,15 +156,18 @@ a {
 }
 
 @media only screen and (max-width: @screen-tablet) {
+
   .profile-card,
   .contact-details,
   .profile-pic {
     display: block;
     text-align: center;
   }
+
   .card-nested {
     padding-left: 0;
   }
+
   .project-table {
     display: block;
   }
