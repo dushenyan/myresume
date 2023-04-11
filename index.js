@@ -86,7 +86,7 @@ const githubRepoCache = {}
 //   return url.replace('https://github.com/', 'https://api.github.com/repos/')
 // }
 
-async function getRepoStars (url) {
+async function getRepoStars(url) {
   if (githubRepoCache[url])
     return githubRepoCache[url].stargazers_count
   // try {
@@ -201,15 +201,17 @@ async function render(resume) {
     }
   });
 
-  for (const project of resume.projects){
+  for (const project of resume.projects) {
     if (project.githubUrl)
       project.stars = await getRepoStars(project.githubUrl)
   }
-
+  // 索引图标 
+  // https://icones.netlify.app/collection/ri
   Handlebars.registerHelper('toSocialIcon', function (text) {
     return {
       linkedin: 'ri:linkedin-box-fill',
       github: 'ri:github-fill',
+      gitee: 'ri:git-repository-private-fill',
       instagram: 'ri:instagram-line',
       twitter: 'ri:twitter-fill',
       website: 'ri:global-line',
@@ -224,13 +226,13 @@ async function render(resume) {
 
   // Handlebars.registerHelper('getGithubApi', getGithubApi)
 
-  Handlebars.registerHelper('breaklines', function(text) {
+  Handlebars.registerHelper('breaklines', function (text) {
     text = Handlebars.Utils.escapeExpression(text);
     text = text.replace(/(\r\n|\n|\r)/gm, '<br>');
     return new Handlebars.SafeString(text);
   })
 
-  Handlebars.registerHelper('getBuildDate', function() {
+  Handlebars.registerHelper('getBuildDate', function () {
     return moment().format('YYYY-MM-DD, hh:mm')
   })
 

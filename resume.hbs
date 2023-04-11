@@ -20,10 +20,10 @@
           {{#resume.basics}}
           <div class="card">
             <div class="profile-card">
-                <div class="profile-pic">
+                {{!-- <div class="profile-pic">
                   <img class="media-object img-circle center-block"  data-src="holder.js/100x100"
                     alt="{{name}}" src="{{picture}}" itemprop="image">
-                </div>
+                </div> --}}
                 <div class="contact-details">
                   <div class="name-and-profession">
                     <h3 class="text-bolder name" itemprop="name"> {{name}}</h3>
@@ -81,7 +81,7 @@
         <div class="card-wrapper">
           <div class="card background-card">
 
-            <h4 id="about"></span> <span class="title">About</span> </h4>
+            <h4 id="about"></span> <span class="title">自我描述</span> </h4>
             <div class="card-nested" itemprop="description">
               <p> {{breaklines resume.basics.summary}} </p>
             </div>
@@ -89,7 +89,7 @@
             <div id="work-projects-group">
               {{#if resume.projects}}
               <div id="projects">
-                <h4><span class="title">Projects</span></h4>
+                <h4><span class="title">项目经验</span></h4>
                 <div class="list-unstyled projects">
                   <div class="project-table">
                   {{#each resume.projects}}
@@ -132,7 +132,7 @@
               {{/if}}
 
               <div id="work-experience">
-                <h4> <span class="title">Work Experience</span> </h4>
+                <h4> <span class="title">工作经验</span> </h4>
                 <ul class="list-unstyled">
                   {{#each resume.work}}
                     <li class="card-nested relax">
@@ -162,7 +162,7 @@
               </div>
             </div>
 
-            <h4 id="skills"><span class="title">Stacks</span> </h4>
+            <h4 id="skills"><span class="title">专业技能</span> </h4>
             <div class="card-nested" itemprop="description">
               <div class="skill-table">
                 {{#each resume.skills}}
@@ -174,7 +174,7 @@
             <div class='px10'></div>
 
             <div id="education">
-              <h4><span class="title">Education</span></h4>
+              <h4><span class="title">教育经历</span></h4>
               <ul class="list-unstyled">
                 {{#each resume.education}}
                   <li class="card-nested">
@@ -199,30 +199,8 @@
               </ul>
             </div>
 
-
-            {{#if resume.publications}}
-            <h4 id="publications"><span class="title">Talks</span> </h4>
-            <ul class="list-unstyled">
-              {{#each resume.publications}}
-                <li class="card-nested" style="margin-bottom: 0.5em">
-                  <div class="content has-sidebar">
-                    <p class="clear-margin-sm">
-                      <strong>{{#if website}}<a href="{{website}}" target="_blank">{{name}}</a>{{else}}{{name}}{{/if}}</strong>,&nbsp;
-                      {{publisher}}
-                    </p>
-                    <p class="text-muted clear-margin-sm">
-                      <small> {{releaseDate}} {{dateNote}}</small>
-                      <small>{{#if slides}},&nbsp;<a href="{{slides}}" target="_blank">Slides</a>{{/if}}</small>
-                    </p>
-                    <p class="clear-margin">{{summary}}</p>
-                  </div>
-                </li>
-              {{/each}}
-            </ul>
-            {{/if}}
-
             {{#if resume.awards}}
-            <h4 id="awards"><span class="title">Awards</span></h4>
+            <h4 id="awards"><span class="title">荣誉奖项</span></h4>
             <ul class="list-unstyled">
               {{#each resume.awards}}
                 <li class="card-nested">
@@ -301,15 +279,6 @@
                 </li>
               {{/each}}
             </ul>
-            {{/if}}
-
-            {{#if resume.languages}}
-            <h4 id="languages"><span class="title">Languages</span> </h4>
-            <p class="card-nested">
-              {{#each resume.languages}}
-                <span class="enumeration"><strong>{{language}}</strong> ({{fluency}})</span>
-              {{/each}}
-            </p>
             {{/if}}
 
             <div style="text-align:center">
