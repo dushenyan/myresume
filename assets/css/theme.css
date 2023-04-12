@@ -206,7 +206,7 @@ a:focus {
 .project-table {
   display: grid;
   grid-template-columns: 1fr;
-  grid-gap: 1rem;
+  grid-gap: 1rem 1rem;
 }
 .print-only {
   display: none;
