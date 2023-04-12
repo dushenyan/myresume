@@ -109,8 +109,9 @@
                           {{/if}}
                         </p>
                         <p class="text-muted">
-                          基于{{#each primaryLanguage}}<small>{{.}}<span> + </span></small>{{/each}}开发
+                          基于{{#each primaryLanguage}} <small>{{.}}<span> + </span></small> {{/each}}开发
                         </p>
+                        <p class="text-muted">{{description}}</p>
                       </div>
                     </li>
                   {{/each}}
