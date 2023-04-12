@@ -193,6 +193,9 @@ a:focus {
 .projects .text-muted {
   margin-bottom: 0.4rem;
 }
+.projects .text-muted small:last-child span {
+  display: none;
+}
 .projects .icon {
   margin-right: 2px;
 }

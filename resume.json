@@ -53,50 +53,67 @@
     {
       "name": "政府密码云服务平台",
       "displayName": "政府密码云服务平台",
-      "summary": "A blazing fast unit test framework powered by Vite.",
-      "website": "https://vitest.dev/",
-      "githubUrl": "https://github.com/vitest-dev/vitest",
-      "primaryLanguage": "TypeScript"
+      "summary": "",
+      "primaryLanguage": [
+        "Vue2.6",
+        "VueCli",
+        "VueRouter",
+        "VueX",
+        "Axios",
+        "ElementUi"
+      ]
     },
     {
       "name": "海南营商数据大屏",
       "displayName": "海南营商数据大屏",
       "summary": "Presentation Slides for Developers.",
-      "website": "https://sli.dev/",
-      "githubUrl": "https://github.com/slidevjs/slidev",
-      "primaryLanguage": "TypeScript"
+      "primaryLanguage": [
+        "Vue2.6",
+        "Echart",
+        "WebGL",
+        "Axios",
+        "VueX"
+      ]
     },
     {
       "name": "GrandTag保险服务网站",
       "displayName": "GrandTag保险服务网站",
-      "summary": "Instant on-demand atomic CSS engine.",
-      "website": "https://uno.antfu.me/",
-      "githubUrl": "https://github.com/unocss/unocss",
-      "primaryLanguage": "TypeScript"
+      "summary": "",
+      "primaryLanguage": [
+        "React",
+        "ReactRouter",
+        "ReactI18next",
+        "Antd",
+        "Axios",
+        "StyledComponents",
+        "SlickCarousel"
+      ]
     },
     {
       "name": "创程零售业绩小程序",
       "displayName": "创程零售业绩小程序",
-      "summary": "Collection of essential Vue Composition API utils.",
-      "website": "https://vueuse.org/",
-      "githubUrl": "https://github.com/vueuse/vueuse",
-      "primaryLanguage": "TypeScript"
+      "summary": "使⽤微信⼩程序开发模式实现对应的功能需求，在微信开发者⼯具上编写代码的公司内部⾃研项⽬",
+      "primaryLanguage": [
+        "TypeScript"
+      ]
     },
     {
       "name": "自研办公管理系统",
       "displayName": "自研办公管理系统",
       "summary": "The Hybrid Vue(3) Framework.",
-      "website": "https://v3.nuxtjs.org/",
-      "githubUrl": "https://github.com/nuxt/framework",
-      "primaryLanguage": "TypeScript"
+      "primaryLanguage": [
+        "TypeScript",
+        "Vue3",
+        "Vite",
+        "Pinia",
+        "VueRouter4"
+      ]
     },
     {
       "name": "中科大报名活动网站",
       "displayName": "中科大报名活动网站",
-      "summary": "Next generation frontend tooling.",
-      "website": "https://vitejs.dev/",
-      "githubUrl": "https://github.com/vitejs/vite",
-      "primaryLanguage": "TypeScript"
+      "summary": "",
+      "primaryLanguage": ["基于Gulp","Scss","Swiper4","JQuery","ScrollReveal"]
     }
   ],
   "work": [
