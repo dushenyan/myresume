@@ -1,16 +1,23 @@
-# Résumé d'dushenyan
+# 杜审言-前端-社招-深圳
 
-This is my Résumé generator. You can check out my Résumé [here](https://resume.dushenyan.me).
+这是我同步更新的简历代码库。
 
-The theme is heavy modified from [jsonresume-theme-kwan](https://github.com/icoloma/jsonresume-theme-kwan).
+你可以点击 [杜审言-前端-社招-深圳](https://dushenyan-resume.netlify.app/)网站浏览查看
 
-## How it works
+## 参考网址
+**排名不分顺序** 
 
-- The data is hosted by [Gist](https://gist.github.com/dushenyan/ceb04ede6daf195eaf51e32b6aef5d4e) with [JSON Resume](https://jsonresume.org/) standard.
-- The website is hosted by [Netlify](http://netlify.com/) with CI/CD.
-- HTML is generated with [Handlebars](https://handlebarsjs.com/) and PDF is printed with [puppeteer](https://github.com/puppeteer/puppeteer/).
+`文章美化集合`
 
-> Note: I did a lot quick hacks to make it suitable for my design, which may not be good to be general used as a theme. While I may not have time to improve it, PRs are great welcome!
+- [工作三年的前端开发20k简历标准](https://juejin.cn/post/6995109164712214564)
+
+- [手把手教你写一份优质的前端技术简历](https://juejin.cn/post/6844903638440116237)
+
+- [面试官到底想看什么样的简历？](https://juejin.cn/post/6844903879973273607)
+
+- [一份来自前端开发工程师的规范简历](https://zhuanlan.zhihu.com/p/29046955)
+
+----
 
 ## License
 
