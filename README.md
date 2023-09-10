@@ -21,6 +21,7 @@
 
 `工具帮助集合`
 - [README 生成器](https://readme.rustc.cloud/zh)
+- [面试押题王](https://yatiwang.chat/)
 - [职场凯叔-入职请求](https://space.bilibili.com/551993904/?spm_id_from=333.999.0.0)
 
 ----
