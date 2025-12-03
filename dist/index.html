@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -204,24 +204,22 @@ a:focus {
 .projects .text-muted {
   margin-bottom: 0.4rem;
 }
+.projects .text-muted small:last-child span {
+  display: none;
+}
 .projects .icon {
   margin-right: 2px;
 }
 .px10 {
   height: 10px;
 }
-.skill-table {
+.skill-table,
+.self-evaluate-table {
   display: grid;
-  grid-template-columns: max-content auto;
-  grid-gap: 1.5rem 1rem;
-}
-.skill-table .name {
-  font-weight: bold;
-  text-align: right;
 }
 .project-table {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   grid-gap: 1rem 1rem;
 }
 .print-only {
@@ -344,6 +342,10 @@ a:focus {
         <div class="card-wrapper">
           <div class="card">
             <div class="profile-card">
+                <div class="profile-pic">
+                  <img class="media-object img-circle center-block"  data-src="holder.js/100x100"
+                    alt="杜审言" src="https://avatars.githubusercontent.com/u/63347504" itemprop="image">
+                </div>
                 <div class="contact-details">
                   <div class="name-and-profession">
                     <h3 class="text-bolder name" itemprop="name"> 杜审言</h3>
@@ -387,132 +389,82 @@ a:focus {
 
             <h4 id="about"></span> <span class="title">自我描述</span> </h4>
             <div class="card-nested" itemprop="description">
-              <p> My name is Anthony Fu, a master of computer science student and a freelance software engineer. My passion for software lies with dreaming up ideas and making them come true with elegant interfaces. I take great care in the experience, architecture, and code quality of the things I build.<br><br>I am also an open-source enthusiast and maintainer. I love how collaboration and knowledge sharing happens through open-source and I am happy to see what I do could eventually feedback to the community and industry. </p>
+              <p> 我叫杜审言，计算机专科生。我对软件的热情在于构思创意并通过优雅的界面将其变为现实。我非常注意我构建的东西的体验、架构和代码质量。<br><br>我也是一名开源爱好者和维护者。我喜欢通过开源进行协作和知识共享的方式，我很高兴看到我所做的最终可以反馈给社区和行业。 </p>
             </div>
 
             <div id="work-projects-group">
               <div id="projects">
-                <h4><span class="title">项目经验</span></h4>
+                <h4><span class="title">项目经历</span></h4>
                 <div class="list-unstyled projects">
                   <div class="project-table">
                     <li class="card-nested ">
                       <div class="content has-sidebar">
                         <p class="clear-margin-sm" itemprop="award">
-                          <strong>Vitest</strong>&nbsp
-                            <a href="https://github.com/vitest-dev/vitest" class='icon' target="_blank">
-                              <span class="iconify" data-icon="ri:github-fill"></span>
-                            </a>
-                            <a href="https://vitest.dev/" class='icon' target="_blank">
-                              <span class="iconify" data-icon="ri:arrow-right-up-line"></span>
-                            </a>
+                          <strong>政府密码云服务平台</strong>&nbsp
                         </p>
                         <p class="text-muted">
-                          <small> A blazing fast unit test framework powered by Vite. </small>
+                          基于 <small>Vue2.6<span> + </span></small>  <small>VueCli<span> + </span></small>  <small>VueRouter<span> + </span></small>  <small>VueX<span> + </span></small>  <small>Axios<span> + </span></small>  <small>ElementUi<span> + </span></small> 开发
                         </p>
-                          <p class="github-stars">
-                            <span class="iconify" data-icon="ri:star-fill"></span>
-                          </p>
+                        <p class="text-muted"></p>
                       </div>
                     </li>
                     <li class="card-nested ">
                       <div class="content has-sidebar">
                         <p class="clear-margin-sm" itemprop="award">
-                          <strong>Slidev</strong>&nbsp
-                            <a href="https://github.com/slidevjs/slidev" class='icon' target="_blank">
-                              <span class="iconify" data-icon="ri:github-fill"></span>
-                            </a>
-                            <a href="https://sli.dev/" class='icon' target="_blank">
-                              <span class="iconify" data-icon="ri:arrow-right-up-line"></span>
-                            </a>
+                          <strong>海南营商数据大屏</strong>&nbsp
                         </p>
                         <p class="text-muted">
-                          <small> Presentation Slides for Developers. </small>
+                          基于 <small>Vue2.6<span> + </span></small>  <small>Echart<span> + </span></small>  <small>WebGL<span> + </span></small>  <small>Axios<span> + </span></small>  <small>VueX<span> + </span></small> 开发
                         </p>
-                          <p class="github-stars">
-                            <span class="iconify" data-icon="ri:star-fill"></span>
-                          </p>
+                        <p class="text-muted"></p>
                       </div>
                     </li>
                     <li class="card-nested ">
                       <div class="content has-sidebar">
                         <p class="clear-margin-sm" itemprop="award">
-                          <strong>UnoCSS</strong>&nbsp
-                            <a href="https://github.com/unocss/unocss" class='icon' target="_blank">
-                              <span class="iconify" data-icon="ri:github-fill"></span>
-                            </a>
-                            <a href="https://uno.antfu.me/" class='icon' target="_blank">
-                              <span class="iconify" data-icon="ri:arrow-right-up-line"></span>
-                            </a>
+                          <strong>GrandTag保险服务网站</strong>&nbsp
                         </p>
                         <p class="text-muted">
-                          <small> Instant on-demand atomic CSS engine. </small>
+                          基于 <small>React<span> + </span></small>  <small>ReactRouter<span> + </span></small>  <small>ReactI18next<span> + </span></small>  <small>Antd<span> + </span></small>  <small>Axios<span> + </span></small>  <small>StyledComponents<span> + </span></small>  <small>SlickCarousel<span> + </span></small> 开发
                         </p>
-                          <p class="github-stars">
-                            <span class="iconify" data-icon="ri:star-fill"></span>
-                          </p>
+                        <p class="text-muted">本项目是一个国外项目，需要在页面中使用外链应用来进行视频播放。单个视频以弹出形式播放，而多个视频则需要在展示视频列表后，用户点击单个视频后进入播放模式。此外，页面需要具备响应式布局，但由于没有使用 BootstrapUI 库的支持，因此在最初编写响应式代码时我感到有些困难。不同的设备上，很多页面的布局也完全不同。随着时间的推移，我不断打磨代码并修改样式，最终实现了很好的多端支持。
+在新闻模块中，有七个大分类，并实现了分页效果。默认情况下，每个分类下只展示五条新闻。点击“查看更多”按钮会触发逻辑控制，每点击一次请求五条数据。点击单个新闻会跳转到详情页面，主页和移动端都是如此。在实现这个功能时，我本来以为只需要存储并展示请求到的数据即可。但是，在多个页面中都需要使用这些数据，我没有使用 Redux 来更好地管理数据，这是一个值得改进的地方。</p>
                       </div>
                     </li>
                     <li class="card-nested ">
                       <div class="content has-sidebar">
                         <p class="clear-margin-sm" itemprop="award">
-                          <strong>VueUse</strong>&nbsp
-                            <a href="https://github.com/vueuse/vueuse" class='icon' target="_blank">
-                              <span class="iconify" data-icon="ri:github-fill"></span>
-                            </a>
-                            <a href="https://vueuse.org/" class='icon' target="_blank">
-                              <span class="iconify" data-icon="ri:arrow-right-up-line"></span>
-                            </a>
+                          <strong>创程零售业绩小程序</strong>&nbsp
                         </p>
                         <p class="text-muted">
-                          <small> Collection of essential Vue Composition API utils. </small>
+                          基于 <small>TypeScript<span> + </span></small> 开发
                         </p>
-                          <p class="github-stars">
-                            <span class="iconify" data-icon="ri:star-fill"></span>
-                          </p>
+                        <p class="text-muted">本项目是公司自研项目，仅供内部员工使用。我一直秉持着简单实用的设计原则，保持页面简洁明了的同时注重易用性，并提供多种原创功能。在我长期的维护和代码优化中，性能得到了不断改善，节假日期间使用量激增。我顶住了压力，并让所在部门荣获了优秀部门奖项。</p>
                       </div>
                     </li>
                     <li class="card-nested ">
                       <div class="content has-sidebar">
                         <p class="clear-margin-sm" itemprop="award">
-                          <strong>Nuxt</strong>&nbsp
-                            <a href="https://github.com/nuxt/framework" class='icon' target="_blank">
-                              <span class="iconify" data-icon="ri:github-fill"></span>
-                            </a>
-                            <a href="https://v3.nuxtjs.org/" class='icon' target="_blank">
-                              <span class="iconify" data-icon="ri:arrow-right-up-line"></span>
-                            </a>
+                          <strong>自研办公管理系统</strong>&nbsp
                         </p>
                         <p class="text-muted">
-                          <small> The Hybrid Vue(3) Framework. </small>
+                          基于 <small>TypeScript<span> + </span></small>  <small>Vue3<span> + </span></small>  <small>Vite<span> + </span></small>  <small>Pinia<span> + </span></small>  <small>VueRouter4<span> + </span></small> 开发
                         </p>
-                          <p class="github-stars">
-                            <span class="iconify" data-icon="ri:star-fill"></span>
-                          </p>
+                        <p class="text-muted">这个项目是公司自研的，只供内部员工使用。在开发过程中，我一直遵循简单实用的设计原则，保持页面简洁易懂，注重易用性，并提供多种原创功能。在长时间的维护和代码优化中，我不断地改善了性能，使得在节假日期间使用量激增的情况下仍然能够正常运行。我在面对压力的时候顶住了压力，并让所在部门获得了优秀部门奖项。</p>
                       </div>
                     </li>
                     <li class="card-nested ">
                       <div class="content has-sidebar">
                         <p class="clear-margin-sm" itemprop="award">
-                          <strong>Vite</strong>&nbsp
-                            <a href="https://github.com/vitejs/vite" class='icon' target="_blank">
-                              <span class="iconify" data-icon="ri:github-fill"></span>
-                            </a>
-                            <a href="https://vitejs.dev/" class='icon' target="_blank">
-                              <span class="iconify" data-icon="ri:arrow-right-up-line"></span>
-                            </a>
+                          <strong>中科大报名活动网站</strong>&nbsp
                         </p>
                         <p class="text-muted">
-                          <small> Next generation frontend tooling. </small>
+                          基于 <small>Gulp<span> + </span></small>  <small>Scss<span> + </span></small>  <small>Swiper4<span> + </span></small>  <small>JQuery<span> + </span></small>  <small>ScrollReveal<span> + </span></small> 开发
                         </p>
-                          <p class="github-stars">
-                            <span class="iconify" data-icon="ri:star-fill"></span>
-                          </p>
+                        <p class="text-muted">我在去年九月开始负责的国家级项目，注重浏览器兼容性、稳定技术栈和现代化页面设计。通过Gulp构建，用Scss编写样式，使用JQuery和ScrollReveal实现页面动效。我在CodePen上学习动效并成功应用到项目中，大多数动画都是以CSS3为基础编写，巩固了我的基础知识，同时也增强了项目的视觉效果。项目操作简单，包括回到顶部等样式设计。</p>
                       </div>
                     </li>
                   </div>
-                    <li class="card-nested text-muted">
-                      <a href="https://github.com/dushenyan" target="_blank">More Projects...</a>
-                    </li>
                   <div class='px10'></div>
                 </div>
               </div>
@@ -523,12 +475,12 @@ a:focus {
                     <li class="card-nested relax">
                       <div class="content has-sidebar">
                         <p class="clear-margin-sm">
-                          <strong><a href="https://nuxtlabs.com/" target="_blank">海南流云科技有限公司</a></strong>
+                          <strong><a href="http://www.hainanbi.com/" target="_blank">海南流云科技有限公司</a></strong>
                           <span class="text-muted" style="margin-left: 0.3em">前端开发工程师</span>
                         </p>
                         <p class="text-muted">
                           <small>
-                            <span class="space-right"> 2021.09 - Present | Remote</span>
+                            <span class="space-right"> 2022.07 - 至今 | 海南海口</span>
                           </small>
                         </p>
                         <p></p>
@@ -543,32 +495,12 @@ a:focus {
                     <li class="card-nested relax">
                       <div class="content has-sidebar">
                         <p class="clear-margin-sm">
-                          <strong><a href="https://github.com/antfu" target="_blank">江西创程鞋业有限公司</a></strong>
+                          <strong><a href="http://blueorigintech.com/" target="_blank">江西蓝源科技有限公司</a></strong>
                           <span class="text-muted" style="margin-left: 0.3em">前端开发工程师</span>
                         </p>
                         <p class="text-muted">
                           <small>
-                            <span class="space-right"> 2015.01 - Present | Github</span>
-                          </small>
-                        </p>
-                        <p></p>
-                          <ul class='highlight'>
-                              <li> Vue.js &amp; Vite.js Core Team Member </li>
-                              <li> Received 15,000+ stars on personal projects </li>
-                              <li> Maintaining numerous popular projects </li>
-                          </ul>
-                      </div>
-
-                    </li>
-                    <li class="card-nested relax">
-                      <div class="content has-sidebar">
-                        <p class="clear-margin-sm">
-                          <strong><a href="https://www.bytedance.com/" target="_blank">江西蓝源科技有限公司</a></strong>
-                          <span class="text-muted" style="margin-left: 0.3em">前端开发工程师</span>
-                        </p>
-                        <p class="text-muted">
-                          <small>
-                            <span class="space-right"> 2020.06 - 2020.09 | Shanghai, China</span>
+                            <span class="space-right"> 2020.12 - 2022.07 | 江西南昌</span>
                           </small>
                         </p>
                         <p>In Product R &amp; D and Engineering Architecture Department</p>
@@ -584,18 +516,31 @@ a:focus {
 
             <h4 id="skills"><span class="title">专业技能</span> </h4>
             <div class="card-nested" itemprop="description">
-              <div class="skill-table">
-                    <div class='name'>Frontend</div> 
-                    <div>TypeScript, JavaScript, Vue, React, Vite</div>
-                    <div class='name'>Backend</div> 
-                    <div>Node, MongoDB, MySQL, Serverless, Nginx, Docker</div>
-                    <div class='name'>Mobile</div> 
-                    <div>Android, Kotlin, PWA</div>
-                    <div class='name'>DevOps</div> 
-                    <div>Firebase, AWS, Azure, AliCloud</div>
-                    <div class='name'>Languages</div> 
-                    <div>Python, Java</div>
-              </div>
+              <ul class="skill-table">
+                    <li>掌握HTML5+CSS3+JavaScript前端三件套，具有良好的编程⻛格和习惯</> 
+                    <li>掌握EcmaScript6扩展语⾔，涉及析构赋值、箭头函数、Promise、扩展⽅法</> 
+                    <li>掌握TypeScipt语⾔，涉及接⼝、泛型、枚举、⼯作空间，并且有项目实际开发经验</> 
+                    <li>熟悉使⽤Webpack、Vite进⾏项⽬构建打包以及前端包管理⼯具命令使⽤</> 
+                    <li>熟悉使⽤BootstrapUI库，熟悉使⽤ElementUI、AntDesign等前端组件库</> 
+                    <li>熟练Vue多生态库使⽤，包括Vue、VueCli、VueRouter、VueX等</> 
+                    <li>了解MVC/MVVM开发模式，有着对Vue2源码阅读经验</> 
+                    <li>了解常⽤Linux和部分终端Git等命令以及在Github进⾏代码托管，阿⾥云部署博客</> 
+                    <li>了解前后端分离技术，及其Cookie、Session、Ajax、前端路由、跨域等相关技术</> 
+                    <li>熟练使⽤前端代码开发⼯具、代码托管⼯具以及数据库图形化⼯具Navicat等软件</> 
+              </>
+            </div>
+            <div class='px10'></div>
+
+            <h4 id="skills self-evaluate"><span class="title">自我评价</span> </h4>
+            <div class="card-nested" itemprop="description">
+              <ul class="self-evaluate-table">
+                  <li>乐观开朗，适应能⼒强，能接受短期加班和出差</>
+                  <li>有良好的设计和编码习惯，并且热爱开源代码</>
+                  <li>技术视野开阔，学习能⼒好，对业界新技术敏感</>
+                  <li>喜欢专研，具有良好的学习能⼒并注重团队合作</>
+                  <li>具备良好的沟通能⼒和⾼度的团队合作意识，能快速融⼊团队</>
+                  <li>⼯作中有着强烈的责任⼼，开拓创新意识强，能保持不断进取的精神，有⾼度执⾏⼒</>
+              </>
             </div>
             <div class='px10'></div>
 
@@ -605,11 +550,11 @@ a:focus {
                   <li class="card-nested">
                     <div class="content has-sidebar">
                       <p class="clear-margin-sm">
-                        <strong>江西交通职业技术学院,  计算机网络技术, 专科</strong>&nbsp;
+                        <strong>江西交通职业技术学院&nbsp;信息工程系&nbsp;计算机网络技术</strong>
                       </p>
                       <p class="text-muted clear-margin-sm">
                         <small>
-                          2018.09 -  2021.06 
+                          2018.09 至  2021.06&nbsp;专科
                         </small>
                       </p>
                       <div></div>
@@ -627,11 +572,11 @@ a:focus {
                 <li class="card-nested">
                   <div class="content has-sidebar">
                     <p class="clear-margin-sm" itemprop="award">
-                      <strong>Idea Maker Competition Masterpiece Award</strong>,&nbsp;
-                      Oriental Institute of Technology
+                      <strong>全国⼤学⽣数学建模</strong>&nbsp;
+                      省⼆等奖
                     </p>
                     <p class="text-muted clear-margin-sm">
-                      <small> 2018.10 </small>
+                      <small> 2019-10-01 </small>
                     </p>
                     
                   </div>
@@ -639,11 +584,11 @@ a:focus {
                 <li class="card-nested">
                   <div class="content has-sidebar">
                     <p class="clear-margin-sm" itemprop="award">
-                      <strong>Graduation Project Competition Masterpiece Award</strong>,&nbsp;
-                      Tamkang University
+                      <strong>校学生生活部</strong>&nbsp;
+                      部门优秀干事
                     </p>
                     <p class="text-muted clear-margin-sm">
-                      <small> 2018.06 </small>
+                      <small> 2019-5-01 </small>
                     </p>
                     
                   </div>
@@ -651,11 +596,11 @@ a:focus {
                 <li class="card-nested">
                   <div class="content has-sidebar">
                     <p class="clear-margin-sm" itemprop="award">
-                      <strong>First Class Scholarship for Academics (top one)</strong>,&nbsp;
-                      Tamkang University
+                      <strong>校秋季运动会</strong>&nbsp;
+                      班级优秀标兵
                     </p>
                     <p class="text-muted clear-margin-sm">
-                      <small> 2016.11 </small>
+                      <small> 2018-11-01 </small>
                     </p>
                     
                   </div>
@@ -667,38 +612,21 @@ a:focus {
 
             <div style="text-align:center">
               <div class="detail no-print" style="font-size:1.5rem;margin-top:2rem;">
-                <a href="https://resume.dushenyan.me/resume.pdf" class="info" itemprop="pdf" target="_blank">
-                  PDF Version
+                <a href="杜审言-前端-社招-深圳.pdf" class="info" itemprop="pdf" target="_blank">
+                  PDF版本
                 </a>
               </div>
-               <div class="detail print-only" style="font-size:1.5rem;margin-top:2rem;" >
-                <a href="https://resume.dushenyan.me" class="info" itemprop="pdf" target="_blank">
-                  Online Version
-                </a>
-              </div>
-              <div style="opacity:0.7; font-size:1.2rem;margin-top:1rem;">Last updated at 2023-04-11, 09:18</div>
+              <div style="opacity:0.7; font-size:1.2rem;margin-top:1rem;">最近更新： 2025-12-03 03:17</div>
             </div>
           </div>
         </div>
       </section>
     </div>
-
-    
     <script>
-      async function updateStars(){
-        await Promise.all(
-          Array.from(document.querySelectorAll('[data-gh-api]'))
-            .map(async (e) => {
-              const api = e.dataset.ghApi
-              const r = await fetch(api)
-              const json = await r.json()
-              if (json.stargazers_count)
-                e.innerText = json.stargazers_count
-              console.info(`${api} - ${json.stargazers_count}`)
-            })
-        )
+      async function consoleWecome(){
+        console.log(`欢迎调试查看我的简历!`)
       }
-      window.addEventListener('load', updateStars)
+      window.addEventListener('load', consoleWecome)
     </script>
   </body>
 </html>

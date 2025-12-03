@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,10 +20,10 @@
           {{#resume.basics}}
           <div class="card">
             <div class="profile-card">
-                {{!-- <div class="profile-pic">
+                <div class="profile-pic">
                   <img class="media-object img-circle center-block"  data-src="holder.js/100x100"
                     alt="{{name}}" src="{{picture}}" itemprop="image">
-                </div> --}}
+                </div>
                 <div class="contact-details">
                   <div class="name-and-profession">
                     <h3 class="text-bolder name" itemprop="name"> {{name}}</h3>
@@ -66,7 +66,6 @@
                 {{#profiles}}
                   <a class="social-link icon" href="{{url}}" target="_blank">
                     <span class="iconify" data-icon="{{toSocialIcon network}}"></span>
-                    <!--<span class="social-link-text print-only">{{username}}</span>-->
                   </a>
                 {{/profiles}}
               </div>
@@ -81,7 +80,7 @@
         <div class="card-wrapper">
           <div class="card background-card">
 
-            <h4 id="about"></span> <span class="title">自我描述</span> </h4>
+            <h4 id="about"><span class="title">自我描述</span> </h4>
             <div class="card-nested" itemprop="description">
               <p> {{breaklines resume.basics.summary}} </p>
             </div>
@@ -112,6 +111,16 @@
                           基于{{#each primaryLanguage}} <small>{{.}}<span> + </span></small> {{/each}}开发
                         </p>
                         <p class="text-muted">{{description}}</p>
+                        {{#if achievements}}
+                        <div class="achievements">
+                          <strong>主要成就：</strong>
+                          <ul>
+                            {{#each achievements}}
+                              <li>{{.}}</li>
+                            {{/each}}
+                          </ul>
+                        </div>
+                        {{/if}}
                       </div>
                     </li>
                   {{/each}}
@@ -136,7 +145,7 @@
                             <span class="space-right"> {{startDate}} - {{#if endDate}}{{endDate}}{{else}}至今{{/if}} | {{location}}</span>
                           </small>
                         </p>
-                        <p>{{summary}}</p>
+                        <p>{{description}}</p>
                         {{#if highlights}}
                           <ul class='highlight'>
                             {{#each highlights}}
@@ -145,7 +154,6 @@
                           </ul>
                         {{/if}}
                       </div>
-
                     </li>
                   {{/each}}
                 </ul>
@@ -154,23 +162,64 @@
 
             <h4 id="skills"><span class="title">专业技能</span> </h4>
             <div class="card-nested" itemprop="description">
-              <ul class="skill-table">
+              <div class="skill-categories">
                 {{#each resume.skills}}
-                    <li>{{.}}</> 
+                <div class="skill-category">
+                  <h5 class="skill-category-title">{{category}}</h5>
+                  <div class="skill-keywords">
+                    {{#each keywords}}
+                      <span class="skill-keyword">{{.}}</span>
+                    {{/each}}
+                  </div>
+                </div>
                 {{/each}}
-              </>
+              </div>
             </div>
             <div class='px10'></div>
 
-            <h4 id="skills self-evaluate"><span class="title">自我评价</span> </h4>
+            <h4 id="self-evaluate"><span class="title">自我评价</span> </h4>
             <div class="card-nested" itemprop="description">
-              <ul class="self-evaluate-table">
+              <ul class="self-evaluate-list">
                 {{#each resume.selfEvaluate}}
-                  <li>{{.}}</>
+                  <li>{{.}}</li>
                 {{/each}}
-              </>
+              </ul>
             </div>
             <div class='px10'></div>
+
+            {{#if resume.certifications}}
+            <h4 id="certifications"><span class="title">专业认证</span></h4>
+            <div class="card-nested">
+              <ul class="list-unstyled">
+                {{#each resume.certifications}}
+                  <li class="certification-item">
+                    <strong>{{name}}</strong> - {{issuer}}
+                    <span class="text-muted">（{{date}}）</span>
+                  </li>
+                {{/each}}
+              </ul>
+            </div>
+            <div class='px10'></div>
+            {{/if}}
+
+            {{#if resume.publications}}
+            <h4 id="publications"><span class="title">技术出版物</span></h4>
+            <div class="card-nested">
+              <ul class="list-unstyled">
+                {{#each resume.publications}}
+                  <li class="publication-item">
+                    <p class="clear-margin-sm">
+                      <strong>{{name}}</strong>
+                      {{#if url}}<a href="{{url}}" target="_blank" class="icon"><span class="iconify" data-icon="{{toSocialIcon 'link'}}"></span></a>{{/if}}
+                    </p>
+                    <p class="text-muted">{{publisher}} - {{releaseDate}}</p>
+                    {{#if summary}}<p>{{summary}}</p>{{/if}}
+                  </li>
+                {{/each}}
+              </ul>
+            </div>
+            <div class='px10'></div>
+            {{/if}}
 
             <div id="education">
               <h4><span class="title">教育经历</span></h4>
@@ -179,18 +228,20 @@
                   <li class="card-nested">
                     <div class="content has-sidebar">
                       <p class="clear-margin-sm">
-                        <strong>{{institution}}&nbsp;{{department}}&nbsp;{{#if area}}{{area}}</strong>
+                        <strong>{{institution}}{{#if department}} {{department}}{{/if}}{{#if area}} {{area}}{{/if}}</strong>
                       </p>
                       <p class="text-muted clear-margin-sm">
                         <small>
-                          {{startDate}} 至 {{#if endDate}} {{endDate}}{{/if}}&nbsp;{{studyType}}{{else}} 还在待业中... {{/if}}
+                          {{startDate}} 至 {{#if endDate}} {{endDate}}{{else}}至今{{/if}}&nbsp;{{studyType}}
                         </small>
                       </p>
-                      <div>{{description}}</div>
-                      <i>{{gpa}}</i>
+                      {{#if description}}<div>{{description}}</div>{{/if}}
+                      {{#if gpa}}<i>{{gpa}}</i>{{/if}}
+                      {{#if courses}}
                       <div class="space-top labels">
-                        {{#courses}} <span class="label label-keyword">{{.}}</span> {{/courses}}
+                        {{#each courses}} <span class="label label-keyword">{{.}}</span> {{/each}}
                       </div>
+                      {{/if}}
                     </div>
                   </li>
                 {{/each}}
@@ -215,10 +266,11 @@
                 </li>
               {{/each}}
             </ul>
+            <div class='px10'></div>
             {{/if}}
 
             {{#if resume.volunteer}}
-            <h4 id="volunteer-work"><span class="title">Volunteer Work</span> </h4>
+            <h4 id="volunteer-work"><span class="title">志愿服务</span> </h4>
             <ul class="list-unstyled">
               {{#each resume.volunteer}}
                 <li class="card-nested">
@@ -229,47 +281,44 @@
                     </p>
                     <p class="text-muted">
                       <small>
-                        {{startDate}} - {{#if endDate}} {{endDate}} {{else}} Present {{/if}}
+                        {{startDate}} - {{#if endDate}} {{endDate}} {{else}} 至今 {{/if}}
                       </small>
                     </p>
                     <p>{{summary}}</p>
+                    {{#if highlights}}
                     <ul>
                       {{#each highlights}}
                         <li> {{.}} </li>
                       {{/each}}
                     </ul>
+                    {{/if}}
                   </div>
                 </li>
               {{/each}}
             </ul>
+            <div class='px10'></div>
             {{/if}}
 
             {{#if resume.interests}}
-            <h4 id="interests"><span class="title">Interests</span> </h4>
-            <ul class="list-unstyled">
-              {{#each resume.interests}}
-                <li class="card-nested">
-                  <p>
-                    <strong>{{name}}</strong>
-                  </p>
-
-                  <div class="space-top labels">
-                    {{#keywords}}
-                      <span class="label label-keyword">{{.}}</span>
-                    {{/keywords}}
-                  </div>
-                </li>
-              {{/each}}
-            </ul>
+            <h4 id="interests"><span class="title">兴趣领域</span> </h4>
+            <div class="card-nested">
+              <div class="interest-tags">
+                {{#each resume.interests}}
+                  <span class="label label-keyword">{{.}}</span>
+                {{/each}}
+              </div>
+            </div>
+            <div class='px10'></div>
             {{/if}}
 
             {{#if resume.references}}
-            <h4 id="references"><span class="title">References</span> </h4>
+            <h4 id="references"><span class="title">推荐人</span> </h4>
             <ul class="list-unstyled">
               {{#each resume.references}}
                 <li class="card-nested">
                   <p>
                     <strong>{{name}}</strong>
+                    <span class="text-muted">{{position}}</span>
                   </p>
                   <blockquote class="quote">
                     <p class="clear-margin">{{reference}}</p>
@@ -277,6 +326,7 @@
                 </li>
               {{/each}}
             </ul>
+            <div class='px10'></div>
             {{/if}}
 
             <div style="text-align:center">
