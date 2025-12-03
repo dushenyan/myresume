@@ -5,7 +5,7 @@
   "module": "commonjs",
   "scripts": {
     "dev": "concurrently \"npx grunt watch\" \"esno ./src/serve.ts ./resume/resume.json\"",
-    "build": "grunt less && esno ./src/build.ts",
+    "build-pdf": "grunt less && esno ./src/buildPDF.ts",
     "lint": "eslint",
     "lint:fix": "eslint --fix"
   },
