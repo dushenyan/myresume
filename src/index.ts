@@ -1,4 +1,4 @@
-import type { Education, Resume, ResumeBasics } from './types'
+import type { Education, Resume } from './types'
 import fs from 'node:fs'
 import path from 'node:path'
 import process from 'node:process'
