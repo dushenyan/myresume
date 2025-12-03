@@ -5,7 +5,7 @@
 你可以点击 [杜审言-前端-社招-深圳](https://dushenyan-resume.netlify.app/)网站浏览查看
 
 ## 参考网址
-**排名不分顺序** 
+**排名不分顺序**
 
 `文章美化集合`
 - [工作三年的前端开发20k简历标准](https://juejin.cn/post/6995109164712214564)
@@ -25,7 +25,3 @@
 - [职场凯叔-入职请求](https://space.bilibili.com/551993904/?spm_id_from=333.999.0.0)
 
 ----
-
-## License
-
-The script is licensed with MIT.
