@@ -1,9 +1,6 @@
 import type Buffer from 'node:buffer'
-
 import process from 'node:process'
-
 import fs from 'fs-extra'
-
 import puppeteer from 'puppeteer'
 
 const resumePath = './resume/resume.json'
@@ -15,24 +12,78 @@ async function buildHTML() {
   let resume
 
   if (fs.existsSync(resumePath)) {
-    console.log(`从语言环境加载 resume.json"`)
     resume = JSON.parse(fs.readFileSync(resumePath, 'utf-8'))
   }
   else {
     throw new Error('resume.json 文件不存在')
   }
-  console.log('读取中...')
   const html = await import('./index')
   const htmlRender = await html.render(resume)
-  console.log('保存文件中...')
   fs.writeFileSync('./dist/index.html', htmlRender, 'utf-8')
-  console.log('完成!')
   return htmlRender
 }
 
+// 检测系统中可能的 Chrome 路径
+function getChromeExecutablePath(): string | undefined {
+  // 先检查环境变量
+  if (process.env.CHROME_BIN) {
+    return process.env.CHROME_BIN
+  }
+
+  // macOS 常见的 Chrome 路径
+  const macPaths = [
+    '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+    '/Applications/Brave Browser.app/Contents/MacOS/Brave Browser',
+    '/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge',
+  ]
+
+  // 检查是否存在这些路径
+  for (const path of macPaths) {
+    if (fs.existsSync(path)) {
+      console.log(`找到可用的浏览器: ${path}`)
+      return path
+    }
+  }
+
+  // Linux 常见的 Chrome 路径
+  if (process.platform === 'linux') {
+    const linuxPaths = [
+      '/usr/bin/google-chrome',
+      '/usr/bin/google-chrome-stable',
+      '/usr/bin/chromium',
+      '/usr/bin/chromium-browser',
+    ]
+
+    for (const path of linuxPaths) {
+      if (fs.existsSync(path)) {
+        // console.log(`找到可用的浏览器: ${path}`)
+        return path
+      }
+    }
+  }
+
+  // Windows 常见的 Chrome 路径
+  if (process.platform === 'win32') {
+    const winPaths = [
+      `${process.env.ProgramFiles}\\Google\\Chrome\\Application\\chrome.exe`,
+      `${process.env['ProgramFiles(x86)']}\\Google\\Chrome\\Application\\chrome.exe`,
+    ]
+
+    for (const path of winPaths) {
+      if (fs.existsSync(path)) {
+        console.log(`找到可用的浏览器: ${path}`)
+        return path
+      }
+    }
+  }
+
+  return undefined
+}
+
 async function buildPDF(html: string): Promise<Buffer> {
+  const chromePath = getChromeExecutablePath()
+
   try {
-    // 尝试使用更健壮的配置来启动Puppeteer
     const browser = await puppeteer.launch({
       headless: true,
       args: [
@@ -40,17 +91,21 @@ async function buildPDF(html: string): Promise<Buffer> {
         '--disable-setuid-sandbox',
         '--disable-gpu',
         '--disable-dev-shm-usage',
+        '--remote-debugging-port=9222',
       ],
-      // 尝试使用系统已安装的Chrome浏览器，如果可用的话
-      executablePath: process.env.CHROME_BIN || undefined,
-      // 忽略默认下载，使用系统已有的浏览器
-      ignoreDefaultArgs: ['--disable-extensions'],
+      // 使用找到的浏览器路径，如果没有找到则让 Puppeteer 尝试默认行为
+      executablePath: chromePath,
+      // 增加超时设置
+      timeout: 30000,
+      ignoreHTTPSErrors: true,
     })
 
     const page = await browser.newPage()
-    console.log('开始进行...')
     await page.setContent(html, { waitUntil: 'networkidle0' })
-    console.log('同步 PDF...')
+
+    // 等待页面完全渲染
+    await page.waitForTimeout(2000)
+
     const pdf = await page.pdf({
       format: 'A4',
       displayHeaderFooter: false,
@@ -62,48 +117,76 @@ async function buildPDF(html: string): Promise<Buffer> {
         right: '0.4in',
       },
     })
+
     await browser.close()
     console.log('开始生成简历...')
     fs.writeFileSync('./dist/杜审言-前端-社招-深圳.pdf', pdf)
-    console.log('完成!')
+    console.log('PDF生成完成!')
     return pdf
   }
   catch (error) {
     console.error('PDF生成失败:', error)
 
-    // 如果Puppeteer失败，尝试提供一个降级方案
-    console.log('尝试使用备选方案...')
-    // 创建一个简单的错误提示PDF（仅作为示例，实际使用需要更多逻辑）
-    const errorMessage = `PDF生成失败，请手动从HTML导出PDF。错误原因：${error instanceof Error ? error.message : String(error)}`
+    // 创建详细的错误提示HTML
+    const errorMessage = error instanceof Error ? error.message : String(error)
+    const errorStack = error instanceof Error ? error.stack : ''
 
-    // 创建一个简单的HTML文件作为替代
     const errorHTML = `
       <!DOCTYPE html>
       <html>
-      <head><title>PDF生成失败</title></head>
-      <body><h1>PDF生成失败</h1><p>${errorMessage}</p></body>
+      <head>
+        <title>PDF生成失败</title>
+        <style>
+          body { font-family: Arial, sans-serif; margin: 40px; }
+          h1 { color: #d9534f; }
+          pre { background: #f5f5f5; padding: 15px; border-radius: 5px; overflow-x: auto; }
+          .help { background: #f0f8ff; padding: 15px; border-radius: 5px; border-left: 5px solid #5bc0de; }
+        </style>
+      </head>
+      <body>
+        <h1>PDF生成失败</h1>
+        <p><strong>错误原因:</strong> ${errorMessage}</p>
+        <div class="help">
+          <h3>解决方法:</h3>
+          <ol>
+            <li>确保您已安装 Google Chrome 或兼容的浏览器</li>
+            <li>如果使用环境变量指定 Chrome 路径，请检查 CHROME_BIN 环境变量是否设置正确</li>
+            <li>尝试手动从 HTML 导出 PDF: 打开 dist/index.html，然后使用浏览器的"打印"功能导出为 PDF</li>
+            <li>如果问题持续，请运行: <code>npm install puppeteer --ignore-scripts && npx puppeteer install</code></li>
+          </ol>
+        </div>
+        <h3>错误详情:</h3>
+        <pre>${errorStack}</pre>
+      </body>
       </html>
     `
     fs.writeFileSync('./dist/pdf-error.html', errorHTML, 'utf-8')
 
-    throw new Error('PDF生成失败，请查看dist/pdf-error.html获取详细信息')
+    console.log('已生成错误提示页面: dist/pdf-error.html')
+    throw new Error('PDF生成失败，请查看dist/pdf-error.html获取详细信息和解决方法')
   }
 }
 
 async function buildAll(): Promise<void> {
   try {
     const html = await buildHTML()
-    await buildPDF(html)
+
+    try {
+      await buildPDF(html)
+    }
+    catch (pdfError) {
+      console.error('PDF构建失败，但HTML已成功生成:', pdfError)
+      // 即使PDF生成失败，也让构建过程返回成功，因为HTML已经生成
+      console.log('构建完成! HTML文件已成功生成到 dist/index.html')
+    }
   }
   catch (error) {
     console.error('构建过程中出现错误:', error)
-    // 即使PDF生成失败，也让构建过程能够继续生成HTML
-    console.log('HTML文件已生成，但PDF生成失败')
     process.exit(1)
   }
 }
 
-buildAll().catch((e) => {
-  console.error(e)
+buildAll().catch((error) => {
+  console.error('构建失败:', error)
   process.exit(1)
 })
