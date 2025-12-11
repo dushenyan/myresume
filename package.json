@@ -5,7 +5,7 @@
   "homepage": "https://github.com/dushenyan/myresume",
   "repository": "https://dushenyan-resume.netlify.app/",
   "module": "commonjs",
-  "icon": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/readthedocs.svg",
+  "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/readthedocs.svg",
   "scripts": {
     "dev": "concurrently \"npx grunt watch\" \"esno ./src/serve.ts ./resume/resume.json\"",
     "build-pdf": "grunt less && esno ./src/buildPDF.ts",
