@@ -2,8 +2,8 @@
   "name": "myresume",
   "private": true,
   "description": "个人线上终端简历，支持PDF生成和动态展示",
-  "homepage": "https://github.com/dushenyan/myresume",
-  "repository": "https://dushenyan-resume.netlify.app/",
+  "homepage": "https://dushenyan-resume.netlify.app/",
+  "repository": "https://github.com/dushenyan/myresume",
   "module": "commonjs",
   "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/readthedocs.svg",
   "scripts": {
