@@ -143,4 +143,15 @@ make deploy
 2. 检查必要的文件是否存在：`make check-files`
 3. 查看详细的错误信息和解决建议
 
+### 🛠️ 构建问题修复
+
+**问题**: 构建时找不到 `/assets/css/theme.css` 文件
+**解决方案**: 
+1. 修改代码优先尝试读取 `theme.css`，不存在时自动使用 `theme.min.css`
+2. 创建独立的 `buildHTML.ts` 脚本用于仅生成HTML
+3. 区分开发构建和生产构建的CSS文件管理
+
+**新增命令**:
+- `make build-html` - 仅构建HTML文件（不生成PDF）
+
 现在你的项目具备了现代前端开发的完整构建流程！🎉

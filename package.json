@@ -13,6 +13,7 @@
     "serve": "grunt serve",
     "build": "grunt build",
     "build:quick": "grunt build:quick",
+    "build:html": "grunt build:html",
     "build:pdf": "grunt build:pdf",
     "build:release": "grunt build:release",
     "build-pdf": "grunt build:pdf",
@@ -23,7 +24,7 @@
     "lint": "grunt lint",
     "lint:fix": "grunt lint:fix",
     "typecheck": "tsc --noEmit",
-    "preview": "npm run build:quick && open dist/index.html",
+    "preview": "npm run build && open dist/index.html",
     "deploy": "npm run build:release && echo '准备部署文件到 dist/resume-*.zip'",
     "install:deps": "npm install && grunt --version",
     "test:build": "npm run clean && npm run build && ls -la dist/"

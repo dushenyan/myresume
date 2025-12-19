@@ -65,7 +65,7 @@ module.exports = function (grunt) {
         command: 'npx tsc --noEmit',
       },
       'build-html': {
-        command: 'npx esno ./src/buildPDF.ts',
+        command: 'npx esno ./src/buildHTML.ts',
       },
       'build-pdf': {
         command: 'npx esno ./src/buildPDF.ts',
@@ -135,6 +135,13 @@ module.exports = function (grunt) {
   
   // 快速构建（仅样式和HTML）
   grunt.registerTask('build:quick', [
+    'clean:dist',
+    'less:development',
+    'exec:build-html',
+  ])
+  
+  // 仅HTML构建
+  grunt.registerTask('build:html', [
     'clean:dist',
     'less:development',
     'exec:build-html',

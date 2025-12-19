@@ -99,7 +99,14 @@ async function getRepoStars(url: string) {
 }
 
 export async function render(resume: Resume) {
-  const css = fs.readFileSync(path.join(process.cwd(), '/assets/css/theme.css'), 'utf-8')
+  // 尝试读取开发版本CSS，如果不存在则使用压缩版本
+  let css: string
+  try {
+    css = fs.readFileSync(path.join(process.cwd(), '/assets/css/theme.css'), 'utf-8')
+  } catch (error) {
+    console.log('未找到theme.css，使用theme.min.css')
+    css = fs.readFileSync(path.join(process.cwd(), '/assets/css/theme.min.css'), 'utf-8')
+  }
   const template = fs.readFileSync(path.join(process.cwd(), '/resume/resume.hbs'), 'utf-8')
   const profiles = resume.basics.profiles
   const social_sites = ['github', 'linkedin', 'stackoverflow', 'twitter', 'soundcloud', 'pinterest', 'vimeo', 'behance', 'codepen', 'foursquare', 'reddit', 'spotify', 'dribble', 'dribbble', 'facebook', 'angellist', 'bitbucket', 'skype']

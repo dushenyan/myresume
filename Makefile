@@ -49,6 +49,7 @@ help:
 	@echo "$(GREEN)构建命令:$(NC)"
 	@echo "  make build         - 完整构建（生成HTML和PDF）"
 	@echo "  make build-quick   - 快速构建（仅生成HTML）"
+	@echo "  make build-html    - 仅构建HTML文件"
 	@echo "  make build-pdf     - 构建并生成PDF文件"
 	@echo "  make build-release - 发布构建（生成压缩包）"
 	@echo "  make compile       - 编译LESS文件"
@@ -98,7 +99,7 @@ watch:
 	@$(GRUNT) watch
 
 # 构建命令
-.PHONY: build build-quick build-pdf build-release compile
+.PHONY: build build-quick build-html build-pdf build-release compile
 build:
 	@echo "$(BLUE)开始完整构建...$(NC)"
 	@$(GRUNT) build
@@ -108,6 +109,11 @@ build-quick:
 	@echo "$(BLUE)快速构建（仅HTML）...$(NC)"
 	@$(GRUNT) build:quick
 	@echo "$(GREEN)快速构建完成！$(NC)"
+
+build-html:
+	@echo "$(BLUE)仅构建HTML...$(NC)"
+	@$(GRUNT) build:html
+	@echo "$(GREEN)HTML构建完成！$(NC)"
 
 build-pdf:
 	@echo "$(BLUE)构建并生成PDF...$(NC)"
