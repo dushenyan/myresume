@@ -7,7 +7,7 @@
   "module": "commonjs",
   "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/readthedocs.svg",
   "scripts": {
-    "dev": "concurrently \"npx grunt watch\" \"esno ./src/serve.ts ./resume/resume.json\"",
+    "dev": "concurrently \"npx grunt less\" \"npx grunt watch\" \"esno ./src/serve.ts ./resume/resume.json\"",
     "build-pdf": "grunt less && esno ./src/buildPDF.ts",
     "lint": "eslint",
     "lint:fix": "eslint --fix"
