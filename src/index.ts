@@ -156,12 +156,16 @@ export async function render(resume: Resume) {
   }
 
   if (resume.education) {
-    _.each(resume.education, (education_info: Education) => {
-      _.each(['startDate', 'endDate'], (date) => {
-        const date_obj = new Date(education_info[date])
-
-        if (education_info[date]) {
-          education_info[date] = moment(date_obj).format(date_format)
+    _.each(resume.education, (education_info) => {
+      // 处理教育日期格式化
+      const date_fields: Array<keyof Education> = ['startDate', 'endDate']
+      _.each(date_fields, (date_field) => {
+        const education_date = education_info[date_field]
+        
+        if (education_date && typeof education_date === 'string') {
+          const date_obj = new Date(education_date)
+          const formatted_date = moment(date_obj).format(date_format)
+          ;(education_info as Record<string, any>)[date_field] = formatted_date
         }
       })
     })

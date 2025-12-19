@@ -28,7 +28,7 @@ http
     }
     // 处理静态资源请求
     else {
-      const filePath = path.join(publicDir, req.url)
+      const filePath = req.url ? path.join(publicDir, req.url) : publicDir
 
       try {
         if (fs.existsSync(filePath)) {
@@ -65,7 +65,7 @@ http
   })
   .listen(port)
 
-console.log(`预览: http://localhost:${port}/`)
+console.log(`\n\r🐥 预览: http://localhost:${port}/`)
 
 async function render() {
   try {
