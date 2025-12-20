@@ -49,13 +49,6 @@ export class ResumeGenerator {
       phone: '',
       website: '',
       summary: '',
-      location: {
-        address: '',
-        postalCode: '',
-        city: '',
-        countryCode: 'CN',
-        region: '',
-      },
       profiles: [],
     }
   }

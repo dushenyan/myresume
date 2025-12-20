@@ -50,16 +50,6 @@
                     </div>
                   {{/if}}
 
-                  {{#if location}}
-                    <div class="detail">
-                      {{#location}}
-                        <span class="info">
-                          {{city}}, {{region}},
-                          {{countryCode}}
-                        </span>
-                      {{/location}}
-                    </div>
-                  {{/if}}
                 </div>
 
               <div class="social-links">
@@ -110,9 +100,9 @@
                         <p class="text-muted">
                           基于{{#each primaryLanguage}} <small>{{.}}<span> + </span></small> {{/each}}开发
                         </p>
-                        <p class="text-muted print-hidden">{{description}}</p>
+                        <p class="text-muted print-hidden project-description">{{description}}</p>
                         {{#if achievements}}
-                        <div class="achievements">
+                        <div class="achievements print-hidden">
                           <strong>主要成就：</strong>
                           <ul>
                             {{#each achievements}}
@@ -300,8 +290,8 @@
             {{/if}}
 
             {{#if resume.interests}}
-            <h4 id="interests"><span class="title">兴趣领域</span> </h4>
-            <div class="card-nested">
+            <h4 id="interests" class="print-hidden"><span class="title">兴趣领域</span> </h4>
+            <div class="card-nested interests">
               <div class="interest-tags">
                 {{#each resume.interests}}
                   <span class="label label-keyword">{{.}}</span>

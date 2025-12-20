@@ -22,11 +22,6 @@ export const resumeSource: Resume = {
         email: 'dushenyan88@gmail.com',
         html_title: '杜审言-高级前端-社招-深圳',
         languages: '中文',
-        location: {
-            country: '中国',
-            region: '海南',
-            city: '海口'
-        },
         profiles: [
             {
                 network: 'GitHub',
@@ -39,7 +34,7 @@ export const resumeSource: Resume = {
                 username: 'dushenyan'
             },
             {
-                network: 'Blog',
+                network: 'Website',
                 username: 'dushenyan',
                 url: 'https://duhenyanblog.netlify.app/'
             }
@@ -49,7 +44,7 @@ export const resumeSource: Resume = {
         {
             category: '核心语言',
             keywords: [
-                'JavaScript/TypeScript (精通)',
+                'JS/TS (精通)',
                 'ES6+',
                 'Node.js',
                 'HTML5语义化',

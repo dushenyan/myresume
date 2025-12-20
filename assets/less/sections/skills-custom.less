@@ -1,0 +1,112 @@
+/* 自定义技能样式 */
+
+.skill-categories {
+  margin-bottom: 1rem;
+}
+
+.skill-category {
+  margin-bottom: 1.2rem;
+  page-break-inside: avoid;
+}
+
+.skill-category-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  
+  &:before {
+    content: "🔹";
+    margin-right: 0.5rem;
+    color: @theme-blue;
+  }
+}
+
+.skill-keywords {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 8px;
+  margin-top: 0.5rem;
+}
+
+.skill-keyword {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border: 1px solid #dee2e6;
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 0.85rem;
+  color: #495057;
+  font-weight: 500;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: left 0.5s ease;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-color: @theme-blue;
+    
+    &:before {
+      left: 100%;
+    }
+  }
+}
+
+/* 桌面端技能样式 */
+@media only screen and (min-width: 992px) {
+  .skill-keywords {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 10px;
+  }
+  
+  .skill-keyword {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+}
+
+/* 平板端技能样式 */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .skill-keywords {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 8px;
+  }
+  
+  .skill-keyword {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+  }
+}
+
+/* 手机端技能样式 */
+@media only screen and (max-width: 767px) {
+  .skill-keywords {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  
+  .skill-keyword {
+    font-size: 0.75rem;
+    padding: 6px 10px;
+    text-align: left;
+  }
+  
+  .skill-category-title {
+    font-size: 1rem;
+  }
+}

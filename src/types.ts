@@ -59,40 +59,12 @@ export interface ResumeBasics {
    */
   languages?: Array<{ language: string, fluency?: string }> | string
   /**
-   * 个人介绍
-   */
-  location: {
-    /**
-     * 地址
-     */
-    address?: string
-    /**
-     * 邮政编码
-     */
-    postalCode?: string
-    /**
-     * 城市
-     */
-    city?: string
-    /**
-     * 国家代码
-     */
-    countryCode?: string
-    /**
-     * 省份
-     */
-    region?: string
-    /**
-     * 国家
-     */
-    country?: string
-  }
-  /**
    * 社交账号
    */
   profiles?: Array<{
     /**
      * 社交账号类型
+     * index.ts:202 可以配置自定义图标
      */
     network: string
     /**

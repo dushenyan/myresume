@@ -15,7 +15,7 @@ import optimist from 'optimist'
 
 const argv = optimist.argv
 const port = 8888
-const publicDir = path.join(process.cwd(), 'assets')
+const publicDir = path.join(process.cwd(), 'dist')
 
 http
   .createServer(async (req, res) => {
@@ -28,7 +28,7 @@ http
     }
     // 处理静态资源请求
     else {
-      const filePath = req.url ? path.join(publicDir, req.url) : publicDir
+      const filePath = req.url ? path.join(publicDir, decodeURIComponent(req.url)) : publicDir
 
       try {
         if (fs.existsSync(filePath)) {
@@ -46,6 +46,7 @@ http
             '.ttf': 'application/font-truetype',
             '.eot': 'application/vnd.ms-fontobject',
             '.svg': 'image/svg+xml',
+            '.pdf': 'application/pdf'
           }[ext] || 'application/octet-stream'
 
           res.writeHead(200, { 'Content-Type': contentType })
