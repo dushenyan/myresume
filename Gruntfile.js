@@ -50,6 +50,13 @@ module.exports = function (grunt) {
           nospawn: true,
         },
       },
+      resumeSource: {
+        files: ['src/resumeSource.ts'],
+        tasks: ['exec:build-resume'],
+        options: {
+          nospawn: true,
+        },
+      },
       resume: {
         files: ['resume/**/*'],
         tasks: ['exec:build-html'],
@@ -79,12 +86,15 @@ module.exports = function (grunt) {
       'lint-fix': {
         command: 'npx eslint . --ext .ts,.js --fix',
       },
+      'build-resume': {
+        command: 'npx esno ./src/generateResume.ts generate ./resume/resume.json',
+      },
     },
 
     // 并发任务
     concurrent: {
       serve: {
-        tasks: ['watch:styles', 'exec:serve'],
+        tasks: ['watch:styles', 'watch:resumeSource', 'exec:serve'],
         options: {
           logConcurrentOutput: true,
         },
@@ -121,6 +131,7 @@ module.exports = function (grunt) {
   grunt.registerTask('dev', [
     'clean:css',
     'less:development',
+    'exec:build-resume',
     'concurrent:serve',
   ])
 

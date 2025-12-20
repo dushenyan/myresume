@@ -168,7 +168,7 @@ export class ResumeGenerator {
     // 验证技能
     if (this.resumeData.skills && this.resumeData.skills.length > 0) {
       this.resumeData.skills.forEach((skill, index) => {
-        if (!skill.name) {
+        if (!skill.category) {
           errors.push(`技能[${index}]缺少名称`)
         }
       })
@@ -238,30 +238,128 @@ export class ResumeGenerator {
       throw error
     }
   }
+
+  /**
+   * 监听 resumeSource 文件变化并自动重新生成
+   */
+  static watchResumeSource(outputPath: string = './resume/resume.json'): void {
+    const resumeSourcePath = path.resolve(__dirname, 'resumeSource.ts')
+    
+    console.log(`开始监听文件变化: ${resumeSourcePath}`)
+
+    // 首次生成
+    this.generateFromSource(outputPath)
+
+    // 监听文件变化
+    fs.watchFile(resumeSourcePath, { interval: 1000 }, (curr, prev) => {
+      if (curr.mtime !== prev.mtime) {
+        console.log('\n🔄 检测到 resumeSource.ts 文件更新，重新生成简历...')
+        
+        // 清除模块缓存以获取最新数据
+        delete require.cache[require.resolve('./resumeSource')]
+        
+        // 重新生成简历
+        this.generateFromSource(outputPath)
+        
+        console.log('✅ 简历更新完成，继续监听文件变化...\n')
+      }
+    })
+  }
+
+  /**
+   * 从 resumeSource 生成简历文件
+   */
+  static generateFromSource(outputPath: string): void {
+    try {
+      // 清除模块缓存
+      delete require.cache[require.resolve('./resumeSource')]
+      
+      // 重新导入最新的 resumeSource
+      const freshResumeSource = require('./resumeSource').default || require('./resumeSource').resumeSource
+      
+      const generator = new ResumeGenerator(freshResumeSource)
+      
+      // 验证数据
+      const validation = generator.validate()
+      if (!validation.isValid) {
+        console.log('❌ 数据验证失败:')
+        validation.errors.forEach(error => console.log(`  - ${error}`))
+      } else {
+        console.log('✅ 数据验证通过!')
+      }
+      
+      // 导出到文件
+      generator.exportToJson(outputPath)
+      
+    } catch (error) {
+      console.error('❌ 生成简历时出错:', error)
+    }
+  }
+
+  /**
+   * 停止监听文件变化
+   */
+  static stopWatching(): void {
+    const resumeSourcePath = path.resolve(__dirname, 'resumeSource.ts')
+    fs.unwatchFile(resumeSourcePath)
+    console.log('🛑 停止监听文件变化')
+  }
 }
 
 // 如果直接运行此脚本，则执行示例
 if (require.main === module) {
-  // 创建示例简历
-  const generator = new ResumeGenerator(resumeSource)
+  const args = process.argv.slice(2)
+  const command = args[0]
 
-  // 验证数据
-  const validation = generator.validate()
-  if (!validation.isValid) {
-    console.log('数据验证失败:')
-    validation.errors.forEach(error => console.log(`- ${error}`))
-  }
-  else {
-    console.log('数据验证通过!')
-  }
+  switch (command) {
+    case 'watch':
+      // 监听模式
+      const outputPath = args[1] || './resume/resume.json'
+      ResumeGenerator.watchResumeSource(outputPath)
+      
+      // 处理程序退出
+      process.on('SIGINT', () => {
+        console.log('\n正在停止监听...')
+        ResumeGenerator.stopWatching()
+        process.exit(0)
+      })
+      break
 
-  // 导出到文件
-  generator.exportToJson('./resume/generated-resume.json')
+    case 'generate':
+      // 单次生成模式
+      const generatePath = args[1] || './resume/resume.json'
+      ResumeGenerator.generateFromSource(generatePath)
+      break
 
-  console.log('\n示例简历生成完成!')
-  console.log('\n要使用此生成器，请参考以下代码:')
-  console.log(`
-import { ResumeGenerator, createResumeTemplate } from './src/generateResume'
+    default:
+      // 默认模式：生成并显示使用说明
+      // 创建示例简历
+      const generator = new ResumeGenerator(resumeSource)
+
+      // 验证数据
+      const validation = generator.validate()
+      if (!validation.isValid) {
+        console.log('数据验证失败:')
+        validation.errors.forEach(error => console.log(`- ${error}`))
+      }
+      else {
+        console.log('数据验证通过!')
+      }
+
+      // 导出到文件
+      generator.exportToJson('./resume/resume.json')
+
+      console.log('\n示例简历生成完成!')
+      console.log('\n📖 使用说明:')
+      console.log(`
+1. 单次生成简历:
+   npx esno src/generateResume.ts generate [输出路径]
+
+2. 监听模式 (推荐用于开发):
+   npx esno src/generateResume.ts watch [输出路径]
+
+3. 编程方式使用:
+import { ResumeGenerator } from './src/generateResume'
 
 // 方法1: 创建空白简历并逐步添加数据
 const generator = new ResumeGenerator()
@@ -270,9 +368,15 @@ generator.addWork({ company: '公司名', position: '职位', ... })
 generator.addSkill({ name: '技能名称', level: '精通', ... })
 generator.exportToJson('./resume/my-resume.json')
 
-// 方法2: 使用模板开始
-const template = createResumeTemplate()
-const templateGenerator = new ResumeGenerator(template)
-templateGenerator.exportToJson('./resume/template-resume.json')
-  `)
+// 方法2: 监听 resumeSource.ts 文件变化
+ResumeGenerator.watchResumeSource('./resume/resume.json')
+
+// 方法3: 手动从 resumeSource 生成
+ResumeGenerator.generateFromSource('./resume/resume.json')
+      `)
+
+      console.log('\n🔥 监听模式启动命令:')
+      console.log('npx esno src/generateResume.ts watch')
+      break
+  }
 }

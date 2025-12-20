@@ -342,6 +342,4 @@ export const resumeSource: Resume = {
     interests: ['前端架构与工程化', 'Web性能优化', '微前端与模块化开发', '技术团队管理与人才培养', '开源贡献与技术社区']
 }
 
-console.dir(resumeSource, { depth: null })
-
 export default resumeSource
