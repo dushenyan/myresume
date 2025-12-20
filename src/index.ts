@@ -207,6 +207,7 @@ export async function render(resume: Resume) {
       website: 'ri:global-line',
       link: 'ri:arrow-right-up-line',
       portfolio: 'ri:account-circle-fill',
+      knowledge: 'ri:book-3-fill',
     }
     return iconMap[text.trim().toLowerCase()]
   })

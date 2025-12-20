@@ -37,6 +37,11 @@ export const resumeSource: Resume = {
                 network: 'Website',
                 username: 'dushenyan',
                 url: 'https://duhenyanblog.netlify.app/'
+            },
+            {
+                network: 'Knowledge',
+                url: 'https://mainsibaodian.netlify.app/',
+                username: 'dushenyan'
             }
         ]
     },
@@ -211,6 +216,130 @@ export const resumeSource: Resume = {
                 '系统上线后，员工工作效率提升60%，行政流程处理时间缩短70%',
                 '支持5000+用户同时在线，系统响应时间控制在200ms以内',
                 '通过了公司内部的安全审计与性能测试'
+            ]
+        },
+        {
+            name: '用户统一认证系统',
+            displayName: '用户统一认证系统',
+            summary: '基于OAuth2.0协议的企业级用户认证与授权平台',
+            primaryLanguage: [
+                'Node.js',
+                'Express',
+                'MongoDB',
+                'OAuth2.0'
+            ],
+            description: '作为项目负责人，主导开发了公司内部使用的用户认证系统。系统采用OAuth2.0协议，支持多租户、多应用、多用户类型。主要工作包括：\n' +
+                '\n' +
+                '1. 设计并实现了基于JWT的认证与授权机制，支持多租户隔离与单点登录\n' +
+                '2. 实现了基于OAuth2.0的客户端认证与授权流程，支持第三方应用接入\n' +
+                '3. 实现了用户管理与权限控制，支持用户自助注册与管理\n' +
+                '4. 实现了API网关与反向代理，支持跨域与安全控制\n' +
+                '5. 优化了系统性能，支持高并发访问与海量用户认证',
+            achievements: [
+                '系统上线后，用户认证速度提升50%，系统稳定性提升30%',
+                '支持10000+用户同时在线，系统响应时间控制在100ms以内',
+                '通过了公司内部的安全审计与性能测试'
+            ]
+        },
+        {
+            name: '租户管理系统',
+            displayName: '租户管理系统',
+            summary: '基于SaaS架构的多租户管理平台',
+            primaryLanguage: [
+                'Vue3',
+                'TypeScript',
+                'Vite',
+                'Pinia',
+                'VueRouter4',
+                'Element Plus'
+            ],
+            description: '作为项目负责人，主导开发了公司内部使用的租户管理系统。系统支持多租户管理、租户配置与监控，主要工作包括：\n' +
+                '\n' +
+                '1. 设计并实现了租户隔离与数据加密机制，保障租户数据安全\n' +
+                '2. 实现了租户配置与管理功能，支持租户自定义设置\n' +
+                '3. 实现了监控与告警系统，实时监控租户使用情况\n' +
+                '4. 优化了系统性能，支持高并发访问与大规模租户管理',
+            achievements: [
+                '系统上线后，租户管理效率提升40%，系统响应时间控制在50ms以内',
+                '支持1000+租户同时在线，系统稳定性达到99.9%',
+                '通过了公司内部的安全审计与性能测试'
+            ]
+        },
+        {
+            name: '流云数字化转型小程序',
+            displayName: '流云数字化转型小程序',
+            summary: '基于Uniapp的数字化转型工具',
+            primaryLanguage: [
+                '微信小程序',
+                'JavaScript',
+                'Uniapp',
+                'ECharts 5'
+            ],
+            description: '开发了流云数字化转型小程序，助力企业快速实现数字化转型，提供在线调研、分析与报告生成等功能。',
+            achievements: [
+                '上线后，月活跃用户增长300%，用户反馈积极',
+                '实现了数据可视化分析，提升了用户体验',
+                '通过了微信小程序商店审核，正式上线发布'
+            ]
+        },
+        {
+            name: 'DRS 数据资源一本账',
+            displayName: 'DRS 数据资源一本账',
+            summary: '数据资源管理与分析平台',
+            primaryLanguage: [
+                'Vue.js',
+                'TypeScript',
+            ],
+            description: '开发了DRS数据资源一本账平台，提供数据资源的统一管理和分析服务。',
+            achievements: [
+                '实现了数据资源的全量管理与分析功能',
+                '优化了数据查询性能，支持大规模数据处理',
+                '提高了数据安全性和合规性'
+            ]
+        },
+        {
+            name: '信创公告管理',
+            displayName: '信创公告管理',
+            summary: '信创公告管理系统',
+            primaryLanguage: [
+                'Vue.js',
+                'TypeScript',
+            ],
+            description: '开发了信创公告管理系统，提供信创相关公告的发布与管理服务。',
+            achievements: [
+                '实现了公告的发布、编辑与删除功能',
+                '优化了系统性能，提高了响应速度',
+                '确保了系统的稳定性和安全性'
+            ]
+        },
+        {
+            name: "海政通待办",
+            displayName: '海政通待办',
+            summary: '海南省政务服务平台待办事项管理系统',
+            primaryLanguage: [
+                'Vue.js',
+                'TypeScript',
+            ],
+            description: '开发了海政通待办系统，提供海南省政务服务平台待办事项管理服务。',
+            achievements: [
+                '实现了待办事项的全量管理与分析功能',
+                '优化了数据查询性能，支持大规模数据处理',
+                '提高了数据安全性和合规性'
+            ]
+        },
+        {
+            name: '沉香树溯源系统',
+            displayName: '沉香树溯源系统',
+            summary: '沉香树溯源系统',
+            primaryLanguage: [
+                'Vue.js',
+                'TypeScript',
+            ],
+            description: '开发了沉香树溯源系统，提供沉香树的溯源信息查询与分析服务。',
+            achievements: [
+                '实现了沉香树溯源信息的查询与分析功能',
+                '优化了数据查询性能，支持大规模数据处理',
+                '提高了数据安全性和合规性'
             ]
         }
     ],
