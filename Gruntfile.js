@@ -2,13 +2,13 @@ module.exports = function (grunt) {
   // Project Configuration
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    
+
     // 清理构建目录
     clean: {
       dist: ['dist'],
-      css: ['assets/css','assets/css/*.css', '!assets/css/theme.min.css'],
+      css: ['assets/css', 'assets/css/*.css', '!assets/css/theme.min.css'],
     },
-    
+
     // LESS 编译
     less: {
       development: {
@@ -32,7 +32,7 @@ module.exports = function (grunt) {
         },
       },
     },
-    
+
     // 文件监听
     watch: {
       styles: {
@@ -58,7 +58,7 @@ module.exports = function (grunt) {
         },
       },
     },
-    
+
     // 执行命令
     exec: {
       'build-typescript': {
@@ -80,7 +80,7 @@ module.exports = function (grunt) {
         command: 'npx eslint . --ext .ts,.js --fix',
       },
     },
-    
+
     // 并发任务
     concurrent: {
       serve: {
@@ -96,7 +96,7 @@ module.exports = function (grunt) {
         },
       },
     },
-    
+
     // 压缩文件
     compress: {
       main: {
@@ -113,17 +113,17 @@ module.exports = function (grunt) {
 
   // 加载插件
   require('load-grunt-tasks')(grunt)
-  
+
   // 自定义任务
   grunt.registerTask('default', ['less:development'])
-  
+
   // 开发任务
   grunt.registerTask('dev', [
     'clean:css',
     'less:development',
     'concurrent:serve',
   ])
-  
+
   // 构建任务
   grunt.registerTask('build', [
     'clean:dist',
@@ -132,37 +132,37 @@ module.exports = function (grunt) {
     'exec:build-typescript',
     'exec:build-pdf',
   ])
-  
+
   // 快速构建（仅样式和HTML）
   grunt.registerTask('build:quick', [
     'clean:dist',
     'less:development',
     'exec:build-html',
   ])
-  
+
   // 仅HTML构建
   grunt.registerTask('build:html', [
     'clean:dist',
     'less:development',
     'exec:build-html',
   ])
-  
+
   // PDF构建任务
   grunt.registerTask('build:pdf', [
     'build:quick',
     'exec:build-pdf',
   ])
-  
+
   // 发布构建
   grunt.registerTask('build:release', [
     'build',
     'compress',
   ])
-  
+
   // 代码检查
   grunt.registerTask('lint', ['exec:lint'])
   grunt.registerTask('lint:fix', ['exec:lint-fix'])
-  
+
   // 服务任务
   grunt.registerTask('serve', ['dev'])
 }

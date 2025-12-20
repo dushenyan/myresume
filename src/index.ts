@@ -103,7 +103,8 @@ export async function render(resume: Resume) {
   let css: string
   try {
     css = fs.readFileSync(path.join(process.cwd(), '/assets/css/theme.css'), 'utf-8')
-  } catch (error) {
+  }
+  catch (error) {
     console.log('未找到theme.css，使用theme.min.css')
     css = fs.readFileSync(path.join(process.cwd(), '/assets/css/theme.min.css'), 'utf-8')
   }
@@ -120,8 +121,8 @@ export async function render(resume: Resume) {
     })
   }
 
-  if (resume.languages) {
-    resume.basics.languages = _.pluck(resume.languages, 'language').join(', ')
+  if (resume.basics.languages && (typeof resume.basics.languages !== 'string')) {
+    resume.basics.languages = _.pluck(resume.basics.languages, 'language').join(', ')
   }
 
   if (resume.work) {
@@ -168,11 +169,11 @@ export async function render(resume: Resume) {
       const date_fields: Array<keyof Education> = ['startDate', 'endDate']
       _.each(date_fields, (date_field) => {
         const education_date = education_info[date_field]
-        
+
         if (education_date && typeof education_date === 'string') {
           const date_obj = new Date(education_date)
           const formatted_date = moment(date_obj).format(date_format)
-          ;(education_info as Record<string, any>)[date_field] = formatted_date
+            ; (education_info as Record<string, any>)[date_field] = formatted_date
         }
       })
     })

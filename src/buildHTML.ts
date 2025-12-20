@@ -1,5 +1,4 @@
 import fs from 'fs-extra'
-import path from 'node:path'
 
 const resumePath = './resume/resume.json'
 
@@ -15,11 +14,11 @@ async function buildHTML() {
   else {
     throw new Error('resume.json 文件不存在')
   }
-  
+
   const html = await import('./index')
   const htmlRender = await html.render(resume)
   fs.writeFileSync('./dist/index.html', htmlRender, 'utf-8')
-  
+
   console.log('HTML生成完成！')
   return htmlRender
 }
