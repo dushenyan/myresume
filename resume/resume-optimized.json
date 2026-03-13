@@ -1,0 +1,246 @@
+{
+  "basics": {
+    "name": "杜审言",
+    "picture": "https://avatars.githubusercontent.com/u/63347504",
+    "label": "前端开发工程师",
+    "headline": "6年前端开发经验 | 政务数字化&企业SaaS方向 | Vue3/React技术专家",
+    "summary": "6年前端开发经验，专注政务数字化和企业级SaaS应用开发。擅长Vue3/React技术栈、微前端架构设计和性能优化。\n\n核心优势：\n• 主导过政府密码云平台（等保三级）、营商数据大屏（省级获奖）等核心项目\n• 精通多租户SaaS架构、权限管理体系和数据可视化技术\n• 具备完整的前端工程化实践经验，推动团队技术栈升级和效率提升\n• 获海南省数据应用创新奖、公司年度优秀技术负责人",
+    "website": "https://duhenyanblog.netlify.app/",
+    "address": "海南海口 | 期望城市：深圳",
+    "projects_url": "https://github.com/dushenyan",
+    "email": "shenyandu@qq.com",
+    "html_title": "杜审言-前端开发-6年-深圳",
+    "languages": "中文",
+    "profiles": [
+      {
+        "network": "GitHub",
+        "url": "https://github.com/dushenyan",
+        "username": "dushenyan"
+      },
+      {
+        "network": "技术博客",
+        "url": "https://duhenyanblog.netlify.app/",
+        "username": "dushenyan"
+      }
+    ]
+  },
+  "work": [
+    {
+      "company": "海南流云科技有限公司",
+      "companyInfo": "（政务数字化服务商 | 200+人规模 | 海南省重点软件企业）",
+      "position": "高级前端开发工程师",
+      "location": "海南海口",
+      "isCurrentRole": true,
+      "startDate": "2022-07-01",
+      "endDate": "",
+      "start": {
+        "year": 2022,
+        "month": 7
+      },
+      "end": {},
+      "description": "负责政务数字化核心产品的前端架构设计与开发，推动技术栈升级和工程化建设。",
+      "highlights": [
+        "【架构升级】主导Vue2→Vue3+TS技术栈升级，建立统一组件库，开发效率提升50%，发布周期从3天缩短至1天",
+        "【性能优化】优化政府密码云平台首屏加载，从5s降至1.2s（提升76%），支持10万+日活稳定运行",
+        "【工程化】设计并实施微前端架构，支持5个子应用独立开发部署，系统解耦度提升40%",
+        "【安全合规】主导前端安全加固，通过等保三级认证，实现XSS/CSRF防护和敏感数据加密",
+        "【团队建设】带领5人前端团队，建立Code Review和自动化测试流程，代码质量问题减少60%"
+      ]
+    },
+    {
+      "company": "江西蓝源科技有限公司",
+      "companyInfo": "（企业数字化服务商 | 150+人规模 | 低代码平台研发）",
+      "position": "前端开发工程师",
+      "location": "江西南昌",
+      "startDate": "2018-12-01",
+      "endDate": "2022-07-01",
+      "start": {
+        "year": 2018,
+        "month": 12
+      },
+      "end": {
+        "year": 2022,
+        "month": 7
+      },
+      "description": "负责低代码平台和数据可视化产品的前端开发，参与技术方案设计和性能优化。",
+      "highlights": [
+        "【核心产品】开发低代码平台的市场展示网站，包含文档站、演示环境和在线Playground，月访问量5万+",
+        "【性能优化】优化大型数据可视化组件，使用Canvas替代SVG，数据渲染速度提升200%，支持10万+数据点流畅展示",
+        "【规范建设】建立前端开发规范和代码评审流程，推动ESLint+Prettier统一代码风格",
+        "【技术分享】参与团队培训和知识分享，输出10+篇技术文档，提升团队整体技术水平"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "江西交通职业技术学院",
+      "area": "计算机网络技术",
+      "studyType": "专科",
+      "startDate": "2018-09-01",
+      "endDate": "2021-06-01",
+      "start": {
+        "year": 2018,
+        "month": 9
+      },
+      "end": {
+        "year": 2021,
+        "month": 6
+      },
+      "gpa": "优秀 | 技术社团负责人"
+    }
+  ],
+  "skills": [
+    {
+      "category": "前端技术栈",
+      "level": "精通",
+      "keywords": [
+        "Vue 2/3（深入源码，响应式原理）",
+        "React 16+/18（Hooks、并发特性）",
+        "TypeScript（类型系统、泛型编程）",
+        "ES6+、HTML5、CSS3"
+      ]
+    },
+    {
+      "category": "工程化&架构",
+      "level": "熟练",
+      "keywords": [
+        "微前端（qiankun、Module Federation）",
+        "Webpack 5（自定义插件）、Vite、Rollup",
+        "Monorepo（pnpm workspace）",
+        "CI/CD（GitLab CI、自动化部署）"
+      ]
+    },
+    {
+      "category": "性能&可视化",
+      "level": "熟练",
+      "keywords": [
+        "性能优化（首屏加载、渲染优化、Web Vitals）",
+        "数据可视化（ECharts 5、D3.js、WebGL）",
+        "大数据渲染（虚拟滚动、Canvas优化）"
+      ]
+    },
+    {
+      "category": "质量&协作",
+      "level": "熟练",
+      "keywords": [
+        "测试（Jest、Vitest、Cypress）",
+        "代码规范（ESLint、Prettier、Husky）",
+        "团队协作（Code Review、技术文档、敏捷开发）"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "政府密码云服务平台",
+      "role": "前端架构师",
+      "duration": "2022.07 - 至今",
+      "tech": "Vue3 + TypeScript + Pinia + Element Plus + Vite",
+      "description": "面向政府部门的密码服务SaaS平台，支持多租户隔离和等保三级安全要求。",
+      "responsibilities": [
+        "【架构设计】设计微前端架构，实现5个子应用独立开发部署，支持多租户数据隔离和权限管理",
+        "【性能优化】首屏加载从5s优化至1.2s（↓76%）：路由懒加载、关键CSS内联、图片WebP+CDN、Gzip压缩",
+        "【安全加固】实现CSP策略、XSS/CSRF防护、敏感数据加密传输，通过等保三级认证",
+        "【工程化】建立CI/CD流程，实现自动化构建测试部署，发布周期从3天缩短至1天"
+      ],
+      "achievements": [
+        "✅ 系统稳定性99.9%，支持10万+日活，零安全事故",
+        "✅ 开发效率提升50%，迭代周期从2周缩短至1周",
+        "✅ 成功通过等保三级认证，服务20+政府部门"
+      ]
+    },
+    {
+      "name": "海南营商数据大屏",
+      "role": "技术负责人",
+      "duration": "2023.03 - 2023.10",
+      "tech": "Vue3 + ECharts 5 + D3.js + WebGL + TypeScript",
+      "description": "政府营商环境监测的4K数据可视化大屏，实时展示多维度营商数据。",
+      "responsibilities": [
+        "【性能优化】Canvas替代SVG渲染，性能提升300%，支持百万级数据实时渲染；Web Worker处理数据计算，避免主线程阻塞",
+        "【可视化】基于ECharts深度定制10+图表，D3.js实现关系图，WebGL实现3D地图和粒子效果",
+        "【实时数据】WebSocket实时推送+增量更新，本地缓存策略，数据延迟<100ms",
+        "【稳定性】实现自动重连、内存泄漏监控、错误降级，7×24小时稳定运行"
+      ],
+      "achievements": [
+        "🏆 获海南省数据应用创新奖（省级奖项）",
+        "✅ 性能提升300%，支持百万级数据流畅渲染",
+        "✅ 已在海南省10+政府部门部署使用"
+      ]
+    },
+    {
+      "name": "企业办公管理系统",
+      "role": "项目负责人",
+      "duration": "2022.09 - 2023.06",
+      "tech": "Vue3 + TypeScript + Vite + Arco Design",
+      "description": "企业级办公自动化平台，涵盖人力、行政、财务、项目管理等模块。",
+      "responsibilities": [
+        "【架构设计】模块化架构，各业务模块解耦独立演进；RBAC权限模型，支持功能权限和数据权限",
+        "【表单引擎】实现拖拽式表单设计器，支持20+表单组件和自定义校验规则",
+        "【性能优化】虚拟滚动处理万级数据列表，响应时间<200ms；图片懒加载和压缩",
+        "【质量保障】建立前端测试体系，单元测试覆盖率80%+，E2E测试覆盖核心流程"
+      ],
+      "achievements": [
+        "✅ 员工工作效率提升60%，行政流程处理时间缩短70%",
+        "✅ 支持5000+用户同时在线，响应时间<200ms",
+        "✅ 节省外部系统采购成本100万+/年"
+      ]
+    },
+    {
+      "name": "GrandTag保险服务网站",
+      "role": "前端技术负责人",
+      "duration": "2021.06 - 2022.06",
+      "tech": "React 17 + Next.js + TypeScript + Redux Toolkit",
+      "description": "国际化保险服务平台，支持10种语言、多币种和跨境支付。",
+      "responsibilities": [
+        "【SSR优化】Next.js实现服务端渲染，首屏加载速度提升50%，SEO效果显著提升",
+        "【国际化】基于i18next实现10种语言无缝切换，支持RTL布局和多币种展示",
+        "【响应式】建立响应式设计系统，确保移动端、平板、桌面端一致体验",
+        "【性能优化】数据预加载、接口缓存、图片优化，全球访问速度平均优化40%"
+      ],
+      "achievements": [
+        "✅ 网站访问量提升120%，转化率提升35%",
+        "✅ 支持日访问量峰值50万，系统稳定运行",
+        "✅ 全球访问速度优化40%，低网速地区体验显著提升"
+      ]
+    }
+  ],
+  "certifications": [
+    {
+      "name": "AWS Certified Developer - Associate",
+      "issuer": "Amazon Web Services",
+      "date": "2023-05",
+      "fullDate": {
+        "year": 2023,
+        "month": 5
+      }
+    }
+  ],
+  "awards": [
+    {
+      "title": "海南省数据应用创新奖",
+      "summary": "海南营商数据大屏项目",
+      "awarder": "海南省大数据管理局",
+      "date": "2023-10",
+      "fullDate": {
+        "year": 2023,
+        "month": 10
+      }
+    },
+    {
+      "title": "公司年度优秀技术负责人",
+      "summary": "技术创新与团队建设突出",
+      "awarder": "海南流云科技",
+      "date": "2023-01",
+      "fullDate": {
+        "year": 2023,
+        "month": 1
+      }
+    }
+  ],
+  "selfEvaluate": [
+    "6年前端开发经验，专注政务数字化和企业级SaaS应用，有完整的项目全生命周期经验",
+    "精通Vue3/React技术栈，深入理解响应式原理和性能优化，有微前端架构实践经验",
+    "擅长数据可视化和大数据渲染优化，主导的营商大屏项目获省级创新奖",
+    "注重代码质量和工程规范，推动团队技术栈升级和自动化流程建设",
+    "良好的学习能力和技术视野，持续关注前端新技术并应用于实际项目"
+  ]
+}
