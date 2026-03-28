@@ -22,10 +22,6 @@
 | [interview-preparation.md](./interview-preparation.md) | 面试准备 | 技术面试题库和项目讲解 | ⭐⭐⭐⭐⭐ |
 | [cold-email-generator.md](./cold-email-generator.md) | 邮件生成 | 3封定制冷邮件和跟进策略 | ⭐⭐⭐⭐ |
 | [cold-email-templates.md](./cold-email-templates.md) | 邮件模板 | 8套冷邮件模板库 | ⭐⭐⭐⭐ |
-| [BUILD_OPTIMIZATION.md](./BUILD_OPTIMIZATION.md) | 技术文档 | 简历项目构建优化说明 | ⭐⭐⭐ |
-| [RESUME_HOT_RELOAD.md](./RESUME_HOT_RELOAD.md) | 技术文档 | 简历热更新使用说明 | ⭐⭐⭐ |
-| [STYLE_OPTIMIZATION.md](./STYLE_OPTIMIZATION.md) | 技术文档 | 简历样式优化说明 | ⭐⭐⭐ |
-
 ---
 
 ## 🎯 核心目标

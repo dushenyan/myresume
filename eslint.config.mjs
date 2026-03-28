@@ -8,6 +8,7 @@ export default antfu({
 
   typescript: true,
 
+  markdown: false,
 }, {
   files: ['**/*.ts'],
   rules: {
