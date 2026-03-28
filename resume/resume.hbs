@@ -97,10 +97,37 @@
                             </a>
                           {{/if}}
                         </p>
+                        {{#if role}}
+                        <p class="text-muted">
+                          <small>角色：{{role}}</small>
+                        </p>
+                        {{/if}}
+                        {{#if duration}}
+                        <p class="text-muted">
+                          <small>时间：{{duration}}</small>
+                        </p>
+                        {{/if}}
+                        {{#if tech}}
+                        <p class="text-muted">
+                          技术栈：{{tech}}
+                        </p>
+                        {{/if}}
+                        {{#if primaryLanguage}}
                         <p class="text-muted">
                           基于{{#each primaryLanguage}} <small>{{.}}<span> + </span></small> {{/each}}开发
                         </p>
-                        <p class="text-muted print-hidden project-description">{{description}}</p>
+                        {{/if}}
+                        <p class="text-muted  project-description">{{description}}</p>
+                        {{#if responsibilities}}
+                        <div class="responsibilities">
+                          <strong>主要职责：</strong>
+                          <ul>
+                            {{#each responsibilities}}
+                              <li>{{.}}</li>
+                            {{/each}}
+                          </ul>
+                        </div>
+                        {{/if}}
                         {{#if achievements}}
                         <div class="achievements print-hidden">
                           <strong>主要成就：</strong>

@@ -12,6 +12,7 @@
 import type { Education, Project, Resume, ResumeBasics, Skill, Work } from './types'
 import fs from 'node:fs'
 import path from 'node:path'
+import process from 'node:process'
 import resumeSource from './resumeSource'
 
 /**
@@ -237,7 +238,7 @@ export class ResumeGenerator {
    */
   static watchResumeSource(outputPath: string = './resume/resume.json'): void {
     const resumeSourcePath = path.resolve(__dirname, 'resumeSource.ts')
-    
+
     console.log(`开始监听文件变化: ${resumeSourcePath}`)
 
     // 首次生成
@@ -247,13 +248,13 @@ export class ResumeGenerator {
     fs.watchFile(resumeSourcePath, { interval: 1000 }, (curr, prev) => {
       if (curr.mtime !== prev.mtime) {
         console.log('\n🔄 检测到 resumeSource.ts 文件更新，重新生成简历...')
-        
+
         // 清除模块缓存以获取最新数据
         delete require.cache[require.resolve('./resumeSource')]
-        
+
         // 重新生成简历
         this.generateFromSource(outputPath)
-        
+
         console.log('✅ 简历更新完成，继续监听文件变化...\n')
       }
     })
@@ -266,25 +267,27 @@ export class ResumeGenerator {
     try {
       // 清除模块缓存
       delete require.cache[require.resolve('./resumeSource')]
-      
+
       // 重新导入最新的 resumeSource
+      // eslint-disable-next-line ts/no-require-imports
       const freshResumeSource = require('./resumeSource').default || require('./resumeSource').resumeSource
-      
+
       const generator = new ResumeGenerator(freshResumeSource)
-      
+
       // 验证数据
       const validation = generator.validate()
       if (!validation.isValid) {
         console.log('❌ 数据验证失败:')
         validation.errors.forEach(error => console.log(`  - ${error}`))
-      } else {
+      }
+      else {
         console.log('✅ 数据验证通过!')
       }
-      
+
       // 导出到文件
       generator.exportToJson(outputPath)
-      
-    } catch (error) {
+    }
+    catch (error) {
       console.error('❌ 生成简历时出错:', error)
     }
   }
@@ -306,28 +309,28 @@ if (require.main === module) {
 
   switch (command) {
     case 'watch':
-      // 监听模式
-      const outputPath = args[1] || './resume/resume.json'
+    // 监听模式
+    { const outputPath = args[1] || './resume/resume.json'
       ResumeGenerator.watchResumeSource(outputPath)
-      
+
       // 处理程序退出
       process.on('SIGINT', () => {
         console.log('\n正在停止监听...')
         ResumeGenerator.stopWatching()
         process.exit(0)
       })
-      break
+      break }
 
     case 'generate':
-      // 单次生成模式
-      const generatePath = args[1] || './resume/resume.json'
+    // 单次生成模式
+    { const generatePath = args[1] || './resume/resume.json'
       ResumeGenerator.generateFromSource(generatePath)
-      break
+      break }
 
     default:
-      // 默认模式：生成并显示使用说明
-      // 创建示例简历
-      const generator = new ResumeGenerator(resumeSource)
+    // 默认模式：生成并显示使用说明
+    // 创建示例简历
+    { const generator = new ResumeGenerator(resumeSource)
 
       // 验证数据
       const validation = generator.validate()
@@ -370,6 +373,6 @@ ResumeGenerator.generateFromSource('./resume/resume.json')
 
       console.log('\n🔥 监听模式启动命令:')
       console.log('npx esno src/generateResume.ts watch')
-      break
+      break }
   }
 }
