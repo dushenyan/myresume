@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "skills": {
+    "resume": {
+      "source": "dushenyan/skills",
+      "sourceType": "github",
+      "computedHash": "2abbc42e7bf02a0d769c05aab9641ccc217140885a8cf7a7ea2175db441142f0"
+    }
+  }
+}

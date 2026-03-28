@@ -132,6 +132,7 @@
   "projects": [
     {
       "name": "政府密码云服务平台",
+      "displayName": "政府密码云服务平台",
       "role": "前端架构师",
       "duration": "2022.07 - 至今",
       "tech": "Vue3 + TypeScript + Pinia + Element Plus + Vite",
@@ -150,6 +151,7 @@
     },
     {
       "name": "海南营商数据大屏",
+      "displayName": "海南营商数据大屏",
       "role": "技术负责人",
       "duration": "2023.03 - 2023.10",
       "tech": "Vue3 + ECharts 5 + D3.js + WebGL + TypeScript",
@@ -168,6 +170,7 @@
     },
     {
       "name": "企业办公管理系统",
+      "displayName": "企业办公管理系统",
       "role": "项目负责人",
       "duration": "2022.09 - 2023.06",
       "tech": "Vue3 + TypeScript + Vite + Arco Design",
@@ -186,6 +189,7 @@
     },
     {
       "name": "GrandTag保险服务网站",
+      "displayName": "GrandTag保险服务网站",
       "role": "前端技术负责人",
       "duration": "2021.06 - 2022.06",
       "tech": "React 17 + Next.js + TypeScript + Redux Toolkit",
