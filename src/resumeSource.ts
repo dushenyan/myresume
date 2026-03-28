@@ -25,11 +25,6 @@ export const basicInfo: Resume['basics'] = {
       username: 'dushenyan',
     },
     {
-      network: 'Twitter',
-      url: 'https://twitter.com/ShenyanDu',
-      username: 'dushenyan',
-    },
-    {
       network: 'Website',
       username: 'dushenyan',
       url: 'https://duhenyanblog.netlify.app/',
