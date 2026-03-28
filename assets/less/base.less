@@ -87,6 +87,53 @@ body {
   }
 }
 
+/* iPad Air 设备优化 (992px 宽度) */
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+  .container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1.5rem;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  
+  body {
+    font-size: 14.5px;
+    padding: 1.2rem 0;
+  }
+  
+  .name-and-profession .name {
+    font-size: 2.3rem;
+  }
+  
+  .name-and-profession .job {
+    font-size: 1rem;
+  }
+  
+  .card {
+    padding: 1.8em 2em;
+  }
+  
+  .card-nested {
+    padding: 0.8rem 0 0.8rem 1.2rem;
+  }
+  
+  .skill-keyword {
+    font-size: 0.75rem;
+    padding: 3px 8px;
+  }
+  
+  .self-evaluate-list li {
+    font-size: 0.85rem;
+    margin-bottom: 0.6rem;
+  }
+  
+  h4 {
+    font-size: 1rem;
+  }
+}
+
 /* 手机端优化 */
 @media (max-width: @screen-tablet) {
   ul {

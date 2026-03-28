@@ -265,6 +265,56 @@ a {
   }
 }
 
+/* iPad Air 设备优化 (992px 宽度) */
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+  .card {
+    padding: 1.8em 2em;
+  }
+  
+  .profile-pic img {
+    width: 85px;
+    height: 85px;
+  }
+  
+  .skill-keyword {
+    font-size: 0.75rem;
+    padding: 3px 8px;
+  }
+  
+  .profile-card, .contact-details {
+    display: block;
+    text-align: center;
+  }
+  
+  .social-links {
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  
+  .background-card h4 {
+    font-size: 1rem;
+    margin-top: 2rem;
+  }
+  
+  .card-nested {
+    padding: 0.8rem 0 0.8rem 1.2rem;
+  }
+  
+  .project-table {
+    grid-template-columns: 1fr;
+  }
+  
+  .self-evaluate-list li {
+    font-size: 0.85rem;
+    margin-bottom: 0.6rem;
+    padding-left: 1.2rem;
+  }
+  
+  .skill-keywords {
+    gap: 6px;
+  }
+}
+
 /* 手机端优化 */
 @media only screen and (max-width: @screen-tablet) {
   .profile-card,
