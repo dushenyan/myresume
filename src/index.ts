@@ -104,7 +104,7 @@ export async function render(resume: Resume) {
   try {
     css = fs.readFileSync(path.join(process.cwd(), '/assets/css/theme.css'), 'utf-8')
   }
-  catch (error) {
+  catch {
     console.log('未找到theme.css，使用theme.min.css')
     css = fs.readFileSync(path.join(process.cwd(), '/assets/css/theme.min.css'), 'utf-8')
   }

@@ -126,6 +126,10 @@ export interface Project {
    */
   description?: string
   /**
+   *项目职责描述
+   */
+  responsibilities?: string[]
+  /**
    * 项目地址
    */
   githubUrl?: string
@@ -147,6 +151,10 @@ export interface Work {
    * 公司
    */
   company?: string
+  /**
+   * 公司信息
+   */
+  companyInfo?: string
   /**
    * 职位
    */
@@ -422,5 +430,3 @@ export interface Resume {
    */
   selfEvaluate?: string[]
 }
-
-

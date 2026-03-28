@@ -1,3 +1,4 @@
+import process from 'node:process'
 import fs from 'fs-extra'
 
 const resumePath = './resume/resume.json'
