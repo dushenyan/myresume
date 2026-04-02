@@ -31,11 +31,11 @@
                   </div>
 
                   {{#if address}}
-                    <div class="text-muted info" itemprop="address" style="font-size:0.9em">{{address}}</div>
+                    <div class="text-muted info no-print" itemprop="address" style="font-size:0.9em">{{address}}</div>
                   {{/if}}
 
                   {{#if email}}
-                    <div class="detail">
+                    <div class="detail no-print">
                       <span class="info">
                         <a href="mailto:{{email}}" class="link-disguise" itemprop="email" target="_blank">{{email}}</a>
                       </span>
@@ -43,13 +43,19 @@
                   {{/if}}
 
                   {{#if phone}}
-                    <div class="detail">
+                    <div class="detail no-print">
                       <a href="tel://{{phone}}" class="link-disguise info" itemprop="telephone" target="_blank">
                         {{phone}}
                       </a>
                     </div>
                   {{/if}}
 
+                  <div class="print-contact-row print-only">
+                    {{#if email}}<span class="print-contact-item">邮箱：{{email}}</span>{{/if}}
+                    {{#if phone}}<span class="print-contact-item">电话：{{phone}}</span>{{/if}}
+                    {{#if wechat}}<span class="print-contact-item">微信：{{wechat}}</span>{{/if}}
+                    {{#if address}}<span class="print-contact-item">{{address}}</span>{{/if}}
+                  </div>
                 </div>
 
               <div class="social-links">

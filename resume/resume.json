@@ -13,6 +13,8 @@
     "email": "shenyandu@qq.com",
     "html_title": "杜审言-前端开发-6年-深圳",
     "languages": "中文",
+    "phone": "18379514819",
+    "wechat": "Sy508080",
     "profiles": [
       {
         "network": "GitHub",
@@ -245,6 +247,7 @@
       ]
     },
     {
+      "printHidden": true,
       "name": "大数据资源服务门户（BRS Portal）",
       "displayName": "大数据资源服务门户",
       "summary": "政务大数据资源管理与服务平台，涵盖资源管理、智能搜索、审批流程等核心模块",
@@ -294,6 +297,7 @@
       ]
     },
     {
+      "printHidden": true,
       "name": "海政通待办系统（Web + H5）",
       "displayName": "海政通待办系统",
       "summary": "海南省政务服务平台待办事项管理系统，支持消息转待办、第三方待办、评论协作等功能",
@@ -343,6 +347,7 @@
       ]
     },
     {
+      "printHidden": true,
       "name": "liuyun-cli 脚手架工具",
       "displayName": "liuyun-cli 脚手架工具",
       "summary": "基于Node.js+TypeScript的团队内部CLI工具，统一项目初始化流程",
@@ -364,6 +369,7 @@
       ]
     },
     {
+      "printHidden": true,
       "name": "liuyun-ui 组件库",
       "displayName": "liuyun-ui 组件库",
       "summary": "基于Vue3+TypeScript的团队内部组件库，支持Vue2和Vue3双版本",
@@ -388,6 +394,7 @@
       ]
     },
     {
+      "printHidden": true,
       "name": "流云统一认证登录系统",
       "displayName": "流云统一认证登录系统",
       "summary": "企业级统一认证登录平台，支持钉钉免密登录、RSA密码加密、多租户",
@@ -411,6 +418,7 @@
       ]
     },
     {
+      "printHidden": true,
       "name": "沉香树溯源系统（Web + H5）",
       "displayName": "沉香树溯源系统",
       "summary": "数字海南沉香树木管理与溯源平台，支持树木全生命周期管理",

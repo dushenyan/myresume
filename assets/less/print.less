@@ -1,10 +1,10 @@
-@media print {
+/* 页面设置必须在 @media 外部，LESS 不支持嵌套 @page */
+@page {
+  margin: 1.2cm 1.4cm;
+  size: A4;
+}
 
-  /* 基础打印样式 */
-  @page {
-    margin: 1.5cm;
-    size: A4;
-  }
+@media print {
 
   * {
     -webkit-print-color-adjust: exact !important;
@@ -12,66 +12,38 @@
   }
 
   body {
-    font-size: 10pt;
-    line-height: 1.4;
-    color: black !important;
+    font-size: 9pt;
+    line-height: 1.45;
+    color: #111 !important;
+    background: white !important;
   }
 
-  /* 隐藏不重要内容 */
+  /* 隐藏非打印内容 */
   .no-print,
   .social-links,
-  .contact-details a:not([href^="mailto:"]):not([href^="tel:"]),
-  .project-description,
-  .achievements,
-  .interests,
-  .certifications,
-  .publications,
-  .awards,
-  .references,
   .px10,
+  .print-hidden,
+  #interests,
+  .interests,
   [style*="text-align:center"] {
     display: none !important;
   }
 
-  /* 优化布局 */
+  /* 布局容器 */
   .container {
-    max-width: 100%;
-    width: 100%;
+    max-width: 100% !important;
+    width: 100% !important;
     padding: 0 !important;
-    margin: 10px !important;
+    margin: 0 !important;
   }
 
-  .page {
-    margin-top: -2rem;
+  .row,
+  .card-wrapper {
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
-  /* 个人信息区域优化 */
-  .name-and-profession .name {
-    margin-top: -1rem;
-    font-size: 16pt !important;
-  }
-
-  .name-and-profession .job {
-    font-size: 11pt !important;
-    margin-bottom: 0.3rem !important;
-  }
-
-  .profile-card {
-    text-align: center;
-    margin-bottom: 1rem;
-  }
-
-  .profile-pic img {
-    width: 60px !important;
-    height: 60px !important;
-  }
-
-  .contact-details .detail {
-    font-size: 9pt;
-    line-height: 1.3;
-  }
-
-  /* 卡片样式优化 */
+  /* 卡片去掉所有装饰 */
   .card {
     border: 0 !important;
     padding: 0 !important;
@@ -80,171 +52,301 @@
     box-shadow: none !important;
   }
 
-  .card-nested {
-    padding: 0.2rem 0 0.2rem 0.8rem;
-    page-break-inside: avoid;
-
-    &.relax {
-      padding: 0.5rem 0 0.5rem 0.8rem;
-      page-break-inside: avoid;
-    }
+  /* 个人信息区域：横向紧凑排列 */
+  .profile-card {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 12pt !important;
+    padding: 4pt 0 6pt 0 !important;
+    margin-bottom: 4pt !important;
+    border: 0 !important;
+    text-align: left !important;
   }
 
-  /* 文本样式 */
-  .text-muted {
-    color: #666 !important;
-    font-size: 9pt !important;
+  .profile-pic {
+    flex-shrink: 0 !important;
+  }
 
-    * {
-      color: inherit !important;
-    }
+  .profile-pic img {
+    width: 52pt !important;
+    height: 52pt !important;
+    border-radius: 50% !important;
+    display: block !important;
+  }
+
+  .contact-details {
+    flex: 1 !important;
+  }
+
+  .name-and-profession .name {
+    font-size: 15pt !important;
+    font-weight: 700 !important;
+    margin: 0 0 2pt 0 !important;
+    line-height: 1.2 !important;
+  }
+
+  .name-and-profession .job {
+    font-size: 10pt !important;
+    color: #444 !important;
+    margin: 0 0 4pt 0 !important;
+  }
+
+  /* 打印联系信息横排 */
+  .print-contact-row {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 0 !important;
+    margin-top: 2pt !important;
+  }
+
+  .print-contact-item {
+    font-size: 8.5pt !important;
+    color: #333 !important;
+    line-height: 1.6 !important;
+    white-space: nowrap !important;
+  }
+
+  .print-contact-item + .print-contact-item::before {
+    content: " · " !important;
+    color: #aaa !important;
+    padding: 0 4pt !important;
+  }
+
+  /* 主内容区 */
+  .page {
+    margin-top: 0 !important;
+  }
+
+  .background-card {
+    padding: 0 !important;
+  }
+
+  /* 区块标题：只保留文字，不加横线 */
+  .background-card h4 {
+    font-size: 10pt !important;
+    font-weight: 700 !important;
+    margin: 8pt 0 3pt 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    page-break-after: avoid !important;
+  }
+
+  .background-card h4 .title {
+    background: #222 !important;
+    color: #fff !important;
+    padding: 1pt 6pt 1pt 3pt !important;
+    font-size: 9pt !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.5pt !important;
+  }
+
+  /* card-nested：去掉左侧竖线 */
+  .card-nested {
+    padding: 3pt 0 3pt 6pt !important;
+    margin: 0 0 4pt 0 !important;
+    page-break-inside: avoid !important;
+    border: 0 !important;
+  }
+
+  .card-nested.relax {
+    padding: 4pt 0 4pt 6pt !important;
+    margin-bottom: 5pt !important;
+  }
+
+  /* 链接 */
+  a {
+    color: #111 !important;
+    text-decoration: none !important;
   }
 
   a[href]:after {
     content: none !important;
   }
 
-  a {
-    color: black !important;
-    text-decoration: none !important;
+  /* 文本辅助 */
+  .text-muted {
+    color: #555 !important;
+    font-size: 8.5pt !important;
   }
 
-  /* 标题样式 */
-  .background-card h4 {
-    margin-top: 1.2rem !important;
-    margin-bottom: 0.5rem !important;
-    font-size: 11pt !important;
-    page-break-after: avoid;
-
-    .title {
-      background: black !important;
-      color: white !important;
-      padding: 1px 8px 0 2px;
-      font-weight: bold;
-      font-size: 10pt;
-    }
-
-    &:not(:first-child) {
-      margin-top: 1.5rem !important;
-    }
+  .text-muted * {
+    color: inherit !important;
+    font-size: inherit !important;
   }
 
-  .center-block {
-    display: block;
-    margin-left: auto;
-  }
-
-
-  /* 技能区域优化 */
-  .skill-categories {
-    margin-bottom: 0.5rem;
-  }
-
-  .skill-category {
-    margin-bottom: 0.3rem;
-    page-break-inside: avoid;
-  }
-
-  .skill-category-title {
-    font-size: 10pt !important;
-    font-weight: bold;
-    margin-bottom: 0.2rem !important;
-  }
-
-  .skill-keywords {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2px;
-  }
-
-  .skill-keyword {
-    font-size: 8pt !important;
-    background: #f0f0f0 !important;
-    padding: 1px 3px !important;
-    margin: 0 !important;
-    border: 1px solid #ddd !important;
-    border-radius: 2px !important;
-    page-break-inside: avoid;
-  }
-
-  /* 自我评价优化 */
-  .self-evaluate-list {
-    margin: 0;
-    padding-left: 1rem;
-  }
-
-  .self-evaluate-list li {
-    font-size: 9pt;
-    margin-bottom: 0.3rem;
-    page-break-inside: avoid;
-  }
-
-  /* 工作经历优化 */
-  #work-experience .card-nested {
-    page-break-inside: avoid;
-  }
-
-  .highlight {
-    margin-top: 0.2rem;
-    margin-bottom: 0.3rem;
-    padding-left: 1rem;
-  }
-
-  .highlight li {
-    font-size: 9pt;
-    margin-bottom: 0.2rem;
-    page-break-inside: avoid;
-  }
-
-  /* 教育经历优化 */
-  #education .card-nested {
-    page-break-inside: avoid;
-  }
-
-  .labels {
-    display: inline;
-  }
-
-  .label {
-    font-size: 8pt !important;
-    padding: 1px 4px !important;
-    margin: 1px !important;
-    background: #f0f0f0 !important;
-    border: 1px solid #ddd !important;
-  }
-
-  /* 项目经历优化 */
-  .project-table {
-    display: block;
-  }
-
-  .projects .card-nested {
-    margin-bottom: 0.8rem;
-    page-break-inside: avoid;
-  }
-
-  .projects p {
-    margin-bottom: 0.2rem !important;
-  }
-
-  /* 间距优化 */
   p {
-    margin: 0.3rem 0;
-    font-size: 9pt;
+    margin: 1pt 0 2pt 0 !important;
+    font-size: 9pt !important;
+    line-height: 1.45 !important;
   }
 
   strong {
-    font-weight: bold;
+    font-weight: 700 !important;
   }
 
-  /* 确保重要内容不被分页 */
+  small {
+    font-size: 8.5pt !important;
+  }
+
+  /* 自我描述 */
+  #about .card-nested p {
+    font-size: 9pt !important;
+    line-height: 1.5 !important;
+    color: #222 !important;
+  }
+
+  /* 项目经历 */
+  .projects .card-nested {
+    margin-bottom: 5pt !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* printHidden=true 的项目，模板会输出 print-hide-project class */
+  .projects .card-nested.print-hide-project {
+    display: none !important;
+  }
+
+  .project-description {
+    display: none !important;
+  }
+
+  .responsibilities ul,
+  .achievements ul {
+    margin: 1pt 0 2pt 0 !important;
+    padding-left: 12pt !important;
+  }
+
+  .responsibilities li,
+  .achievements li {
+    font-size: 8.5pt !important;
+    line-height: 1.4 !important;
+    margin-bottom: 1pt !important;
+    page-break-inside: avoid !important;
+  }
+
+  .responsibilities strong,
+  .achievements strong {
+    font-size: 8.5pt !important;
+  }
+
+  .text-muted small {
+    font-size: 8pt !important;
+  }
+
+  /* 工作经历 */
+  #work-experience .card-nested {
+    page-break-inside: avoid !important;
+  }
+
+  .highlight {
+    margin: 2pt 0 !important;
+    padding-left: 12pt !important;
+  }
+
+  .highlight li {
+    font-size: 8.5pt !important;
+    line-height: 1.4 !important;
+    margin-bottom: 1pt !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* 技能区域：两列网格 */
+  .skill-categories {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 3pt 12pt !important;
+    margin: 2pt 0 !important;
+  }
+
+  .skill-category {
+    page-break-inside: avoid !important;
+    margin-bottom: 2pt !important;
+  }
+
+  .skill-category-title {
+    font-size: 9pt !important;
+    font-weight: 700 !important;
+    margin: 0 0 2pt 0 !important;
+    color: #222 !important;
+  }
+
+  .skill-keywords {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 2pt !important;
+  }
+
+  .skill-keyword {
+    font-size: 7.5pt !important;
+    background: #f2f2f2 !important;
+    border: 0.5pt solid #ccc !important;
+    border-radius: 2pt !important;
+    padding: 0.5pt 4pt !important;
+    margin: 0 !important;
+    line-height: 1.4 !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* 自我评价 */
+  .self-evaluate-list {
+    margin: 0 !important;
+    padding-left: 12pt !important;
+  }
+
+  .self-evaluate-list li {
+    font-size: 8.5pt !important;
+    line-height: 1.45 !important;
+    margin-bottom: 2pt !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* 认证 */
+  .certification-item {
+    font-size: 9pt !important;
+    line-height: 1.5 !important;
+  }
+
+  /* 教育经历 */
+  #education .card-nested {
+    page-break-inside: avoid !important;
+  }
+
+  .labels {
+    display: inline !important;
+  }
+
+  .label {
+    font-size: 7.5pt !important;
+    padding: 0.5pt 3pt !important;
+    margin: 1pt !important;
+    background: #f2f2f2 !important;
+    border: 0.5pt solid #ccc !important;
+    border-radius: 2pt !important;
+  }
+
+  /* 荣誉奖项 */
+  #awards .card-nested {
+    page-break-inside: avoid !important;
+  }
+
+  /* 分页控制 */
   .name-and-profession,
   .profile-card,
-  .background-card h4 {
-    page-break-inside: avoid;
+  .background-card h4,
+  #work-experience,
+  #education {
+    page-break-inside: avoid !important;
   }
 
-  /* 打印专用类 */
+  h4,
+  h5,
+  strong {
+    page-break-after: avoid !important;
+  }
+
+  /* 打印工具类 */
   .print-only {
     display: inherit !important;
   }
@@ -253,15 +355,15 @@
     display: none !important;
   }
 
-  /* 底部信息优化 */
-  [style*="最近更新"] {
-    display: none !important;
-  }
-
-  /* 防止内容溢出 */
   .container,
   .card,
   .card-nested {
     overflow: visible !important;
+  }
+
+  .center-block {
+    display: block !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
 }

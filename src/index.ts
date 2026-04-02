@@ -216,6 +216,11 @@ export async function render(resume: Resume) {
     return arr.join(', ')
   })
 
+  // 根据 printHidden 字段输出对应 class，控制打印时是否显示该项目
+  Handlebars.registerHelper('domClasses', function (this: { printHidden?: boolean }) {
+    return this.printHidden ? 'print-hide-project' : ''
+  })
+
   // Handlebars.registerHelper('getGithubApi', getGithubApi)
 
   Handlebars.registerHelper('breaklines', (text) => {

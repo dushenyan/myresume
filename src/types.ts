@@ -23,6 +23,10 @@ export interface ResumeBasics {
    */
   phone?: string
   /**
+   * 微信号
+   */
+  wechat?: string
+  /**
    * 个人网站
    */
   website?: string
@@ -141,6 +145,10 @@ export interface Project {
    * 成就
    */
   achievements?: string[]
+  /**
+   * 打印时隐藏该项目（true = 打印不显示）
+   */
+  printHidden?: boolean
 }
 
 /**
