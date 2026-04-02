@@ -120,7 +120,7 @@ async function buildPDF(html: string): Promise<Buffer> {
 
     await browser.close()
     console.log('开始生成简历...')
-    fs.writeFileSync('./dist/杜审言-前端-社招-深圳.pdf', pdf)
+    fs.writeFileSync('./dist/杜审言-前端-社招.pdf', pdf)
     console.log('PDF生成完成!')
     return pdf
   }
