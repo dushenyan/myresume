@@ -83,6 +83,13 @@ function getChromeExecutablePath(): string | undefined {
 async function buildPDF(html: string): Promise<Buffer> {
   const chromePath = getChromeExecutablePath()
 
+  // 将外部资源替换为离线友好版本，避免网络请求导致超时
+  const offlineHtml = html
+    // 移除 Google Fonts（打印时用系统字体兜底）
+    .replace(/<link[^>]*fonts\.googleapis\.com[^>]*>/g, '')
+    // 移除 iconify 脚本（打印时图标不显示也无妨）
+    .replace(/<script[^>]*iconify[^>]*><\/script>/g, '')
+
   try {
     const browser = await puppeteer.launch({
       headless: true,
@@ -91,20 +98,35 @@ async function buildPDF(html: string): Promise<Buffer> {
         '--disable-setuid-sandbox',
         '--disable-gpu',
         '--disable-dev-shm-usage',
-        '--remote-debugging-port=9222',
+        '--disable-web-security',
+        '--font-render-hinting=none',
       ],
-      // 使用找到的浏览器路径，如果没有找到则让 Puppeteer 尝试默认行为
       executablePath: chromePath,
-      // 增加超时设置
-      timeout: 30000,
+      timeout: 60000,
       ignoreHTTPSErrors: true,
     })
 
     const page = await browser.newPage()
-    await page.setContent(html, { waitUntil: 'networkidle0' })
 
-    // 等待页面完全渲染
-    await page.waitForTimeout(2000)
+    // 拦截所有外部网络请求，直接返回空响应，彻底避免超时
+    await page.setRequestInterception(true)
+    page.on('request', (req) => {
+      const url = req.url()
+      if (url.startsWith('http') && !url.startsWith('data:')) {
+        req.abort()
+      }
+      else {
+        req.continue()
+      }
+    })
+
+    await page.setContent(offlineHtml, {
+      waitUntil: 'domcontentloaded',
+      timeout: 60000,
+    })
+
+    // 等待样式渲染稳定
+    await new Promise(resolve => setTimeout(resolve, 1500))
 
     const pdf = await page.pdf({
       format: 'A4',
