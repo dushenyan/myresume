@@ -183,6 +183,50 @@
               </div>
             </div>
 
+            {{#if resume.personalProjects}}
+            <div id="personal-projects">
+              <h4><span class="title">个人项目</span></h4>
+              <div class="list-unstyled projects">
+                <div class="project-table">
+                {{#each resume.personalProjects}}
+                  <li class="card-nested personal-project-item">
+                    <div class="content has-sidebar">
+                      <p class="clear-margin-sm" itemprop="award">
+                        <strong>{{displayName}}</strong>&nbsp;
+                        {{#if githubUrl}}
+                          <a href="{{githubUrl}}" class="icon" target="_blank">
+                            <span class="iconify" data-icon="{{toSocialIcon 'github'}}"></span>
+                          </a>
+                        {{/if}}
+                      </p>
+                      {{#if summary}}
+                      <p class="text-muted project-summary">{{summary}}</p>
+                      {{/if}}
+                      {{#if primaryLanguage}}
+                      <p class="text-muted">
+                        基于{{#each primaryLanguage}} <small>{{.}}<span> + </span></small> {{/each}}开发
+                      </p>
+                      {{/if}}
+                      <p class="text-muted project-description">{{description}}</p>
+                      {{#if responsibilities}}
+                      <div class="responsibilities">
+                        <strong>主要职责：</strong>
+                        <ul>
+                          {{#each responsibilities}}
+                            <li>{{.}}</li>
+                          {{/each}}
+                        </ul>
+                      </div>
+                      {{/if}}
+                    </div>
+                  </li>
+                {{/each}}
+                </div>
+                <div class="px10"></div>
+              </div>
+            </div>
+            {{/if}}
+
             <h4 id="skills"><span class="title">专业技能</span> </h4>
             <div class="card-nested" itemprop="description">
               <div class="skill-categories">

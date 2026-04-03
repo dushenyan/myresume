@@ -437,4 +437,8 @@ export interface Resume {
    * 自我评价
    */
   selfEvaluate?: string[]
+  /**
+   * 个人项目
+   */
+  personalProjects?: Project[]
 }

@@ -193,6 +193,19 @@
         "TypeScript类型系统",
         "Code Review"
       ]
+    },
+    {
+      "category": "AI 应用开发",
+      "keywords": [
+        "Cursor",
+        "Trae",
+        "OpenClaw",
+        "MCP（Model Context Protocol）",
+        "Agent Skills 编写",
+        "自定义 Rules",
+        "Prompt Engineering",
+        "Groq / DeepSeek / Gemini / Qwen"
+      ]
     }
   ],
   "projects": [
@@ -522,5 +535,117 @@
     "微前端与模块化开发",
     "技术团队管理与人才培养",
     "开源贡献与技术社区"
+  ],
+  "personalProjects": [
+    {
+      "name": "file-wizard",
+      "displayName": "file-wizard（文件魔法师）",
+      "summary": "AI 驱动的文件整理 CLI 工具，支持多 AI 提供商、MCP 协议集成与交互式 UI",
+      "primaryLanguage": [
+        "TypeScript",
+        "Node.js",
+        "MCP",
+        "Commander",
+        "Groq / DeepSeek / Qwen / Gemini"
+      ],
+      "githubUrl": "https://github.com/dushenyan/file-wizard",
+      "description": "使用 Cursor + Trae 辅助开发，集成 MCP（Model Context Protocol）协议，支持 6 种主流 AI 提供商，实现智能文件分类、批量重命名与内容分析",
+      "responsibilities": [
+        "【AI 集成】统一封装 Groq、DeepSeek、Qwen、Gemini、OpenRouter、智谱 AI 等多提供商客户端，支持配置化切换",
+        "【MCP 协议】实现 MCP 服务端，暴露文件元数据提取与内容分析工具，供 AI 代理调用",
+        "【CLI 设计】基于 Commander + @clack/prompts 实现交互式命令行，支持 dry-run 安全预览",
+        "【工程化】tsdown 打包，vitest 单元测试，自定义 Agent Skills 与 rules 规范 AI 开发流程"
+      ]
+    },
+    {
+      "name": "name-sprout",
+      "displayName": "name-sprout（命名灵感助手）",
+      "summary": "终端里的 AI 命名建议工具，支持多种命名风格与多 AI 提供商",
+      "primaryLanguage": [
+        "TypeScript",
+        "Node.js",
+        "Groq / DeepSeek / Gemini",
+        "Commander"
+      ],
+      "githubUrl": "https://github.com/dushenyan/name-sprout",
+      "description": "使用 Cursor 辅助开发，解决开发者命名难题，支持 lowerCamelCase / snake_case / PascalCase / kebab-case 四种风格，内置代理自动检测",
+      "responsibilities": [
+        "【AI 提供商】集成 Groq（免费层推荐）、DeepSeek、Gemini，支持配置化切换与参数调优（temperature / top_k）",
+        "【交互体验】基于 @clack/prompts + ora 实现交互式选择界面，附中文释义，支持纯文本模式脚本化调用",
+        "【工程化】TypeScript 全栈类型安全，ESLint + vitest，YAML 配置文件驱动"
+      ]
+    },
+    {
+      "name": "vscode-rule-coverage-viewer",
+      "displayName": "rule-coverage-viewer（VSCode 插件）",
+      "summary": "VSCode 扩展插件，可视化展示项目中 tsconfig / ESLint / Vite 等配置文件的覆盖情况，已发布至 Marketplace",
+      "primaryLanguage": [
+        "TypeScript",
+        "Vue 3",
+        "reactive-vscode",
+        "TypeScript Compiler API",
+        "Vite"
+      ],
+      "githubUrl": "https://github.com/dushenyan/rule-coverage-viewer",
+      "description": "使用 Cursor + Trae 辅助开发，已发布至 VS Code Marketplace（v1.0.2），通过 TypeScript Compiler API 精确解析配置覆盖范围",
+      "responsibilities": [
+        "【配置分析】使用 TypeScript Compiler API 解析 tsconfig，支持 ESLint / Prettier / Vite / Webpack 等 13 种配置类型",
+        "【可视化】Vue 3 实现 Webview UI，侧边栏树视图展示配置层级，实时刷新 include/exclude 模式匹配结果",
+        "【插件工程】reactive-vscode 框架，tsdown + Vite 双构建，Monorepo（pnpm workspace）结构"
+      ]
+    },
+    {
+      "name": "skills",
+      "displayName": "skills（Agent Skills 集合）",
+      "summary": "精心策划的 Agent Skills 集合，反映个人偏好、经验与最佳实践，供 AI 代理按需引用",
+      "primaryLanguage": [
+        "TypeScript",
+        "Markdown",
+        "pnpm workspace",
+        "Git submodule"
+      ],
+      "githubUrl": "https://github.com/dushenyan/skills",
+      "description": "使用 Trae + OpenClaw 辅助开发，通过 Git 子模块引用 Vue / Vite / pnpm 等官方文档，自动生成并同步 Agent Skills，配套自定义 rules 规范 AI 代理行为",
+      "responsibilities": [
+        "【技能管理】三层来源架构：手写个人偏好技能、从官方文档生成技能、从第三方同步技能（tsdown / turborepo）",
+        "【自动化】CLI 工具支持子模块初始化、技能同步与清理，Git 子模块保持与上游文档同步",
+        "【AI 工作流】编写自定义 rules 和 AGENTS.md，规范 AI 代理的代码生成行为与最佳实践"
+      ]
+    },
+    {
+      "name": "use-command-model",
+      "displayName": "use-command-model（命令式弹窗组件库）",
+      "summary": "基于 Vue 3 + Element Plus 的命令式弹窗/抽屉组件，支持插件化注册与 JSX 动态内容",
+      "primaryLanguage": [
+        "Vue 3",
+        "TypeScript",
+        "Element Plus",
+        "Vite"
+      ],
+      "githubUrl": "https://github.com/dushenyan/use-command-model",
+      "description": "使用 Cursor 辅助开发，突破传统声明式组件模式，通过编程方式动态创建和管理弹框/抽屉，自动化生命周期管理",
+      "responsibilities": [
+        "【命令式 API】设计 DialogService / DrawerService，支持 app.use() 全局注册、inject 依赖注入、直接导入三种方式",
+        "【生命周期】自动创建/挂载/卸载组件实例，支持 JSX 动态内容渲染与 Element Plus 表单集成验证",
+        "【类型安全】完整 TypeScript 类型定义，泛型支持，智能提示"
+      ]
+    },
+    {
+      "name": "page-marking",
+      "displayName": "page-marking（网页遮罩油猴插件）",
+      "summary": "油猴插件，为网页提供模糊/遮罩处理，减少屏幕眩光，保护隐私，兼容 SPA 应用",
+      "primaryLanguage": [
+        "Vue 3",
+        "TypeScript",
+        "Vite",
+        "vite-plugin-monkey"
+      ],
+      "githubUrl": "https://github.com/dushenyan/page-marking",
+      "description": "使用 Cursor 辅助开发，支持模糊/遮罩/混合三种模式，可拖动控制按钮带边缘吸附，快捷键 F8/F9/ESC，配置持久化",
+      "responsibilities": [
+        "【核心功能】单例模式管理遮罩实例，CSS backdrop-filter 实现模糊，MutationObserver 监听 SPA 路由变化",
+        "【交互设计】拖拽 + 边缘吸附算法，油猴菜单命令注册，GM_setValue / localStorage 双重存储"
+      ]
+    }
   ]
 }
