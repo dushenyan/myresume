@@ -4,12 +4,12 @@ export const basicInfo: Resume['basics'] = {
   name: '杜审言',
   picture: 'https://avatars.githubusercontent.com/u/63347504',
   label: '前端开发工程师',
-  headline: '6年前端开发经验 | 政务数字化 & 企业SaaS方向 | Vue3 / React 技术专家',
+  headline: '6年前端开发经验 | 政务数字化 & 企业SaaS方向 | Vue3 技术专家',
   summary: '6年前端开发经验，专注政务数字化和企业级SaaS应用开发。主导过多个核心产品从0到1的全生命周期，涵盖架构设计、性能优化与工程化建设。\n'
     + '\n'
     + '核心优势：\n'
     + '• 主导政府密码云平台（等保三级）、营商数据大屏（省级获奖）、ERP系统等核心项目\n'
-    + '• 精通Vue3/React双栈，深入源码原理，有微前端架构与多租户SaaS设计实践\n'
+    + '• 精通Vue3技术栈，具备跨框架开发能力（含React项目实践），有微前端架构与多租户SaaS设计实践\n'
     + '• 自研CLI脚手架工具与组件库，推动团队工程化提效\n'
     + '• 获海南省数据应用创新奖、软件设计师中级认证、公司年度优秀技术负责人',
   website: 'https://duhenyanblog.netlify.app/',
@@ -181,13 +181,13 @@ export const resumeSource: Resume = {
       name: 'GrandTag保险服务网站',
       displayName: 'GrandTag保险服务网站',
       summary: '国际化保险服务平台，支持多语言、多币种、多地区',
-      primaryLanguage: ['React 17', 'TypeScript', 'Next.js', 'Redux Toolkit', 'Ant Design Pro', 'Styled Components'],
-      description: '作为前端技术负责人，负责GrandTag保险服务网站的整体架构设计与开发。面向全球用户，支持多语言切换、多币种展示与跨境支付',
+      primaryLanguage: ['TypeScript', 'Next.js', 'i18next', 'Ant Design Pro'],
+      description: '作为前端开发负责人，负责GrandTag保险服务网站的核心功能开发与性能优化。面向全球用户，解决国际化场景下的多语言适配、跨地区访问性能、SEO优化等实际问题',
       responsibilities: [
-        '【SSR优化】采用Next.js实现服务端渲染，首屏加载速度提升50%，SEO效果显著提升',
-        '【国际化】基于i18next实现10种语言无缝切换，支持RTL布局和多币种展示',
-        '【响应式】建立响应式设计系统，确保移动端、平板与桌面端一致体验',
-        '【性能优化】数据预加载、接口缓存、图片优化，全球访问速度平均优化40%',
+        '【国际化方案】基于i18next实现10种语言无缝切换，解决RTL布局（阿拉伯语/希伯来语）、多币种展示、时区处理等复杂国际化问题',
+        '【SSR性能优化】采用Next.js服务端渲染，首屏加载速度提升50%，显著改善搜索引擎收录效果和低网速地区用户体验',
+        '【响应式适配】建立响应式设计系统，统一移动端/平板/桌面端的交互体验，解决多设备兼容性问题',
+        '【全球化加速】实施数据预加载策略、接口缓存优化、图片CDN分发，全球平均访问延迟降低40%',
       ],
       achievements: [
         '网站访问量提升120%，转化率提升35%',
@@ -344,10 +344,9 @@ export const resumeSource: Resume = {
       category: '框架生态',
       keywords: [
         'Vue 2/3（深入源码）',
-        'React 16+/18',
-        'React Hooks',
+        'React（项目实践）',
         'Vuex / Pinia',
-        'React Router',
+        'Vue Router / React Router',
         'Nuxt.js',
         'uni-app',
       ],
@@ -411,7 +410,7 @@ export const resumeSource: Resume = {
   ],
   selfEvaluate: [
     '6年前端开发经验，专注政务数字化和企业级SaaS应用，主导过多个项目的全生命周期',
-    '精通Vue3/React技术栈，深入理解响应式原理和性能优化，有微前端架构实践经验',
+    '精通Vue3技术栈，深入理解响应式原理和性能优化，具备跨框架开发能力与微前端架构实践经验',
     '自研CLI脚手架工具和组件库，推动团队工程化和开发效率提升',
     '擅长数据可视化和大数据渲染优化，主导的营商大屏项目获海南省数据应用创新奖',
     '注重代码质量和工程规范，推动团队技术栈升级、自动化流程和统一开发标准',
