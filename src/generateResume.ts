@@ -13,7 +13,7 @@ import type { Education, Project, Resume, ResumeBasics, Skill, Work } from './ty
 import fs from 'node:fs'
 import path from 'node:path'
 import process from 'node:process'
-import resumeSource from './resumeSource'
+import resumeSource from './data/resume'
 
 /**
  * 简历生成器类
@@ -237,7 +237,7 @@ export class ResumeGenerator {
    * 监听 resumeSource 文件变化并自动重新生成
    */
   static watchResumeSource(outputPath: string = './resume/resume.json'): void {
-    const resumeSourcePath = path.resolve(__dirname, 'resumeSource.ts')
+    const resumeSourcePath = path.resolve(__dirname, 'data/resume.ts')
 
     console.log(`开始监听文件变化: ${resumeSourcePath}`)
 
@@ -250,7 +250,7 @@ export class ResumeGenerator {
         console.log('\n🔄 检测到 resumeSource.ts 文件更新，重新生成简历...')
 
         // 清除模块缓存以获取最新数据
-        delete require.cache[require.resolve('./resumeSource')]
+        delete require.cache[require.resolve('./data/resume')]
 
         // 重新生成简历
         this.generateFromSource(outputPath)
@@ -266,11 +266,11 @@ export class ResumeGenerator {
   static generateFromSource(outputPath: string): void {
     try {
       // 清除模块缓存
-      delete require.cache[require.resolve('./resumeSource')]
+      delete require.cache[require.resolve('./data/resume')]
 
       // 重新导入最新的 resumeSource
       // eslint-disable-next-line ts/no-require-imports
-      const freshResumeSource = require('./resumeSource').default || require('./resumeSource').resumeSource
+      const freshResumeSource = require('./data/resume').default || require('./data/resume').resumeSource
 
       const generator = new ResumeGenerator(freshResumeSource)
 
@@ -296,7 +296,7 @@ export class ResumeGenerator {
    * 停止监听文件变化
    */
   static stopWatching(): void {
-    const resumeSourcePath = path.resolve(__dirname, 'resumeSource.ts')
+    const resumeSourcePath = path.resolve(__dirname, 'data/resume.ts')
     fs.unwatchFile(resumeSourcePath)
     console.log('🛑 停止监听文件变化')
   }

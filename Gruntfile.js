@@ -6,7 +6,7 @@ module.exports = function (grunt) {
     // 清理构建目录
     clean: {
       dist: ['dist'],
-      css: ['assets/css', 'assets/css/*.css', '!assets/css/theme.min.css'],
+      css: ['src/assets/css', 'src/assets/css/*.css', '!src/assets/css/theme.min.css'],
     },
 
     // LESS 编译
@@ -15,10 +15,10 @@ module.exports = function (grunt) {
         options: {
           compress: false,
           sourceMap: true,
-          sourceMapFilename: 'assets/css/theme.css.map',
+          sourceMapFilename: 'src/assets/css/theme.css.map',
         },
         files: {
-          'assets/css/theme.css': 'assets/less/theme.less',
+          'src/assets/css/theme.css': 'src/assets/less/theme.less',
         },
       },
       production: {
@@ -28,7 +28,7 @@ module.exports = function (grunt) {
           sourceMap: false,
         },
         files: {
-          'assets/css/theme.min.css': 'assets/less/theme.less',
+          'src/assets/css/theme.min.css': 'src/assets/less/theme.less',
         },
       },
     },
@@ -36,7 +36,7 @@ module.exports = function (grunt) {
     // 文件监听
     watch: {
       styles: {
-        files: ['assets/less/**/*.less'],
+        files: ['src/assets/less/**/*.less'],
         tasks: ['less:development'],
         options: {
           nospawn: true,
@@ -51,7 +51,7 @@ module.exports = function (grunt) {
         },
       },
       resumeSource: {
-        files: ['src/resumeSource.ts'],
+        files: ['src/data/resume.ts'],
         tasks: ['exec:build-resume'],
         options: {
           nospawn: true,
@@ -72,13 +72,13 @@ module.exports = function (grunt) {
         command: 'npx tsc --noEmit',
       },
       'build-html': {
-        command: 'npx esno ./src/buildHTML.ts',
+        command: 'npx esno ./src/cli/index.ts build:html',
       },
       'build-pdf': {
-        command: 'npx esno ./src/buildPDF.ts',
+        command: 'npx esno ./src/cli/index.ts build:pdf',
       },
       'serve': {
-        command: 'npx esno ./src/serve.ts ./resume/resume.json',
+        command: 'npx esno ./src/cli/index.ts serve',
       },
       'lint': {
         command: 'npx eslint . --ext .ts,.js',
@@ -115,7 +115,7 @@ module.exports = function (grunt) {
         },
         files: [
           { src: ['dist/**'], dest: '/' },
-          { src: ['assets/css/theme.min.css'], dest: '/assets/css/' },
+          { src: ['src/assets/css/theme.min.css'], dest: '/assets/css/' },
         ],
       },
     },

@@ -20,7 +20,7 @@
           {{#resume.basics}}
           <div class="card">
             <div class="profile-card">
-                <div class="profile-pic">
+                <div class="profile-pic {{#if printHideAvatar}}print-hidden{{/if}}">
                   <img class="media-object img-circle center-block"  data-src="holder.js/100x100"
                     alt="{{name}}" src="{{picture}}" itemprop="image">
                 </div>
@@ -189,15 +189,10 @@
               <div class="list-unstyled projects">
                 <div class="project-table">
                 {{#each resume.personalProjects}}
-                  <li class="card-nested personal-project-item">
+                  <li class="card-nested personal-project-item {{domClasses}}">
                     <div class="content has-sidebar">
                       <p class="clear-margin-sm" itemprop="award">
                         <strong>{{displayName}}</strong>&nbsp;
-                        {{#if githubUrl}}
-                          <a href="{{githubUrl}}" class="icon" target="_blank">
-                            <span class="iconify" data-icon="{{toSocialIcon 'github'}}"></span>
-                          </a>
-                        {{/if}}
                       </p>
                       {{#if summary}}
                       <p class="text-muted project-summary">{{summary}}</p>
@@ -398,7 +393,7 @@
 
             <div style="text-align:center">
               <div class="detail no-print" style="font-size:1.5rem;margin-top:2rem;">
-                <a href="杜审言-前端-社招.pdf" class="info" itemprop="pdf" target="_blank">
+                <a href="杜审言-前端开发-社招.pdf" class="info" itemprop="pdf" target="_blank">
                   PDF版本
                 </a>
               </div>

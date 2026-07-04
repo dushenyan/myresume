@@ -1,4 +1,4 @@
-import type { Resume } from './types'
+import type { Resume } from '../types'
 
 export const basicInfo: Resume['basics'] = {
   name: '杜审言',
@@ -77,9 +77,6 @@ export const awards: Resume['awards'] = [
   },
 ]
 
-/**
- * 创建简历模板 - 海口
- */
 export const resumeSource: Resume = {
   basics: {
     ...basicInfo,
@@ -443,22 +440,6 @@ export const resumeSource: Resume = {
   ],
   certifications,
   awards,
-  // publications: [
-  //   {
-  //     name: '大型前端应用架构设计与实践',
-  //     publisher: '掘金技术社区',
-  //     releaseDate: '2023-06-01',
-  //     url: 'https://juejin.cn/post/example123',
-  //     summary: '分享了大型前端应用的架构设计思路、技术选型与实践经验',
-  //   },
-  //   {
-  //     name: '前端性能优化实战指南',
-  //     publisher: '知乎专栏',
-  //     releaseDate: '2022-08-01',
-  //     url: 'https://zhihu.com/example456',
-  //     summary: '总结了前端性能优化的方法论与实战案例，包括加载优化、渲染优化与运行时优化',
-  //   },
-  // ],
   interests: ['前端架构与工程化', 'Web性能优化', '微前端与模块化开发', '技术团队管理与人才培养', '开源贡献与技术社区'],
   personalProjects: [
     {
