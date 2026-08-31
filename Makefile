@@ -17,6 +17,9 @@ YELLOW := \033[0;33m
 BLUE := \033[0;34m
 NC := \033[0m
 
+NOW_CMD :=dev
+
+
 .PHONY: help install dev build lint clean deploy ci version
 
 ## 显示命令帮助
