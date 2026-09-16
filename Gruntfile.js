@@ -6,7 +6,7 @@ module.exports = function (grunt) {
     // 清理构建目录
     clean: {
       dist: ['dist'],
-      css: ['assets/css', 'assets/css/*.css', '!assets/css/theme.min.css'],
+      css: ['assets/css'],
     },
 
     // LESS 编译
@@ -50,8 +50,9 @@ module.exports = function (grunt) {
           nospawn: true,
         },
       },
-      resumeSource: {
-        files: ['src/resumeSource.ts'],
+      resumeData: {
+        // 监听共享数据与简历配置，任一变更都触发全部简历 JSON 重新生成
+        files: ['src/data/**/*.ts', 'src/profiles/**/*.ts'],
         tasks: ['exec:build-resume'],
         options: {
           nospawn: true,
@@ -72,29 +73,29 @@ module.exports = function (grunt) {
         command: 'npx tsc --noEmit',
       },
       'build-html': {
-        command: 'npx esno ./src/buildHTML.ts',
+        command: 'npx esno ./src/scripts/build-html.ts',
       },
       'build-pdf': {
-        command: 'npx esno ./src/buildPDF.ts',
+        command: 'npx esno ./src/scripts/build-pdf.ts',
       },
       'serve': {
-        command: 'npx esno ./src/serve.ts ./resume/resume.json',
+        command: 'npx esno ./src/scripts/serve.ts',
       },
       'lint': {
-        command: 'npx eslint . --ext .ts,.js',
+        command: 'npx eslint .',
       },
       'lint-fix': {
-        command: 'npx eslint . --ext .ts,.js --fix',
+        command: 'npx eslint . --fix',
       },
       'build-resume': {
-        command: 'npx esno ./src/generateResume.ts generate ./resume/resume.json',
+        command: 'npx esno ./src/scripts/generate.ts generate',
       },
     },
 
     // 并发任务
     concurrent: {
       serve: {
-        tasks: ['watch:styles', 'watch:resumeSource', 'exec:serve'],
+        tasks: ['watch:styles', 'watch:resumeData', 'exec:serve'],
         options: {
           logConcurrentOutput: true,
         },
@@ -135,11 +136,13 @@ module.exports = function (grunt) {
     'concurrent:serve',
   ])
 
-  // 构建任务
+  // 构建任务（exec:build-resume 先从数据源生成全部简历 JSON，再渲染，
+  // 保证全新克隆或多 profile 场景下无需手动执行生成步骤）
   grunt.registerTask('build', [
     'clean:dist',
     'clean:css',
     'less:production',
+    'exec:build-resume',
     'exec:build-typescript',
     'exec:build-pdf',
   ])
@@ -148,6 +151,7 @@ module.exports = function (grunt) {
   grunt.registerTask('build:quick', [
     'clean:dist',
     'less:development',
+    'exec:build-resume',
     'exec:build-html',
   ])
 
@@ -155,6 +159,7 @@ module.exports = function (grunt) {
   grunt.registerTask('build:html', [
     'clean:dist',
     'less:development',
+    'exec:build-resume',
     'exec:build-html',
   ])
 

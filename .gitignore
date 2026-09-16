@@ -3,3 +3,5 @@ node_modules
 dist
 
 assets/css
+
+.DS_Store

@@ -2,19 +2,20 @@
 
 ## 项目简介
 
-基于前端技术栈的个人简历生成项目，支持热更新、自动构建和多格式输出（HTML、PDF）。
+基于前端技术栈的个人简历生成项目，支持热更新、自动构建、多份简历配置和多格式输出（HTML、PDF）。
 
 - **在线预览**：[杜审言-前端简历](https://dushenyan-resume.netlify.app/)
 - **技术栈**：TypeScript、Grunt（构建工具，负责任务管理、文件监听、编译等）、Less、Handlebars（模板引擎）
-- **特性**：热更新、自动构建、响应式设计、多格式输出
+- **特性**：热更新、自动构建、多简历配置、响应式设计、多格式输出
 
 ## 功能特性
 
 ### 🚀 核心功能
-- **热更新机制**：修改 `src/resumeSource.ts` 文件时自动更新 `resume/resume.json`
+- **多简历配置**：共享同一份基础数据，按岗位维护多套简历配置（覆盖简介/筛选项目等），各自独立产出 JSON、HTML、PDF
+- **热更新机制**：修改 `src/data/` 或 `src/profiles/` 下的文件时自动重新生成简历数据
 - **多格式输出**：支持生成 HTML 和 PDF 格式简历
 - **响应式设计**：适配不同设备屏幕
-- **模块化架构**：清晰的代码结构和构建流程
+- **分层架构**：数据（data）→ 配置（profiles）→ 领域逻辑（core）→ 构建（build）→ CLI（scripts）各层职责单一
 
 ### 🔧 构建特性
 - **Grunt 集成**：完整的构建流程和任务管理
@@ -52,73 +53,123 @@ pnpm dev
 
 | 命令 | 描述 |
 |------|------|
-| `make build` | 完整构建（生成 HTML 和 PDF） |
+| `make build` | 完整构建（生成全部简历的 HTML 和 PDF） |
 | `make build-quick` | 快速构建（仅生成 HTML） |
-| `make build-pdf` | 构建并生成 PDF |
-| `make build-release` | 发布构建（生成压缩包） |
+| `make resume` | 生成全部简历 JSON 数据 |
+| `make resume-watch` | 监听数据变化自动重新生成 |
 | `make lint` | 代码检查 |
 | `make typecheck` | TypeScript 类型检查 |
 | `make preview` | 构建并预览 |
 
-## 热更新功能
+## 多简历配置
 
-### 功能介绍
-支持在修改 `src/resumeSource.ts` 文件时自动更新 `resume/resume.json` 文件，无需手动重新编译。
+所有简历共享 `src/data/` 下的一份基础数据；每份简历变体在 `src/profiles/` 下独立配置。
+
+### 新增一份简历
+
+1. 创建 `src/profiles/ai.ts`：
+
+```ts
+import type { ResumeProfile } from './types'
+
+export const aiProfile: ResumeProfile = {
+  id: 'ai',
+  displayName: 'AI应用方向',
+  jsonOutput: 'resume/ai.json',
+  htmlOutput: 'dist/ai/index.html',
+  pdfOutput: 'dist/杜审言-前端-AI应用方向.pdf',
+  build: base => ({
+    ...base,
+    basics: {
+      ...base.basics,
+      html_title: '杜审言-前端-AI应用方向',
+    },
+    // 例：只展示与 AI 相关的个人项目
+    personalProjects: base.personalProjects?.filter(p =>
+      ['file-wizard', 'name-sprout', 'skills'].includes(p.name),
+    ),
+  }),
+}
+```
+
+2. 注册到 `src/profiles/index.ts` 的 `profiles` 数组。
+
+之后 `make build` 会自动为该配置多产出一份 JSON、HTML 和 PDF；也可以单独构建：
+
+```bash
+npx esno src/scripts/build-pdf.ts --profile=ai
+```
+
+### 输出路径
+
+每个 profile 显式声明 `jsonOutput` / `htmlOutput` / `pdfOutput` 三个输出路径，互不影响；默认简历 `social` 的输出路径与项目历史输出保持一致。
+
+## 热更新功能
 
 ### 使用方法
 
-#### 开发模式（推荐）
 ```bash
-make resume:watch
-```
+# 仅监听简历数据
+make resume-watch
 
-#### 完整开发环境
-同时启动简历监听和开发服务器：
-```bash
-make resume:dev
+# 同时启动简历监听和开发服务器（推荐）
+pnpm resume:dev
 ```
 
 ### 热更新机制
-1. **文件监听**：使用 `fs.watchFile` 监听 `src/resumeSource.ts` 文件变化
-2. **模块缓存清理**：检测到文件变化时自动清除模块缓存
-3. **数据验证**：重新生成前验证简历数据完整性
-4. **自动导出**：验证通过后自动导出到指定路径
+1. **目录监听**：使用 `fs.watch` 监听 `src/data/` 与 `src/profiles/` 目录变化（覆盖所有子模块）
+2. **模块缓存清理**：检测到变化时按目录前缀清除 require 缓存，确保拿到最新数据
+3. **数据验证**：重新生成前校验简历数据完整性，失败时告警但不中断
+4. **自动导出**：校验通过后写入各 profile 声明的 JSON路径
 
 ## 项目结构
 
 ```
-├── src/                  # 源代码目录
-│   ├── resumeSource.ts   # 简历数据源
-│   ├── types.ts          # TypeScript 类型定义
-│   └── generateResume.ts # 简历生成器
-├── resume/               # 生成的简历文件
-│   ├── resume.json       # 简历 JSON 数据
-│   ├── resume.hbs        # 简历模板
-│   └── resume.html       # 生成的 HTML 简历
-├── docs/                 # 文档目录
-│   ├── BUILD_OPTIMIZATION.md    # 构建优化说明
-│   └── RESUME_HOT_RELOAD.md     # 热更新使用说明
-├── Gruntfile.js          # Grunt 构建配置
-├── package.json          # 项目配置和依赖
-├── Makefile              # 快捷命令配置
-└── README.md             # 项目自述文件
+├── src/                      # 源代码
+│   ├── types.ts              # 领域类型定义（唯一数据契约）
+│   ├── data/                 # 共享简历数据（按模块拆分）
+│   │   ├── basics.ts         # 基本信息
+│   │   ├── work.ts           # 工作经历
+│   │   ├── projects.ts       # 业务项目
+│   │   ├── personalProjects.ts # 个人项目
+│   │   ├── skills.ts / education.ts / certifications.ts
+│   │   ├── awards.ts / interests.ts / selfEvaluate.ts
+│   │   └── index.ts          # assembleBaseResume()：组装基础简历
+│   ├── profiles/             # 多简历配置层
+│   │   ├── types.ts          # ResumeProfile 接口
+│   │   ├── social.ts         # 默认简历（前端-社招）
+│   │   └── index.ts          # 配置注册表
+│   ├── core/                 # 领域逻辑（与 IO、CLI 分离）
+│   │   ├── generate.ts       # 组装 → 校验 → 写 JSON
+│   │   ├── validate.ts       # 数据完整性校验
+│   │   ├── transform.ts      # 渲染前数据加工（日期/工时/头像兜底）
+│   │   ├── helpers.ts        # Handlebars helpers
+│   │   ├── render.ts         # 模板 + CSS 注入渲染
+│   │   └── profiles.ts       # 配置加载与 --profile 参数解析
+│   ├── build/                # 构建动作
+│   │   ├── html.ts           # JSON → HTML
+│   │   └── pdf.ts            # HTML → PDF（Chrome 探测 + Puppeteer）
+│   └── scripts/              # CLI 薄壳入口
+│       ├── generate.ts       # 简历数据生成（含 watch 模式）
+│       ├── build-html.ts     # HTML 构建
+│       ├── build-pdf.ts      # PDF 构建
+│       └── serve.ts          # 本地预览服务器
+├── resume/                   # 生成的简历数据
+│   ├── resume.hbs            # Handlebars 模板
+│   └── resume.json           # 默认简历 JSON（由 generate 产出）
+├── assets/less/              # Less 样式源码
+├── dist/                     # 构建产物（HTML / PDF）
+├── Gruntfile.js              # Grunt 构建配置
+├── Makefile                  # 快捷命令
+└── package.json              # 项目配置和依赖
 ```
 
 ## 技术栈
 
 - **前端**：TypeScript、Less、Handlebars
 - **构建工具**：Grunt、npm scripts、Make
-- **开发工具**：ESLint、Prettier
+- **开发工具**：ESLint、TypeScript
 - **部署**：Netlify
-
-## 简历数据管理
-
-简历数据存储在 `src/resumeSource.ts` 文件中，包含两个主要导出：
-
-1. **resumeSource**：原始简历数据
-2. **resumeOptimized**：优化后的简历数据
-
-修改数据后，热更新机制会自动生成新的 `resume/resume.json` 文件。
 
 ## 部署说明
 

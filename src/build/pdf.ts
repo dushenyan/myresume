@@ -1,89 +1,63 @@
 import type Buffer from 'node:buffer'
+import type { ResumeProfile } from '../profiles/types'
+import fs from 'node:fs'
+import path from 'node:path'
 import process from 'node:process'
-import fs from 'fs-extra'
+import fsExtra from 'fs-extra'
 import puppeteer from 'puppeteer'
 
-const resumePath = './resume/resume.json'
-
-async function buildHTML() {
-  await fs.remove('./dist')
-  await fs.ensureDir('./dist')
-
-  let resume
-
-  if (fs.existsSync(resumePath)) {
-    resume = JSON.parse(fs.readFileSync(resumePath, 'utf-8'))
-  }
-  else {
-    throw new Error('resume.json 文件不存在')
-  }
-  const html = await import('./index')
-  const htmlRender = await html.render(resume)
-  fs.writeFileSync('./dist/index.html', htmlRender, 'utf-8')
-  return htmlRender
-}
-
-// 检测系统中可能的 Chrome 路径
+/**
+ * 检测系统中可用的 Chrome 可执行文件
+ */
 function getChromeExecutablePath(): string | undefined {
-  // 先检查环境变量
+  // 优先使用环境变量指定
   if (process.env.CHROME_BIN) {
     return process.env.CHROME_BIN
   }
 
-  // macOS 常见的 Chrome 路径
-  const macPaths = [
-    '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
-    '/Applications/Brave Browser.app/Contents/MacOS/Brave Browser',
-    '/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge',
-  ]
-
-  // 检查是否存在这些路径
-  for (const path of macPaths) {
-    if (fs.existsSync(path)) {
-      console.log(`找到可用的浏览器: ${path}`)
-      return path
-    }
-  }
-
-  // Linux 常见的 Chrome 路径
-  if (process.platform === 'linux') {
-    const linuxPaths = [
+  const platformPaths: Record<NodeJS.Platform, string[]> = {
+    darwin: [
+      '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+      '/Applications/Brave Browser.app/Contents/MacOS/Brave Browser',
+      '/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge',
+    ],
+    linux: [
       '/usr/bin/google-chrome',
       '/usr/bin/google-chrome-stable',
       '/usr/bin/chromium',
       '/usr/bin/chromium-browser',
-    ]
-
-    for (const path of linuxPaths) {
-      if (fs.existsSync(path)) {
-        // console.log(`找到可用的浏览器: ${path}`)
-        return path
-      }
-    }
-  }
-
-  // Windows 常见的 Chrome 路径
-  if (process.platform === 'win32') {
-    const winPaths = [
+    ],
+    win32: [
       `${process.env.ProgramFiles}\\Google\\Chrome\\Application\\chrome.exe`,
       `${process.env['ProgramFiles(x86)']}\\Google\\Chrome\\Application\\chrome.exe`,
-    ]
+    ],
+    aix: [],
+    android: [],
+    freebsd: [],
+    haiku: [],
+    openbsd: [],
+    sunos: [],
+    cygwin: [],
+    netbsd: [],
+  }
 
-    for (const path of winPaths) {
-      if (fs.existsSync(path)) {
-        console.log(`找到可用的浏览器: ${path}`)
-        return path
-      }
+  for (const filePath of platformPaths[process.platform] ?? []) {
+    if (fs.existsSync(filePath)) {
+      console.log(`找到可用的浏览器: ${filePath}`)
+      return filePath
     }
   }
 
   return undefined
 }
 
-async function buildPDF(html: string): Promise<Buffer> {
-  const chromePath = getChromeExecutablePath()
-
-  // 将外部资源替换为离线友好版本，避免网络请求导致超时
+/**
+ * 将渲染好的 HTML 通过 headless Chrome 输出为 PDF
+ *
+ * 外部资源（Google Fonts / iconify）被移除、网络请求被整体拦截，
+ * 避免打印时因外网请求超时导致构建失败。
+ */
+export async function buildProfilePdf(profile: ResumeProfile, html: string): Promise<void> {
   const offlineHtml = html
     // 移除 Google Fonts（打印时用系统字体兜底）
     .replace(/<link[^>]*fonts\.googleapis\.com[^>]*>/g, '')
@@ -101,7 +75,7 @@ async function buildPDF(html: string): Promise<Buffer> {
         '--disable-web-security',
         '--font-render-hinting=none',
       ],
-      executablePath: chromePath,
+      executablePath: getChromeExecutablePath(),
       timeout: 60000,
       ignoreHTTPSErrors: true,
     })
@@ -138,18 +112,16 @@ async function buildPDF(html: string): Promise<Buffer> {
         left: '0.4in',
         right: '0.4in',
       },
-    })
+    }) as Buffer
 
     await browser.close()
-    console.log('开始生成简历...')
-    fs.writeFileSync('./dist/杜审言-前端-社招.pdf', pdf)
-    console.log('PDF生成完成!')
-    return pdf
+
+    await fsExtra.ensureDir(path.dirname(profile.pdfOutput))
+    fs.writeFileSync(profile.pdfOutput, pdf)
+    console.log(`✅ [${profile.id}] PDF生成完成: ${profile.pdfOutput}`)
   }
   catch (error) {
-    console.error('PDF生成失败:', error)
-
-    // 创建详细的错误提示HTML
+    // 生成详细的错误提示页面，便于定位 Chrome 环境问题
     const errorMessage = error instanceof Error ? error.message : String(error)
     const errorStack = error instanceof Error ? error.stack : ''
 
@@ -185,30 +157,6 @@ async function buildPDF(html: string): Promise<Buffer> {
     fs.writeFileSync('./dist/pdf-error.html', errorHTML, 'utf-8')
 
     console.log('已生成错误提示页面: dist/pdf-error.html')
-    throw new Error('PDF生成失败，请查看dist/pdf-error.html获取详细信息和解决方法')
+    throw new Error(`[${profile.id}] PDF生成失败，请查看dist/pdf-error.html获取详细信息和解决方法`)
   }
 }
-
-async function buildAll(): Promise<void> {
-  try {
-    const html = await buildHTML()
-
-    try {
-      await buildPDF(html)
-    }
-    catch (pdfError) {
-      console.error('PDF构建失败，但HTML已成功生成:', pdfError)
-      // 即使PDF生成失败，也让构建过程返回成功，因为HTML已经生成
-      console.log('构建完成! HTML文件已成功生成到 dist/index.html')
-    }
-  }
-  catch (error) {
-    console.error('构建过程中出现错误:', error)
-    process.exit(1)
-  }
-}
-
-buildAll().catch((error) => {
-  console.error('构建失败:', error)
-  process.exit(1)
-})

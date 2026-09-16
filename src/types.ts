@@ -88,21 +88,9 @@ export interface Skill {
    */
   category: string
   /**
-   * 技能等级
-   */
-  level?: string
-  /**
    * 关键词
    */
   keywords?: string[]
-  /**
-   * 技能类别
-   */
-  skill_class?: string
-  /**
-   * 是否显示进度条
-   */
-  display_progress_bar?: boolean
 }
 
 /**
@@ -137,10 +125,6 @@ export interface Project {
    * 项目地址
    */
   githubUrl?: string
-  /**
-   * 星数
-   */
-  stars?: number | string
   /**
    * 成就
    */
@@ -203,22 +187,6 @@ export interface Work {
    * 是否是当前角色
    */
   isCurrentRole?: boolean
-  /**
-   * 开始日期
-   */
-  start: {
-    year?: number
-    month?: number
-    day?: number
-  }
-  /**
-   * 结束日期
-   */
-  end: {
-    year?: number
-    month?: number
-    day?: number
-  }
 }
 
 /**
@@ -253,22 +221,6 @@ export interface Education {
    * 课程
    */
   courses?: string[]
-  /**
-   * 开始日期
-   */
-  start: {
-    year?: number
-    month?: number
-    day?: number
-  }
-  /**
-   * 结束日期
-   */
-  end: {
-    year?: number
-    month?: number
-    day?: number
-  }
   /**
    * 系别
    */
@@ -311,14 +263,6 @@ export interface Certifications {
    * 认证类型
    */
   type?: string
-  /**
-   * 取得日期
-   */
-  fullDate?: {
-    year?: number
-    month?: number
-    day?: number
-  }
 }
 /**
  * 奖项
@@ -340,14 +284,6 @@ export interface Awards {
    * 奖项摘要
    */
   summary?: string
-  /**
-   * 取得日期
-   */
-  fullDate?: {
-    year?: number
-    month?: number
-    day?: number
-  }
 }
 export interface Publications {
   /**

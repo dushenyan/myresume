@@ -20,26 +20,30 @@ NC := \033[0m
 NOW_CMD :=dev
 
 
-.PHONY: help install dev build lint clean deploy ci version
+.PHONY: help install dev resume resume-watch build build-quick lint typecheck clean deploy ci version
 
 ## 显示命令帮助
 help:
 	@echo "$(BLUE)简历生成项目命令说明：$(NC)"
 	@echo ""
 	@echo "$(GREEN)开发:$(NC)"
-	@echo "  make dev       启动开发服务器（实时预览）"
+	@echo "  make dev          启动开发服务器（实时预览）"
+	@echo "  make resume       生成全部简历 JSON 数据"
+	@echo "  make resume-watch 监听数据/配置变化自动重新生成"
 	@echo ""
 	@echo "$(GREEN)构建与部署:$(NC)"
-	@echo "  make build     完整构建（HTML + PDF）"
-	@echo "  make deploy    准备部署文件"
+	@echo "  make build        完整构建（HTML + PDF）"
+	@echo "  make build-quick  快速构建（仅 HTML）"
+	@echo "  make deploy       准备部署文件"
 	@echo ""
 	@echo "$(GREEN)质量与工具:$(NC)"
-	@echo "  make lint      代码检查"
-	@echo "  make clean     清理构建产物"
-	@echo "  make ci        完整 CI/CD 流程"
+	@echo "  make lint         代码检查"
+	@echo "  make typecheck    TypeScript 类型检查"
+	@echo "  make clean        清理构建产物"
+	@echo "  make ci           完整 CI/CD 流程"
 	@echo ""
 	@echo "$(GREEN)信息:$(NC)"
-	@echo "  make version   显示项目版本"
+	@echo "  make version      显示项目版本"
 
 ## 安装依赖
 install:
@@ -55,6 +59,22 @@ install:
 dev:
 	@echo "$(BLUE)启动开发服务器...$(NC)"
 	@$(GRUNT) serve
+
+## 生成全部简历 JSON 数据
+resume:
+	@$(NPM) run resume:generate
+
+## 监听数据/配置变化自动重新生成
+resume-watch:
+	@$(NPM) run resume:watch
+
+## TypeScript 类型检查
+typecheck:
+	@$(NPM) run typecheck
+
+## 快速构建（仅 HTML）
+build-quick:
+	@$(GRUNT) build:quick
 
 ## 完整构建（HTML + PDF）
 build:
