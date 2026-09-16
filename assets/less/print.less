@@ -102,7 +102,7 @@
   }
 
   .print-contact-item {
-    font-size: 8.5pt !important;
+    font-size: 9pt !important;
     color: #333 !important;
     line-height: 1.6 !important;
     white-space: nowrap !important;
@@ -127,7 +127,7 @@
   .background-card h4 {
     font-size: 10pt !important;
     font-weight: 700 !important;
-    margin: 8pt 0 3pt 0 !important;
+    margin: 6pt 0 3pt 0 !important;
     padding: 0 !important;
     border: 0 !important;
     page-break-after: avoid !important;
@@ -142,11 +142,13 @@
     letter-spacing: 0.5pt !important;
   }
 
-  /* card-nested：去掉左侧竖线 */
+  /* card-nested：去掉左侧竖线。
+     不能在这里加 page-break-inside: avoid——它对项目/工作经历这类长条目同样生效，
+     会把整段内容挤到下一页、在上一页页底留下大片空白；
+     小条目（教育、奖项、技能等）已在各自规则里单独加 avoid */
   .card-nested {
     padding: 3pt 0 3pt 6pt !important;
-    margin: 0 0 4pt 0 !important;
-    page-break-inside: avoid !important;
+    margin: 0 0 3pt 0 !important;
     border: 0 !important;
   }
 
@@ -165,10 +167,10 @@
     content: none !important;
   }
 
-  /* 文本辅助 */
+  /* 文本辅助（打印可读性：最小字号不低于 9pt，颜色加深） */
   .text-muted {
-    color: #555 !important;
-    font-size: 8.5pt !important;
+    color: #444 !important;
+    font-size: 9pt !important;
   }
 
   .text-muted * {
@@ -178,8 +180,8 @@
 
   p {
     margin: 1pt 0 2pt 0 !important;
-    font-size: 9pt !important;
-    line-height: 1.45 !important;
+    font-size: 9.5pt !important;
+    line-height: 1.5 !important;
   }
 
   strong {
@@ -197,22 +199,32 @@
     color: #222 !important;
   }
 
-  /* 项目经历 */
+  /* 项目经历：条目允许跨页（单条职责由 li 级 avoid 保持完整），
+     否则整段项目被挤到下一页、页底留大片空白 */
   .projects .card-nested {
     margin-bottom: 5pt !important;
-    page-break-inside: avoid !important;
   }
 
   /* 个人项目 */
   #personal-projects .card-nested {
     margin-bottom: 5pt !important;
-    page-break-inside: avoid !important;
     border-left: 1pt solid #aaa !important;
     padding-left: 6pt !important;
   }
 
   #personal-projects .project-summary {
     display: none !important;
+  }
+
+  /* 概述型条目（brief: true）只有 summary 一行内容，
+     若沿用上面的隐藏规则，PDF 里会只剩光标题，因此这里反向恢复显示 */
+  #personal-projects .card-nested.project-brief .project-summary {
+    display: block !important;
+    font-style: normal !important;
+    font-size: 9pt !important;
+    line-height: 1.4 !important;
+    color: #333 !important;
+    margin: 1pt 0 0 0 !important;
   }
 
   /* printHidden=true 的项目，模板会输出 print-hide-project class */
@@ -232,19 +244,19 @@
 
   .responsibilities li,
   .achievements li {
-    font-size: 8.5pt !important;
-    line-height: 1.4 !important;
+    font-size: 9pt !important;
+    line-height: 1.5 !important;
     margin-bottom: 1pt !important;
     page-break-inside: avoid !important;
   }
 
   .responsibilities strong,
   .achievements strong {
-    font-size: 8.5pt !important;
+    font-size: 9pt !important;
   }
 
   .text-muted small {
-    font-size: 8pt !important;
+    font-size: 8.5pt !important;
   }
 
   /* 工作经历 */
@@ -258,8 +270,8 @@
   }
 
   .highlight li {
-    font-size: 8.5pt !important;
-    line-height: 1.4 !important;
+    font-size: 9pt !important;
+    line-height: 1.5 !important;
     margin-bottom: 1pt !important;
     page-break-inside: avoid !important;
   }
@@ -291,13 +303,13 @@
   }
 
   .skill-keyword {
-    font-size: 7.5pt !important;
+    font-size: 8.5pt !important;
     background: #f2f2f2 !important;
     border: 0.5pt solid #ccc !important;
     border-radius: 2pt !important;
-    padding: 0.5pt 4pt !important;
+    padding: 1pt 5pt !important;
     margin: 0 !important;
-    line-height: 1.4 !important;
+    line-height: 1.5 !important;
     page-break-inside: avoid !important;
   }
 
@@ -308,8 +320,8 @@
   }
 
   .self-evaluate-list li {
-    font-size: 8.5pt !important;
-    line-height: 1.45 !important;
+    font-size: 9pt !important;
+    line-height: 1.5 !important;
     margin-bottom: 2pt !important;
     page-break-inside: avoid !important;
   }
@@ -330,8 +342,8 @@
   }
 
   .label {
-    font-size: 7.5pt !important;
-    padding: 0.5pt 3pt !important;
+    font-size: 8.5pt !important;
+    padding: 1pt 4pt !important;
     margin: 1pt !important;
     background: #f2f2f2 !important;
     border: 0.5pt solid #ccc !important;
@@ -343,12 +355,12 @@
     page-break-inside: avoid !important;
   }
 
-  /* 分页控制 */
+  /* 分页控制：只保护头像卡与区块标题，
+     注意不要对 #work-experience / #education 这类长区块整体加 avoid，
+     否则整段跳页会在上一页页底留下大片空白 */
   .name-and-profession,
   .profile-card,
-  .background-card h4,
-  #work-experience,
-  #education {
+  .background-card h4 {
     page-break-inside: avoid !important;
   }
 

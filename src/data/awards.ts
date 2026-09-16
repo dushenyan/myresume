@@ -21,10 +21,4 @@ export const awards: Resume['awards'] = [
     awarder: '海南流云科技有限公司',
     date: '2023-01-01',
   },
-  {
-    title: '全国大学生数学建模竞赛',
-    summary: '获得省级二等奖',
-    awarder: '江西省教育厅',
-    date: '2019-10',
-  },
 ]

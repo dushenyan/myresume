@@ -13,7 +13,6 @@
 import type { Resume } from '../types'
 import { awards } from './awards'
 import { basicInfo } from './basics'
-import { certifications } from './certifications'
 import { education } from './education'
 import { interests } from './interests'
 import { personalProjects } from './personalProjects'
@@ -40,7 +39,6 @@ export function assembleBaseResume(): Resume {
     skills,
     projects,
     selfEvaluate,
-    certifications,
     awards,
     interests,
     personalProjects,

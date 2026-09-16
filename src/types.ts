@@ -59,6 +59,13 @@ export interface ResumeBasics {
    */
   html_title?: string
   /**
+   * 页脚 PDF 下载链接
+   *
+   * 各 profile 的 HTML 输出目录不同（有的在 dist/ 根，有的在 dist/<id>/），
+   * 指向 PDF 的相对路径随之不同，因此由 profile 显式声明而非写死在模板里。
+   */
+  pdfLink?: string
+  /**
    * 语言
    */
   languages?: Array<{ language: string, fluency?: string }> | string
@@ -133,6 +140,13 @@ export interface Project {
    * 打印时隐藏该项目（true = 打印不显示）
    */
   printHidden?: boolean
+  /**
+   * 概述型条目（一句话项目）
+   *
+   * 这类项目只写 summary 一行定位、不展开职责。模板默认在打印时隐藏 summary，
+   * 需要靠此标记反向显示，否则 PDF 里会只剩一个光标题。
+   */
+  brief?: boolean
 }
 
 /**

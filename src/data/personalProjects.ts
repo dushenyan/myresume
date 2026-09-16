@@ -1,40 +1,61 @@
 /**
- * 简历个人项目模块
+ * 简历个人项目模块（能力广度佐证）
  *
- * 个人开源项目独立成文件：与公司业务项目区分维护，
- * 便于在投递不同岗位时按需调整展示顺序或隐藏部分项目。
+ * 这份简历里项目经历的主证据链已迁移至 projects.ts：FAQ 智能问答平台、
+ * 政务 RAG、多 Agent 深度研究助手、意图识别共 4 项作为「AI 主线」详写，
+ * 与业务项目一起形成统一的「项目经历」板块，避免主证据链分散在两栏造成
+ * 阅读断裂。
+ *
+ * 本文件当前仅承载「能力广度佐证」的 5 个一句话概述项目（全部 brief: true）：
+ * LoRA 微调、sy-llm、bert-encoder、input-method-rnn、word2vec-recommend-key。
+ * 这些条目覆盖「模型微调 / LLM 封装 / Transformer / RNN / 词向量」等基础
+ * 技术栈，不展开职责，用于补全技能图谱的横向宽度。
+ *
+ * 两点约定：
+ * 1. 全部为本地实战项目、未开源，因此不填 githubUrl——简历上挂死链比不挂更糟；
+ * 2. 概述型条目标记 brief: true，模板据此在打印时渲染 summary 并隐藏职责列表，
+ *    保证同一份内容在 HTML 与 PDF 里都可见、且不重复。
  */
 import type { Resume } from '../types'
 
 /**
- * 个人开源项目列表
+ * 个人实战项目列表（能力广度佐证，按技术栈由上到下递进：微调 → LLM 封装 →
+ * Transformer → RNN → 词向量）
  */
 export const personalProjects: Resume['personalProjects'] = [
   {
-    name: 'file-wizard',
-    displayName: 'file-wizard（文件魔法师）',
-    summary: 'AI 驱动的文件整理 CLI 工具，支持多 AI 提供商、MCP 协议集成与交互式 UI',
-    primaryLanguage: ['TypeScript', 'Node.js', 'MCP', 'Commander', 'Groq / DeepSeek / Qwen / Gemini'],
-    githubUrl: 'https://github.com/dushenyan/file-wizard',
-    description: '使用 Cursor + Trae 辅助开发，集成 MCP（Model Context Protocol）协议，支持 6 种主流 AI 提供商，实现智能文件分类、批量重命名与内容分析',
-    responsibilities: [
-      '【AI 集成】统一封装 Groq、DeepSeek、Qwen、Gemini、OpenRouter、智谱 AI 等多提供商客户端，支持配置化切换',
-      '【MCP 协议】实现 MCP 服务端，暴露文件元数据提取与内容分析工具，供 AI 代理调用',
-      '【CLI 设计】基于 Commander + @clack/prompts 实现交互式命令行，支持 dry-run 安全预览',
-      '【工程化】tsdown 打包，vitest 单元测试，自定义 Agent Skills 与 rules 规范 AI 开发流程',
-    ],
+    name: 'fine-tuning',
+    displayName: '大模型 LoRA 微调实战（fine-tuning）',
+    summary: 'Qwen2.5-Instruct LoRA 微调全流程：从理论到数据准备、训练、推理调优，掌握「仅微调约 0.4% 参数即可接近全量效果」的工程平衡；细节上严格区分训练与推理解码格式、双停止符配置，理解 QLoRA 量化方案在资源受限时如何进一步压缩',
+    primaryLanguage: ['Python', 'PEFT / LoRA', 'transformers', 'QLoRA'],
+    brief: true,
   },
   {
-    name: 'skills',
-    displayName: 'skills（Agent Skills 集合）',
-    summary: '精心策划的 Agent Skills 集合，反映个人偏好、经验与最佳实践，供 AI 代理按需引用',
-    primaryLanguage: ['TypeScript', 'Markdown', 'pnpm workspace', 'Git submodule'],
-    githubUrl: 'https://github.com/dushenyan/skills',
-    description: '使用 Trae + OpenClaw 辅助开发，通过 Git 子模块引用 Vue / Vite / pnpm 等官方文档，自动生成并同步 Agent Skills，配套自定义 rules 规范 AI 代理行为',
-    responsibilities: [
-      '【技能管理】三层来源架构：手写个人偏好技能、从官方文档生成技能、从第三方同步技能（tsdown / turborepo）',
-      '【自动化】CLI 工具支持子模块初始化、技能同步与清理，Git 子模块保持与上游文档同步',
-      '【AI 工作流】编写自定义 rules 和 AGENTS.md，规范 AI 代理的代码生成行为与最佳实践',
-    ],
+    name: 'sy-llm',
+    displayName: '统一 LLM 调用封装库（sy-llm）',
+    summary: '零运行时依赖的 LLM 统一封装：抽象基类支持 Ollama 本地 / DeepSeek 云端一键切换，同步异步双链路复用一份代码；密钥全走环境变量、业务代码零明文，配套 pytest 与标准 src-layout 包工程',
+    primaryLanguage: ['Python', '标准库', 'Ollama', 'pytest'],
+    brief: true,
+  },
+  {
+    name: 'bert-encoder',
+    displayName: 'BERT 原理实战（bert-encoder）',
+    summary: 'BERT 原理系统实战：从 Token / Position / Segment 三层 Embedding 与自注意力机制可视化，到「冻结特征提取 vs 全参数微调」的对比，并完成中文六大任务迁移与变体模型选型（RoBERTa / ALBERT / DistilBERT / ELECTRA）',
+    primaryLanguage: ['Python', 'transformers', 'PyTorch'],
+    brief: true,
+  },
+  {
+    name: 'input-method-rnn',
+    displayName: 'RNN 输入法候选词预测（input-method-rnn）',
+    summary: '用 vanilla RNN 模拟输入法候选词推荐：jieba 分词 + 词表构建 + 滑动窗口造样本，全管线（数据 → 训练 → 评估 → 推理）可独立运行；Top-1 准确率 0.21、Top-5 0.40',
+    primaryLanguage: ['Python', 'PyTorch', 'RNN'],
+    brief: true,
+  },
+  {
+    name: 'word2vec-recommend-key',
+    displayName: '搜索关键词推荐（word2vec-recommend-key）',
+    summary: 'word2vec 词向量相似词扩展驱动的搜索联想系统，工程完整度高：CLI 子命令（train / eval / recommend / check）+ 评测集与指标 + Web 演示，并记录历史输入做个性化推荐',
+    primaryLanguage: ['Python', 'word2vec', 'CLI'],
+    brief: true,
   },
 ]

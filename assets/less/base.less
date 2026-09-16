@@ -15,6 +15,11 @@ body {
   font-weight: bold;
 }
 
+/* 屏幕端辅助文本：覆盖 Bootstrap 默认 #999（对比度仅 2.8:1），加深至 5.7:1 */
+.text-muted {
+  color: @text-secondary;
+}
+
 .enumeration:last-child:after {
   content: '' !important;
 }
@@ -29,7 +34,26 @@ body {
   .job {
     margin-top: 0.5rem;
     font-size: 1.1rem;
-    color: #666;
+    color: @text-secondary;
+  }
+}
+
+/* 键盘导航：可见焦点环（屏幕阅读器/键盘用户） */
+a:focus-visible,
+.social-link:focus-visible {
+  outline: 2px solid @theme-blue;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* 无障碍：用户偏好减少动效时禁用过渡与动画 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *:before,
+  *:after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }
 
@@ -41,53 +65,28 @@ body {
     grid-gap: 2rem;
     max-width: 1400px;
     margin: 0 auto;
-    
+
     .page {
       max-width: 50em;
       width: 100%;
     }
   }
-  
+
   body {
     font-size: 16px;
     padding: 2rem 0;
   }
-  
+
   .name-and-profession .name {
     font-size: 3.2rem;
   }
-  
+
   .name-and-profession .job {
     font-size: 1.2rem;
   }
 }
 
-/* 平板端优化 */
-@media only screen and (min-width: 768px) and (max-width: 991px) {
-  .container {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    grid-gap: 1.5rem;
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 0 1rem;
-  }
-  
-  body {
-    font-size: 15px;
-    padding: 1.5rem 0;
-  }
-  
-  .name-and-profession .name {
-    font-size: 2.5rem;
-  }
-  
-  .name-and-profession .job {
-    font-size: 1.05rem;
-  }
-}
-
-/* iPad Air 设备优化 (992px 宽度) */
+/* 平板端优化（含 iPad Air 992px 宽度，合并原有两个重叠断点） */
 @media only screen and (min-width: 768px) and (max-width: 992px) {
   .container {
     display: grid;
@@ -97,38 +96,24 @@ body {
     margin: 0 auto;
     padding: 0 1.5rem;
   }
-  
+
   body {
     font-size: 14.5px;
     padding: 1.2rem 0;
   }
-  
+
   .name-and-profession .name {
     font-size: 2.3rem;
   }
-  
+
   .name-and-profession .job {
     font-size: 1rem;
   }
-  
+
   .card {
     padding: 1.8em 2em;
   }
-  
-  .card-nested {
-    padding: 0.8rem 0 0.8rem 1.2rem;
-  }
-  
-  .skill-keyword {
-    font-size: 0.75rem;
-    padding: 3px 8px;
-  }
-  
-  .self-evaluate-list li {
-    font-size: 0.85rem;
-    margin-bottom: 0.6rem;
-  }
-  
+
   h4 {
     font-size: 1rem;
   }
@@ -143,12 +128,9 @@ body {
     display: block;
     // padding: 0 0.5rem;
   }
-  
-  .card {
-    padding: 1em !important;
-    margin-bottom: 1rem;
-  }
-  
+
+  /* 卡片内边距统一定义在 cards.less 对应断点中 */
+
   .background-details {
     display: block;
 
@@ -168,44 +150,30 @@ body {
       display: none;
     }
   }
-  
+
   .card-nested {
     padding: 5px 0;
   }
-  
+
   body {
     font-size: 14px;
     padding: 1rem 0;
   }
-  
+
   .name-and-profession .name {
     font-size: 2.2rem;
   }
-  
+
   .name-and-profession .job {
     font-size: 1rem;
   }
-  
+
   .profile-pic img {
     width: 80px;
     height: 80px;
   }
-  
-  .social-links {
-    margin-top: 1rem;
-  }
-  
+
   h4 {
     font-size: 1.1rem;
   }
-  
-  .skill-keyword {
-    font-size: 0.85rem;
-  }
-  
-  .self-evaluate-list li {
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
-  }
 }
-

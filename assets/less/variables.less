@@ -13,7 +13,32 @@
 // card variables
 @card-bg: white;
 @card-border-color: #e6e6e6;
-@card-border-radius: 3px;
+@card-border-radius: 8px;
+
+// ===== 语义化设计 token =====
+// 文本色阶（均通过白底 4.5:1 对比度校验）
+@text-primary: @theme-font-color; // 主文本
+@text-secondary: #666;           // 次要文本（对比度 5.7:1）
+@text-muted-strong: #555;        // 强调的辅助文本
+@icon-muted: #888;               // 图标/装饰（≥3:1）
+
+// 技能 chip（中性）
+@chip-bg: #f8f9fa;
+@chip-bg-hover: #e9ecef;
+@chip-border: #e9ecef;
+@chip-border-hover: #dee2e6;
+@chip-text: #495057;
+
+// 技能 chip（AI 分类高亮，蓝系）
+@chip-ai-bg-start: #e8f4fd;
+@chip-ai-bg-end: #d1ecf1;
+@chip-ai-bg-hover-end: #b8daff;
+@chip-ai-border: #bee5eb;
+@chip-ai-text: #0c5460;
+
+// 过渡时长（交互微动效标准区间 150–300ms）
+@transition-fast: 0.2s ease;
+@transition-base: 0.25s ease;
 
 // Label styles
 @theme-label-bg: lighten(@theme-blue, 15%);

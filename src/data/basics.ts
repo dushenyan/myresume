@@ -13,22 +13,23 @@ import type { Resume } from '../types'
 export const basicInfo: Resume['basics'] = {
   name: '杜审言',
   picture: 'https://avatars.githubusercontent.com/u/63347504',
-  label: '前端开发工程师 / AI 应用开发',
-  headline: '6年前端开发经验 | AI 应用开发 & MCP / Agent 工程化 | Vue3 技术专家',
-  summary: '6年前端开发经验，专注政务数字化与企业级SaaS，近年深入 AI 辅助研发与 AI 应用工程化。\n'
+  label: 'Agent 开发工程师',
+  headline: 'Agent 开发 · 多 Agent 编排 · RAG · 智能体平台 · LLM 微调与推理',
+  summary: '前端工程师出身，近 8 年工程经验；近 2 年系统转向 AI Agent 与 LLM 应用开发，个人项目覆盖「模型微调 → 语义检索 → RAG → 多 Agent 编排」完整链路。\n'
     + '\n'
     + '核心优势：\n'
-    + '• 熟练运用 Cursor / Trae / OpenClaw / Codex 等 AI 编码工具，通过 Agent Skills 与自定义 Rules 规范 AI 开发流程\n'
-    + '• 落地多个 AI 应用：多 AI 提供商集成（Groq/DeepSeek/Gemini/Qwen）、MCP 服务端开发、Agent Skills 工程化\n'
-    + '• 精通Vue3技术栈，主导政府密码云平台（等保三级）、营商数据大屏（省级获奖）等核心项目\n'
-    + '• 自研CLI脚手架与组件库，具备从0到1的工程化架构能力',
+    + '• Agent 与编排：自研四角色 Agent 编排器（控制流与语言任务分离）、Coze/Dify 低代码平台 8+ 业务智能体交付、LangChain 全栈（LCEL / Memory / Tools / RAG）\n'
+    + '• RAG 与模型：三存储 RAG 架构、BM25 + 向量混合检索 + bge-reranker 精排两阶段管线、Qwen2.5 LoRA 微调、bge 中文向量与重排模型自适应部署\n'
+    + '• 服务与部署：Python / FastAPI 异步全栈（MySQL / ES / Redis / Neo4j），Docker + XInference + AutoDL 私有化部署链路（数据不出内网）',
   website: 'https://duhenyanblog.netlify.app/',
   address: '海南 海口',
   projects_url: 'https://github.com/dushenyan',
   image_avatar: 'https://avatars.githubusercontent.com/u/63347504',
   username: 'dushenyan',
   email: 'shenyandu@qq.com',
-  html_title: '杜审言-前端-AI应用',
+  html_title: '杜审言-Agent 开发工程师',
+  // 页脚 PDF 链接：HTML 与 PDF 同落在 dist/ 根，故只写文件名
+  pdfLink: '杜审言-Agent 开发工程师-社招.pdf',
   languages: '中文',
   phone: '18379514819',
   wechat: 'Sy508080',

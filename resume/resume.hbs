@@ -189,7 +189,7 @@
               <div class="list-unstyled projects">
                 <div class="project-table">
                 {{#each resume.personalProjects}}
-                  <li class="card-nested personal-project-item">
+                  <li class="card-nested personal-project-item{{#if brief}} project-brief{{/if}}">
                     <div class="content has-sidebar">
                       <p class="clear-margin-sm" itemprop="award">
                         <strong>{{displayName}}</strong>&nbsp;
@@ -207,7 +207,9 @@
                         基于{{#each primaryLanguage}} <small>{{.}}<span> + </span></small> {{/each}}开发
                       </p>
                       {{/if}}
+                      {{#if description}}
                       <p class="text-muted project-description">{{description}}</p>
+                      {{/if}}
                       {{#if responsibilities}}
                       <div class="responsibilities">
                         <strong>主要职责：</strong>
@@ -323,12 +325,11 @@
                   <div class="content has-sidebar">
                     <p class="clear-margin-sm" itemprop="award">
                       <strong>{{title}}</strong>&nbsp;
-                      {{awarder}}
+                      {{awarder}}{{#if summary}}<span class="text-muted">（{{summary}}）</span>{{/if}}
                     </p>
                     <p class="text-muted clear-margin-sm">
                       <small> {{date}} </small>
                     </p>
-                    {{#if summary}}<p> {{summary}} </p>{{/if}}
                   </div>
                 </li>
               {{/each}}
@@ -398,7 +399,7 @@
 
             <div style="text-align:center">
               <div class="detail no-print" style="font-size:1.5rem;margin-top:2rem;">
-                <a href="杜审言-前端-社招.pdf" class="info" itemprop="pdf" target="_blank">
+                <a href="{{#if resume.basics.pdfLink}}{{resume.basics.pdfLink}}{{else}}杜审言-前端-社招.pdf{{/if}}" class="info" itemprop="pdf" target="_blank">
                   PDF版本
                 </a>
               </div>

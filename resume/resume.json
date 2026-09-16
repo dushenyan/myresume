@@ -2,16 +2,17 @@
   "basics": {
     "name": "杜审言",
     "picture": "https://avatars.githubusercontent.com/u/63347504",
-    "label": "前端开发工程师 / AI 应用开发",
-    "headline": "6年前端开发经验 | AI 应用开发 & MCP / Agent 工程化 | Vue3 技术专家",
-    "summary": "6年前端开发经验，专注政务数字化与企业级SaaS，近年深入 AI 辅助研发与 AI 应用工程化。\n\n核心优势：\n• 熟练运用 Cursor / Trae / OpenClaw / Codex 等 AI 编码工具，通过 Agent Skills 与自定义 Rules 规范 AI 开发流程\n• 落地多个 AI 应用：多 AI 提供商集成（Groq/DeepSeek/Gemini/Qwen）、MCP 服务端开发、Agent Skills 工程化\n• 精通Vue3技术栈，主导政府密码云平台（等保三级）、营商数据大屏（省级获奖）等核心项目\n• 自研CLI脚手架与组件库，具备从0到1的工程化架构能力",
+    "label": "Agent 开发工程师",
+    "headline": "Agent 开发 · 多 Agent 编排 · RAG · 智能体平台 · LLM 微调与推理",
+    "summary": "前端工程师出身，近 8 年工程经验；近 2 年系统转向 AI Agent 与 LLM 应用开发，个人项目覆盖「模型微调 → 语义检索 → RAG → 多 Agent 编排」完整链路。\n\n核心优势：\n• Agent 与编排：自研四角色 Agent 编排器（控制流与语言任务分离）、Coze/Dify 低代码平台 8+ 业务智能体交付、LangChain 全栈（LCEL / Memory / Tools / RAG）\n• RAG 与模型：三存储 RAG 架构、BM25 + 向量混合检索 + bge-reranker 精排两阶段管线、Qwen2.5 LoRA 微调、bge 中文向量与重排模型自适应部署\n• 服务与部署：Python / FastAPI 异步全栈（MySQL / ES / Redis / Neo4j），Docker + XInference + AutoDL 私有化部署链路（数据不出内网）",
     "website": "https://duhenyanblog.netlify.app/",
     "address": "海南 海口",
     "projects_url": "https://github.com/dushenyan",
     "image_avatar": "https://avatars.githubusercontent.com/u/63347504",
     "username": "dushenyan",
     "email": "shenyandu@qq.com",
-    "html_title": "杜审言-前端-AI应用",
+    "html_title": "杜审言-Agent 开发工程师",
+    "pdfLink": "杜审言-Agent 开发工程师-社招.pdf",
     "languages": "中文",
     "phone": "18379514819",
     "wechat": "Sy508080",
@@ -43,13 +44,11 @@
       "isCurrentRole": true,
       "startDate": "2022-07-01",
       "endDate": "",
-      "description": "负责政务数字化核心产品的前端架构设计与开发，推动技术栈升级和工程化建设",
+      "description": "负责政务数字化核心产品的架构设计与交付，主导团队从纯前端向「前端 + AI 应用」双轨能力转型：业务侧落地知识库与智能检索产品，研发侧引入 AI 编码工具与 Skills/Rules 体系",
       "highlights": [
-        "【架构升级】主导Vue2→Vue3+TS技术栈升级，建立统一组件库（liuyun-ui），开发效率提升50%，发布周期从3天缩短至1天",
-        "【工程化】自研liuyun-cli脚手架工具，统一项目初始化流程；设计微前端架构，支持多子应用独立开发部署，系统解耦度提升40%",
-        "【性能优化】优化政府密码云平台首屏加载，从5s降至1.2s（↑76%），支持10万+日活稳定运行",
-        "【安全合规】主导前端安全加固（XSS/CSRF防护、敏感数据加密），通过等保三级认证",
-        "【团队建设】带领5人前端团队，建立Code Review和自动化测试流程，代码质量问题减少60%"
+        "【AI 研发效能】在项目中引入 Cursor / Trae 等 AI 编码工具，沉淀 Agent Skills 与自定义 Rules 约束 AI 生成代码的规范与边界，统一项目初始化流程与代码风格",
+        "【架构与工程化】主导 Vue2 → Vue3 + TS 技术栈升级并建立统一组件库（liuyun-ui），开发效率提升 50%；自研 liuyun-cli 脚手架统一项目初始化流程，为后续 AI 应用集成统一脚手架基线",
+        "【团队建设】带领 5 人前端团队，建立 Code Review 与自动化测试流程，代码质量问题减少 60%；牵头团队每周 AI 技术分享，推动团队整体向 AI 应用方向转型"
       ]
     },
     {
@@ -60,12 +59,10 @@
       "summary": "产品研发与工程架构部",
       "startDate": "2018-12-01",
       "endDate": "2022-07-01",
-      "description": "负责公司核心产品的前端开发与优化，参与技术方案设计与评审，推动前端工程化建设与性能优化",
+      "description": "负责公司核心产品的前端开发与性能优化，参与技术方案设计与评审，推动工程规范建设",
       "highlights": [
-        "【核心产品】开发低代码/无代码平台的市场展示网站，包含文档站点、演示环境与编码 playground",
-        "【性能优化】优化大型数据可视化组件，使用Canvas替代SVG，数据渲染速度提升200%",
-        "【规范建设】建立前端开发规范与代码评审流程，推动ESLint+Prettier统一代码风格，代码质量问题减少60%",
-        "【技术分享】参与团队培训和知识分享，输出10+篇技术文档，提升团队整体技术水平"
+        "【数据可视化】优化大型数据可视化组件，以 Canvas 替代 SVG，数据渲染速度提升 200%",
+        "【规范建设】建立前端开发规范与代码评审流程，推动 ESLint + Prettier 统一代码风格，输出 10+ 篇技术文档"
       ]
     }
   ],
@@ -80,218 +77,231 @@
       "description": "主修课程：计算机网络、Web前端开发、数据库原理、软件工程等",
       "activities": "担任技术社团负责人，组织多次技术分享与实践活动",
       "courses": [
-        "Web前端开发",
-        "JavaScript编程",
         "计算机网络",
-        "数据库原理"
+        "数据库原理",
+        "Web前端开发",
+        "软件工程"
       ]
     },
     {
-      "institution": "自学与在线课程",
-      "area": "前端架构与性能优化",
-      "studyType": "持续学习",
-      "startDate": "2021-06-01",
+      "institution": "大模型应用体系（自学）",
+      "area": "深度学习 · NLP · LangChain · 智能体工程",
+      "studyType": "体系化学习",
+      "startDate": "2024-01-01",
       "endDate": "",
-      "description": "持续学习前沿前端技术与架构实践，参与多个在线课程与技术社区交流",
-      "courses": [
-        "前端架构设计与实践",
-        "大型应用性能优化策略",
-        "微前端架构与实践",
-        "TypeScript编程"
-      ]
+      "description": "按「底层原理 → 工程框架 → 平台交付」三阶系统补齐大模型应用链路，全部配套代码已落地为简历项目区 9 个 AI 项目"
     }
   ],
   "skills": [
     {
-      "category": "AI 应用开发",
+      "category": "Agent 与 LLM 应用",
       "keywords": [
-        "Cursor",
-        "Trae",
-        "OpenClaw",
-        "Codex",
+        "多 Agent 编排与角色分工",
+        "Function Calling / Tool Use",
+        "多轮会话与上下文管理",
         "MCP（Model Context Protocol）",
-        "Agent Skills 编写",
-        "自定义 Rules",
-        "Prompt Engineering",
-        "Groq / DeepSeek / Gemini / Qwen"
+        "Prompt Engineering（Jinja2 模板化）",
+        "Few-shot 动态样本检索",
+        "结构化输出与 OutputParser"
       ]
     },
     {
-      "category": "核心语言",
+      "category": "RAG 与语义检索",
       "keywords": [
-        "JavaScript / TypeScript",
-        "ES6+",
-        "Node.js",
-        "HTML5语义化",
-        "CSS3 / Less",
-        "响应式设计"
+        "混合检索（BM25 + dense_vector）",
+        "中文向量模型（bge-small / base-zh）",
+        "重排序（bge-reranker）",
+        "文档解析与重叠分块策略",
+        "语义拆分 / 递归拆分对比",
+        "召回质量评估与调优",
+        "知识库双环境发布"
       ]
     },
     {
-      "category": "框架生态",
+      "category": "智能体平台（Coze / Dify）",
       "keywords": [
-        "Vue 2/3（深入源码）",
-        "React（项目实践）",
-        "Vuex / Pinia",
-        "Vue Router / React Router",
-        "Nuxt.js",
-        "uni-app"
+        "Coze 工作流编排与代码节点",
+        "Dify 应用发布与 API 化",
+        "cozepy SDK / REST API 接入",
+        "SSE 流式响应处理",
+        "钉钉 / 企微 IM 渠道集成",
+        "官方模板复用与二次开发"
       ]
     },
     {
-      "category": "工程化",
+      "category": "LangChain 全栈",
       "keywords": [
-        "Webpack 5",
-        "Vite",
-        "Rollup",
+        "LCEL 链式编排（prompt | model | parser）",
+        "ChatPromptTemplate / FewShot 模板",
+        "OutputParser 五件套（Str/Json/XML/List/Datetime）",
+        "Memory 四策略（Buffer / Window / Token / Summary）",
+        "@tool / StructuredTool / bind_tools",
+        "create_tool_calling_agent + AgentExecutor",
+        "DocumentLoader 九种 + TextSplitter 四层",
+        "Chroma / FAISS 向量库双栈",
+        "RunnableWithMessageHistory 多会话隔离",
+        "ChatOllama 本地模型接入"
+      ]
+    },
+    {
+      "category": "模型微调与推理",
+      "keywords": [
+        "LoRA / QLoRA 微调（PEFT）",
+        "loss mask 与 ChatML 格式对齐",
+        "双停止符与生成参数调优",
+        "意图识别多方案选型（regex / TF-IDF / BERT / Few-shot）",
+        "Sentence-Transformers 语义向量",
+        "transformers / PEFT / accelerate"
+      ]
+    },
+    {
+      "category": "深度学习与 NLP 基础",
+      "keywords": [
+        "反向传播（链式法则手推）",
+        "优化器演进（SGD / Momentum / AdaGrad / RMSProp / Adam）",
+        "激活函数 / 损失函数 / Xavier-He 初始化",
+        "BatchNorm / Dropout / L2 正则",
+        "PyTorch（Tensor / autograd / nn.Module / DataLoader）",
+        "CNN（卷积 / 池化 / ResNet）",
+        "RNN / LSTM / GRU 与序列建模",
+        "Transformer（Self-Attention / 多头 / 位置编码）",
+        "BERT / GPT 与 bert-base-chinese 微调",
+        "jieba 分词 / Word2Vec / Gensim",
+        "Hugging Face transformers / datasets"
+      ]
+    },
+    {
+      "category": "服务端与存储",
+      "keywords": [
+        "Python / FastAPI（ASGI 异步）",
+        "MySQL + SQLAlchemy 2.0（aiomysql）",
+        "Elasticsearch 8.x（全文 + 向量）",
+        "Redis 多级缓存与主动失效",
+        "Neo4j 知识图谱",
+        "TypeScript / Node.js"
+      ]
+    },
+    {
+      "category": "私有化部署与运维",
+      "keywords": [
+        "Docker / Docker Compose",
+        "XInference（LLM / Embedding / Rerank 一站式部署）",
+        "AutoDL GPU 租赁与按需算力",
+        "Coze Studio 开源部署",
+        "WSL / Linux 容器化环境"
+      ]
+    },
+    {
+      "category": "Agent 前端工程",
+      "keywords": [
+        "对话工作台与流式渲染",
+        "工具调用过程可视化",
+        "Vue 3 / React",
+        "会话状态管理与持久化"
+      ]
+    },
+    {
+      "category": "工程化与交付",
+      "keywords": [
+        "uv / pytest / Makefile",
         "Monorepo（pnpm workspace）",
-        "CI/CD",
-        "liuyun-cli（自研脚手架）",
-        "liuyun-ui（自研组件库）"
+        "Vitest / ESLint / Husky",
+        "CI/CD 与 Docker 部署"
       ]
     },
     {
-      "category": "性能优化",
+      "category": "AI 研发效能",
       "keywords": [
-        "Web Vitals优化",
-        "首屏加载优化",
-        "渲染性能（Canvas / WebGL）",
-        "微前端（qiankun / Module Federation）",
-        "虚拟滚动",
-        "Service Worker缓存策略"
-      ]
-    },
-    {
-      "category": "数据可视化",
-      "keywords": [
-        "ECharts 5",
-        "D3.js",
-        "WebGL / Three.js",
-        "大屏适配（vw方案）",
-        "实时数据（WebSocket）",
-        "大数据渲染优化"
-      ]
-    },
-    {
-      "category": "测试与质量",
-      "keywords": [
-        "Vitest",
-        "ESLint / Prettier / Husky",
-        "TypeScript类型系统",
-        "Code Review"
+        "Agent Skills 编写",
+        "自定义 Rules / AGENTS.md",
+        "Cursor / Claude Code / Trae",
+        "AI 辅助研发流程设计"
       ]
     }
   ],
   "projects": [
     {
-      "name": "政府密码云服务平台",
-      "displayName": "政府密码云服务平台",
-      "summary": "政务SaaS平台，支持多租户隔离、高并发访问，通过等保三级认证",
+      "name": "faq-text-matching",
+      "displayName": "FAQ 智能问答平台（faq-text-matching）",
+      "summary": "FastAPI 异步全栈的 FAQ 智能问答系统：知识生产、双环境发布、语义检索与多渠道服务收敛在一套后端",
       "primaryLanguage": [
-        "Vue3",
-        "TypeScript",
-        "Pinia",
-        "VueRouter4",
-        "Element Plus",
-        "Vite"
+        "Python",
+        "FastAPI",
+        "Elasticsearch 8.x",
+        "SQLAlchemy 2.0",
+        "Redis",
+        "Streamlit"
       ],
-      "description": "作为前端架构师，主导设计并实现政府密码云服务平台的前端架构。平台采用微前端架构，支持多租户隔离，日均访问量超过10万，服务20+政府部门",
+      "description": "独立设计并实现：把知识管理、检索服务与多渠道问答收敛到一套后端，支持测试/正式双环境隔离发布，让知识上线前可安全验证",
       "responsibilities": [
-        "【架构设计】设计微前端架构，实现多个子应用独立开发部署，支持多租户数据隔离和细粒度权限管理",
-        "【性能优化】首屏加载从5s优化至1.2s（↑76%）：路由懒加载、关键CSS内联、图片WebP+CDN、Gzip压缩",
-        "【安全加固】实现CSP策略、XSS/CSRF防护、敏感数据加密传输，主导通过等保三级认证",
-        "【工程化】建立CI/CD流程，实现自动化构建测试部署，发布周期从3天缩短至1天"
-      ],
-      "achievements": [
-        "系统稳定性99.9%，支持10万+日活，零安全事故",
-        "开发效率提升50%，迭代周期从2周缩短至1周",
-        "成功通过等保三级认证，服务20+政府部门"
+        "【混合检索】在 Elasticsearch 单索引内同时建立 BM25 全文与 dense_vector 向量字段，用 Sentence-Transformers 本地生成向量，实现关键词与语义双路召回",
+        "【多级缓存】设计 7 类业务缓存（类目树 / FAQ 详情 / 答案视角 / 搜索结果 / 渠道配置 / 热门 FAQ / 导航目录），按访问特征设置 5 分钟～24 小时差异化 TTL，配合缓存装饰器与写操作主动失效，解决「改了知识但线上还是旧答案」的一致性问题",
+        "【双环境发布】设计「测试环境配置 → 模拟验证 → 发布中心一键同步 → 正式环境生效」机制，用 env 字段隔离 + original_id 溯源使正式记录指向来源测试记录，让知识上线前可验证、可回滚",
+        "【多视角答案】同一问题按微信 / App / 网页渠道返回差异化答案，答案类型支持纯文本、富文本与交互式卡片，覆盖 15+ 个管理端与对外服务接口",
+        "【流式与 IM 渠道】对外服务接口支持 SSE 流式响应以驱动前端打字机式体验；预留钉钉 / 企微机器人对接入口，把问答能力推到 IM 业务渠道",
+        "【工程质量】按 routers / schemas / models / services 分层，pytest 覆盖管理端与对外服务；支持 3000 条批量导入与 50000 条导出"
       ]
     },
     {
-      "name": "营商环境大数据综合信息平台（大屏）",
-      "displayName": "营商环境大数据综合信息平台",
-      "summary": "政府营商环境监测4K数据可视化大屏，实时展示多维度营商数据",
+      "name": "government-advanced-rag",
+      "displayName": "政务 RAG 知识库系统（government-advanced-rag）",
+      "summary": "面向政务知识库的检索增强生成系统：三存储架构 + bge 向量/重排双模型的两阶段检索管线",
       "primaryLanguage": [
-        "Vue3",
-        "ECharts 5",
-        "TypeScript",
-        "WebGL",
-        "D3.js",
-        "Three.js"
+        "Python",
+        "FastAPI",
+        "Elasticsearch",
+        "Neo4j",
+        "Sentence-Transformers",
+        "bge-reranker"
       ],
-      "description": "作为技术负责人，带领团队开发海南营商数据大屏项目。实现实时数据监控、多维度数据分析与可视化展示，为政府决策者提供直观数据支持，7×24小时稳定运行",
+      "description": "覆盖「文档解析 → 重叠分块 → 向量化 → 召回 → 精排 → 生成」全链路，让元数据、全文向量与知识图谱三类存储各司其职",
       "responsibilities": [
-        "【性能优化】Canvas替代SVG渲染，性能提升300%，支持百万级数据实时渲染；Web Worker处理数据计算，避免主线程阻塞",
-        "【可视化】基于ECharts深度定制10+图表，D3.js实现关系图，Three.js/WebGL实现3D地图和粒子效果",
-        "【实时数据】WebSocket实时推送+增量更新策略，本地缓存，数据延迟<100ms",
-        "【稳定性】实现自动重连、内存泄漏监控、错误降级，大屏设备多分辨率兼容适配"
-      ],
-      "achievements": [
-        "获海南省数据应用创新奖（省级奖项）",
-        "性能提升300%，支持百万级数据流畅渲染",
-        "已在海南省10+政府部门部署使用"
+        "【三存储架构】MySQL 存知识库与文档元信息、Elasticsearch 存 chunk 全文与 embedding_vector，Neo4j 承载实体关系图谱，按查询特征为三类存储分工，为多跳问答留出入口",
+        "【两阶段检索】混合检索召回 + bge-reranker-base 精排：以 BERT 分类模型对 (query, chunk) 对打分，召回阶段求快、精排阶段求准，解决单纯向量召回精度不足的问题",
+        "【Rerank 工程权衡】按业务场景决定 Rerank 引入时机——专业库 / 客服等高精度场景强制走精排以提升 Top-5 命中率，通用对话场景仅做混合检索以控制延迟与算力成本",
+        "【模型服务化】embedding / rerank 模型在服务启动时加载一次并以模块级全局实例共享，避免每请求重复加载数 GB 权重带来的内存与耗时开销；支持 cuda / mps / cpu 自适应部署",
+        "【分块与多模态预留】PDF 经 pdfplumber 解析后按重叠窗口分块，chunk 表同时记录页码、关联图片与关联表格路径，为「回答引用原文图表」预留接口"
       ]
     },
     {
-      "name": "大数据资源服务门户（BRS Portal）",
-      "displayName": "大数据资源服务门户",
-      "summary": "政务大数据资源管理与服务平台，涵盖资源管理、智能搜索、审批流程等核心模块",
+      "name": "depth-research-assistant",
+      "displayName": "多 Agent 深度研究助手（depth-research-assistant）",
+      "summary": "四角色 Agent 编排的自动调研工具：检索 → 阅读 → 判断补检 → 综合成报告",
       "primaryLanguage": [
-        "Vue2",
-        "Element UI",
-        "ECharts",
-        "Vuex",
-        "Vue Router"
+        "Python",
+        "FastAPI",
+        "多 Agent 编排",
+        "Jinja2",
+        "Web Search"
       ],
-      "description": "参与大数据资源服务门户开发，负责知识库系统、政务信息整合、资源总览看板等核心模块，累计提交1490+次",
+      "description": "输入研究主题即自动完成多轮迭代调研，产出带来源引用、置信度标注与过程记录的结构化报告，把单主题人工调研从 2-3 小时压缩到分钟级",
       "responsibilities": [
-        "【知识库系统】实现栏目管理、文档管理（发布/删除/撤回/回收站）、附件管理等完整功能",
-        "【政务整合】实现任务清单新增编辑、完成情况统计下钻、佐证材料上传（支持1G大文件）",
-        "【智能搜索】接入智能搜索接口，实现关键词高亮、多维度搜索、长文本优化处理",
-        "【代办中心】实现9个新目录待办数量显示，云资源变更/注销审批流程，部分同意和驳回处理"
-      ],
-      "achievements": [
-        "负责模块功能完整交付，通过测试验收",
-        "优化搜索响应速度和准确性，提升用户体验",
-        "建立可复用组件库，提高团队开发效率"
+        "【Agent 编排】设计 KeywordAgent / SummaryAgent / JudgeAgent / ReportAgent 四角色分工，编排器只做确定性控制流、不发起任何 LLM 调用，让流程可测试、可复现，语言任务完全下沉到 Agent",
+        "【迭代收敛】每轮由 JudgeAgent 判断信息是否充分，不足则基于新关键词进入下一轮检索，以 max_rounds 上限保证收敛；单次检索失败兜底为空结果而不中断整体流程",
+        "【结构化与会话隔离】Judge / Report 输出采用 JSON schema + format_instructions 自约束模式（对标 OutputParser）将格式失败率压到可忽略；多用户会话按 session_id 隔离存储，互不污染上下文",
+        "【过程可审计】通过 on_progress 回调逐轮快照中间状态（步骤 / 草稿 / 来源），研究过程可落盘、可回放；来源按 URL 去重，置信度基于来源时间分布确定性计算，无来源结论显式标注为模型推断",
+        "【Prompt 工程】以 Jinja2 模板集中管理 keyword / summary / judge / report 等 5 类提示词，便于独立迭代调优而不改控制流代码"
       ]
     },
     {
-      "name": "liuyun-cli 脚手架工具",
-      "displayName": "liuyun-cli 脚手架工具",
-      "summary": "基于Node.js+TypeScript的团队内部CLI工具，统一项目初始化流程",
+      "name": "intent-classify",
+      "displayName": "意图识别服务（intent-classify）",
+      "summary": "规则 → TF-IDF → BERT 微调 → 动态 Few-shot LLM 四方案对比与压测，按成本与语义复杂度递进选型，模型推理统一集成 FastAPI",
       "primaryLanguage": [
-        "Node.js",
-        "TypeScript",
-        "Commander",
-        "Inquirer"
+        "Python",
+        "FastAPI",
+        "transformers",
+        "scikit-learn"
       ],
-      "description": "独立开发并维护团队内部CLI脚手架工具，支持交互式项目初始化、多模板选择、代码仓库下载，已在团队内部推广使用",
-      "responsibilities": [
-        "基于Commander+Inquirer实现交互式命令行，支持多种项目模板选择",
-        "集成download-git-repo实现代码仓库下载，支持进度显示和错误处理",
-        "完善开发文档，推动团队统一项目初始化规范"
-      ],
-      "achievements": [
-        "团队内部推广使用，统一项目初始化流程",
-        "减少新项目搭建时间，提升团队开发效率"
-      ]
+      "brief": true
     }
   ],
   "selfEvaluate": [
-    "6年前端开发经验，政务数字化与企业SaaS方向，近年聚焦 AI 应用开发与 AI 辅助研发工作流",
-    "熟练运用 Cursor / Trae / OpenClaw / Codex 等 AI 工具，编写 Agent Skills 与自定义 Rules 沉淀可复用的 AI 开发规范",
-    "具备多 AI 提供商（Groq/DeepSeek/Gemini/Qwen）集成与 MCP 协议开发经验，独立落地 file-wizard 等 AI 工具与 Agent Skills 集合",
-    "精通Vue3技术栈与微前端架构，主导的营商数据大屏项目获海南省数据应用创新奖",
-    "注重工程化与代码质量，自研脚手架和组件库，推动团队技术栈升级与自动化流程"
-  ],
-  "certifications": [
-    {
-      "name": "软件设计师（中级）",
-      "issuer": "海南省人力资源和社会保障厅",
-      "date": "2025-05-26"
-    }
+    "系统补齐深度学习 / NLP / LangChain / 智能体工程四块体系，覆盖底层原理到工程落地的完整学习路径",
+    "「低代码 + 自研」双轨 Agent 能力：自研四角色编排器，也可基于 Coze/Dify 交付业务智能体；技术与场景两边都能上手",
+    "RAG 工程链路：三存储架构、BM25 + 向量混合检索、bge-reranker 精排两阶段管线，理解「精度 vs 延迟」的工程权衡",
+    "模型侧动手能力：Qwen2.5 LoRA 微调（loss mask / ChatML / QLoRA）、意图识别多方案选型、bge 向量与重排模型自适应部署",
+    "近 8 年前端底蕴是直接资产：对话工作台、流式渲染与过程可视化由我补全，能把 Agent 原型推进到可交付而非停在 Demo"
   ],
   "awards": [
     {
@@ -305,59 +315,75 @@
       "summary": "技术创新与团队建设突出",
       "awarder": "海南流云科技有限公司",
       "date": "2023-01-01"
-    },
-    {
-      "title": "全国大学生数学建模竞赛",
-      "summary": "获得省级二等奖",
-      "awarder": "江西省教育厅",
-      "date": "2019-10"
     }
   ],
   "interests": [
-    "前端架构与工程化",
-    "Web性能优化",
-    "微前端与模块化开发",
-    "技术团队管理与人才培养",
-    "开源贡献与技术社区"
+    "大模型应用与多 Agent 编排",
+    "RAG 检索质量与召回评测",
+    "Coze / Dify 智能体平台与代码节点",
+    "LangChain 全栈（LCEL / Memory / Tools）",
+    "深度学习底层原理与 PyTorch 工程化",
+    "Transformer / BERT / Hugging Face 生态",
+    "AI 私有化部署（Docker / XInference / AutoDL）",
+    "MCP 工具生态与 AI 辅助研发"
   ],
   "personalProjects": [
     {
-      "name": "file-wizard",
-      "displayName": "file-wizard（文件魔法师）",
-      "summary": "AI 驱动的文件整理 CLI 工具，支持多 AI 提供商、MCP 协议集成与交互式 UI",
+      "name": "fine-tuning",
+      "displayName": "大模型 LoRA 微调实战（fine-tuning）",
+      "summary": "Qwen2.5-Instruct LoRA 微调全流程：从理论到数据准备、训练、推理调优，掌握「仅微调约 0.4% 参数即可接近全量效果」的工程平衡；细节上严格区分训练与推理解码格式、双停止符配置，理解 QLoRA 量化方案在资源受限时如何进一步压缩",
       "primaryLanguage": [
-        "TypeScript",
-        "Node.js",
-        "MCP",
-        "Commander",
-        "Groq / DeepSeek / Qwen / Gemini"
+        "Python",
+        "PEFT / LoRA",
+        "transformers",
+        "QLoRA"
       ],
-      "githubUrl": "https://github.com/dushenyan/file-wizard",
-      "description": "使用 Cursor + Trae 辅助开发，集成 MCP（Model Context Protocol）协议，支持 6 种主流 AI 提供商，实现智能文件分类、批量重命名与内容分析",
-      "responsibilities": [
-        "【AI 集成】统一封装 Groq、DeepSeek、Qwen、Gemini、OpenRouter、智谱 AI 等多提供商客户端，支持配置化切换",
-        "【MCP 协议】实现 MCP 服务端，暴露文件元数据提取与内容分析工具，供 AI 代理调用",
-        "【CLI 设计】基于 Commander + @clack/prompts 实现交互式命令行，支持 dry-run 安全预览",
-        "【工程化】tsdown 打包，vitest 单元测试，自定义 Agent Skills 与 rules 规范 AI 开发流程"
-      ]
+      "brief": true
     },
     {
-      "name": "skills",
-      "displayName": "skills（Agent Skills 集合）",
-      "summary": "精心策划的 Agent Skills 集合，反映个人偏好、经验与最佳实践，供 AI 代理按需引用",
+      "name": "sy-llm",
+      "displayName": "统一 LLM 调用封装库（sy-llm）",
+      "summary": "零运行时依赖的 LLM 统一封装：抽象基类支持 Ollama 本地 / DeepSeek 云端一键切换，同步异步双链路复用一份代码；密钥全走环境变量、业务代码零明文，配套 pytest 与标准 src-layout 包工程",
       "primaryLanguage": [
-        "TypeScript",
-        "Markdown",
-        "pnpm workspace",
-        "Git submodule"
+        "Python",
+        "标准库",
+        "Ollama",
+        "pytest"
       ],
-      "githubUrl": "https://github.com/dushenyan/skills",
-      "description": "使用 Trae + OpenClaw 辅助开发，通过 Git 子模块引用 Vue / Vite / pnpm 等官方文档，自动生成并同步 Agent Skills，配套自定义 rules 规范 AI 代理行为",
-      "responsibilities": [
-        "【技能管理】三层来源架构：手写个人偏好技能、从官方文档生成技能、从第三方同步技能（tsdown / turborepo）",
-        "【自动化】CLI 工具支持子模块初始化、技能同步与清理，Git 子模块保持与上游文档同步",
-        "【AI 工作流】编写自定义 rules 和 AGENTS.md，规范 AI 代理的代码生成行为与最佳实践"
-      ]
+      "brief": true
+    },
+    {
+      "name": "bert-encoder",
+      "displayName": "BERT 原理实战（bert-encoder）",
+      "summary": "BERT 原理系统实战：从 Token / Position / Segment 三层 Embedding 与自注意力机制可视化，到「冻结特征提取 vs 全参数微调」的对比，并完成中文六大任务迁移与变体模型选型（RoBERTa / ALBERT / DistilBERT / ELECTRA）",
+      "primaryLanguage": [
+        "Python",
+        "transformers",
+        "PyTorch"
+      ],
+      "brief": true
+    },
+    {
+      "name": "input-method-rnn",
+      "displayName": "RNN 输入法候选词预测（input-method-rnn）",
+      "summary": "用 vanilla RNN 模拟输入法候选词推荐：jieba 分词 + 词表构建 + 滑动窗口造样本，全管线（数据 → 训练 → 评估 → 推理）可独立运行；Top-1 准确率 0.21、Top-5 0.40",
+      "primaryLanguage": [
+        "Python",
+        "PyTorch",
+        "RNN"
+      ],
+      "brief": true
+    },
+    {
+      "name": "word2vec-recommend-key",
+      "displayName": "搜索关键词推荐（word2vec-recommend-key）",
+      "summary": "word2vec 词向量相似词扩展驱动的搜索联想系统，工程完整度高：CLI 子命令（train / eval / recommend / check）+ 评测集与指标 + Web 演示，并记录历史输入做个性化推荐",
+      "primaryLanguage": [
+        "Python",
+        "word2vec",
+        "CLI"
+      ],
+      "brief": true
     }
   ]
 }

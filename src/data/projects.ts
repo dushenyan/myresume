@@ -1,85 +1,87 @@
 /**
- * 简历业务项目模块
+ * 简历「项目经历」主区
  *
- * 项目经历是简历的核心内容，单文件容易膨胀至数百行。
- * 拆分后按业务项目独立维护，新增/迭代项目时无需滚动浏览其他模块，
- * 也便于按项目维度做版本对比。
- * 避免冲淡 AI 应用方向的核心叙事。
+ * 这份简历定位「中级 AI Agent 开发工程师」，项目经历是核心说服力所在。
+ * 本文件按项目与 AI Agent 方向的相关度排序，把检索 / RAG / Agent 编排
+ * 一类的项目前置详写，把纯前端业务项目后置作为「6 年工程素养」的背书。
+ *
+ * 两类项目的篇幅策略：
+ * 1. 个人 AI 主线项目（faq-text-matching / government-advanced-rag /
+ *    depth-research-assistant / intent-classify）— 详写到实现层，每条
+ *    5-6 句职责，承担简历的主证据链。原存于 personalProjects.ts 第一梯队，
+ *    迁移至此与业务项目一起形成统一的「项目经历」主线，避免分散在两栏导致
+ *    阅读断裂。
+ * 2. 公司业务项目（BRS Portal / 营商大屏 / 密码云）— 每个压缩到 2-3 条职责，
+ *    篇幅让位给 AI 项目；其中 BRS Portal 的知识库与智能搜索与检索主线相关，
+ *    仍保留在前段，其余按时间倒序靠后。
+ *
+ * 模板约束：
+ * - 只写 responsibilities 不写 achievements —— 模板中 achievements 带
+ *   print-hidden，PDF 里不渲染，全部成果并入 responsibilities 才能保证
+ *   HTML 与 PDF 信息一致
+ * - brief: true 的概述型条目会在打印时只显示 summary，与 personalProjects.ts
+ *   中剩余的一句话广度佐证条目保持一致的渲染风格
+ *
+ * 个人项目中并未并入的两句话广度佐证（LoRA 微调 / sy-llm / bert-encoder /
+ * RNN / word2vec）保留在 personalProjects.ts，便于需要时显示为「能力广度」附录。
  */
 import type { Resume } from '../types'
 
 /**
- * 业务项目经历列表（按时间倒序，主项目在前，次要项目标记 printHidden）
+ * 项目经历列表（按与 AI Agent 方向的相关度排序，非时间序）
+ *
+ * 排序：AI 主线（4 个详写 + 1 个概述）→ 业务背书（3 个公司项目）。
+ * 业务项目中 BRS Portal 因含知识库与智能搜索放在业务段最前，其余按时间倒序。
  */
 export const projects: Resume['projects'] = [
   {
-    name: '政府密码云服务平台',
-    displayName: '政府密码云服务平台',
-    summary: '政务SaaS平台，支持多租户隔离、高并发访问，通过等保三级认证',
-    primaryLanguage: ['Vue3', 'TypeScript', 'Pinia', 'VueRouter4', 'Element Plus', 'Vite'],
-    description: '作为前端架构师，主导设计并实现政府密码云服务平台的前端架构。平台采用微前端架构，支持多租户隔离，日均访问量超过10万，服务20+政府部门',
+    name: 'faq-text-matching',
+    displayName: 'FAQ 智能问答平台（faq-text-matching）',
+    summary: 'FastAPI 异步全栈的 FAQ 智能问答系统：知识生产、双环境发布、语义检索与多渠道服务收敛在一套后端',
+    primaryLanguage: ['Python', 'FastAPI', 'Elasticsearch 8.x', 'SQLAlchemy 2.0', 'Redis', 'Streamlit'],
+    description: '独立设计并实现：把知识管理、检索服务与多渠道问答收敛到一套后端，支持测试/正式双环境隔离发布，让知识上线前可安全验证',
     responsibilities: [
-      '【架构设计】设计微前端架构，实现多个子应用独立开发部署，支持多租户数据隔离和细粒度权限管理',
-      '【性能优化】首屏加载从5s优化至1.2s（↑76%）：路由懒加载、关键CSS内联、图片WebP+CDN、Gzip压缩',
-      '【安全加固】实现CSP策略、XSS/CSRF防护、敏感数据加密传输，主导通过等保三级认证',
-      '【工程化】建立CI/CD流程，实现自动化构建测试部署，发布周期从3天缩短至1天',
-    ],
-    achievements: [
-      '系统稳定性99.9%，支持10万+日活，零安全事故',
-      '开发效率提升50%，迭代周期从2周缩短至1周',
-      '成功通过等保三级认证，服务20+政府部门',
+      '【混合检索】在 Elasticsearch 单索引内同时建立 BM25 全文与 dense_vector 向量字段，用 Sentence-Transformers 本地生成向量，实现关键词与语义双路召回',
+      '【多级缓存】设计 7 类业务缓存（类目树 / FAQ 详情 / 答案视角 / 搜索结果 / 渠道配置 / 热门 FAQ / 导航目录），按访问特征设置 5 分钟～24 小时差异化 TTL，配合缓存装饰器与写操作主动失效，解决「改了知识但线上还是旧答案」的一致性问题',
+      '【双环境发布】设计「测试环境配置 → 模拟验证 → 发布中心一键同步 → 正式环境生效」机制，用 env 字段隔离 + original_id 溯源使正式记录指向来源测试记录，让知识上线前可验证、可回滚',
+      '【多视角答案】同一问题按微信 / App / 网页渠道返回差异化答案，答案类型支持纯文本、富文本与交互式卡片，覆盖 15+ 个管理端与对外服务接口',
+      '【流式与 IM 渠道】对外服务接口支持 SSE 流式响应以驱动前端打字机式体验；预留钉钉 / 企微机器人对接入口，把问答能力推到 IM 业务渠道',
+      '【工程质量】按 routers / schemas / models / services 分层，pytest 覆盖管理端与对外服务；支持 3000 条批量导入与 50000 条导出',
     ],
   },
   {
-    name: '营商环境大数据综合信息平台（大屏）',
-    displayName: '营商环境大数据综合信息平台',
-    summary: '政府营商环境监测4K数据可视化大屏，实时展示多维度营商数据',
-    primaryLanguage: ['Vue3', 'ECharts 5', 'TypeScript', 'WebGL', 'D3.js', 'Three.js'],
-    description: '作为技术负责人，带领团队开发海南营商数据大屏项目。实现实时数据监控、多维度数据分析与可视化展示，为政府决策者提供直观数据支持，7×24小时稳定运行',
+    name: 'government-advanced-rag',
+    displayName: '政务 RAG 知识库系统（government-advanced-rag）',
+    summary: '面向政务知识库的检索增强生成系统：三存储架构 + bge 向量/重排双模型的两阶段检索管线',
+    primaryLanguage: ['Python', 'FastAPI', 'Elasticsearch', 'Neo4j', 'Sentence-Transformers', 'bge-reranker'],
+    description: '覆盖「文档解析 → 重叠分块 → 向量化 → 召回 → 精排 → 生成」全链路，让元数据、全文向量与知识图谱三类存储各司其职',
     responsibilities: [
-      '【性能优化】Canvas替代SVG渲染，性能提升300%，支持百万级数据实时渲染；Web Worker处理数据计算，避免主线程阻塞',
-      '【可视化】基于ECharts深度定制10+图表，D3.js实现关系图，Three.js/WebGL实现3D地图和粒子效果',
-      '【实时数据】WebSocket实时推送+增量更新策略，本地缓存，数据延迟<100ms',
-      '【稳定性】实现自动重连、内存泄漏监控、错误降级，大屏设备多分辨率兼容适配',
-    ],
-    achievements: [
-      '获海南省数据应用创新奖（省级奖项）',
-      '性能提升300%，支持百万级数据流畅渲染',
-      '已在海南省10+政府部门部署使用',
+      '【三存储架构】MySQL 存知识库与文档元信息、Elasticsearch 存 chunk 全文与 embedding_vector，Neo4j 承载实体关系图谱，按查询特征为三类存储分工，为多跳问答留出入口',
+      '【两阶段检索】混合检索召回 + bge-reranker-base 精排：以 BERT 分类模型对 (query, chunk) 对打分，召回阶段求快、精排阶段求准，解决单纯向量召回精度不足的问题',
+      '【Rerank 工程权衡】按业务场景决定 Rerank 引入时机——专业库 / 客服等高精度场景强制走精排以提升 Top-5 命中率，通用对话场景仅做混合检索以控制延迟与算力成本',
+      '【模型服务化】embedding / rerank 模型在服务启动时加载一次并以模块级全局实例共享，避免每请求重复加载数 GB 权重带来的内存与耗时开销；支持 cuda / mps / cpu 自适应部署',
+      '【分块与多模态预留】PDF 经 pdfplumber 解析后按重叠窗口分块，chunk 表同时记录页码、关联图片与关联表格路径，为「回答引用原文图表」预留接口',
     ],
   },
   {
-    name: '大数据资源服务门户（BRS Portal）',
-    displayName: '大数据资源服务门户',
-    summary: '政务大数据资源管理与服务平台，涵盖资源管理、智能搜索、审批流程等核心模块',
-    primaryLanguage: ['Vue2', 'Element UI', 'ECharts', 'Vuex', 'Vue Router'],
-    description: '参与大数据资源服务门户开发，负责知识库系统、政务信息整合、资源总览看板等核心模块，累计提交1490+次',
+    name: 'depth-research-assistant',
+    displayName: '多 Agent 深度研究助手（depth-research-assistant）',
+    summary: '四角色 Agent 编排的自动调研工具：检索 → 阅读 → 判断补检 → 综合成报告',
+    primaryLanguage: ['Python', 'FastAPI', '多 Agent 编排', 'Jinja2', 'Web Search'],
+    description: '输入研究主题即自动完成多轮迭代调研，产出带来源引用、置信度标注与过程记录的结构化报告，把单主题人工调研从 2-3 小时压缩到分钟级',
     responsibilities: [
-      '【知识库系统】实现栏目管理、文档管理（发布/删除/撤回/回收站）、附件管理等完整功能',
-      '【政务整合】实现任务清单新增编辑、完成情况统计下钻、佐证材料上传（支持1G大文件）',
-      '【智能搜索】接入智能搜索接口，实现关键词高亮、多维度搜索、长文本优化处理',
-      '【代办中心】实现9个新目录待办数量显示，云资源变更/注销审批流程，部分同意和驳回处理',
-    ],
-    achievements: [
-      '负责模块功能完整交付，通过测试验收',
-      '优化搜索响应速度和准确性，提升用户体验',
-      '建立可复用组件库，提高团队开发效率',
+      '【Agent 编排】设计 KeywordAgent / SummaryAgent / JudgeAgent / ReportAgent 四角色分工，编排器只做确定性控制流、不发起任何 LLM 调用，让流程可测试、可复现，语言任务完全下沉到 Agent',
+      '【迭代收敛】每轮由 JudgeAgent 判断信息是否充分，不足则基于新关键词进入下一轮检索，以 max_rounds 上限保证收敛；单次检索失败兜底为空结果而不中断整体流程',
+      '【结构化与会话隔离】Judge / Report 输出采用 JSON schema + format_instructions 自约束模式（对标 OutputParser）将格式失败率压到可忽略；多用户会话按 session_id 隔离存储，互不污染上下文',
+      '【过程可审计】通过 on_progress 回调逐轮快照中间状态（步骤 / 草稿 / 来源），研究过程可落盘、可回放；来源按 URL 去重，置信度基于来源时间分布确定性计算，无来源结论显式标注为模型推断',
+      '【Prompt 工程】以 Jinja2 模板集中管理 keyword / summary / judge / report 等 5 类提示词，便于独立迭代调优而不改控制流代码',
     ],
   },
   {
-    name: 'liuyun-cli 脚手架工具',
-    displayName: 'liuyun-cli 脚手架工具',
-    summary: '基于Node.js+TypeScript的团队内部CLI工具，统一项目初始化流程',
-    primaryLanguage: ['Node.js', 'TypeScript', 'Commander', 'Inquirer'],
-    description: '独立开发并维护团队内部CLI脚手架工具，支持交互式项目初始化、多模板选择、代码仓库下载，已在团队内部推广使用',
-    responsibilities: [
-      '基于Commander+Inquirer实现交互式命令行，支持多种项目模板选择',
-      '集成download-git-repo实现代码仓库下载，支持进度显示和错误处理',
-      '完善开发文档，推动团队统一项目初始化规范',
-    ],
-    achievements: [
-      '团队内部推广使用，统一项目初始化流程',
-      '减少新项目搭建时间，提升团队开发效率',
-    ],
+    name: 'intent-classify',
+    displayName: '意图识别服务（intent-classify）',
+    summary: '规则 → TF-IDF → BERT 微调 → 动态 Few-shot LLM 四方案对比与压测，按成本与语义复杂度递进选型，模型推理统一集成 FastAPI',
+    primaryLanguage: ['Python', 'FastAPI', 'transformers', 'scikit-learn'],
+    brief: true,
   },
 ]

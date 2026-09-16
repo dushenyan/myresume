@@ -7,12 +7,15 @@
 import type { Resume } from '../types'
 
 /**
- * 技术兴趣方向
+ * 技术兴趣方向（与中级 Agent 开发岗位指向保持一致，覆盖底层原理 → 框架 → 平台 → 部署）
  */
 export const interests: Resume['interests'] = [
-  '前端架构与工程化',
-  'Web性能优化',
-  '微前端与模块化开发',
-  '技术团队管理与人才培养',
-  '开源贡献与技术社区',
+  '大模型应用与多 Agent 编排',
+  'RAG 检索质量与召回评测',
+  'Coze / Dify 智能体平台与代码节点',
+  'LangChain 全栈（LCEL / Memory / Tools）',
+  '深度学习底层原理与 PyTorch 工程化',
+  'Transformer / BERT / Hugging Face 生态',
+  'AI 私有化部署（Docker / XInference / AutoDL）',
+  'MCP 工具生态与 AI 辅助研发',
 ]

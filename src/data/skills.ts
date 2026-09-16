@@ -4,90 +4,143 @@
  * 技能按分类组织，单独维护便于定期复核：
  * 技能列表会随技术栈迭代更新，独立成文件可在新增技术时不必浏览整份简历，
  * 也便于对照 JD 调整关键词顺序。
+ *
+ * 关键词只保留能在个人项目里指到具体实现的条目——
+ * 面试官对着技能栏追问时，每一条都应能落到某段代码上。
  */
 import type { Resume } from '../types'
 
 /**
- * 技能分类列表（AI 应用开发置顶，其余按核心 → 工程化顺序排列）
+ * 技能分类列表
+ *
+ * 排序按中级 Agent 开发岗位 JD 的关注度排：Agent 编排 → 检索链路 → 智能体平台
+ * → LangChain 框架 → 模型侧 → 深度学习底层与 NLP → 服务端存储 → 私有化部署
+ * → 产品界面 → 工程底座 → 研发效能，保证从上往下扫时先命中岗位核心关键词。
  */
 export const skills: Resume['skills'] = [
   {
-    category: 'AI 应用开发',
+    category: 'Agent 与 LLM 应用',
     keywords: [
-      'Cursor',
-      'Trae',
-      'OpenClaw',
-      'Codex',
+      '多 Agent 编排与角色分工',
+      'Function Calling / Tool Use',
+      '多轮会话与上下文管理',
       'MCP（Model Context Protocol）',
-      'Agent Skills 编写',
-      '自定义 Rules',
-      'Prompt Engineering',
-      'Groq / DeepSeek / Gemini / Qwen',
+      'Prompt Engineering（Jinja2 模板化）',
+      'Few-shot 动态样本检索',
+      '结构化输出与 OutputParser',
     ],
   },
   {
-    category: '核心语言',
+    category: 'RAG 与语义检索',
     keywords: [
-      'JavaScript / TypeScript',
-      'ES6+',
-      'Node.js',
-      'HTML5语义化',
-      'CSS3 / Less',
-      '响应式设计',
+      '混合检索（BM25 + dense_vector）',
+      '中文向量模型（bge-small / base-zh）',
+      '重排序（bge-reranker）',
+      '文档解析与重叠分块策略',
+      '语义拆分 / 递归拆分对比',
+      '召回质量评估与调优',
+      '知识库双环境发布',
     ],
   },
   {
-    category: '框架生态',
+    category: '智能体平台（Coze / Dify）',
     keywords: [
-      'Vue 2/3（深入源码）',
-      'React（项目实践）',
-      'Vuex / Pinia',
-      'Vue Router / React Router',
-      'Nuxt.js',
-      'uni-app',
+      'Coze 工作流编排与代码节点',
+      'Dify 应用发布与 API 化',
+      'cozepy SDK / REST API 接入',
+      'SSE 流式响应处理',
+      '钉钉 / 企微 IM 渠道集成',
+      '官方模板复用与二次开发',
     ],
   },
   {
-    category: '工程化',
+    category: 'LangChain 全栈',
     keywords: [
-      'Webpack 5',
-      'Vite',
-      'Rollup',
+      'LCEL 链式编排（prompt | model | parser）',
+      'ChatPromptTemplate / FewShot 模板',
+      'OutputParser 五件套（Str/Json/XML/List/Datetime）',
+      'Memory 四策略（Buffer / Window / Token / Summary）',
+      '@tool / StructuredTool / bind_tools',
+      'create_tool_calling_agent + AgentExecutor',
+      'DocumentLoader 九种 + TextSplitter 四层',
+      'Chroma / FAISS 向量库双栈',
+      'RunnableWithMessageHistory 多会话隔离',
+      'ChatOllama 本地模型接入',
+    ],
+  },
+  {
+    category: '模型微调与推理',
+    keywords: [
+      'LoRA / QLoRA 微调（PEFT）',
+      'loss mask 与 ChatML 格式对齐',
+      '双停止符与生成参数调优',
+      '意图识别多方案选型（regex / TF-IDF / BERT / Few-shot）',
+      'Sentence-Transformers 语义向量',
+      'transformers / PEFT / accelerate',
+    ],
+  },
+  {
+    category: '深度学习与 NLP 基础',
+    keywords: [
+      '反向传播（链式法则手推）',
+      '优化器演进（SGD / Momentum / AdaGrad / RMSProp / Adam）',
+      '激活函数 / 损失函数 / Xavier-He 初始化',
+      'BatchNorm / Dropout / L2 正则',
+      'PyTorch（Tensor / autograd / nn.Module / DataLoader）',
+      'CNN（卷积 / 池化 / ResNet）',
+      'RNN / LSTM / GRU 与序列建模',
+      'Transformer（Self-Attention / 多头 / 位置编码）',
+      'BERT / GPT 与 bert-base-chinese 微调',
+      'jieba 分词 / Word2Vec / Gensim',
+      'Hugging Face transformers / datasets',
+    ],
+  },
+  {
+    category: '服务端与存储',
+    keywords: [
+      'Python / FastAPI（ASGI 异步）',
+      'MySQL + SQLAlchemy 2.0（aiomysql）',
+      'Elasticsearch 8.x（全文 + 向量）',
+      'Redis 多级缓存与主动失效',
+      'Neo4j 知识图谱',
+      'TypeScript / Node.js',
+    ],
+  },
+  {
+    category: '私有化部署与运维',
+    keywords: [
+      'Docker / Docker Compose',
+      'XInference（LLM / Embedding / Rerank 一站式部署）',
+      'AutoDL GPU 租赁与按需算力',
+      'Coze Studio 开源部署',
+      'WSL / Linux 容器化环境',
+    ],
+  },
+  {
+    category: 'Agent 前端工程',
+    keywords: [
+      '对话工作台与流式渲染',
+      '工具调用过程可视化',
+      'Vue 3 / React',
+      '会话状态管理与持久化',
+    ],
+  },
+  {
+    category: '工程化与交付',
+    keywords: [
+      'uv / pytest / Makefile',
       'Monorepo（pnpm workspace）',
-      'CI/CD',
-      'liuyun-cli（自研脚手架）',
-      'liuyun-ui（自研组件库）',
+      'Vitest / ESLint / Husky',
+      'CI/CD 与 Docker 部署',
     ],
   },
   {
-    category: '性能优化',
+    category: 'AI 研发效能',
     keywords: [
-      'Web Vitals优化',
-      '首屏加载优化',
-      '渲染性能（Canvas / WebGL）',
-      '微前端（qiankun / Module Federation）',
-      '虚拟滚动',
-      'Service Worker缓存策略',
-    ],
-  },
-  {
-    category: '数据可视化',
-    keywords: [
-      'ECharts 5',
-      'D3.js',
-      'WebGL / Three.js',
-      '大屏适配（vw方案）',
-      '实时数据（WebSocket）',
-      '大数据渲染优化',
-    ],
-  },
-  {
-    category: '测试与质量',
-    keywords: [
-      'Vitest',
-      'ESLint / Prettier / Husky',
-      'TypeScript类型系统',
-      'Code Review',
+      'Agent Skills 编写',
+      '自定义 Rules / AGENTS.md',
+      'Cursor / Claude Code / Trae',
+      'AI 辅助研发流程设计',
     ],
   },
 ]
