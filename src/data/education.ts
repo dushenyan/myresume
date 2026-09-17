@@ -30,6 +30,6 @@ export const education: Resume['education'] = [
     studyType: '体系化学习',
     startDate: '2024-01-01',
     endDate: '',
-    description: '按「底层原理 → 工程框架 → 平台交付」三阶系统补齐大模型应用链路，全部配套代码已落地为简历项目区 9 个 AI 项目',
+    description: '按「底层原理、工程框架、平台交付」三阶系统补齐大模型应用链路，全部配套代码已落地为简历项目区 9 个 AI 项目',
   },
 ]

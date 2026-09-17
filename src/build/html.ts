@@ -27,7 +27,7 @@ export async function writeProfileHtml(profile: ResumeProfile, html: string): Pr
 }
 
 /**
- * 为一份简历配置构建 HTML：读取 JSON → 渲染 → 写盘
+ * 为一份简历配置构建 HTML：读取 JSON、渲染、写盘
  */
 export async function buildProfileHtml(profile: ResumeProfile): Promise<void> {
   await writeProfileHtml(profile, renderProfileHtml(profile))

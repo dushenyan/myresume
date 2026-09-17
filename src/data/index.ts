@@ -26,7 +26,7 @@ import { work } from './work'
  *
  * basics 通过浅拷贝 basicInfo 生成，避免外部对 resume.basics 的修改
  * 反向污染 basicInfo 模块。属性顺序即生成 JSON 的键顺序（沿用简历
- * 标准字段顺序 basics → work → education → skills → projects），
+ * 标准字段顺序 basics、work、education、skills、projects），
  * 勿随意调整。
  */
 export function assembleBaseResume(): Resume {

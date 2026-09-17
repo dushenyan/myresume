@@ -4,7 +4,7 @@
     "picture": "https://avatars.githubusercontent.com/u/63347504",
     "label": "Agent 开发工程师",
     "headline": "Agent 开发 · 多 Agent 编排 · RAG · 智能体平台 · LLM 微调与推理",
-    "summary": "前端工程师出身，近 8 年工程经验；近 2 年系统转向 AI Agent 与 LLM 应用开发，个人项目覆盖「模型微调 → 语义检索 → RAG → 多 Agent 编排」完整链路。\n\n核心优势：\n• Agent 与编排：自研四角色 Agent 编排器（控制流与语言任务分离）、Coze/Dify 低代码平台 8+ 业务智能体交付、LangChain 全栈（LCEL / Memory / Tools / RAG）\n• RAG 与模型：三存储 RAG 架构、BM25 + 向量混合检索 + bge-reranker 精排两阶段管线、Qwen2.5 LoRA 微调、bge 中文向量与重排模型自适应部署\n• 服务与部署：Python / FastAPI 异步全栈（MySQL / ES / Redis / Neo4j），Docker + XInference + AutoDL 私有化部署链路（数据不出内网）",
+    "summary": "前端工程师出身，近 8 年工程经验；近 2 年系统转向 AI Agent 与 LLM 应用开发，个人项目覆盖「模型微调、语义检索、RAG、多 Agent 编排」完整链路。\n\n核心优势：\n• Agent 与编排：自研四角色 Agent 编排器（控制流与语言任务分离）、Coze/Dify 低代码平台 8+ 业务智能体交付、LangChain 全栈（LCEL / Memory / Tools / RAG）\n• RAG 与模型：三存储 RAG 架构、BM25 + 向量混合检索 + bge-reranker 精排两阶段管线、Qwen2.5 LoRA 微调、bge 中文向量与重排模型自适应部署\n• 服务与部署：Python / FastAPI 异步全栈（MySQL / ES / Redis / Neo4j），Docker + XInference + AutoDL 私有化部署链路",
     "website": "https://duhenyanblog.netlify.app/",
     "address": "海南 海口",
     "projects_url": "https://github.com/dushenyan",
@@ -47,7 +47,7 @@
       "description": "负责政务数字化核心产品的架构设计与交付，主导团队从纯前端向「前端 + AI 应用」双轨能力转型：业务侧落地知识库与智能检索产品，研发侧引入 AI 编码工具与 Skills/Rules 体系",
       "highlights": [
         "【AI 研发效能】在项目中引入 Cursor / Trae 等 AI 编码工具，沉淀 Agent Skills 与自定义 Rules 约束 AI 生成代码的规范与边界，统一项目初始化流程与代码风格",
-        "【架构与工程化】主导 Vue2 → Vue3 + TS 技术栈升级并建立统一组件库（liuyun-ui），开发效率提升 50%；自研 liuyun-cli 脚手架统一项目初始化流程，为后续 AI 应用集成统一脚手架基线",
+        "【架构与工程化】主导 Vue2 至 Vue3 + TS 技术栈升级并建立统一组件库（liuyun-ui），开发效率提升 50%；自研 liuyun-cli 脚手架统一项目初始化流程，为后续 AI 应用集成统一脚手架基线",
         "【团队建设】带领 5 人前端团队，建立 Code Review 与自动化测试流程，代码质量问题减少 60%；牵头团队每周 AI 技术分享，推动团队整体向 AI 应用方向转型"
       ]
     },
@@ -89,7 +89,7 @@
       "studyType": "体系化学习",
       "startDate": "2024-01-01",
       "endDate": "",
-      "description": "按「底层原理 → 工程框架 → 平台交付」三阶系统补齐大模型应用链路，全部配套代码已落地为简历项目区 9 个 AI 项目"
+      "description": "按「底层原理、工程框架、平台交付」三阶系统补齐大模型应用链路，全部配套代码已落地为简历项目区 9 个 AI 项目"
     }
   ],
   "skills": [
@@ -113,8 +113,7 @@
         "重排序（bge-reranker）",
         "文档解析与重叠分块策略",
         "语义拆分 / 递归拆分对比",
-        "召回质量评估与调优",
-        "知识库双环境发布"
+        "召回质量评估与调优"
       ]
     },
     {
@@ -122,7 +121,6 @@
       "keywords": [
         "Coze 工作流编排与代码节点",
         "Dify 应用发布与 API 化",
-        "cozepy SDK / REST API 接入",
         "SSE 流式响应处理",
         "钉钉 / 企微 IM 渠道集成",
         "官方模板复用与二次开发"
@@ -149,7 +147,7 @@
         "LoRA / QLoRA 微调（PEFT）",
         "loss mask 与 ChatML 格式对齐",
         "双停止符与生成参数调优",
-        "意图识别多方案选型（regex / TF-IDF / BERT / Few-shot）",
+        "意图识别多方案选型",
         "Sentence-Transformers 语义向量",
         "transformers / PEFT / accelerate"
       ]
@@ -188,7 +186,7 @@
         "XInference（LLM / Embedding / Rerank 一站式部署）",
         "AutoDL GPU 租赁与按需算力",
         "Coze Studio 开源部署",
-        "WSL / Linux 容器化环境"
+        "Linux 容器化环境"
       ]
     },
     {
@@ -203,9 +201,9 @@
     {
       "category": "工程化与交付",
       "keywords": [
-        "uv / pytest / Makefile",
+        "uv / Makefile",
         "Monorepo（pnpm workspace）",
-        "Vitest / ESLint / Husky",
+        "ESLint / Husky",
         "CI/CD 与 Docker 部署"
       ]
     },
@@ -213,8 +211,8 @@
       "category": "AI 研发效能",
       "keywords": [
         "Agent Skills 编写",
-        "自定义 Rules / AGENTS.md",
-        "Cursor / Claude Code / Trae",
+        "自定义 Rules / Command",
+        "Claude Code / Trae",
         "AI 辅助研发流程设计"
       ]
     }
@@ -222,7 +220,7 @@
   "projects": [
     {
       "name": "faq-text-matching",
-      "displayName": "FAQ 智能问答平台（faq-text-matching）",
+      "displayName": "FAQ 智能问答平台",
       "summary": "FastAPI 异步全栈的 FAQ 智能问答系统：知识生产、双环境发布、语义检索与多渠道服务收敛在一套后端",
       "primaryLanguage": [
         "Python",
@@ -236,15 +234,15 @@
       "responsibilities": [
         "【混合检索】在 Elasticsearch 单索引内同时建立 BM25 全文与 dense_vector 向量字段，用 Sentence-Transformers 本地生成向量，实现关键词与语义双路召回",
         "【多级缓存】设计 7 类业务缓存（类目树 / FAQ 详情 / 答案视角 / 搜索结果 / 渠道配置 / 热门 FAQ / 导航目录），按访问特征设置 5 分钟～24 小时差异化 TTL，配合缓存装饰器与写操作主动失效，解决「改了知识但线上还是旧答案」的一致性问题",
-        "【双环境发布】设计「测试环境配置 → 模拟验证 → 发布中心一键同步 → 正式环境生效」机制，用 env 字段隔离 + original_id 溯源使正式记录指向来源测试记录，让知识上线前可验证、可回滚",
+        "【双环境发布】设计「测试环境配置、模拟验证、发布中心一键同步、正式环境生效」机制，用 env 字段隔离 + original_id 溯源使正式记录指向来源测试记录，让知识上线前可验证、可回滚",
         "【多视角答案】同一问题按微信 / App / 网页渠道返回差异化答案，答案类型支持纯文本、富文本与交互式卡片，覆盖 15+ 个管理端与对外服务接口",
         "【流式与 IM 渠道】对外服务接口支持 SSE 流式响应以驱动前端打字机式体验；预留钉钉 / 企微机器人对接入口，把问答能力推到 IM 业务渠道",
-        "【工程质量】按 routers / schemas / models / services 分层，pytest 覆盖管理端与对外服务；支持 3000 条批量导入与 50000 条导出"
+        "【工程质量】按 routers / schemas / models / services 分层，覆盖管理端与对外服务；支持 3000 条批量导入与 50000 条导出"
       ]
     },
     {
       "name": "government-advanced-rag",
-      "displayName": "政务 RAG 知识库系统（government-advanced-rag）",
+      "displayName": "政务 RAG 知识库系统",
       "summary": "面向政务知识库的检索增强生成系统：三存储架构 + bge 向量/重排双模型的两阶段检索管线",
       "primaryLanguage": [
         "Python",
@@ -254,7 +252,7 @@
         "Sentence-Transformers",
         "bge-reranker"
       ],
-      "description": "覆盖「文档解析 → 重叠分块 → 向量化 → 召回 → 精排 → 生成」全链路，让元数据、全文向量与知识图谱三类存储各司其职",
+      "description": "覆盖「文档解析、重叠分块、向量化、召回、精排、生成」全链路，让元数据、全文向量与知识图谱三类存储各司其职",
       "responsibilities": [
         "【三存储架构】MySQL 存知识库与文档元信息、Elasticsearch 存 chunk 全文与 embedding_vector，Neo4j 承载实体关系图谱，按查询特征为三类存储分工，为多跳问答留出入口",
         "【两阶段检索】混合检索召回 + bge-reranker-base 精排：以 BERT 分类模型对 (query, chunk) 对打分，召回阶段求快、精排阶段求准，解决单纯向量召回精度不足的问题",
@@ -265,8 +263,8 @@
     },
     {
       "name": "depth-research-assistant",
-      "displayName": "多 Agent 深度研究助手（depth-research-assistant）",
-      "summary": "四角色 Agent 编排的自动调研工具：检索 → 阅读 → 判断补检 → 综合成报告",
+      "displayName": "多 Agent 深度研究助手",
+      "summary": "四角色 Agent 编排的自动调研工具：检索、阅读、判断补检、综合成报告",
       "primaryLanguage": [
         "Python",
         "FastAPI",
@@ -285,8 +283,8 @@
     },
     {
       "name": "intent-classify",
-      "displayName": "意图识别服务（intent-classify）",
-      "summary": "规则 → TF-IDF → BERT 微调 → 动态 Few-shot LLM 四方案对比与压测，按成本与语义复杂度递进选型，模型推理统一集成 FastAPI",
+      "displayName": "意图识别服务",
+      "summary": "规则、TF-IDF、BERT 微调、动态 Few-shot LLM 四方案对比与压测，按成本与语义复杂度递进选型，模型推理统一集成 FastAPI",
       "primaryLanguage": [
         "Python",
         "FastAPI",
@@ -343,12 +341,11 @@
     {
       "name": "sy-llm",
       "displayName": "统一 LLM 调用封装库（sy-llm）",
-      "summary": "零运行时依赖的 LLM 统一封装：抽象基类支持 Ollama 本地 / DeepSeek 云端一键切换，同步异步双链路复用一份代码；密钥全走环境变量、业务代码零明文，配套 pytest 与标准 src-layout 包工程",
+      "summary": "零运行时依赖的 LLM 统一封装：抽象基类支持 Ollama 本地 / DeepSeek 云端一键切换，同步异步双链路复用一份代码；密钥全走环境变量、业务代码零明文，配套标准 src-layout 包工程",
       "primaryLanguage": [
         "Python",
         "标准库",
-        "Ollama",
-        "pytest"
+        "Ollama"
       ],
       "brief": true
     },
@@ -366,7 +363,7 @@
     {
       "name": "input-method-rnn",
       "displayName": "RNN 输入法候选词预测（input-method-rnn）",
-      "summary": "用 vanilla RNN 模拟输入法候选词推荐：jieba 分词 + 词表构建 + 滑动窗口造样本，全管线（数据 → 训练 → 评估 → 推理）可独立运行；Top-1 准确率 0.21、Top-5 0.40",
+      "summary": "用 vanilla RNN 模拟输入法候选词推荐：jieba 分词 + 词表构建 + 滑动窗口造样本，全管线（数据、训练、评估、推理）可独立运行；Top-1 准确率 0.21、Top-5 0.40",
       "primaryLanguage": [
         "Python",
         "PyTorch",

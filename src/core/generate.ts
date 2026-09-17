@@ -16,7 +16,7 @@ function loadBaseResume(): Resume {
 }
 
 /**
- * 生成单份简历 JSON：基础数据 → profile 覆盖 → 校验 → 写盘
+ * 生成单份简历 JSON：基础数据、profile 覆盖、校验、写盘
  *
  * 校验失败时仅告警不中断：开发中常改一半数据，写出的 JSON 便于
  * HTML 预览排错；发布前由 grunt build 中的 typecheck/lint 环节把关。

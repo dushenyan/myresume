@@ -13,9 +13,9 @@ import type { Resume } from '../types'
 /**
  * 技能分类列表
  *
- * 排序按中级 Agent 开发岗位 JD 的关注度排：Agent 编排 → 检索链路 → 智能体平台
- * → LangChain 框架 → 模型侧 → 深度学习底层与 NLP → 服务端存储 → 私有化部署
- * → 产品界面 → 工程底座 → 研发效能，保证从上往下扫时先命中岗位核心关键词。
+ * 排序按中级 Agent 开发岗位 JD 的关注度排：Agent 编排、检索链路、智能体平台、
+ * LangChain 框架、模型侧、深度学习底层与 NLP、服务端存储、私有化部署、
+ * 产品界面、工程底座、研发效能，保证从上往下扫时先命中岗位核心关键词。
  */
 export const skills: Resume['skills'] = [
   {
@@ -39,7 +39,6 @@ export const skills: Resume['skills'] = [
       '文档解析与重叠分块策略',
       '语义拆分 / 递归拆分对比',
       '召回质量评估与调优',
-      '知识库双环境发布',
     ],
   },
   {
@@ -47,7 +46,6 @@ export const skills: Resume['skills'] = [
     keywords: [
       'Coze 工作流编排与代码节点',
       'Dify 应用发布与 API 化',
-      'cozepy SDK / REST API 接入',
       'SSE 流式响应处理',
       '钉钉 / 企微 IM 渠道集成',
       '官方模板复用与二次开发',
@@ -74,7 +72,7 @@ export const skills: Resume['skills'] = [
       'LoRA / QLoRA 微调（PEFT）',
       'loss mask 与 ChatML 格式对齐',
       '双停止符与生成参数调优',
-      '意图识别多方案选型（regex / TF-IDF / BERT / Few-shot）',
+      '意图识别多方案选型',
       'Sentence-Transformers 语义向量',
       'transformers / PEFT / accelerate',
     ],
@@ -113,7 +111,7 @@ export const skills: Resume['skills'] = [
       'XInference（LLM / Embedding / Rerank 一站式部署）',
       'AutoDL GPU 租赁与按需算力',
       'Coze Studio 开源部署',
-      'WSL / Linux 容器化环境',
+      'Linux 容器化环境',
     ],
   },
   {
@@ -128,9 +126,9 @@ export const skills: Resume['skills'] = [
   {
     category: '工程化与交付',
     keywords: [
-      'uv / pytest / Makefile',
+      'uv / Makefile',
       'Monorepo（pnpm workspace）',
-      'Vitest / ESLint / Husky',
+      'ESLint / Husky',
       'CI/CD 与 Docker 部署',
     ],
   },
@@ -138,8 +136,8 @@ export const skills: Resume['skills'] = [
     category: 'AI 研发效能',
     keywords: [
       'Agent Skills 编写',
-      '自定义 Rules / AGENTS.md',
-      'Cursor / Claude Code / Trae',
+      '自定义 Rules / Command',
+      'Claude Code / Trae',
       'AI 辅助研发流程设计',
     ],
   },

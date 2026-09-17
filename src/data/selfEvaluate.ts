@@ -10,7 +10,7 @@
 import type { Resume } from '../types'
 
 /**
- * 自我评价条目（话术顺序：体系化学习 → 链路完整度 → 检索深度 → 双轨能力 → 工程素养）
+ * 自我评价条目（话术顺序：体系化学习、链路完整度、检索深度、双轨能力、工程素养）
  */
 export const selfEvaluate: Resume['selfEvaluate'] = [
   '系统补齐深度学习 / NLP / LangChain / 智能体工程四块体系，覆盖底层原理到工程落地的完整学习路径',

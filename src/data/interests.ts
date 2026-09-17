@@ -7,7 +7,7 @@
 import type { Resume } from '../types'
 
 /**
- * 技术兴趣方向（与中级 Agent 开发岗位指向保持一致，覆盖底层原理 → 框架 → 平台 → 部署）
+ * 技术兴趣方向（与中级 Agent 开发岗位指向保持一致，覆盖底层原理、框架、平台、部署）
  */
 export const interests: Resume['interests'] = [
   '大模型应用与多 Agent 编排',

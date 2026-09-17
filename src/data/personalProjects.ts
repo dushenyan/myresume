@@ -19,8 +19,8 @@
 import type { Resume } from '../types'
 
 /**
- * 个人实战项目列表（能力广度佐证，按技术栈由上到下递进：微调 → LLM 封装 →
- * Transformer → RNN → 词向量）
+ * 个人实战项目列表（能力广度佐证，按技术栈由上到下递进：微调、LLM 封装、
+ * Transformer、RNN、词向量）
  */
 export const personalProjects: Resume['personalProjects'] = [
   {
@@ -33,8 +33,8 @@ export const personalProjects: Resume['personalProjects'] = [
   {
     name: 'sy-llm',
     displayName: '统一 LLM 调用封装库（sy-llm）',
-    summary: '零运行时依赖的 LLM 统一封装：抽象基类支持 Ollama 本地 / DeepSeek 云端一键切换，同步异步双链路复用一份代码；密钥全走环境变量、业务代码零明文，配套 pytest 与标准 src-layout 包工程',
-    primaryLanguage: ['Python', '标准库', 'Ollama', 'pytest'],
+    summary: '零运行时依赖的 LLM 统一封装：抽象基类支持 Ollama 本地 / DeepSeek 云端一键切换，同步异步双链路复用一份代码；密钥全走环境变量、业务代码零明文，配套标准 src-layout 包工程',
+    primaryLanguage: ['Python', '标准库', 'Ollama'],
     brief: true,
   },
   {
@@ -47,7 +47,7 @@ export const personalProjects: Resume['personalProjects'] = [
   {
     name: 'input-method-rnn',
     displayName: 'RNN 输入法候选词预测（input-method-rnn）',
-    summary: '用 vanilla RNN 模拟输入法候选词推荐：jieba 分词 + 词表构建 + 滑动窗口造样本，全管线（数据 → 训练 → 评估 → 推理）可独立运行；Top-1 准确率 0.21、Top-5 0.40',
+    summary: '用 vanilla RNN 模拟输入法候选词推荐：jieba 分词 + 词表构建 + 滑动窗口造样本，全管线（数据、训练、评估、推理）可独立运行；Top-1 准确率 0.21、Top-5 0.40',
     primaryLanguage: ['Python', 'PyTorch', 'RNN'],
     brief: true,
   },
