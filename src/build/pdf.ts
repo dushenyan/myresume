@@ -82,16 +82,35 @@ export async function buildProfilePdf(profile: ResumeProfile, html: string): Pro
 
     const page = await browser.newPage()
 
-    // 拦截所有外部网络请求，直接返回空响应，彻底避免超时
+    // 拦截非必要外部请求，避免打印时因外网超时导致构建失败；
+    // 头像图片域（gravatar / GitHub avatars）放行，否则 PDF 中头像会缺失。
+    const ALLOWED_IMAGE_HOSTS = new Set([
+      'gravatar.com',
+      'www.gravatar.com',
+      'avatars.githubusercontent.com',
+      'user-images.githubusercontent.com',
+      'raw.githubusercontent.com',
+    ])
     await page.setRequestInterception(true)
     page.on('request', (req) => {
       const url = req.url()
-      if (url.startsWith('http') && !url.startsWith('data:')) {
-        req.abort()
-      }
-      else {
+      if (url.startsWith('data:')) {
         req.continue()
+        return
       }
+      if (req.resourceType() === 'image') {
+        try {
+          const host = new URL(url).host
+          if (ALLOWED_IMAGE_HOSTS.has(host)) {
+            req.continue()
+            return
+          }
+        }
+        catch {}
+        req.abort()
+        return
+      }
+      req.abort()
     })
 
     await page.setContent(offlineHtml, {

@@ -7,6 +7,7 @@ import moment from 'moment'
 export function registerTemplateHelpers(): void {
   // 根据 network 字段映射 RemixIcon 图标名
   // https://icones.netlify.app/collection/ri
+  // 未命中映射时兜底为通用链接图标，避免 data-icon 为空导致图标位塌陷
   Handlebars.registerHelper('toSocialIcon', (text: string) => {
     const iconMap: Record<string, string> = {
       linkedin: 'ri:linkedin-box-fill',
@@ -18,8 +19,11 @@ export function registerTemplateHelpers(): void {
       link: 'ri:arrow-right-up-line',
       portfolio: 'ri:account-circle-fill',
       knowledge: 'ri:book-3-fill',
+      book: 'ri:book-2-fill',
+      blog: 'ri:article-fill',
+      wechat: 'ri:wechat-fill',
     }
-    return iconMap[text.trim().toLowerCase()]
+    return iconMap[text.trim().toLowerCase()] ?? 'ri:link'
   })
 
   // 根据 printHidden 字段输出对应 class，控制打印时是否显示该项目

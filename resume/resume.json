@@ -29,8 +29,13 @@
       },
       {
         "network": "Knowledge",
-        "url": "https://mainsibaodian.netlify.app/",
-        "username": "dushenyan"
+        "url": "http://134.175.23.212:8681/",
+        "username": "cockpit-desktop"
+      },
+      {
+        "network": "Book",
+        "url": "http://134.175.23.212:8581/",
+        "username": "facial-makeup"
       }
     ]
   },
@@ -84,12 +89,12 @@
       ]
     },
     {
-      "institution": "大模型应用体系（自学）",
+      "institution": "大模型应用体系",
       "area": "深度学习 · NLP · LangChain · 智能体工程",
       "studyType": "体系化学习",
       "startDate": "2024-01-01",
       "endDate": "",
-      "description": "按「底层原理、工程框架、平台交付」三阶系统补齐大模型应用链路，全部配套代码已落地为简历项目区 9 个 AI 项目"
+      "description": "按「底层原理、工程框架、平台交付」三阶系统补齐大模型应用链路"
     }
   ],
   "skills": [
@@ -131,14 +136,11 @@
       "keywords": [
         "LCEL 链式编排（prompt | model | parser）",
         "ChatPromptTemplate / FewShot 模板",
-        "OutputParser 五件套（Str/Json/XML/List/Datetime）",
         "Memory 四策略（Buffer / Window / Token / Summary）",
         "@tool / StructuredTool / bind_tools",
         "create_tool_calling_agent + AgentExecutor",
-        "DocumentLoader 九种 + TextSplitter 四层",
-        "Chroma / FAISS 向量库双栈",
-        "RunnableWithMessageHistory 多会话隔离",
-        "ChatOllama 本地模型接入"
+        "Chroma / Elasticsearch 向量库双栈",
+        "RunnableWithMessageHistory 多会话隔离"
       ]
     },
     {
@@ -156,11 +158,7 @@
       "category": "深度学习与 NLP 基础",
       "keywords": [
         "反向传播（链式法则手推）",
-        "优化器演进（SGD / Momentum / AdaGrad / RMSProp / Adam）",
-        "激活函数 / 损失函数 / Xavier-He 初始化",
         "BatchNorm / Dropout / L2 正则",
-        "PyTorch（Tensor / autograd / nn.Module / DataLoader）",
-        "CNN（卷积 / 池化 / ResNet）",
         "RNN / LSTM / GRU 与序列建模",
         "Transformer（Self-Attention / 多头 / 位置编码）",
         "BERT / GPT 与 bert-base-chinese 微调",
