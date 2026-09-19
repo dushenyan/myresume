@@ -11,6 +11,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: fade(@theme-blue, 18%);
+}
+
 .text-bolder {
   font-weight: bold;
 }
@@ -30,11 +38,13 @@ body {
     margin-bottom: 0;
     font-weight: 700;
     line-height: 1.2;
+    letter-spacing: 0.01em;
   }
   .job {
     margin-top: 0.5rem;
     font-size: 1.1rem;
     color: @text-secondary;
+    letter-spacing: 0.02em;
   }
 }
 
@@ -48,6 +58,10 @@ a:focus-visible,
 
 /* 无障碍：用户偏好减少动效时禁用过渡与动画 */
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   *,
   *:before,
   *:after {
@@ -69,6 +83,12 @@ a:focus-visible,
     .page {
       max-width: 50em;
       width: 100%;
+    }
+
+    /* 桌面端：个人信息卡吸顶，长简历滚动时随时可见联系方式 */
+    > section:first-child .card {
+      position: sticky;
+      top: 2rem;
     }
   }
 

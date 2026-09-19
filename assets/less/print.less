@@ -130,7 +130,21 @@
     margin: 6pt 0 2pt 0 !important;
     padding: 0 !important;
     border: 0 !important;
+    display: block !important;
     page-break-after: avoid !important;
+  }
+
+  /* 屏幕端的标题渐隐细线与技能标题竖条不进入打印 */
+  .background-card h4:after {
+    content: none !important;
+  }
+
+  .skill-category-title {
+    padding-left: 0 !important;
+  }
+
+  .skill-category-title:before {
+    content: none !important;
   }
 
   .background-card h4 .title {
@@ -205,20 +219,16 @@
     margin-bottom: 5pt !important;
   }
 
-  /* 个人项目 */
-  #personal-projects .card-nested {
-    margin-bottom: 5pt !important;
-    border-left: 1pt solid #aaa !important;
-    padding-left: 6pt !important;
-  }
-
-  #personal-projects .project-summary {
+  /* 项目经历与个人项目打印样式完全一致：
+     条目间距统一走上方 .projects .card-nested 规则，
+     不再为个人项目单独加 border-left 竖线 */
+  .project-summary {
     display: none !important;
   }
 
   /* 概述型条目（brief: true）只有 summary 一行内容，
      若沿用上面的隐藏规则，PDF 里会只剩光标题，因此这里反向恢复显示 */
-  #personal-projects .card-nested.project-brief .project-summary {
+  .card-nested.project-brief .project-summary {
     display: block !important;
     font-style: normal !important;
     font-size: 9pt !important;
@@ -232,8 +242,13 @@
     display: none !important;
   }
 
+  /* 项目背景（description）在打印中保留显示：
+     承载「业务场景 + 项目定位」的背景信息，是面试官理解职责的前提，
+     字号与边距沿用 .text-muted / p 的打印规则，不额外加粗 */
   .project-description {
-    display: none !important;
+    font-size: 9pt !important;
+    color: #333 !important;
+    margin: 1pt 0 2pt 0 !important;
   }
 
   .responsibilities ul,

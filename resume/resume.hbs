@@ -88,7 +88,7 @@
                 <div class="list-unstyled projects">
                   <div class="project-table">
                   {{#each resume.projects}}
-                    <li class="card-nested {{domClasses}}">
+                    <li class="card-nested{{#if brief}} project-brief{{/if}} {{domClasses}}">
                       <div class="content has-sidebar">
                         <p class="clear-margin-sm" itemprop="award">
                           <strong>{{displayName}}</strong>&nbsp
@@ -103,6 +103,9 @@
                             </a>
                           {{/if}}
                         </p>
+                        {{#if summary}}
+                        <p class="text-muted project-summary">{{summary}}</p>
+                        {{/if}}
                         {{#if role}}
                         <p class="text-muted">
                           <small>角色：{{role}}</small>

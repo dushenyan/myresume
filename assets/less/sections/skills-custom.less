@@ -14,6 +14,19 @@
   font-weight: 600;
   color: @text-primary;
   margin-bottom: 0.8rem;
+  position: relative;
+  padding-left: 0.8rem;
+
+  &:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.15em;
+    bottom: 0.15em;
+    width: 3px;
+    border-radius: 2px;
+    background: @theme-blue;
+  }
 }
 
 .skill-keywords {
@@ -36,6 +49,13 @@
   cursor: default;
   position: relative;
   overflow: hidden;
+
+  &:hover {
+    border-color: @chip-border-hover;
+    background-color: @chip-bg-hover;
+    box-shadow: 0 2px 8px rgba(16, 24, 40, 0.08);
+    transform: translateY(-1px);
+  }
 }
 
 /* 桌面端技能样式 */
@@ -83,8 +103,9 @@
 }
 
 
-/* ===== 个人项目区块 ===== */
+/* ===== 项目区块统一样式（项目经历 #projects 与个人项目 #personal-projects 对齐） ===== */
 
+#projects,
 #personal-projects {
   .project-summary {
     font-size: 1.1rem;
@@ -93,21 +114,10 @@
     font-style: italic;
   }
 
-  .personal-project-item {
-    // border-left: 3px solid @theme-blue;
-    // padding-left: 1.2rem;
-    transition: border-color @transition-fast;
-
-    &:hover {
-      border-left-color: darken(@theme-blue, 10%);
-    }
-
-    /* AI 工具标签高亮：description 里含 Cursor / Trae / OpenClaw 的视觉提示 */
-    .project-description {
-      font-size: 1.1rem;
-      line-height: 1.6;
-      color: @text-muted-strong;
-    }
+  .project-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: @text-muted-strong;
   }
 }
 

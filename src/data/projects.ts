@@ -36,17 +36,17 @@ import type { Resume } from '../types'
 export const projects: Resume['projects'] = [
   {
     name: 'faq-text-matching',
-    displayName: 'FAQ 智能问答平台',
-    summary: 'FastAPI 异步全栈的 FAQ 智能问答系统：知识生产、双环境发布、语义检索与多渠道服务收敛在一套后端',
+    displayName: '企业级智能客服知识中台',
+    summary: '面向多渠道客服场景的 FAQ 智能问答中台：融合检索 + 双环境知识发布 + 多渠道适配引擎收敛在 FastAPI 异步全栈后端',
     primaryLanguage: ['Python', 'FastAPI', 'Elasticsearch 8.x', 'SQLAlchemy 2.0', 'Redis', 'Streamlit'],
-    description: '独立设计并实现：把知识管理、检索服务与多渠道问答收敛到一套后端，支持测试/正式双环境隔离发布，让知识上线前可安全验证',
+    description: '项目背景：面向企业内部客服、IM 客服助手与移动 App / Web 自助查询三类入口，把分散在各业务线的 FAQ 知识资产收敛到统一中台，由一套后端同时支撑知识生产、融合检索与多渠道问答；独立设计并实现，通过测试/正式双环境隔离发布让知识上线前可验证、可回滚',
     responsibilities: [
-      '【混合检索】在 Elasticsearch 单索引内同时建立 BM25 全文与 dense_vector 向量字段，用 Sentence-Transformers 本地生成向量，实现关键词与语义双路召回',
+      '【融合检索】依托 Elasticsearch 8.x 单索引单分片架构，通过 Script Score / RRF 算法融合 BM25 全文检索与 dense_vector 语义向量检索，结合 Sentence-Transformers 本地化高性能推理，实现毫秒级高精度双路召回',
       '【多级缓存】设计 7 类业务缓存（类目树 / FAQ 详情 / 答案视角 / 搜索结果 / 渠道配置 / 热门 FAQ / 导航目录），按访问特征设置 5 分钟～24 小时差异化 TTL，配合缓存装饰器与写操作主动失效，解决「改了知识但线上还是旧答案」的一致性问题',
       '【双环境发布】设计「测试环境配置、模拟验证、发布中心一键同步、正式环境生效」机制，用 env 字段隔离 + original_id 溯源使正式记录指向来源测试记录，让知识上线前可验证、可回滚',
-      '【多视角答案】同一问题按微信 / App / 网页渠道返回差异化答案，答案类型支持纯文本、富文本与交互式卡片，覆盖 15+ 个管理端与对外服务接口',
-      '【流式与 IM 渠道】对外服务接口支持 SSE 流式响应以驱动前端打字机式体验；预留钉钉 / 企微机器人对接入口，把问答能力推到 IM 业务渠道',
-      '【工程质量】按 routers / schemas / models / services 分层，覆盖管理端与对外服务；支持 3000 条批量导入与 50000 条导出',
+      '【多视角答案适配引擎】抽象多视角答案适配引擎，支持按微信、App、Web 等渠道动态下发文本、富文本与交互卡片；同一问题在不同渠道返回差异化答案，覆盖 15+ 个管理端与对外服务接口',
+      '【标准化 IM 接入】预留标准化钉钉/企微 Webhook 接入层，实现问答能力无缝嵌入多 IM 业务生态，把问答能力推到 IM 业务渠道',
+      '【高并发工程吞吐】采用 FastAPI 异步并发框架，全面支持 SSE 流式响应驱动打字机式交互体验；按 routers / schemas / models / services 分层组织代码，优化 SQLAlchemy 2.0 批量处理链路，支撑 5 万级条目高效导出与 3000 条大文件异步批量导入',
     ],
   },
   {
