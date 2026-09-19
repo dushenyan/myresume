@@ -19,6 +19,6 @@ export const awards: Resume['awards'] = [
     title: '公司年度优秀技术负责人',
     summary: '技术创新与团队建设突出',
     awarder: '海南流云科技有限公司',
-    date: '2023-01-01',
+    date: '2023-01',
   },
 ]

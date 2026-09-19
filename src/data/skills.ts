@@ -5,8 +5,16 @@
  * 技能列表会随技术栈迭代更新，独立成文件可在新增技术时不必浏览整份简历，
  * 也便于对照 JD 调整关键词顺序。
  *
- * 关键词只保留能在个人项目里指到具体实现的条目——
+ * 关键词只保留能在项目里指到具体实现的条目——
  * 面试官对着技能栏追问时，每一条都应能落到某段代码上。
+ *
+ * 背书映射（2026-09-19 按老师反馈补齐连通性）：
+ * - LangGraph → 多 Agent 深度研究助手（StateGraph 编排 + Checkpointer 断点续跑）
+ * - RAGAS / HITL → 政务 RAG 知识库「评估与反馈闭环」职责条目
+ * - vLLM → 政务 RAG「模型服务化」（XInference 的推理后端）与总述部署链路
+ * - AutoGen / SGLang 暂无项目级实现，被追问时以「对比理解」作答
+ *   （AutoGen 对话式驱动 vs LangGraph 图状态机的控制流确定性；
+ *   SGLang RadixAttention 前缀缓存 vs vLLM PagedAttention），勿主动扩展。
  */
 import type { Resume } from '../types'
 
@@ -15,13 +23,14 @@ import type { Resume } from '../types'
  *
  * 排序按中级 Agent 开发岗位 JD 的关注度排：Agent 编排、检索链路、智能体平台、
  * LangChain 框架、模型侧、深度学习底层与 NLP、服务端存储、私有化部署、
- * 产品界面、工程底座、研发效能，保证从上往下扫时先命中岗位核心关键词。
+ * 产品界面、工程底座与 AI 研发效能合并收尾，保证从上往下扫时先命中岗位核心关键词。
  */
 export const skills: Resume['skills'] = [
   {
     category: 'Agent 与 LLM 应用',
     keywords: [
       '多 Agent 编排与角色分工',
+      'LangGraph（StateGraph / Checkpointer）/ AutoGen 多智能体框架',
       'Function Calling / Tool Use',
       '多轮会话与上下文管理',
       'MCP（Model Context Protocol）',
@@ -38,7 +47,8 @@ export const skills: Resume['skills'] = [
       '重排序（bge-reranker）',
       '文档解析与重叠分块策略',
       '语义拆分 / 递归拆分对比',
-      '召回质量评估与调优',
+      '召回质量评估与调优（RAGAS）',
+      'HITL 人机协同反馈闭环',
     ],
   },
   {
@@ -75,6 +85,7 @@ export const skills: Resume['skills'] = [
       '意图识别多方案选型',
       'Sentence-Transformers 语义向量',
       'transformers / PEFT / accelerate',
+      'vLLM / SGLang 推理加速与服务化部署',
     ],
   },
   {
@@ -108,7 +119,7 @@ export const skills: Resume['skills'] = [
     category: '私有化部署与运维',
     keywords: [
       'Docker / Docker Compose',
-      'XInference（LLM / Embedding / Rerank 一站式部署）',
+      'XInference（vLLM 推理后端，LLM / Embedding / Rerank 一站式部署）',
       'AutoDL GPU 租赁与按需算力',
       'Coze Studio 开源部署',
       'Linux 容器化环境',
@@ -124,17 +135,12 @@ export const skills: Resume['skills'] = [
     ],
   },
   {
-    category: '工程化与交付',
+    category: '工程化与 AI 研发效能',
     keywords: [
       'uv / Makefile',
       'Monorepo（pnpm workspace）',
       'ESLint / Husky',
       'CI/CD 与 Docker 部署',
-    ],
-  },
-  {
-    category: 'AI 研发效能',
-    keywords: [
       'Agent Skills 编写',
       '自定义 Rules / Command',
       'Claude Code / Trae',

@@ -125,6 +125,14 @@ export interface Project {
    */
   description?: string
   /**
+   * 项目内角色（招聘官视角：明确「你在项目里是谁」）
+   */
+  role?: string
+  /**
+   * 项目时间（如 '2024-10 ~ 2025-03'，用于自证「近 2 年 AI 经验」时间线）
+   */
+  duration?: string
+  /**
    *项目职责描述
    */
   responsibilities?: string[]
@@ -384,7 +392,7 @@ export interface Resume {
    */
   references?: References[]
   /**
-   * 自我评价
+   * 自我评价（已并入 basics.summary，模板不再单独渲染；保留字段供旧数据源兼容）
    */
   selfEvaluate?: string[]
   /**

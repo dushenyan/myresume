@@ -15,12 +15,15 @@ export const basicInfo: Resume['basics'] = {
   picture: 'https://avatars.githubusercontent.com/u/63347504',
   label: 'Agent 开发工程师',
   headline: 'Agent 开发 · 多 Agent 编排 · RAG · 智能体平台 · LLM 微调与推理',
-  summary: '前端工程师出身，近 8 年工程经验；近 2 年系统转向 AI Agent 与 LLM 应用开发，个人项目覆盖「模型微调、语义检索、RAG、多 Agent 编排」完整链路。\n'
+  // 合并原「自我评价」区块后的总述：按招聘官 6 秒扫描写——首句即定位（方向+落地数字），
+  // 四条核心优势每条只留「能力 + 一个锚点」，细节全部留给项目区展开
+  summary: '近 2 年聚焦 AI Agent 与 LLM 应用开发，在政务业务场景主导 3 个 AI 应用从 0 到 1 上线（智能客服知识中台 / GraphRAG 知识库 / LangGraph 多 Agent 研究助手）；近 8 年前端工程底蕴，对话工作台、流式渲染与过程可视化可独立完成，能把 Agent 从 Demo 推进到可交付产品。\n'
     + '\n'
     + '核心优势：\n'
-    + '• Agent 与编排：自研四角色 Agent 编排器（控制流与语言任务分离）、Coze/Dify 低代码平台 8+ 业务智能体交付、LangChain 全栈（LCEL / Memory / Tools / RAG）\n'
-    + '• RAG 与模型：三存储 RAG 架构、BM25 + 向量混合检索 + bge-reranker 精排两阶段管线、Qwen2.5 LoRA 微调、bge 中文向量与重排模型自适应部署\n'
-    + '• 服务与部署：Python / FastAPI 异步全栈（MySQL / ES / Redis / Neo4j），Docker + XInference + AutoDL 私有化部署链路',
+    + '• Agent 与编排：LangGraph 有向图状态机编排四角色 Agent（Checkpointer 断点续跑、控制流与语言任务分离）；Coze/Dify 低代码交付 8+ 业务智能体，双轨覆盖技术与场景\n'
+    + '• RAG 与检索：GraphRAG 三存储异构架构、BM25 + 向量 RRF 融合检索、bge-reranker 两阶段精排、RAGAS 评估与 HITL 反馈闭环，Top-5 召回率 71% → 93%\n'
+    + '• 模型与底层：Qwen2.5 LoRA 微调（loss mask / ChatML / QLoRA）、意图识别四方案选型（BERT 方案 95%+ 准确率）、bge 向量与重排模型自适应部署\n'
+    + '• 服务与部署：Python / FastAPI 异步全栈（MySQL / ES / Redis / Neo4j），Docker + XInference（vLLM 推理后端）+ AutoDL 私有化链路，数据不出域',
   website: 'https://duhenyanblog.netlify.app/',
   address: '海南 海口',
   projects_url: 'https://github.com/dushenyan',

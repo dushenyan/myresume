@@ -17,7 +17,7 @@ export const education: Resume['education'] = [
     institution: '江西交通职业技术学院',
     area: '计算机网络技术',
     department: '信息工程系',
-    studyType: '专科',
+    // studyType: '专科',
     startDate: '2018-09-01',
     endDate: '2021-06-01',
     description: '主修课程：计算机网络、Web前端开发、数据库原理、软件工程等',

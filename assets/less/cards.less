@@ -201,8 +201,7 @@ a {
   height: 15px;
 }
 
-.skill-table,
-.self-evaluate-table {
+.skill-table {
   display: grid;
 }
 
@@ -233,28 +232,6 @@ a[itemprop="pdf"] {
 }
 
 /* 技能关键词样式：统一定义在 sections/skills-custom.less，此处不再重复 */
-
-/* 自我评价样式 */
-.self-evaluate-list {
-  list-style: none;
-  padding-left: 0;
-  margin: 0;
-}
-
-.self-evaluate-list li {
-  position: relative;
-  padding-left: 1.5rem;
-  margin-bottom: 1rem;
-  line-height: 1.6;
-
-  &:before {
-    content: "✓";
-    position: absolute;
-    left: 0;
-    color: @theme-green;
-    font-weight: bold;
-  }
-}
 
 /* 桌面端优化 */
 @media only screen and (min-width: 1200px) {
@@ -321,12 +298,6 @@ a[itemprop="pdf"] {
   .project-table {
     grid-template-columns: 1fr;
   }
-  
-  .self-evaluate-list li {
-    font-size: 1rem;
-    margin-bottom: 0.6rem;
-    padding-left: 1.2rem;
-  }
 }
 
 /* 手机端优化 */
@@ -367,11 +338,5 @@ a[itemprop="pdf"] {
   .background-card h4 {
     font-size: 1rem;
     margin-top: 2rem;
-  }
-  
-  .self-evaluate-list li {
-    font-size: 1rem;
-    margin-bottom: 0.6rem;
-    padding-left: 1.2rem;
   }
 }
