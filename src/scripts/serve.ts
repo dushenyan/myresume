@@ -4,6 +4,9 @@
  * 用法：
  *   npx esno src/scripts/serve.ts                    预览默认简历（注册表中的第一份）
  *   npx esno src/scripts/serve.ts --profile=social   预览指定简历
+ *
+ * dev 专属能力：响应前注入「预测押题」面板（docs/quiz/*.md），
+ * 仅存在于内存中的响应体，不写盘、不进 HTML/PDF 构建产物。
  */
 import fs from 'node:fs'
 import http from 'node:http'
@@ -11,6 +14,8 @@ import path from 'node:path'
 import process from 'node:process'
 import { renderProfileHtml } from '../build/html'
 import { loadProfiles, parseProfileFilter } from '../core/profiles'
+import { loadQuizBanks } from '../core/quiz'
+import { injectQuizPanel } from '../dev/injectQuizPanel'
 
 const PORT = 8888
 const PUBLIC_DIR = path.join(process.cwd(), 'dist')
@@ -52,11 +57,13 @@ function selectPreviewProfile() {
 const previewProfile = selectPreviewProfile()
 
 const server = http.createServer(async (req, res) => {
-  // 根路径：实时渲染预览简历（改数据后刷新浏览器即可看到）
+  // 根路径：实时渲染预览简历（改数据后刷新浏览器即可看到；
+  // 押题 md 同样每次请求重读，改 docs/quiz 后刷新即生效）
   if (req.url === '/') {
     try {
+      const html = injectQuizPanel(await renderProfileHtml(previewProfile), loadQuizBanks())
       res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' })
-      res.end(await renderProfileHtml(previewProfile))
+      res.end(html)
     }
     catch (error) {
       console.error('渲染错误:', error)

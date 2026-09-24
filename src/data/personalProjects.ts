@@ -27,6 +27,12 @@
  *    summary / description / primaryLanguage / responsibilities），不再使用
  *    brief 概述条目。
  *
+ * 2026-09 新增：AI 实战系列五个 Agent 项目（mcp-servers / debate-agents /
+ * multi-tenant-rag / devops-agent / edu-tutor-agent，素材见 docs/项目.md）
+ * 以 brief 概述条目追加在列表尾部：不挤占两个详写项目的版面，
+ * 但让技能栏里的 MCP / 多 Agent / RAG 隔离 / ReAct 等主张在简历上有实体项目可指，
+ * 面试展开时配合 docs/quiz 押题面板准备详版。
+ *
  * 事实来源：docs/个人项目分析/file-wizard.md、skills.md，
  * 并已对照本地仓库（~/Desktop/emphasis/file-wizard、skills）源码与
  * git log 复核——skills 仓库在文档生成后已演进（新增 clarify / socratic
@@ -76,6 +82,41 @@ export const personalProjects: Resume['personalProjects'] = [
     displayName: '统一 LLM 调用封装库（sy-llm）',
     summary: '零运行时依赖的 LLM 统一封装：抽象基类支持 Ollama 本地 / DeepSeek 云端一键切换，同步异步双链路复用一份代码；密钥全走环境变量、业务代码零明文，配套标准 src-layout 包工程',
     primaryLanguage: ['Python', '标准库', 'Ollama'],
+    brief: true,
+  },
+  {
+    name: 'mcp-servers',
+    displayName: 'MCP 工具服务器集合（mcp-servers）',
+    summary: '实现文件系统 / SQLite / 企业 API 网关 3 个 MCP 服务器，完整覆盖 tools / resources / prompts 三大原语；内置路径白名单 + 只读模式 + SQL 守卫 + Token 鉴权四道安全防线，解决 LLM 工具接入标准化与数据暴露安全可控问题',
+    primaryLanguage: ['Python', 'FastAPI', 'SQLite', 'Docker'],
+    brief: true,
+  },
+  {
+    name: 'debate-agents',
+    displayName: '辩论式决策多 Agent（debate-agents）',
+    summary: '用结构化辩论做决策的多 Agent 系统：正反双方立论-质询-反驳-总结，法官四维加权裁决；双层防共识坍缩 + 三重终止条件，WebSocket 实时可视化辩论过程，解决单 Agent 视角单一、自我确认的问题',
+    primaryLanguage: ['Python', 'FastAPI', 'WebSocket'],
+    brief: true,
+  },
+  {
+    name: 'multi-tenant-rag',
+    displayName: '多租户知识库问答 Agent（multi-tenant-rag）',
+    summary: 'SaaS 知识库纵深防御架构：向量库按租户分区物理隔离 + chunk 级 ACL 过滤召回 + 防泄漏后置校验三重防线，配套租户身份网关注入与问答审计计费，确保跨租户数据零泄漏',
+    primaryLanguage: ['Java', 'Spring Boot', 'Spring AI', 'Milvus'],
+    brief: true,
+  },
+  {
+    name: 'devops-agent',
+    displayName: 'DevOps 运维诊断 Agent（devops-agent）',
+    summary: '告警接入→证据采集→ReAct 诊断→修复方案 + 风险评估→HITL 安全处置全链路：分级去重聚合收敛告警风暴，规则引擎筛选关键指标，根因准确率实测 92/100，把资深 SRE 人肉排查经验沉淀为可回归的诊断能力',
+    primaryLanguage: ['Python', 'FastAPI', 'Prometheus / ELK（接口预留）'],
+    brief: true,
+  },
+  {
+    name: 'edu-tutor-agent',
+    displayName: '教育个性化辅导 Agent（edu-tutor-agent）',
+    summary: '知识点掌握度画像（冷启动先验 + 指数平滑）驱动薄弱点优先选题与动态难度调整，答错苏格拉底式引导防答案泄漏 + 错因三类归因，把「题海战术无差别推送」变成可解释的个性化辅导闭环',
+    primaryLanguage: ['Python', 'FastAPI'],
     brief: true,
   },
   // {
