@@ -162,6 +162,28 @@ a {
   padding: 10px;
 }
 
+/* 条目标题行：左侧名称/职位，右侧日期元信息两端对齐（屏幕与打印通用） */
+.entry-head {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+
+  .entry-meta {
+    margin-left: auto;
+    white-space: nowrap;
+  }
+}
+
+/* 项目元信息行（角色·技术栈）：无内容时隐藏空的 p */
+.project-meta:empty {
+  display: none;
+}
+
+.project-meta .meta-item + .meta-item::before {
+  content: " · ";
+  color: @icon-muted;
+}
+
 .enumeration:not(:last-child):after {
   content: ", ";
 }

@@ -125,12 +125,9 @@ export async function buildProfilePdf(profile: ResumeProfile, html: string): Pro
       format: 'A4',
       displayHeaderFooter: false,
       printBackground: true,
-      margin: {
-        top: '0.4in',
-        bottom: '0.4in',
-        left: '0.4in',
-        right: '0.4in',
-      },
+      // 页边距交给 print.less 的 @page 规则统一控制，
+      // 保证 headless 构建与浏览器手动打印的分页/留白完全一致
+      preferCSSPageSize: true,
     }) as Buffer
 
     await browser.close()

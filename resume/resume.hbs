@@ -51,9 +51,9 @@
                   {{/if}}
 
                   <div class="print-contact-row print-only">
-                    {{#if email}}<span class="print-contact-item">邮箱：{{email}}</span>{{/if}}
-                    {{#if phone}}<span class="print-contact-item">电话：{{phone}}</span>{{/if}}
-                    {{#if wechat}}<span class="print-contact-item">微信：{{wechat}}</span>{{/if}}
+                    {{#if email}}<span class="print-contact-item" itemprop="email">{{email}}</span>{{/if}}
+                    {{#if phone}}<span class="print-contact-item" itemprop="telephone">{{phone}}</span>{{/if}}
+                    {{#if wechat}}<span class="print-contact-item">微信 {{wechat}}</span>{{/if}}
                     {{#if address}}<span class="print-contact-item">{{address}}</span>{{/if}}
                   </div>
                 </div>
@@ -90,8 +90,8 @@
                   {{#each resume.projects}}
                     <li class="card-nested{{#if brief}} project-brief{{/if}} {{domClasses}}">
                       <div class="content has-sidebar">
-                        <p class="clear-margin-sm" itemprop="award">
-                          <strong>{{displayName}}</strong>&nbsp
+                        <p class="clear-margin-sm entry-head" itemprop="award">
+                          <span class="entry-title"><strong>{{displayName}}</strong>&nbsp;
                           {{#if githubUrl}}
                             <a href="{{githubUrl}}" class='icon' target="_blank">
                               <span class="iconify" data-icon="{{toSocialIcon 'github'}}"></span>
@@ -101,26 +101,13 @@
                             <a href="{{website}}" class='icon' target="_blank">
                               <span class="iconify" data-icon="{{toSocialIcon 'link'}}"></span>
                             </a>
-                          {{/if}}
+                          {{/if}}</span>
+                          {{#if duration}}<span class="entry-meta text-muted"><small>{{duration}}</small></span>{{/if}}
                         </p>
                         {{#if summary}}
                         <p class="text-muted project-summary">{{summary}}</p>
                         {{/if}}
-                        {{#if role}}
-                        <p class="text-muted">
-                          <small>角色：{{role}}</small>
-                        </p>
-                        {{/if}}
-                        {{#if duration}}
-                        <p class="text-muted">
-                          <small>时间：{{duration}}</small>
-                        </p>
-                        {{/if}}
-                        {{#if tech}}
-                        <p class="text-muted">
-                          技术栈：{{tech}}
-                        </p>
-                        {{/if}}
+                        <p class="text-muted project-meta">{{#if role}}<span class="meta-item">角色：{{role}}</span>{{/if}}{{#if tech}}<span class="meta-item">技术栈：{{tech}}</span>{{/if}}</p>
                         {{#if primaryLanguage}}
                         <p class="text-muted">
                           基于{{#each primaryLanguage}} <small>{{.}}<span> + </span></small> {{/each}}开发
@@ -162,14 +149,10 @@
                   {{#each resume.work}}
                     <li class="card-nested relax">
                       <div class="content has-sidebar">
-                        <p class="clear-margin-sm">
-                          <strong>{{#if website}}<a href="{{website}}" target="_blank">{{company}}</a>{{else}}{{company}}{{/if}}</strong>
-                          <span class="text-muted" style="margin-left: 0.3em">{{position}}</span>
-                        </p>
-                        <p class="text-muted">
-                          <small>
-                            <span class="space-right"> {{startDate}} - {{#if endDate}}{{endDate}}{{else}}至今{{/if}} | {{location}}</span>
-                          </small>
+                        <p class="clear-margin-sm entry-head">
+                          <span class="entry-title"><strong>{{#if website}}<a href="{{website}}" target="_blank">{{company}}</a>{{else}}{{company}}{{/if}}</strong>
+                          <span class="text-muted" style="margin-left: 0.3em">{{position}}</span></span>
+                          <span class="entry-meta text-muted"><small>{{startDate}} – {{#if endDate}}{{endDate}}{{else}}至今{{/if}}{{#if location}}｜{{location}}{{/if}}</small></span>
                         </p>
                         <p>{{description}}</p>
                         {{#if highlights}}
@@ -299,13 +282,9 @@
                 {{#each resume.education}}
                   <li class="card-nested">
                     <div class="content has-sidebar">
-                      <p class="clear-margin-sm">
-                        <strong>{{institution}}{{#if department}} {{department}}{{/if}}{{#if area}} {{area}}{{/if}}</strong>
-                      </p>
-                      <p class="text-muted clear-margin-sm">
-                        <small>
-                          {{startDate}} 至 {{#if endDate}} {{endDate}}{{else}}至今{{/if}}&nbsp;{{studyType}}
-                        </small>
+                      <p class="clear-margin-sm entry-head">
+                        <span class="entry-title"><strong>{{institution}}{{#if department}} {{department}}{{/if}}{{#if area}} {{area}}{{/if}}</strong></span>
+                        <span class="entry-meta text-muted clear-margin-sm"><small>{{startDate}} 至 {{#if endDate}}{{endDate}}{{else}}至今{{/if}}｜{{studyType}}</small></span>
                       </p>
                       {{#if description}}<div>{{description}}</div>{{/if}}
                       {{#if gpa}}<i>{{gpa}}</i>{{/if}}
@@ -326,12 +305,10 @@
               {{#each resume.awards}}
                 <li class="card-nested">
                   <div class="content has-sidebar">
-                    <p class="clear-margin-sm" itemprop="award">
-                      <strong>{{title}}</strong>&nbsp;
-                      {{awarder}}{{#if summary}}<span class="text-muted">（{{summary}}）</span>{{/if}}
-                    </p>
-                    <p class="text-muted clear-margin-sm">
-                      <small> {{date}} </small>
+                    <p class="clear-margin-sm entry-head" itemprop="award">
+                      <span class="entry-title"><strong>{{title}}</strong>&nbsp;
+                      {{awarder}}{{#if summary}}<span class="text-muted">（{{summary}}）</span>{{/if}}</span>
+                      <span class="entry-meta text-muted"><small>{{date}}</small></span>
                     </p>
                   </div>
                 </li>

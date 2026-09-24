@@ -1,6 +1,8 @@
-/* 页面设置必须在 @media 外部，LESS 不支持嵌套 @page */
+/* 页面设置必须在 @media 外部，LESS 不支持嵌套 @page。
+   页边距由这里统一控制（build-pdf 走 preferCSSPageSize），
+   13/16mm 的留白比 10mm 更显纸张质感，也与浏览器手动打印一致 */
 @page {
-  margin: 1.2cm 1.4cm;
+  margin: 13mm 16mm;
   size: A4;
 }
 
@@ -11,11 +13,20 @@
     print-color-adjust: exact !important;
   }
 
+  /* 纸面灰阶：正文用近黑 #1a1a1a 而非纯黑，长时间阅读更柔和；
+     辅助信息走 #555/#777 两级，形成清晰的视觉层级。
+     打印字体换成苹方（macOS 系统字库）：笔画对比度适中、小字号下
+     墨色均匀，比屏幕端的 Noto Sans SC 更接近高质量印刷品；
+     Windows 上自动回退到微软雅黑，不影响构建 */
   body {
+    font-family: 'PingFang SC', -apple-system, 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', sans-serif !important;
     font-size: 9pt;
     line-height: 1.45;
-    color: #111 !important;
+    color: #1a1a1a !important;
     background: white !important;
+    orphans: 3;
+    widows: 3;
+    font-kerning: normal;
   }
 
   /* 隐藏非打印内容 */
@@ -52,15 +63,15 @@
     box-shadow: none !important;
   }
 
-  /* 个人信息区域：横向紧凑排列 */
+  /* 个人信息区域：横向紧凑排列，不用分隔线，靠留白拉开与正文的距离 */
   .profile-card {
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
-    gap: 14pt !important;
-    padding: 0 0 6pt 0 !important;
-    margin-bottom: 6pt !important;
-    border-bottom: 0.5pt solid #bdbdbd !important;
+    gap: 16pt !important;
+    padding: 0 0 12pt 0 !important;
+    margin-bottom: 4pt !important;
+    border-bottom: 0 !important;
     text-align: left !important;
   }
 
@@ -73,23 +84,31 @@
     height: 52pt !important;
     border-radius: 50% !important;
     display: block !important;
+    /* 白底打印时给头像一圈发丝描边，避免圆形与纸面糊在一起 */
+    border: 0.5pt solid #d9dce0 !important;
+    object-fit: cover !important;
   }
 
   .contact-details {
     flex: 1 !important;
   }
 
+  /* 姓名收紧字距显庄重，职位拉开字距（tracking）是印刷品的经典做法 */
   .name-and-profession .name {
-    font-size: 15pt !important;
+    font-size: 17pt !important;
     font-weight: 700 !important;
     margin: 0 0 2pt 0 !important;
     line-height: 1.2 !important;
+    letter-spacing: 0.8pt !important;
+    color: #111 !important;
   }
 
   .name-and-profession .job {
-    font-size: 10pt !important;
-    color: #444 !important;
+    font-size: 9.5pt !important;
+    color: #555 !important;
     margin: 0 0 4pt 0 !important;
+    letter-spacing: 1.5pt !important;
+    font-weight: 500 !important;
   }
 
   /* 打印联系信息横排 */
@@ -102,16 +121,18 @@
   }
 
   .print-contact-item {
-    font-size: 9pt !important;
-    color: #333 !important;
+    font-size: 8.5pt !important;
+    color: #444 !important;
     line-height: 1.6 !important;
     white-space: nowrap !important;
+    /* 日期/电话等数字列用等宽字形，对齐更整齐 */
+    font-variant-numeric: tabular-nums !important;
   }
 
   .print-contact-item + .print-contact-item::before {
     content: " · " !important;
     color: #aaa !important;
-    padding: 0 4pt !important;
+    padding: 0 5pt !important;
   }
 
   /* 主内容区 */
@@ -123,18 +144,18 @@
     padding: 0 !important;
   }
 
-  /* 区块标题：只保留文字，不加横线 */
+  /* 区块标题：只保留深色标题块，不输出任何延伸横线；
+     上边距 11pt 统一全篇章节节奏 */
   .background-card h4 {
     font-size: 10pt !important;
     font-weight: 700 !important;
-    margin: 6pt 0 2pt 0 !important;
+    margin: 11pt 0 4pt 0 !important;
     padding: 0 !important;
     border: 0 !important;
     display: block !important;
     page-break-after: avoid !important;
   }
 
-  /* 屏幕端的标题渐隐细线与技能标题竖条不进入打印 */
   .background-card h4:after {
     content: none !important;
   }
@@ -148,12 +169,13 @@
   }
 
   .background-card h4 .title {
-    background: #222 !important;
+    background: #1a1a1a !important;
     color: #fff !important;
-    padding: 1pt 6pt 1pt 3pt !important;
+    padding: 1.5pt 8pt 1.5pt 4pt !important;
     font-size: 9pt !important;
     font-weight: 700 !important;
-    letter-spacing: 0.5pt !important;
+    letter-spacing: 1pt !important;
+    border-radius: 0 2pt 2pt 0 !important;
   }
 
   /* card-nested：去掉左侧竖线。
@@ -168,7 +190,7 @@
 
   .card-nested.relax {
     padding: 3pt 0 3pt 6pt !important;
-    margin-bottom: 4pt !important;
+    margin-bottom: 6pt !important;
   }
 
   /* 链接 */
@@ -181,9 +203,9 @@
     content: none !important;
   }
 
-  /* 文本辅助（打印可读性：最小字号不低于 9pt，颜色加深） */
+  /* 文本辅助（打印可读性：最小字号不低于 8.5pt，灰阶分层） */
   .text-muted {
-    color: #444 !important;
+    color: #555 !important;
     font-size: 9pt !important;
   }
 
@@ -196,14 +218,49 @@
     margin: 1pt 0 2pt 0 !important;
     font-size: 9.5pt !important;
     line-height: 1.5 !important;
+    color: #222 !important;
   }
 
   strong {
     font-weight: 700 !important;
+    color: #111 !important;
   }
 
   small {
     font-size: 8.5pt !important;
+    font-variant-numeric: tabular-nums !important;
+  }
+
+  /* 纸面列表：用主题蓝小圆角方块做列表符号——全篇唯一的彩色点缀，
+     比默认圆点精致、比短横线醒目；悬挂缩进让条目左缘对齐。
+     padding-left 与符号 left 必须保持同值（12pt），改一处要同步另一处 */
+  .responsibilities ul,
+  .achievements ul,
+  .highlight,
+  .self-evaluate-list {
+    list-style: none !important;
+    padding-left: 12pt !important;
+  }
+
+  .responsibilities ul > li,
+  .achievements ul > li,
+  .highlight > li,
+  .self-evaluate-list > li {
+    position: relative !important;
+  }
+
+  .responsibilities ul > li:before,
+  .achievements ul > li:before,
+  .highlight > li:before,
+  .self-evaluate-list > li:before {
+    content: "" !important;
+    position: absolute !important;
+    left: -12pt !important;
+    top: 0.55em !important;
+    width: 4pt !important;
+    height: 4pt !important;
+    background: @theme-blue !important;
+    border-radius: 1pt !important;
   }
 
   /* 自我评价（合并后位于页首，内容取自 basics.summary） */
@@ -216,7 +273,7 @@
   /* 项目经历：条目允许跨页（单条职责由 li 级 avoid 保持完整），
      否则整段项目被挤到下一页、页底留大片空白 */
   .projects .card-nested {
-    margin-bottom: 5pt !important;
+    margin-bottom: 6pt !important;
   }
 
   /* 项目经历与个人项目打印样式完全一致：
@@ -254,14 +311,13 @@
   .responsibilities ul,
   .achievements ul {
     margin: 1pt 0 2pt 0 !important;
-    padding-left: 12pt !important;
   }
 
   .responsibilities li,
   .achievements li {
     font-size: 9pt !important;
-    line-height: 1.5 !important;
-    margin-bottom: 1pt !important;
+    line-height: 1.55 !important;
+    margin-bottom: 2pt !important;
     page-break-inside: avoid !important;
   }
 
@@ -274,6 +330,37 @@
     font-size: 8.5pt !important;
   }
 
+  /* 条目标题行：名称居左、日期居右两端对齐，是标准简历的标志性版式 */
+  .entry-head {
+    display: flex !important;
+    align-items: baseline !important;
+    margin: 1pt 0 2pt 0 !important;
+  }
+
+  .entry-head .entry-meta {
+    margin-left: auto !important;
+    padding-left: 10pt !important;
+    white-space: nowrap !important;
+  }
+
+  /* 条目标题：比正文大半磅并收紧字距，扫读时先看到名称 */
+  .entry-head strong {
+    font-size: 10pt !important;
+    letter-spacing: 0.2pt !important;
+  }
+
+  /* 自我评价 */
+  .self-evaluate-list {
+    margin: 1pt 0 2pt 0 !important;
+
+    li {
+      font-size: 9pt !important;
+      line-height: 1.55 !important;
+      margin-bottom: 2pt !important;
+      page-break-inside: avoid !important;
+    }
+  }
+
   /* 工作经历 */
   #work-experience .card-nested {
     page-break-inside: avoid !important;
@@ -281,57 +368,67 @@
 
   .highlight {
     margin: 2pt 0 !important;
-    padding-left: 12pt !important;
   }
 
   .highlight li {
     font-size: 9pt !important;
-    line-height: 1.5 !important;
-    margin-bottom: 1pt !important;
+    line-height: 1.55 !important;
+    margin-bottom: 2pt !important;
     page-break-inside: avoid !important;
   }
 
-  /* 技能区域：两列网格 */
+  /* 技能区域：定义列表版式——分类名固定左列，关键词占满右列。
+     单列通栏比两列 chip 墙宽松得多，长列表自然换行也不挤，
+     左列对齐后扫读效率更高，是印刷品目录/规格表的经典排法 */
   .skill-categories {
-    display: grid !important;
-    grid-template-columns: 1fr 1fr !important;
-    gap: 3pt 12pt !important;
-    margin: 2pt 0 !important;
+    display: block !important;
+    margin: 3pt 0 !important;
   }
 
   .skill-category {
     page-break-inside: avoid !important;
-    margin-bottom: 2pt !important;
+    display: grid !important;
+    grid-template-columns: 78pt 1fr !important;
+    align-items: baseline !important;
+    column-gap: 8pt !important;
+    margin-bottom: 3pt !important;
   }
 
   .skill-category-title {
+    display: block !important;
     font-size: 9pt !important;
     font-weight: 700 !important;
-    margin: 0 0 2pt 0 !important;
-    color: #222 !important;
+    margin: 0 !important;
+    color: #1a1a1a !important;
+    letter-spacing: 0.3pt !important;
+    line-height: 1.7 !important;
   }
 
   .skill-keywords {
     display: flex !important;
     flex-wrap: wrap !important;
-    gap: 2pt !important;
+    gap: 1.5pt 5pt !important;
+    line-height: 1.7 !important;
   }
 
+  /* 关键词用无边框浅底小标签：有分组感但没有边框的拥挤感 */
   .skill-keyword {
     font-size: 8.5pt !important;
-    background: #f2f2f2 !important;
-    border: 0.5pt solid #ccc !important;
+    background: #f4f5f7 !important;
+    border: 0 !important;
     border-radius: 2pt !important;
-    padding: 1pt 5pt !important;
+    padding: 0.5pt 5pt !important;
     margin: 0 !important;
-    line-height: 1.5 !important;
+    line-height: 1.6 !important;
+    color: #333 !important;
     page-break-inside: avoid !important;
   }
 
   /* 专业认证 */
   .certification-item {
     font-size: 9pt !important;
-    line-height: 1.5 !important;
+    line-height: 1.6 !important;
+    page-break-inside: avoid !important;
   }
 
   /* 教育经历 */
@@ -343,13 +440,21 @@
     display: inline !important;
   }
 
+  /* 教育课程标签与技能区同步去盒子化：纯文字 + 间隔号分隔 */
   .label {
     font-size: 8.5pt !important;
-    padding: 1pt 4pt !important;
-    margin: 1pt !important;
-    background: #f2f2f2 !important;
-    border: 0.5pt solid #ccc !important;
-    border-radius: 2pt !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: none !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    color: #444 !important;
+    font-weight: 400 !important;
+  }
+
+  .label + .label::before {
+    content: "· " !important;
+    color: #aaa !important;
   }
 
   /* 荣誉奖项 */
