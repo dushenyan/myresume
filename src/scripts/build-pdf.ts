@@ -6,7 +6,7 @@
  *   npx esno src/scripts/build-pdf.ts --profile=social   只构建指定简历
  */
 import process from 'node:process'
-import { renderProfileHtml, writeProfileHtml } from '../build/html'
+import { injectResumePanels, renderProfileHtml, writeProfileHtml } from '../build/html'
 import { buildProfilePdf } from '../build/pdf'
 import { parseProfileFilter, selectProfiles } from '../core/profiles'
 
@@ -17,8 +17,9 @@ async function main(): Promise<void> {
 
   for (const profile of selected) {
     const html = renderProfileHtml(profile)
-    // build-pdf 同时落盘 HTML，保证 grunt build 一条命令产出 HTML + PDF
-    await writeProfileHtml(profile, html)
+    // 落盘的 HTML 带上押题/报告面板（与 build:html 产出保持一致）；
+    // PDF 用未注入的纯净 HTML，版面不会出现任何交互按钮
+    await writeProfileHtml(profile, injectResumePanels(html))
 
     try {
       await buildProfilePdf(profile, html)

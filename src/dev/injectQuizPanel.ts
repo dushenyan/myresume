@@ -1,11 +1,13 @@
 /**
- * dev 预览专用：把押题面板（数据 JSON + 样式 + 脚本）注入到 HTML 的 </body> 前
+ * 把押题面板（数据 JSON + 样式 + 脚本）注入到 HTML 的 </body> 前
  *
- * 只在 serve.ts 的响应阶段拼接，不写盘、不进构建管线，
- * 因此 dist/index.html 与 PDF 天然不含任何面板痕迹。
+ * 两个调用方：serve.ts（dev 预览，外置解答走 /api/quiz/answer 按需读）与
+ * build/html.ts（生产构建，靠 inlineAnswers 把解答内联、靠 frameOrigin 把演示页
+ * 指向上游站）。PDF 走未注入的纯净 HTML，浏览器打印则由 @media print 隐藏。
  */
 import type { QuizBank } from '../core/quiz'
 import { renderMarkdown } from '../core/mdRenderer'
+import { readQuizAnswerHtml } from '../core/quiz'
 
 /** 面板样式：抽屉 + 触发按钮（无遮罩，打开时页面内容让位左移）；@media print 兜底隐藏 */
 const PANEL_CSS = `
@@ -135,7 +137,7 @@ body.quiz-open .container { transform: translateX(var(--quiz-shift, -420px)); }
   .quiz-back { width: 34px; height: 34px; font-size: 19px; }
 }
 @media print {
-  .quiz-trigger, .quiz-drawer { display: none !important; }
+  .quiz-trigger, .quiz-drawer, .dv-drawer { display: none !important; }
   body.quiz-open .container { transform: none !important; }
 }
 `
@@ -158,10 +160,12 @@ const PANEL_JS = `
   var ICON = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>';
 
   // 内嵌演示地址拼接：目标站 X-Frame-Options: SAMEORIGIN，直连跨域 iframe 会被浏览器拒收，
-  // 所以 iframe 指向本服务同源的真实路径（由 serve.ts 整站反代到演示站）。
-  // 必须保留真实路径（如 /resume-quiz/<uuid>）而非套代理前缀，因为忆谱是 SPA 前端路由：
+  // 所以 dev 下 iframe 指向本服务同源的真实路径（由 serve.ts 整站反代到演示站）；
+  // FRAME_ORIGIN 由注入时填为上游站点地址，生产静态页没有反代可用，只能直连。
+  // 必须保留真实路径（如 /resume-quiz/<uuid>），因为忆谱是 SPA 前端路由：
   // 它靠 location.pathname 解析 dataSource/questionId，靠 ?embed=1 切到“只铺详情弹框”的内嵌态。
   // frame 值可以是裸 uuid / <host>/<dataSource>/<questionId> / 完整嵌入 URL。
+  var FRAME_ORIGIN = '';
 
   // 把 frame 引用归一为不含主机、不含前导斜杠的路径（可带 query）
   function framePath(ref) {
@@ -175,12 +179,12 @@ const PANEL_JS = `
     return p; // 已是 dataSource/questionId
   }
 
-  // 拼同源 iframe 地址：强制带 ?embed=1
+  // 拼 iframe 地址：强制带 ?embed=1
   function frameSrc(ref) {
     var p = framePath(ref);
     var sep = p.indexOf('?') === -1 ? '?' : '&';
     var embed = /[?&]embed=/.test(p) ? '' : sep + 'embed=1';
-    return '/' + p + embed;
+    return FRAME_ORIGIN + '/' + p + embed;
   }
 
   function esc(s) {
@@ -394,7 +398,8 @@ const PANEL_JS = `
     drawer.innerHTML = html;
     bindHead();
     updateProgressUi();
-    if (item.aFile) {
+    // 解答已内联（生产构建）时不再请求接口
+    if (item.aFile && !item.a) {
       fetch('/api/quiz/answer?bank=' + encodeURIComponent(bank.file) + '&file=' + encodeURIComponent(item.aFile))
         .then(function (r) { return r.ok ? r.text() : Promise.reject(new Error('HTTP ' + r.status)); })
         .then(function (h) {
@@ -473,24 +478,42 @@ const PANEL_JS = `
 })();
 `
 
+/** 注入选项：缺省为 dev 形态（外置解答按需读 + 演示页同源反代） */
+export interface QuizPanelOptions {
+  /** 生产静态页没有 /api/quiz/answer，构建期把 `@answer: x.md` 的渲染结果一并内联 */
+  inlineAnswers?: boolean
+  /** 生产静态页没有反代，iframe 直连的上游站点（如 http://134.175.23.212:8581） */
+  frameOrigin?: string
+}
+
 /** 在 </body> 前注入押题面板；无数据时原样返回 */
-export function injectQuizPanel(html: string, banks: QuizBank[]): string {
+export function injectQuizPanel(html: string, banks: QuizBank[], options: QuizPanelOptions = {}): string {
   if (!banks.length)
     return html
 
   // 参考解答 / 亮点描述在服务端预渲染为 markdown HTML，浏览器侧直接 innerHTML 展示
   const enriched = banks.map(b => ({
     ...b,
-    questions: b.questions.map(q => ({ ...q, a: q.a ? renderMarkdown(q.a) : q.a })),
+    questions: b.questions.map((q) => {
+      if (q.a)
+        return { ...q, a: renderMarkdown(q.a) }
+      // 只有内联模式才读盘；读不到就保留 aFile，详情视图仍按原逻辑处理
+      const inlined = options.inlineAnswers && q.aFile ? readQuizAnswerHtml(q.aFile) : null
+      return inlined ? { ...q, a: inlined } : q
+    }),
     highlights: b.highlights.map(h => ({ ...h, detail: h.detail ? renderMarkdown(h.detail) : h.detail })),
   }))
+
+  // 把面板脚本里的 FRAME_ORIGIN 占位常量换成实际上游源（dev 留空即同源）
+  const frameOrigin = (options.frameOrigin ?? '').replace(/[^\w:/.-]/g, '').replace(/\/+$/, '')
+  const panelJs = PANEL_JS.replace('var FRAME_ORIGIN = \'\';', `var FRAME_ORIGIN = '${frameOrigin}';`)
 
   // \u003c 转义防止 JSON 内容里出现 </script> 提前闭合
   const data = JSON.stringify(enriched).replace(/</g, '\\u003c')
   const snippet = [
     `<script type="application/json" id="quiz-data">${data}</script>`,
     `<style>${PANEL_CSS}</style>`,
-    `<script>${PANEL_JS}</script>`,
+    `<script>${panelJs}</script>`,
   ].join('\n')
 
   return html.includes('</body>')

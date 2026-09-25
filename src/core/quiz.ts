@@ -7,16 +7,18 @@
  * 可在解答行写 `@answer: 文件名.md` 引用 docs/quiz/answers/ 下的
  * 独立 md 文件（详情视图按需通过 /api/quiz/answer 读取渲染）。
  * 题目还可写 `@frame:` 关联在线演示：值可以是演示 uuid（拼到默认演示站的
- * resume-quiz 路径下），也可以是完整嵌入 URL（按 embed 文档粘的地址），
- * 详情视图统一经本 dev 服务的 /api/quiz/frame 代理后内嵌为 iframe。
+ * resume-quiz 路径下），也可以是完整嵌入 URL（按 embed 文档粘的地址）；
+ * dev 预览走同源反代路径，生产构建直接拼上游站点地址内嵌。
  * matchName 为简历项目 displayName 的子串，匹配不到的主题
  * 由前端面板在浏览器控制台告警（不展示入口）。
  *
- * 仅供 dev 预览服务（serve.ts）使用，不参与 HTML/PDF 构建管线。
+ * 调用方：dev 预览服务（serve.ts，外置解答与报告走接口按需读）与
+ * 生产 HTML 构建（build/html.ts，全部数据构建期内联）。
  */
 import fs from 'node:fs'
 import path from 'node:path'
 import process from 'node:process'
+import { renderMarkdown } from './mdRenderer'
 
 export interface QuizHighlight {
   title: string
@@ -180,6 +182,25 @@ function normalizeFrameRef(value: string): string {
 /** 外置解答 md 文件的存放目录（dev 专属，随题包目录一起维护） */
 export function quizAnswersDir(quizDir = path.join(process.cwd(), 'docs', 'quiz')): string {
   return path.join(quizDir, 'answers')
+}
+
+/**
+ * 读取并渲染一篇外置解答 md（docs/quiz/answers/<file>）为 HTML 片段。
+ * 文件名非法、越出解答目录或不存在时返回 null，由调用方决定报 404 还是降级。
+ */
+export function readQuizAnswerHtml(file: string, answersDir = quizAnswersDir()): string | null {
+  const name = path.basename(file)
+  if (!name.endsWith('.md'))
+    return null
+  const full = path.join(answersDir, name)
+  if (!full.startsWith(answersDir) || !fs.existsSync(full))
+    return null
+  try {
+    return renderMarkdown(fs.readFileSync(full, 'utf-8'), { stripFrontMatter: true })
+  }
+  catch {
+    return null
+  }
 }
 
 /** 加载全部押题库；目录缺失返回空数组，单文件解析失败只告警不阻塞 */

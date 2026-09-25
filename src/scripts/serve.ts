@@ -6,8 +6,8 @@
  *   npx esno src/scripts/serve.ts --profile=social   预览指定简历
  *
  * dev 专属能力：响应前注入「预测押题」面板（docs/quiz/*.md）与
- * 「面试诊断报告」抽屉（docs/*.md），仅存在于内存中的响应体，
- * 不写盘、不进 HTML/PDF 构建产物。
+ * 「面试诊断报告」抽屉（docs/*.md）；两者也会由构建管线内联到生产 HTML，
+ * 区别只在 dev 把外置解答/报告留成接口按需读、演示页走同源反代。
  */
 import { Buffer } from 'node:buffer'
 import fs from 'node:fs'
@@ -18,7 +18,7 @@ import { Readable } from 'node:stream'
 import { renderProfileHtml } from '../build/html'
 import { renderMarkdown } from '../core/mdRenderer'
 import { loadProfiles, parseProfileFilter } from '../core/profiles'
-import { loadQuizBanks, quizAnswersDir } from '../core/quiz'
+import { loadQuizBanks, readQuizAnswerHtml } from '../core/quiz'
 import { injectDocViewer } from '../dev/injectDocViewer'
 import { injectQuizPanel } from '../dev/injectQuizPanel'
 
@@ -72,26 +72,16 @@ const previewProfile = selectPreviewProfile()
  */
 function handleQuizAnswer(reqUrl: string, res: http.ServerResponse) {
   const file = new URL(reqUrl, `http://localhost:${PORT}`).searchParams.get('file') || ''
-  const name = path.basename(file)
-  const answersDir = quizAnswersDir()
-  const full = path.join(answersDir, name)
+  const htmlBody = readQuizAnswerHtml(file)
 
-  if (!name.endsWith('.md') || !full.startsWith(answersDir) || !fs.existsSync(full)) {
+  if (htmlBody === null) {
     res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' })
     res.end('<p class="q-p">（未找到解答文件）</p>')
     return
   }
 
-  try {
-    const htmlBody = renderMarkdown(fs.readFileSync(full, 'utf-8'), { stripFrontMatter: true })
-    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' })
-    res.end(htmlBody)
-  }
-  catch (error) {
-    console.error('解答文件读取错误:', error)
-    res.writeHead(500, { 'Content-Type': 'text/html; charset=utf-8' })
-    res.end('<p class="q-p">（解答文件读取失败）</p>')
-  }
+  res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' })
+  res.end(htmlBody)
 }
 
 /** 逐跳头 + 不能原样透传的头：解压器已把 gzip 展开，再带 content-encoding 会让浏览器解码失败；x-frame-options 会阻止内嵌 */

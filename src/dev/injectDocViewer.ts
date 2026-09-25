@@ -50,11 +50,15 @@ const VIEWER_CSS = `
 }
 `
 
+/** 报告正文来源：docs/ 根下的这份 md（dev 走 /api/doc，生产构建内联） */
+export const DOC_VIEWER_FILE = '项目面试诊断.md'
+
 /** 面板行为脚本（浏览器端 ES5 风格原生 JS，字符串注入所以不走 TS 编译） */
 const VIEWER_JS = `
 (function () {
-  var FILE = '项目面试诊断.md';
-  var cache = null;
+  var FILE = '${DOC_VIEWER_FILE}';
+  // 生产构建会把报告 HTML 直接填进这个占位，避开不存在的 /api/doc
+  var cache = __DOC_INLINE__;
 
   var drawer = document.createElement('aside');
   drawer.className = 'dv-drawer';
@@ -103,7 +107,7 @@ const VIEWER_JS = `
     var btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'quiz-trigger dv-inline';
-    btn.title = '读取 docs/' + FILE + '（仅 dev 预览）';
+    btn.title = '读取 docs/' + FILE;
     btn.innerHTML = '<span>📋 诊断报告</span>';
     btn.addEventListener('click', open);
     trigger.insertAdjacentElement('afterend', btn);
@@ -117,11 +121,13 @@ const VIEWER_JS = `
 })();
 `
 
-/** 在 </body> 前注入诊断报告按钮与抽屉 */
-export function injectDocViewer(html: string): string {
+/** 在 </body> 前注入诊断报告按钮与抽屉；传 inlineDocHtml 则内联报告正文（静态页用） */
+export function injectDocViewer(html: string, inlineDocHtml?: string | null): string {
+  // JSON.stringify 产出合法 JS 字面量，再把 < 转义防止内容里出现 </script> 提前闭合
+  const inline = inlineDocHtml ? JSON.stringify(inlineDocHtml).replace(/</g, '\\u003c') : 'null'
   const snippet = [
     `<style>${VIEWER_CSS}</style>`,
-    `<script>${VIEWER_JS}</script>`,
+    `<script>${VIEWER_JS.replace('__DOC_INLINE__', inline)}</script>`,
   ].join('\n')
 
   return html.includes('</body>')
