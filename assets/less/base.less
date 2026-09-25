@@ -73,28 +73,63 @@ a:focus-visible,
 
 /* 桌面端优化 */
 @media only screen and (min-width: 992px) {
-  .container {
-    display: grid;
-    grid-template-columns: auto 15fr 50fr auto;
-    grid-gap: 2rem;
-    max-width: 1400px;
-    margin: 0 auto;
-
-    .page {
-      max-width: 50em;
-      width: 100%;
-    }
-
-    /* 桌面端：个人信息卡吸顶，长简历滚动时随时可见联系方式 */
-    > section:first-child .card {
-      position: sticky;
-      top: 2rem;
-    }
+  /* 定屏布局：整页锁定视口高度，仅中心内容区滚动，个人信息卡固定可见 */
+  html {
+    height: 100%;
   }
 
   body {
     font-size: 16px;
+    height: 100%;
     padding: 2rem 0;
+    overflow: hidden;
+  }
+
+  .container {
+    display: grid;
+    grid-template-columns: auto 15fr 50fr auto;
+    grid-template-rows: minmax(0, 1fr);
+    grid-gap: 2rem;
+    max-width: 1400px;
+    height: 100%;
+    margin: 0 auto;
+
+    /* 栅格子项默认 min-height:auto 会阻止收缩，需置 0 才能内部滚动 */
+    > section {
+      min-height: 0;
+    }
+
+    .page {
+      max-width: 50em;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+
+      .card-wrapper {
+        height: 100%;
+      }
+
+      /* 中心内容卡作为全页唯一滚动容器：占满高度、隐藏滚动条（仍可滚轮/触控滚动） */
+      .background-card {
+        height: 100%;
+        margin-bottom: 0;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE / 旧 Edge */
+
+        &::-webkit-scrollbar {
+          width: 0;
+          height: 0;
+          display: none; /* Chrome / Safari */
+        }
+      }
+    }
+
+    /* 定屏后信息卡无需吸顶，随所在列固定显示 */
+    > section:first-child .card {
+      position: static;
+    }
   }
 
   .name-and-profession .name {

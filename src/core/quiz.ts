@@ -3,7 +3,12 @@
  *
  * 文件约定：front-matter（matchName / title / stack）+
  * 「## 预测押题」（- 列表问题，题目下方缩进行为参考解答）+
- *「## 项目亮点挖掘」（编号亮点）。
+ *「## 项目亮点挖掘」（编号亮点）。当题包内联解答过长时，
+ * 可在解答行写 `@answer: 文件名.md` 引用 docs/quiz/answers/ 下的
+ * 独立 md 文件（详情视图按需通过 /api/quiz/answer 读取渲染）。
+ * 题目还可写 `@frame:` 关联在线演示：值可以是演示 uuid（拼到默认演示站的
+ * resume-quiz 路径下），也可以是完整嵌入 URL（按 embed 文档粘的地址），
+ * 详情视图统一经本 dev 服务的 /api/quiz/frame 代理后内嵌为 iframe。
  * matchName 为简历项目 displayName 的子串，匹配不到的主题
  * 由前端面板在浏览器控制台告警（不展示入口）。
  *
@@ -21,6 +26,10 @@ export interface QuizHighlight {
 export interface QuizQuestion {
   q: string
   a: string
+  /** 外置解答文件名（位于 docs/quiz/answers/），存在时详情视图优先按需读取该文件 */
+  aFile?: string
+  /** 在线演示引用（@frame: 行）：演示 uuid 或完整嵌入 URL，存在时详情视图内嵌对应 iframe */
+  frame?: string
 }
 
 export interface QuizBank {
@@ -35,6 +44,11 @@ export interface QuizBank {
 }
 
 const FRONT_MATTER_RE = /^---\r?\n([\s\S]*?)\r?\n---/
+// 外置解答引用行：@answer: 文件名.md（不含空白与路径分隔符，服务端再取 basename 兼防穿越）；
+// 允许被 HTML 注释包裹（<!-- @answer: x.md -->），注释本身不进入解答正文
+const ANSWER_REF_RE = /^(?:<!--\s*)?@answer:\s*([^\s/\\]+\.md)\s*(?:-->)?$/
+// 在线演示引用行：@frame: 演示 uuid 或完整嵌入 URL（均不含空白）；同上支持注释包裹
+const FRAME_REF_RE = /^(?:<!--\s*)?@frame:\s*(\S+)\s*(?:-->)?$/
 // 亮点行：编号 + **标题**（标题不含 *）+ 同行描述；避免重叠量词引发回溯告警
 const HIGHLIGHT_RE = /^\d+\.\s*\*\*([^*]+)\*\*(.*)$/
 
@@ -68,21 +82,34 @@ function splitSections(body: string): Record<string, string[]> {
   return sections
 }
 
-/** 题目行以 - 开头；紧随其后的非空行（缩进书写）并入该题的参考解答 */
+/** 题目行以顶格 `- ` 开头；紧随其后的缩进行（含 markdown 列表/代码）按原行结构并入参考解答 */
 function parseQuestions(lines: string[]): QuizQuestion[] {
   const questions: QuizQuestion[] = []
   let current: QuizQuestion | null = null
 
   for (const raw of lines) {
-    const line = raw.trim()
-    if (!line)
+    if (!raw.trim())
       continue
-    if (line.startsWith('- ')) {
-      current = { q: line.replace(/^-\s*/, ''), a: '' }
+    // 顶格 `- ` 视为新问题；带缩进的行（哪怕以 - 开头）归入当前题，以支持答案内的 markdown 列表
+    if (/^-\s+/.test(raw)) {
+      current = { q: raw.replace(/^-\s*/, ''), a: '' }
       questions.push(current)
     }
     else if (current) {
-      current.a = current.a ? `${current.a} ${line}` : line
+      const content = raw.replace(/^ {0,2}/, '').replace(/\s+$/, '')
+      const ref = content.match(ANSWER_REF_RE)
+      if (ref) {
+        current.aFile = ref[1]
+        continue
+      }
+      const frame = content.match(FRAME_REF_RE)
+      if (frame) {
+        // 完整 URL 归一为「不含协议与主机」的路径部分，主机交绐代理解析：
+        // 题包里粘的任何演示站地址都能走同一套同源代理，浏览器控制台不会泄露上游主机
+        current.frame = normalizeFrameRef(frame[1])
+        continue
+      }
+      current.a = current.a ? `${current.a}\n${content}` : content
     }
   }
   return questions
@@ -90,18 +117,21 @@ function parseQuestions(lines: string[]): QuizQuestion[] {
 
 function parseHighlights(lines: string[]): QuizHighlight[] {
   const highlights: QuizHighlight[] = []
+  let current: QuizHighlight | null = null
 
-  for (const line of lines) {
-    const matched = line.match(HIGHLIGHT_RE)
+  for (const raw of lines) {
+    if (!raw.trim())
+      continue
+    const matched = raw.match(HIGHLIGHT_RE)
     if (matched) {
-      // 编号行：标题 + 同行可能存在的描述；后续缩进行续接描述
-      highlights.push({ title: matched[1].trim(), detail: matched[2].trim() })
+      // 编号行：标题 + 同行可能存在的描述；后续缩进行续接描述（保留行结构以支持 markdown）
+      current = { title: matched[1].trim(), detail: matched[2].trim() }
+      highlights.push(current)
       continue
     }
-    const detail = line.trim()
-    if (detail && highlights.length) {
-      const last = highlights[highlights.length - 1]
-      last.detail = last.detail ? `${last.detail} ${detail}` : detail
+    if (current) {
+      const content = raw.replace(/^ {0,3}/, '').replace(/\s+$/, '')
+      current.detail = current.detail ? `${current.detail}\n${content}` : content
     }
   }
   return highlights
@@ -132,6 +162,24 @@ export function parseQuizMarkdown(raw: string, file: string): QuizBank | null {
     questions,
     highlights,
   }
+}
+
+/** 把 @frame 值归一：完整 URL 削成 <host>/<path>?<query>#<hash> 的相对形式，uuid 原样保留 */
+function normalizeFrameRef(value: string): string {
+  if (!/^https?:\/\//i.test(value))
+    return value
+  try {
+    const url = new URL(value)
+    return `${url.host}${url.pathname}${url.search}${url.hash}`
+  }
+  catch {
+    return value
+  }
+}
+
+/** 外置解答 md 文件的存放目录（dev 专属，随题包目录一起维护） */
+export function quizAnswersDir(quizDir = path.join(process.cwd(), 'docs', 'quiz')): string {
+  return path.join(quizDir, 'answers')
 }
 
 /** 加载全部押题库；目录缺失返回空数组，单文件解析失败只告警不阻塞 */

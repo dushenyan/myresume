@@ -17,7 +17,7 @@ export const basicInfo: Resume['basics'] = {
   headline: 'Agent 开发 · 多 Agent 编排 · RAG · 智能体平台 · LLM 微调与推理',
   // 合并原「自我评价」区块后的总述：按招聘官 6 秒扫描写——首句即定位（方向+落地数字），
   // 四条核心优势每条只留「能力 + 一个锚点」，细节全部留给项目区展开
-  summary: '近 2 年聚焦 AI Agent 与 LLM 应用开发，在政务业务场景主导 3 个 AI 应用从 0 到 1 上线（智能客服知识中台 / GraphRAG 知识库 / LangGraph 多 Agent 研究助手）；近 8 年前端工程底蕴，对话工作台、流式渲染与过程可视化可独立完成，能把 Agent 从 Demo 推进到可交付产品。\n'
+  summary: '近 2 年聚焦 AI Agent 与 LLM 应用开发，在政务业务场景主导 3 个 AI 应用从 0 到 1 上线（智能客服知识中台 / GraphRAG 知识库 / LangGraph 多 Agent 研究助手）；5 年前端工程底蕴作为直接资产，对话工作台、流式渲染与过程可视化可独立完成，能把 Agent 从 Demo 推进到可交付产品。\n'
     + '\n'
     + '核心优势：\n'
     + '• Agent 与编排：LangGraph 有向图状态机编排四角色 Agent（Checkpointer 断点续跑、控制流与语言任务分离）；Coze/Dify 低代码交付 8+ 业务智能体，双轨覆盖技术与场景\n'

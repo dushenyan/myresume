@@ -17,5 +17,5 @@ export const selfEvaluate: Resume['selfEvaluate'] = [
   '「低代码 + 自研」双轨 Agent 能力：自研四角色编排器，也可基于 Coze/Dify 交付业务智能体；技术与场景两边都能上手',
   'RAG 工程链路：三存储架构、BM25 + 向量混合检索、bge-reranker 精排两阶段管线，理解「精度 vs 延迟」的工程权衡',
   '模型侧动手能力：Qwen2.5 LoRA 微调（loss mask / ChatML / QLoRA）、意图识别多方案选型、bge 向量与重排模型自适应部署',
-  '近 8 年前端底蕴是直接资产：对话工作台、流式渲染与过程可视化由我补全，能把 Agent 原型推进到可交付而非停在 Demo',
+  '5 年前端底蕴是直接资产：对话工作台、流式渲染与过程可视化由我补全，能把 Agent 原型推进到可交付而非停在 Demo',
 ]
