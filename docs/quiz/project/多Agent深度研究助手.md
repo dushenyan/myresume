@@ -7,11 +7,11 @@ stack: Python | FastAPI | LangGraph | Redis | Jinja2 | Pydantic
 ## 预测押题
 
 - 为什么用 LangGraph 状态机而不是线性链（Chain）或自主 ReAct Agent 做编排？有向图解决了什么控制流问题？
-  @answer: langgraph-vs-chain.md
+  @frame: 2184436d-7e13-4d49-96c4-2c6e65b2e292
 - Keyword / Summary / Judge / Report 四角色怎么分工？为什么 Judge 要单独成节点？
-  @answer: four-agent-roles.md
+  @frame: 2d5dfffa-9825-4810-95a2-146eec3b38e0
 - Checkpointer 断点续跑怎么实现？恢复时状态从哪加载，任务失败重跑会重复计费吗？
-  @answer: checkpointer-resume.md
+  @frame: 05122c9b-ab62-4a17-b389-fbe28cc54c9d
 - 迭代检索的收敛条件是什么？max_rounds 怎么定？判不收敛怎么办？
   @answer: iterative-convergence.md
 - 单次检索失败为什么兜底空结果而不是中断？失败重试和降级策略怎么权衡？

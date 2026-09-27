@@ -12,6 +12,12 @@
  * - LangGraph → 多 Agent 深度研究助手（StateGraph 编排 + Checkpointer 断点续跑）
  * - RAGAS / HITL → 政务 RAG 知识库「评估与反馈闭环」职责条目
  * - vLLM → 政务 RAG「模型服务化」（XInference 的推理后端）与总述部署链路
+ * - ReAct 诊断循环 → devops-agent「观察-假设-验证」职责条目
+ * - 工具调用安全防线 / JSON-RPC 2.0 → mcp-servers 四道防线与协议核心
+ * - Java / Spring AI / Milvus / PostgreSQL / 多租户隔离 → multi-tenant-rag
+ * - WebSocket 实时推送 → debate-agents「/ws/debate 实时通道」
+ * - CLI 工具开发 / Streamlit → file-wizard 工程底座与 FAQ 中台演示端
+ * - ChatOllama 本地模型接入 → sy-llm（Ollama 本地 / DeepSeek 云端双实现）
  * - AutoGen / SGLang 暂无项目级实现，被追问时以「对比理解」作答
  *   （AutoGen 对话式驱动 vs LangGraph 图状态机的控制流确定性；
  *   SGLang RadixAttention 前缀缓存 vs vLLM PagedAttention），勿主动扩展。
@@ -31,18 +37,20 @@ export const skills: Resume['skills'] = [
     keywords: [
       '多 Agent 编排与角色分工',
       'LangGraph（StateGraph / Checkpointer）/ AutoGen 多智能体框架',
-      'Function Calling / Tool Use',
-      '多轮会话与上下文管理',
-      'MCP（Model Context Protocol）',
+      'Function Calling / Tool Use / ReAct 诊断循环',
+      'MCP（Model Context Protocol，JSON-RPC 2.0 协议层）',
+      '工具调用安全防线（路径白名单 / SQL 守卫 / 凭证隔离）',
       'Prompt Engineering（Jinja2 模板化）',
       'Few-shot 动态样本检索',
       '结构化输出与 OutputParser',
+      '多租户上下文隔离与会话管理',
     ],
   },
   {
     category: 'RAG 与语义检索',
     keywords: [
-      '混合检索（BM25 + dense_vector）',
+      '混合检索（BM25 + dense_vector / RRF 融合）',
+      'Milvus 向量库租户分区',
       '中文向量模型（bge-small / base-zh）',
       '重排序（bge-reranker）',
       '文档解析与重叠分块策略',
@@ -86,6 +94,7 @@ export const skills: Resume['skills'] = [
       'Sentence-Transformers 语义向量',
       'transformers / PEFT / accelerate',
       'vLLM / SGLang 推理加速与服务化部署',
+      'ChatOllama 本地模型接入',
     ],
   },
   {
@@ -112,7 +121,10 @@ export const skills: Resume['skills'] = [
       'Elasticsearch 8.x（全文 + 向量）',
       'Redis 多级缓存与主动失效',
       'Neo4j 知识图谱',
+      // 'Java / Spring Boot + Spring AI',
+      // 'PostgreSQL',
       'TypeScript / Node.js',
+      // 'WebSocket 实时推送（asyncio 队列桥接）',
     ],
   },
   {
@@ -130,8 +142,9 @@ export const skills: Resume['skills'] = [
     keywords: [
       '对话工作台与流式渲染',
       '工具调用过程可视化',
-      'Vue 3 / React',
+      'Vue 3',
       '会话状态管理与持久化',
+      'Streamlit 快速原型',
     ],
   },
   {
@@ -140,6 +153,8 @@ export const skills: Resume['skills'] = [
       'uv / Makefile',
       'Monorepo（pnpm workspace）',
       'ESLint / Husky',
+      // 'CLI 工具开发（commander / vitest / tsdown）',
+      // 'Mock 离线回归与对抗性测试用例',
       'CI/CD 与 Docker 部署',
       'Agent Skills 编写',
       '自定义 Rules / Command',

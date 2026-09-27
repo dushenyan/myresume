@@ -7,11 +7,13 @@
  *
  * dev 专属能力：响应前注入「预测押题」面板（docs/quiz/*.md）与
  * 「面试诊断报告」抽屉（docs/*.md）；两者也会由构建管线内联到生产 HTML，
- * 区别只在 dev 把外置解答/报告留成接口按需读、演示页走同源反代。
+ * 区别只在 dev 把外置解答/报告留成接口按需读、演示页走同源反代；
+ * 目录大纲无运行期依赖，dev 与生产共用同一份注入。
  */
 import { Buffer } from 'node:buffer'
 import fs from 'node:fs'
 import http from 'node:http'
+import os from 'node:os'
 import path from 'node:path'
 import process from 'node:process'
 import { Readable } from 'node:stream'
@@ -21,6 +23,7 @@ import { loadProfiles, parseProfileFilter } from '../core/profiles'
 import { loadQuizBanks, readQuizAnswerHtml } from '../core/quiz'
 import { injectDocViewer } from '../dev/injectDocViewer'
 import { injectQuizPanel } from '../dev/injectQuizPanel'
+import { injectTocPanel } from '../dev/injectTocPanel'
 
 // 默认 8888；被占用时可用 PORT=9000 npx esno src/scripts/serve.ts 换端口起第二份
 const PORT = Number(process.env.PORT) || 8888
@@ -66,9 +69,9 @@ function selectPreviewProfile() {
 const previewProfile = selectPreviewProfile()
 
 /**
- * 外置解答 md 文件读取（dev 专属）：/api/quiz/answer?file=xxx.md
- * 从 docs/quiz/answers/ 下按 basename 取文件（basename 已剔除目录，防路径穿越），
- * 渲染为 HTML 片段返回，供详情视图按需加载。
+ * 外置解答 md 文件读取（dev 专属）：/api/quiz/answer?file=086b8c26/ans.md
+ * 按相对路径从 docs/quiz/answers/ 下取文件（绝对路径、含 .. 的穿越路径由
+ * readQuizAnswerHtml 统一拦下），渲染为 HTML 片段返回，供详情视图按需加载。
  */
 function handleQuizAnswer(reqUrl: string, res: http.ServerResponse) {
   const file = new URL(reqUrl, `http://localhost:${PORT}`).searchParams.get('file') || ''
@@ -177,8 +180,8 @@ const server = http.createServer(async (req, res) => {
   if (req.url === '/') {
     try {
       // 注入顺序有依赖：押题脚本先执行创建 .quiz-trigger，
-      // 诊断报告脚本后执行才能把入口挂到押题按钮旁边
-      const html = injectDocViewer(injectQuizPanel(await renderProfileHtml(previewProfile), loadQuizBanks()))
+      // 诊断报告脚本后执行才能把入口挂到押题按钮旁边；目录大纲放最外层，只扫描成品 DOM
+      const html = injectTocPanel(injectDocViewer(injectQuizPanel(await renderProfileHtml(previewProfile), loadQuizBanks())))
       res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' })
       res.end(html)
     }
@@ -234,7 +237,18 @@ server.on('error', (error: NodeJS.ErrnoException) => {
   process.exit(1)
 })
 
+/** 收集本机局域网 IPv4 地址（剔除回环/内部接口），供启动日志打印，方便同网段设备访问 */
+function getLanAddresses(): string[] {
+  return Object.values(os.networkInterfaces()).flat().flatMap((info) => {
+    if (info && info.family === 'IPv4' && !info.internal) {
+      return [`http://${info.address}:${PORT}/`]
+    }
+    return []
+  })
+}
+
 server.listen(PORT)
 
 console.log(`\n🐥 预览: http://localhost:${PORT}/`)
+getLanAddresses().forEach(address => console.log(`📡 局域网: ${address}`))
 console.log(`预览简历: [${previewProfile.id}] ${previewProfile.displayName}`)

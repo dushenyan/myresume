@@ -6,6 +6,7 @@
  * 入口不悬浮：本脚本在押题脚本之后执行（serve.ts 链式注入顺序保证），
  * 给每个押题按钮右侧补一枚同规格的「诊断报告」胶囊按钮（琥珀色区分），
  * 同一标题行只挂一枚，点击打开共享抽屉；押题按钮不存在时只在控制台告警。
+ * 技能关键词词条内的入口不参与挂载（.skill-keyword 整词条可点，要求无按钮）。
  * 抽屉与押题抽屉同宽同位对齐显示（top/right/bottom 32px、宽 420px），
  * 并通过押题面板暴露的 window.__quizLayout 复用同一套内容让位逻辑；
  * 打开报告抽屉时强制收起押题抽屉，避免两个面板叠在一起。
@@ -97,11 +98,13 @@ const VIEWER_JS = `
     if (window.__quizLayout) window.__quizLayout.clear();
   }
 
-  // 给每个押题按钮右侧补一枚「诊断报告」入口（同一父容器只挂一枚），共享一个抽屉
+  // 给每个押题按钮右侧补一枚「诊断报告」入口（同一父容器只挂一枚），共享一个抽屉；
+  // 跳过技能词条内的按钮：词条旁边出现报告按钮会破坏「无按钮、点词条直接开抽屉」的交互
   var seenHeads = [];
   var triggers = document.querySelectorAll('.quiz-trigger');
   for (var i = 0; i < triggers.length; i++) {
     var trigger = triggers[i];
+    if (trigger.closest && trigger.closest('.skill-keyword')) continue;
     if (seenHeads.indexOf(trigger.parentNode) !== -1) continue;
     seenHeads.push(trigger.parentNode);
     var btn = document.createElement('button');

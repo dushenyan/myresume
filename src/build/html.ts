@@ -9,6 +9,7 @@ import { loadQuizBanks } from '../core/quiz'
 import { renderHtml } from '../core/render'
 import { DOC_VIEWER_FILE, injectDocViewer } from '../dev/injectDocViewer'
 import { injectQuizPanel } from '../dev/injectQuizPanel'
+import { injectTocPanel } from '../dev/injectTocPanel'
 
 /** 生产页里内嵌演示的上游源（与 dev 反代目标同一含义，部署到其他演示站时改环境变量） */
 const DEMO_ORIGIN = process.env.FRAME_BASE || 'http://134.175.23.212:8581'
@@ -35,11 +36,12 @@ export async function writeProfileHtml(profile: ResumeProfile, html: string): Pr
 }
 
 /**
- * 给生产 HTML 加上押题面板与面试诊断报告抽屉（默认不注入，需显式调用）。
+ * 给生产 HTML 加上押题面板、面试诊断报告抽屉与目录大纲（默认不注入，需显式调用）。
  *
  * 静态页没有 dev 服务，所以所有数据构建期内联：题包 JSON、外置解答 md、报告 md；
  * 运行期不再请求任何接口。frame 题的 iframe 直连 DEMO_ORIGIN（跳站部署时会被对方
- * X-Frame-Options 拦住内嵌，属于已接受的取舍）。PDF 不走这一层，保持纯净。
+ * X-Frame-Options 拦住内嵌，属于已接受的取舍）。目录大纲纯前端扫描成品 DOM，
+ * 无任何运行期依赖，dev 与生产共用同一份注入。PDF 不走这一层，保持纯净。
  */
 export function injectResumePanels(html: string): string {
   const banks = loadQuizBanks()
@@ -51,10 +53,10 @@ export function injectResumePanels(html: string): string {
   if (!docHtml)
     console.warn(`⚠️ 未找到诊断报告 ${DOC_VIEWER_FILE}，生产页报告抽屉将为空`)
 
-  return injectDocViewer(
+  return injectTocPanel(injectDocViewer(
     injectQuizPanel(html, banks, { inlineAnswers: true, frameOrigin: DEMO_ORIGIN }),
     docHtml,
-  )
+  ))
 }
 
 /**

@@ -104,18 +104,20 @@
       "keywords": [
         "多 Agent 编排与角色分工",
         "LangGraph（StateGraph / Checkpointer）/ AutoGen 多智能体框架",
-        "Function Calling / Tool Use",
-        "多轮会话与上下文管理",
-        "MCP（Model Context Protocol）",
+        "Function Calling / Tool Use / ReAct 诊断循环",
+        "MCP（Model Context Protocol，JSON-RPC 2.0 协议层）",
+        "工具调用安全防线（路径白名单 / SQL 守卫 / 凭证隔离）",
         "Prompt Engineering（Jinja2 模板化）",
         "Few-shot 动态样本检索",
-        "结构化输出与 OutputParser"
+        "结构化输出与 OutputParser",
+        "多租户上下文隔离与会话管理"
       ]
     },
     {
       "category": "RAG 与语义检索",
       "keywords": [
-        "混合检索（BM25 + dense_vector）",
+        "混合检索（BM25 + dense_vector / RRF 融合）",
+        "Milvus 向量库租户分区",
         "中文向量模型（bge-small / base-zh）",
         "重排序（bge-reranker）",
         "文档解析与重叠分块策略",
@@ -155,7 +157,8 @@
         "意图识别多方案选型",
         "Sentence-Transformers 语义向量",
         "transformers / PEFT / accelerate",
-        "vLLM / SGLang 推理加速与服务化部署"
+        "vLLM / SGLang 推理加速与服务化部署",
+        "ChatOllama 本地模型接入"
       ]
     },
     {
@@ -196,8 +199,9 @@
       "keywords": [
         "对话工作台与流式渲染",
         "工具调用过程可视化",
-        "Vue 3 / React",
-        "会话状态管理与持久化"
+        "Vue 3",
+        "会话状态管理与持久化",
+        "Streamlit 快速原型"
       ]
     },
     {

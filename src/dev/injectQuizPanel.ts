@@ -4,6 +4,7 @@
  * 两个调用方：serve.ts（dev 预览，外置解答走 /api/quiz/answer 按需读）与
  * build/html.ts（生产构建，靠 inlineAnswers 把解答内联、靠 frameOrigin 把演示页
  * 指向上游站）。PDF 走未注入的纯净 HTML，浏览器打印则由 @media print 隐藏。
+ * 题包按 docs/quiz/project ｜ skill 分目录，分别挂到项目条与技能关键词词条。
  */
 import type { QuizBank } from '../core/quiz'
 import { renderMarkdown } from '../core/mdRenderer'
@@ -100,6 +101,10 @@ body.quiz-open .container { transform: translateX(var(--quiz-shift, -420px)); }
 .quiz-detail-answer .q-hr { border: 0; border-top: 1px dashed #d1d5db; margin: 7px 0; }
 .quiz-detail-answer a { color: #428bca; text-decoration: underline; }
 .q-ext { font-style: normal; color: #b5bac2; margin-left: 5px; font-size: 11px; }
+/* 命中技能题包的关键词词条：整词条可点直接展开抽屉，不挂任何按钮；
+   虚线下划线示意可点，悬停变色与押题体系同色系 */
+.skill-keyword.has-quiz { cursor: pointer; border-bottom: 1px dashed rgba(66, 139, 202, 0.5); transition: color 0.15s ease, background 0.15s ease; }
+.skill-keyword.has-quiz:hover { color: #428bca; background: rgba(66, 139, 202, 0.08); }
 .quiz-list li.open .quiz-answer { display: block; }
 .quiz-hl { margin-top: 8px; border-top: 1px dashed #e5e7eb; padding-top: 6px; }
 .quiz-hl summary { cursor: pointer; font-weight: 600; font-size: 12px; }
@@ -138,6 +143,8 @@ body.quiz-open .container { transform: translateX(var(--quiz-shift, -420px)); }
 }
 @media print {
   .quiz-trigger, .quiz-drawer, .dv-drawer { display: none !important; }
+  /* 技能词条可点样式不打印：回退为普通文本，不留虚线下划线 */
+  .skill-keyword.has-quiz { cursor: auto; border-bottom: 0; color: inherit; background: none; }
   body.quiz-open .container { transform: none !important; }
 }
 `
@@ -345,7 +352,7 @@ const PANEL_JS = `
     var done = loadProgress(bank);
     var html = headHtml(bank, null)
       + '<div class="quiz-progress"><div class="quiz-progress-track"><div class="quiz-progress-bar"></div></div><span></span></div>'
-      + '<div class="quiz-body"><h4>预测押题</h4><ol class="quiz-list">';
+      + '<div class="quiz-body"><h4>' + (bank.category === 'skill' ? '技能押题' : '预测押题') + '</h4><ol class="quiz-list">';
     bank.questions.forEach(function (item, i) {
       var hasAns = !!(item.a || item.aFile);
       var canOpen = hasAns || !!item.frame;
@@ -447,33 +454,68 @@ const PANEL_JS = `
     updateProgressUi();
   });
 
-  // 1. 项目条目挂按钮：entry-head（项目经历）与个人项目的标题行都扫描
+  // 1. 题目入口挂载：项目题包（category=project）按 matchName 挂到项目条目标题右侧，
+  // 技能题包（category=skill）不走这里，由下方词条循环直接可点
+  function attachProjectTrigger(head, bank) {
+    var old = head.querySelector('.quiz-trigger[data-file="' + CSS.escape(bank.file) + '"]');
+    if (old) old.remove(); // 同一题包重复命中时重建，避免进度不同步
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'quiz-trigger';
+    btn.setAttribute('data-file', bank.file);
+    btn.title = '查看预测押题与亮点挖掘';
+    btn.innerHTML = ICON + '<span>押题' + (bank.questions.length ? ' ' + doneCount(bank) + '/' + bank.questions.length : '') + '</span>';
+    btn.addEventListener('click', function () { renderBank(bank); });
+    var anchor = head.querySelector('.entry-title');
+    if (anchor) anchor.insertAdjacentElement('afterend', btn);
+    else head.appendChild(btn);
+  }
+
   var used = {};
   var heads = document.querySelectorAll('#projects .entry-head, #personal-projects .entry-head, #personal-projects .content > p:first-child');
   for (var i = 0; i < heads.length; i++) {
     var head = heads[i];
     var text = head.textContent || '';
-    var matched = banks.filter(function (b) { return b.matchName && text.indexOf(b.matchName) !== -1; });
+    var matched = banks.filter(function (b) { return b.category !== 'skill' && b.matchName && text.indexOf(b.matchName) !== -1; });
     if (!matched.length) continue;
-    matched.forEach(function (b) { used[b.file] = true; });
     matched.forEach(function (b) {
-      var btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'quiz-trigger';
-      btn.setAttribute('data-file', b.file);
-      btn.title = '查看预测押题与亮点挖掘';
-      btn.innerHTML = ICON + '<span>押题 ' + (b.questions.length ? doneCount(b) + '/' + b.questions.length : '') + '</span>';
-      btn.addEventListener('click', function () { renderBank(b); });
-      var anchor = head.querySelector('.entry-title');
-      if (anchor) anchor.insertAdjacentElement('afterend', btn);
-      else head.appendChild(btn);
+      used[b.file] = true;
+      attachProjectTrigger(head, b);
     });
   }
 
-  // 2. 未匹配任何项目条目的题库：仅控制台提示，不展示入口
-  var rest = banks.filter(function (b) { return !used[b.file]; });
-  if (rest.length) {
-    console.warn('[quiz] 以下题包的 matchName 未匹配到项目条目：' + rest.map(function (b) { return b.file; }).join('、'));
+  // 技能区：题干 keywords 是词条文本的子串即命中（如「混合检索」命中带括注的长词条）；
+  // 词条本身即入口（无押题/诊断按钮），命中多个题包时连点循环切换
+  var kwSpans = document.querySelectorAll('.skill-categories .skill-keyword');
+  for (var k = 0; k < kwSpans.length; k++) {
+    var span = kwSpans[k];
+    var kwText = (span.textContent || '').trim();
+    if (!kwText) continue;
+    var hitBanks = banks.filter(function (b) {
+      if (b.category !== 'skill' || !b.keywords.length) return false;
+      return b.keywords.some(function (kw) { return kwText.indexOf(kw) !== -1; });
+    });
+    if (!hitBanks.length) continue;
+    hitBanks.forEach(function (b) { used[b.file] = true; });
+    span.classList.add('has-quiz');
+    if (hitBanks.length > 1) span.title = '点击展开技能押题（连点可切换 ' + hitBanks.length + ' 个题包）';
+    (function (banksForSpan) {
+      var seq = 0;
+      span.addEventListener('click', function () {
+        renderBank(banksForSpan[seq % banksForSpan.length]);
+        seq++;
+      });
+    })(hitBanks);
+  }
+
+  // 2. 未匹配到任何条目的题包：仅控制台提示，不展示入口（按目录分开报告）
+  var restProject = banks.filter(function (b) { return !used[b.file] && b.category !== 'skill'; });
+  if (restProject.length) {
+    console.warn('[quiz] 以下题包的 matchName 未匹配到项目条目：' + restProject.map(function (b) { return b.file; }).join('、'));
+  }
+  var restSkill = banks.filter(function (b) { return !used[b.file] && b.category === 'skill'; });
+  if (restSkill.length) {
+    console.warn('[quiz] 以下技能题包的 keywords 未匹配到技能关键词词条：' + restSkill.map(function (b) { return b.file; }).join('、'));
   }
 })();
 `
