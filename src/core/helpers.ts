@@ -26,9 +26,12 @@ export function registerTemplateHelpers(): void {
     return iconMap[text.trim().toLowerCase()] ?? 'ri:link'
   })
 
-  // 根据 printHidden 字段输出对应 class，控制打印时是否显示该项目
-  Handlebars.registerHelper('domClasses', function (this: { printHidden?: boolean }) {
-    return this.printHidden ? 'print-hide-project' : ''
+  // 根据 showPDF / printHidden 字段输出对应 class，控制打印时是否显示该项目。
+  // 优先级：显式声明 showPDF 时以其为准（false = 隐藏）；
+  // 未声明 showPDF 时回退到旧的 printHidden 语义（true = 隐藏）。
+  Handlebars.registerHelper('domClasses', function (this: { printHidden?: boolean, showPDF?: boolean }) {
+    const hidden = typeof this.showPDF === 'boolean' ? !this.showPDF : !!this.printHidden
+    return hidden ? 'print-hide-project' : ''
   })
 
   // 将文本中的换行符转换为 <br>
@@ -36,6 +39,19 @@ export function registerTemplateHelpers(): void {
     let escaped = Handlebars.Utils.escapeExpression(text)
     escaped = escaped.replace(/(\r\n|\n|\r)/g, '<br>')
     return new Handlebars.SafeString(escaped)
+  })
+
+  // 职位标题中英混排时，把拉丁词包进 .latin-no-track：打印区的宽字距（tracking）
+  // 是中文印刷手法，英文跟着加会逐字母散开；先按原文分段再逐段转义，
+  // 避免在 HTML 实体（如 &amp;）内部插入标签破坏转义
+  Handlebars.registerHelper('trackLatin', (text: string) => {
+    const parts = String(text ?? '').split(/([A-Za-z0-9][A-Za-z0-9+/.-]*)/)
+    const html = parts
+      .map((part, index) => (index % 2 === 1
+        ? `<span class="latin-no-track">${Handlebars.Utils.escapeExpression(part)}</span>`
+        : Handlebars.Utils.escapeExpression(part)))
+      .join('')
+    return new Handlebars.SafeString(html)
   })
 
   Handlebars.registerHelper('getBuildDate', () => {

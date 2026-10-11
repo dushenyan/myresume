@@ -1,4 +1,9 @@
 {
+  // 全局搜索时排除 resume 目录（简历数据源，搜索结果不需显示其中的文字）
+  "search.exclude": {
+    "**/resume": true
+  },
+
   // Disable the default formatter, use eslint instead
   "prettier.enable": false,
   "editor.formatOnSave": false,

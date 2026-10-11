@@ -9,7 +9,11 @@
  * 「面试诊断报告」抽屉（docs/*.md）；两者也会由构建管线内联到生产 HTML，
  * 区别只在 dev 把外置解答/报告留成接口按需读、演示页走同源反代；
  * 目录大纲无运行期依赖，dev 与生产共用同一份注入。
+ *
+ * /data_front 路由：实时渲染 src/data_front/ 下的前端方向简历数据，
+ * 不经过 JSON 生成管线，改完数据刷新浏览器即可看到。
  */
+import type { Resume } from '../types'
 import { Buffer } from 'node:buffer'
 import fs from 'node:fs'
 import http from 'node:http'
@@ -21,6 +25,7 @@ import { renderProfileHtml } from '../build/html'
 import { renderMarkdown } from '../core/mdRenderer'
 import { loadProfiles, parseProfileFilter } from '../core/profiles'
 import { loadQuizBanks, readQuizAnswerHtml } from '../core/quiz'
+import { renderHtml } from '../core/render'
 import { injectDocViewer } from '../dev/injectDocViewer'
 import { injectQuizPanel } from '../dev/injectQuizPanel'
 import { injectTocPanel } from '../dev/injectTocPanel'
@@ -67,6 +72,14 @@ function selectPreviewProfile() {
 }
 
 const previewProfile = selectPreviewProfile()
+
+/**
+ * dev 面板统一注入：押题脚本先执行创建 .quiz-trigger，
+ * 诊断报告脚本后执行才能把入口挂到押题按钮旁边；目录大纲放最外层，只扫描成品 DOM
+ */
+function injectDevPanels(html: string): string {
+  return injectTocPanel(injectDocViewer(injectQuizPanel(html, loadQuizBanks())))
+}
 
 /**
  * 外置解答 md 文件读取（dev 专属）：/api/quiz/answer?file=086b8c26/ans.md
@@ -145,6 +158,25 @@ async function proxyToDemo(req: http.IncomingMessage, res: http.ServerResponse) 
   }
 }
 
+/** data_front 预览目录（dev 专属）：前端方向的平行数据源，不落 JSON，按请求直接渲染 */
+const DATA_FRONT_DIR = path.resolve(__dirname, '../data_front')
+
+/**
+ * 渲染 data_front 简历（dev 专属）：先按目录前缀清除 require 缓存
+ * （拆分成模块后仅清入口不够，basics.ts 等子模块会命中旧缓存），
+ * 再动态 require 组装数据、渲染 HTML 并注入 dev 面板。
+ */
+function renderDataFrontHtml(): string {
+  for (const key of Object.keys(require.cache)) {
+    if (key.startsWith(DATA_FRONT_DIR)) {
+      delete require.cache[key]
+    }
+  }
+  // eslint-disable-next-line ts/no-require-imports
+  const resume = require('../data_front').assembleBaseResume() as Resume
+  return injectDevPanels(renderHtml(resume))
+}
+
 /**
  * docs/ 根层 md 文件读取（dev 专属）：/api/doc?file=xxx.md
  * 从 docs/ 根目录按 basename 取文件（basename 已剔除目录，防路径穿越），
@@ -179,9 +211,7 @@ const server = http.createServer(async (req, res) => {
   // 押题 md / 诊断报告同样每次请求重读，改 docs 后刷新即生效）
   if (req.url === '/') {
     try {
-      // 注入顺序有依赖：押题脚本先执行创建 .quiz-trigger，
-      // 诊断报告脚本后执行才能把入口挂到押题按钮旁边；目录大纲放最外层，只扫描成品 DOM
-      const html = injectTocPanel(injectDocViewer(injectQuizPanel(await renderProfileHtml(previewProfile), loadQuizBanks())))
+      const html = injectDevPanels(await renderProfileHtml(previewProfile))
       res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' })
       res.end(html)
     }
@@ -202,6 +232,20 @@ const server = http.createServer(async (req, res) => {
   // docs/ 根层 md 接口：诊断报告抽屉按需拉取
   if (req.url && req.url.startsWith('/api/doc')) {
     handleDoc(req.url, res)
+    return
+  }
+
+  // data_front 预览路由：实时渲染 src/data_front 下的前端方向简历
+  if (req.url && ['/data_front', '/data_front/'].includes(req.url.split('?')[0])) {
+    try {
+      res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' })
+      res.end(renderDataFrontHtml())
+    }
+    catch (error) {
+      console.error('data_front 渲染错误:', error)
+      res.writeHead(500, { 'Content-Type': 'text/html; charset=utf-8' })
+      res.end('<h1>data_front 渲染失败，请检查错误信息</h1>')
+    }
     return
   }
 
@@ -250,5 +294,6 @@ function getLanAddresses(): string[] {
 server.listen(PORT)
 
 console.log(`\n🐥 预览: http://localhost:${PORT}/`)
+console.log(`🐥 前端方向预览: http://localhost:${PORT}/data_front`)
 getLanAddresses().forEach(address => console.log(`📡 局域网: ${address}`))
 console.log(`预览简历: [${previewProfile.id}] ${previewProfile.displayName}`)

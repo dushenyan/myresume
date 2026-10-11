@@ -8,6 +8,9 @@ import type { Resume } from '../types'
 
 /**
  * 职业认证列表
+ *
+ * 参照 data 的取舍：仅保留国家职业资格证书，在线课程结业证书不进入认证板块——
+ * 学习成果通过 education.ts 的体系化学习条目与项目经历体现。
  */
 export const certifications: Resume['certifications'] = [
   {

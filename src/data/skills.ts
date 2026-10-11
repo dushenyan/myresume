@@ -36,7 +36,7 @@ export const skills: Resume['skills'] = [
     category: 'Agent 与 LLM 应用',
     keywords: [
       '多 Agent 编排与角色分工',
-      'LangGraph（StateGraph / Checkpointer）/ AutoGen 多智能体框架',
+      'LangGraph / AutoGen 多智能体框架',
       'Function Calling / Tool Use / ReAct 诊断循环',
       'MCP（Model Context Protocol，JSON-RPC 2.0 协议层）',
       '工具调用安全防线（路径白名单 / SQL 守卫 / 凭证隔离）',

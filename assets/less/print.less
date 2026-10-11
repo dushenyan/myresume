@@ -111,6 +111,12 @@
     font-weight: 500 !important;
   }
 
+  /* 宽字距是给中文设计的印刷手法；英文单词跟着逐字母加字距会被拆得字字隔离
+     （如「A g e n t」），由 trackLatin helper 把拉丁词包进此 class 归零字距 */
+  .name-and-profession .job .latin-no-track {
+    letter-spacing: 0 !important;
+  }
+
   /* 打印联系信息横排 */
   .print-contact-row {
     display: flex !important;
@@ -131,7 +137,8 @@
 
   .print-contact-item + .print-contact-item::before {
     content: " · " !important;
-    color: #aaa !important;
+    /* 8.5pt 下 #aaa 几乎看不见，加深到中灰：仍是弱分隔，不抢联系信息的主体 */
+    color: #666 !important;
     padding: 0 5pt !important;
   }
 
@@ -349,7 +356,14 @@
     letter-spacing: 0.2pt !important;
   }
 
-  /* 自我评价 */
+  /* 自我评价：打印整块隐藏（PDF 版本不需要，屏幕版本仍显示）。
+     标题 #self-evaluate 受上方 .background-card h4 { display:block !important }
+     影响，特异性高于通用 .print-hidden，故在此用 ID 选择器显式覆盖 */
+  #self-evaluate,
+  #self-evaluate + .card-nested {
+    display: none !important;
+  }
+
   .self-evaluate-list {
     margin: 1pt 0 2pt 0 !important;
 

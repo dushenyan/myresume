@@ -1,0 +1,31 @@
+# myresume Docker 编排
+#
+# 生产静态托管（默认）：
+#   docker compose up --build resume-web
+#
+# dev 开发服务器（押题面板 / 诊断报告 / 演示站反代）：
+#   docker compose --profile dev up --build resume-dev
+services:
+  resume-web:
+    build:
+      context: .
+      target: nginx
+    image: myresume:latest
+    container_name: myresume-web
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+
+  resume-dev:
+    profiles: ["dev"]
+    build:
+      context: .
+      target: dev
+    image: myresume:dev
+    container_name: myresume-dev
+    ports:
+      - "8888:8888"
+    environment:
+      # @frame 演示站反代目标，可按需改成本地演示应用
+      FRAME_BASE: "http://134.175.23.212:8581"
+    restart: unless-stopped

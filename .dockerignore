@@ -1,0 +1,18 @@
+# 依赖与构建产物（镜像内会重新安装/构建）
+node_modules
+dist
+assets/css
+
+# 版本控制与编辑器
+.git
+.gitignore
+.vscode
+
+# 本地文档与图片不影响构建产物
+*.log
+.DS_Store
+
+# Docker 自身相关文件（保留 docker/ 供生产镜像 COPY nginx.conf）
+Dockerfile
+docker-compose.yml
+.dockerignore

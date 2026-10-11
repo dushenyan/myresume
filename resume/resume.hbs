@@ -27,7 +27,7 @@
                 <div class="contact-details">
                   <div class="name-and-profession">
                     <h3 class="text-bolder name" itemprop="name"> {{name}}</h3>
-                    <div class="text-muted job" itemprop="jobTitle">{{label}}</div>
+                    <div class="text-muted job" itemprop="jobTitle">{{trackLatin label}}</div>
                   </div>
 
                   {{#if address}}
@@ -102,7 +102,7 @@
                               <span class="iconify" data-icon="{{toSocialIcon 'link'}}"></span>
                             </a>
                           {{/if}}</span>
-                          {{#if duration}}<span class="entry-meta text-muted"><small>{{duration}}</small></span>{{/if}}
+                          {{#if duration}}<span class="entry-meta text-muted print-hidden"><small>{{duration}}</small></span>{{/if}}
                         </p>
                         {{#if summary}}
                         <p class="text-muted project-summary">{{summary}}</p>
@@ -175,7 +175,7 @@
               <div class="list-unstyled projects">
                 <div class="project-table">
                 {{#each resume.personalProjects}}
-                  <li class="card-nested personal-project-item{{#if brief}} project-brief{{/if}}">
+                  <li class="card-nested personal-project-item{{#if brief}} project-brief{{/if}} {{domClasses}}">
                     <div class="content has-sidebar">
                       <p class="clear-margin-sm" itemprop="award">
                         <strong>{{displayName}}</strong>&nbsp;
@@ -232,8 +232,8 @@
             </div>
             <div class='px10'></div>
 
-            <h4 id="self-evaluate"><span class="title">自我评价</span> </h4>
-            <div class="card-nested" itemprop="description">
+            <h4 id="self-evaluate" class="print-hidden"><span class="title">自我评价</span> </h4>
+            <div class="card-nested print-hidden" itemprop="description">
               <ul class="self-evaluate-list">
                 {{#each resume.selfEvaluate}}
                   <li>{{.}}</li>
@@ -284,7 +284,7 @@
                     <div class="content has-sidebar">
                       <p class="clear-margin-sm entry-head">
                         <span class="entry-title"><strong>{{institution}}{{#if department}} {{department}}{{/if}}{{#if area}} {{area}}{{/if}}</strong></span>
-                        <span class="entry-meta text-muted clear-margin-sm"><small>{{startDate}} 至 {{#if endDate}}{{endDate}}{{else}}至今{{/if}}｜{{studyType}}</small></span>
+                        <span class="entry-meta text-muted clear-margin-sm"><small>{{startDate}} 至 {{#if endDate}}{{endDate}}{{else}}至今{{/if}}{{#if studyType}}｜{{studyType}}{{/if}}</small></span>
                       </p>
                       {{#if description}}<div>{{description}}</div>{{/if}}
                       {{#if gpa}}<i>{{gpa}}</i>{{/if}}

@@ -45,6 +45,11 @@ html {
     font-size: 1.1rem;
     color: @text-secondary;
     letter-spacing: 0.02em;
+
+    /* 与打印区同理：英文词不归入中文的字距节奏（屏幕端 0.02em 影响小，保持一致处理） */
+    .latin-no-track {
+      letter-spacing: 0;
+    }
   }
 }
 

@@ -4,13 +4,13 @@
     "picture": "https://avatars.githubusercontent.com/u/63347504",
     "label": "Agent 开发工程师",
     "headline": "Agent 开发 · 多 Agent 编排 · RAG · 智能体平台 · LLM 微调与推理",
-    "summary": "近 2 年聚焦 AI Agent 与 LLM 应用开发，在政务业务场景主导 3 个 AI 应用从 0 到 1 上线（智能客服知识中台 / GraphRAG 知识库 / LangGraph 多 Agent 研究助手）；5 年前端工程底蕴作为直接资产，对话工作台、流式渲染与过程可视化可独立完成，能把 Agent 从 Demo 推进到可交付产品。\n\n核心优势：\n• Agent 与编排：LangGraph 有向图状态机编排四角色 Agent（Checkpointer 断点续跑、控制流与语言任务分离）；Coze/Dify 低代码交付 8+ 业务智能体，双轨覆盖技术与场景\n• RAG 与检索：GraphRAG 三存储异构架构、BM25 + 向量 RRF 融合检索、bge-reranker 两阶段精排、RAGAS 评估与 HITL 反馈闭环，Top-5 召回率 71% → 93%\n• 模型与底层：Qwen2.5 LoRA 微调（loss mask / ChatML / QLoRA）、意图识别四方案选型（BERT 方案 95%+ 准确率）、bge 向量与重排模型自适应部署\n• 服务与部署：Python / FastAPI 异步全栈（MySQL / ES / Redis / Neo4j），Docker + XInference（vLLM 推理后端）+ AutoDL 私有化链路，数据不出域",
+    "summary": "近 2 年聚焦 AI Agent 与 LLM 应用开发，在政务业务场景主导 3 个 AI 应用从 0 到 1 上线（智能客服知识中台 / GraphRAG 知识库 / LangGraph 多 Agent 研究助手）；5 年前端工程底蕴作为直接资产，对话工作台、流式渲染与过程可视化可独立完成，能把 Agent 从 Demo 推进到可交付产品。\n\n核心优势：\n• Agent 与编排：LangGraph 有向图状态机编排四角色 Agent（Checkpointer 断点续跑、控制流与语言任务分离）；Coze/Dify 低代码交付 8+ 业务智能体，双轨覆盖技术与场景\n• RAG 与检索：GraphRAG 三存储异构架构、BM25 + 向量 RRF 融合检索、bge-reranker 两阶段精排、RAGAS 评估与 HITL 反馈闭环，Top-5 召回率 71% 提升至 93%\n• 模型与底层：Qwen2.5 LoRA 微调（loss mask / ChatML / QLoRA）、意图识别四方案选型（BERT 方案 95%+ 准确率）、bge 向量与重排模型自适应部署\n• 服务与部署：Python / FastAPI 异步全栈（MySQL / ES / Redis / Neo4j），Docker + XInference（vLLM 推理后端）+ AutoDL 私有化链路，数据不出域",
     "website": "https://duhenyanblog.netlify.app/",
     "address": "海南 海口",
     "projects_url": "https://github.com/dushenyan",
     "image_avatar": "https://avatars.githubusercontent.com/u/63347504",
     "username": "dushenyan",
-    "email": "shenyandu@qq.com",
+    "email": "dushenyan88@gmail.com",
     "html_title": "杜审言-Agent 开发工程师",
     "pdfLink": "杜审言-Agent 开发工程师-社招.pdf",
     "languages": "中文",
@@ -43,7 +43,7 @@
     {
       "company": "海南流云科技有限公司",
       "companyInfo": "（政务数字化服务商 | 海南省重点软件企业）",
-      "position": "技术负责人（前端 → AI 应用开发方向）",
+      "position": "技术负责人",
       "website": "http://www.hainanbi.com/",
       "location": "海南海口",
       "isCurrentRole": true,
@@ -52,10 +52,10 @@
       "description": "负责政务数字化核心产品的架构设计与交付，主导团队从纯前端向「前端 + AI 应用」双轨能力转型：业务侧主导政务 RAG 知识库、智能客服知识中台等 AI 应用从 0 到 1 落地（详见项目经历），研发侧引入 AI 编码工具与 Skills/Rules 体系",
       "highlights": [
         "【AI 应用落地】面向政务业务场景主导三个 AI 应用的设计与交付：政务服务智能客服知识中台（ES 融合检索 + 多渠道答案适配）、政务 RAG 知识库（GraphRAG 三存储 + 两阶段检索 + RAGAS 评估）、多 Agent 深度研究助手（LangGraph 编排），上线后客服首答率达 80%+、单主题调研耗时从 2-3 小时压至 15 分钟内，把政务产品从表单办理升级到智能问答与辅助调研",
-        "【智能体平台交付】基于 Coze / Dify 低代码平台交付政策咨询、材料预审等 8+ 业务智能体，经钉钉 / 企微渠道发布给坐席与公众侧使用，与自研 Agent 形成「低代码快速覆盖 + 自研攻坚深水区」双轨节奏",
+        "【智能体平台交付】基于 Coze / Dify 低代码平台交付政策咨询、材料预审等 8+ 业务智能体，经钉钉发布给坐席与公众侧使用，与自研 Agent 形成「低代码快速覆盖 + 自研攻坚深水区」双轨节奏",
         "【AI 研发效能】在项目中引入 Cursor / Trae 等 AI 编码工具，沉淀 Agent Skills 与自定义 Rules 约束 AI 生成代码的规范与边界，统一项目初始化流程与代码风格",
-        "【架构与工程化】主导 Vue2 至 Vue3 + TS 技术栈升级并建立统一组件库（liuyun-ui），开发效率提升 50%；自研 liuyun-cli 脚手架统一项目初始化流程，为后续 AI 应用集成统一脚手架基线",
-        "【团队建设】带领 5 人前端团队，建立 Code Review 与自动化测试流程，代码质量问题减少 60%；牵头团队每周 AI 技术分享，推动团队整体向 AI 应用方向转型"
+        "【架构与工程化】主导 Vue2 至 Vue3 + TS 技术栈升级并建立统一组件库，开发效率提升 50%；自研脚手架统一项目初始化流程，为后续 AI 应用集成统一脚手架基线",
+        "【团队建设】带领 5 人团队，建立 Code Review 与自动化测试流程，代码质量问题减少 60%；牵头团队每周 AI 技术分享，推动团队整体向 AI 应用方向转型"
       ]
     },
     {
@@ -64,12 +64,15 @@
       "website": "http://blueorigintech.com/",
       "location": "江西南昌",
       "summary": "产品研发与工程架构部",
-      "startDate": "2018-12-01",
+      "startDate": "2021-07-01",
       "endDate": "2022-07-01",
-      "description": "负责公司核心产品的前端开发与性能优化，参与技术方案设计与评审，推动工程规范建设",
+      "description": "负责公司核心产品的前端开发与性能优化，场景覆盖管理后台、数据大屏与多端应用，参与技术方案设计与评审，推动工程规范建设",
       "highlights": [
-        "【数据可视化】优化大型数据可视化组件，以 Canvas 替代 SVG，数据渲染速度提升 200%",
-        "【规范建设】建立前端开发规范与代码评审流程，推动 ESLint + Prettier 统一代码风格，输出 10+ 篇技术文档"
+        "【数据可视化】优化大型数据可视化组件，以 Canvas 替代 SVG，数据渲染速度提升 200%；主导大数据可视化平台前端建设，基于 Three.js + ECharts 实现 3D 地图交互与多图表联动，设计 vw 适配方案支持大屏/小屏双模式展示",
+        "【跨端开发】基于 uni-app 实现微信小程序 + H5 一套代码多端交付，沉淀字典数据、列表分页等跨端复用方案，解决 iOS 安全区适配等端侧兼容问题",
+        "【权限与多租户】设计 RBAC 动态路由与按钮级权限控制方案，支持多租户、多组织架构下的数据隔离与精细化授权，匹配政企复杂组织场景",
+        "【首屏性能】通过路由懒加载、组件按需引入与静态资源缓存策略优化管理后台首屏加载，首屏渲染耗时降低 40%",
+        "【规范建设】建立前端开发规范与代码评审流程，推动 ESLint + Prettier 统一代码风格"
       ]
     }
   ],
@@ -103,7 +106,7 @@
       "category": "Agent 与 LLM 应用",
       "keywords": [
         "多 Agent 编排与角色分工",
-        "LangGraph（StateGraph / Checkpointer）/ AutoGen 多智能体框架",
+        "LangGraph / AutoGen 多智能体框架",
         "Function Calling / Tool Use / ReAct 诊断循环",
         "MCP（Model Context Protocol，JSON-RPC 2.0 协议层）",
         "工具调用安全防线（路径白名单 / SQL 守卫 / 凭证隔离）",
@@ -244,7 +247,7 @@
     },
     {
       "name": "government-advanced-rag",
-      "displayName": "政务 RAG 知识库系统（GraphRAG 智能底座）",
+      "displayName": "政务 RAG 知识库系统",
       "summary": "面向政务政策咨询的 GraphRAG 知识库系统：三存储异构架构 + 两阶段检索 + RAGAS 评估与 HITL 反馈闭环",
       "primaryLanguage": [
         "Python",
@@ -268,7 +271,7 @@
     },
     {
       "name": "depth-research-assistant",
-      "displayName": "多 Agent 深度研究助手（LangGraph 编排）",
+      "displayName": "多 Agent 深度研究助手",
       "summary": "基于 LangGraph 状态机编排四角色 Agent 的自动调研工具：检索、阅读、判断补检、综合成报告，支持断点续跑",
       "primaryLanguage": [
         "Python",
@@ -291,7 +294,7 @@
     },
     {
       "name": "mcp-servers",
-      "displayName": "MCP 工具服务器集合（mcp-servers）",
+      "displayName": "MCP 工具服务器集合",
       "summary": "实现文件系统 / SQLite / 企业 API 网关 3 个 MCP 服务器，完整覆盖 tools / resources / prompts 三大原语，内置路径白名单 + 只读模式 + SQL 守卫 + Token 鉴权四道安全防线",
       "primaryLanguage": [
         "Python",
@@ -313,7 +316,7 @@
     },
     {
       "name": "debate-agents",
-      "displayName": "辩论式决策多 Agent（debate-agents）",
+      "displayName": "辩论式决策多 Agent",
       "summary": "用结构化辩论做决策的多 Agent 系统：正反双方立论-质询-反驳-总结、法官四维加权裁决，双层防共识坍缩 + 三重终止条件，WebSocket 实时可视化",
       "primaryLanguage": [
         "Python",
@@ -334,32 +337,8 @@
       ]
     },
     {
-      "name": "multi-tenant-rag",
-      "displayName": "多租户知识库问答 Agent（multi-tenant-rag）",
-      "summary": "SaaS 知识库纵深防御架构：向量库按租户分区物理隔离 + chunk 级 ACL 过滤召回 + 防泄漏后置校验三重防线，配套租户身份网关注入与问答审计计费，确保跨租户数据零泄漏",
-      "primaryLanguage": [
-        "Java",
-        "Spring Boot",
-        "Spring AI",
-        "Milvus",
-        "PostgreSQL",
-        "Redis"
-      ],
-      "role": "独立设计与开发",
-      "duration": "2026-04 ~ 2026-06",
-      "description": "多租户 SaaS 知识库的核心风险是「绝不能让 A 公司检索到 B 公司的文档」；据此构建「租户上下文 → 分区召回 → ACL 过滤 → 防泄漏后置校验 → LLM 问答 → 审计计费」的纵深防御架构，兼顾数据隔离、商业化合规与可解释引用",
-      "responsibilities": [
-        "【双重隔离】向量库按 tenantId 分区存储 / 检索（Milvus partition 等价），检索只扫本租户分区、跨租户数据在数据结构层面不可达；chunk 级文档 ACL 元数据过滤构成第二层隔离",
-        "【权限检索器三层防线】分区召回 → 文档级 ACL 过滤（候选多取 topK×3 再过滤，避免过滤成 0；过滤为空时明确提示「有 N 条命中因权限被过滤」）→ 防泄漏后置校验（返回前逐条断言 chunk.tenantId == 请求租户，不一致即熔断抛异常并记 BLOCKED_TENANT 审计），即使上游逻辑改坏也不泄漏",
-        "【租户身份安全】TenantContext 强制非空构造（禁止匿名检索），租户标识由 API 网关鉴权后注入 X-Tenant-Id 头，应用层不信任客户端自报租户",
-        "【问答审计与计费】每次问答落审计流水（租户 / 用户 / 问题 / 命中数 / token 估算 / 拦截原因），按租户聚合计费 + 安全巡检（被拦截访问清单），SaaS 商业化合规有据",
-        "【LLM 网关接口化】LLM 网关经接口抽象提供 Spring AI 在线生成与 Mock 离线回归双实现，「检索 → 生成 → 审计落账」链路不依赖模型服务即可离线编译验证，隔离防线可独立回归",
-        "【REST 服务化】提供 /ask /audit /billing 接口，租户与用户上下文统一由 API 网关鉴权后经 X-Tenant-Id / X-User 头注入"
-      ]
-    },
-    {
       "name": "devops-agent",
-      "displayName": "DevOps 运维诊断 Agent（devops-agent）",
+      "displayName": "DevOps 运维诊断 Agent",
       "summary": "告警接入 → 证据采集 → ReAct 诊断 → 修复方案 + 风险评估 → HITL 安全处置全链路：分级去重聚合收敛告警风暴，规则引擎筛选关键指标，根因准确率实测 92/100",
       "primaryLanguage": [
         "Python",
@@ -381,7 +360,7 @@
     },
     {
       "name": "edu-tutor-agent",
-      "displayName": "教育个性化辅导 Agent（edu-tutor-agent）",
+      "displayName": "教育个性化辅导 Agent",
       "summary": "知识点掌握度画像（冷启动先验 + 指数平滑）驱动薄弱点优先选题与动态难度调整，答错苏格拉底式引导防答案泄漏 + 错因三类归因，把题海战术无差别推送变成可解释的个性化辅导闭环",
       "primaryLanguage": [
         "Python",
@@ -398,20 +377,6 @@
         "【题库结构化与判题】题库按 3 知识点 × L1-L3 难度 × 考查技能三元组建模，答案归一化判题（全角 / 空格容错），难度档耗尽自动就近降档兜底",
         "【画像可解释与服务化】掌握度、答题数、正确数三本账可查，薄弱知识点自动排序驱动选题；REST 服务支持按画像选题、提交答题、查询画像，全链路离线可运行"
       ]
-    },
-    {
-      "name": "intent-classify",
-      "displayName": "意图识别服务（四方案选型起步）",
-      "summary": "规则、TF-IDF、BERT 微调、动态 Few-shot LLM 四方案对比与压测：BERT 微调方案准确率 95%+、推理 P99 < 50ms，按成本与语义复杂度递进选型，模型推理统一集成 FastAPI",
-      "primaryLanguage": [
-        "Python",
-        "FastAPI",
-        "transformers",
-        "scikit-learn"
-      ],
-      "role": "独立开发与选型评估",
-      "duration": "2024-06 ~ 2024-09",
-      "brief": true
     }
   ],
   "selfEvaluate": [
@@ -432,7 +397,7 @@
       "title": "公司年度优秀技术负责人",
       "summary": "技术创新与团队建设突出",
       "awarder": "海南流云科技有限公司",
-      "date": "2023-01"
+      "date": "2024-01"
     }
   ],
   "interests": [
@@ -452,9 +417,9 @@
   "personalProjects": [
     {
       "name": "file-wizard",
-      "displayName": "AI 文件整理助手 file-wizard（MCP 工具调用）",
-      "summary": "AI 驱动的文件整理 CLI：手写 MCP 客户端协议层 + 六家 AI 提供商统一抽象，把「模型工具调用」做成可复现的工程实现",
-      "description": "独立设计与实现，两个月 28 次提交持续迭代：按规则或 AI 语义对文件分类、重命名，AI 侧打通「提供商客户端—MCP 工具调用—批量调度」完整链路",
+      "displayName": "AI 文件整理助手",
+      "summary": "AI 驱动的文件整理 CLI：手写 MCP 客户端协议层 + 多家 AI 提供商统一抽象，把「模型工具调用」做成可复现的工程实现",
+      "description": "独立设计与实现：按规则或 AI 语义对文件分类、重命名，AI 侧打通「提供商客户端—MCP 工具调用—批量调度」完整链路",
       "primaryLanguage": [
         "TypeScript",
         "Node.js",
@@ -462,18 +427,21 @@
         "commander",
         "zod"
       ],
+      "showPDF": true,
       "responsibilities": [
         "【MCP 客户端自研】以 JSON-RPC 2.0 over stdio 手写 MCP 协议层：initialize 握手与能力协商、tools/list 发现与 tools/call 调用、MCP server 进程（如 filesystem server）的拉起与生命周期管理，不依赖重型 SDK，协议细节可控可调",
-        "【多提供商统一抽象】设计 Groq / Gemini / DeepSeek / Qwen / OpenRouter / 智谱 六家提供商的统一客户端接口：基类抽象 + 配置化模型参数，切换提供商只需改一行 YAML，密钥全走环境变量零明文",
+        "【多提供商统一抽象】设计 Gemini / DeepSeek / Qwen 等多家提供商的统一客户端接口：基类抽象 + 配置化模型参数，切换提供商只需改一行 YAML，密钥全走环境变量零明文",
+        "【规则分类引擎】按扩展名 / 日期 / 大小 / 名称多维规则分类，叠加 AI 语义分类与重命名并结合文件内容分析提升归类准确度，原生支持中文文件名；配置文件维护排除（ignore）模式精准筛选待处理文件",
         "【AI 调用成本与安全】批量处理管线合并文件元数据减少 AI 调用次数以适配免费层限流；dry-run 模拟执行先验后动，配合目录级自定义提示词，解决「AI 误操作不可回滚」与「命名风格不可控」两个落地问题",
         "【配置校验与健壮性】YAML 配置经 zod schema 启动前校验并给出定位错误提示；系统代理自动检测与手动覆盖双通道保障 AI 服务连通；verbose 日志贯穿 MCP 与提供商调用链",
-        "【CLI 工程底座】commander + @clack/prompts 双交互模式（命令行 / 向导式），tsdown 打包输出 CLI 与类型声明，vitest 单测保障重构安全网"
+        "【CLI 工程底座】commander + @clack/prompts 双交互模式（命令行 / 向导式），chalk / fs-extra / yaml 支撑终端输出与文件操作，tsdown 打包输出 CLI 与类型声明，vitest 单测保障重构安全网",
+        "【可配置调优项】提供商 / 模型、批量大小与限流、dry-run 与 verbose 开关、目录级自定义提示词、系统 / 手动代理双通道均可经 YAML 配置，改一行即切换后端；-V 版本显示、子命令自定义帮助与 bumpp 一键发布收敛日常操作"
       ]
     },
     {
       "name": "skills",
-      "displayName": "Agent Skills 体系与跨编辑器分发（skills）",
-      "summary": "个人 Agent Skills 资产库：9 个手写/生成技能 + 自动检测 20+ AI 客户端的一键分发 CLI，把「上下文工程」沉淀为可复用资产",
+      "displayName": "Agent Skills 体系与跨编辑器分发",
+      "summary": "个人 Agent Skills 资产库：9 个技能 + 自动检测 20+ AI 客户端的一键分发 CLI，把「上下文工程」沉淀为可复用资产",
       "description": "技能随 Claude Code / Qoder / Codex / Cursor / Trae 等日常 AI 工作流长期打磨，与工作履历中「沉淀 Agent Skills 与自定义 Rules 约束 AI 产出」互相印证",
       "primaryLanguage": [
         "TypeScript",
@@ -483,13 +451,14 @@
       ],
       "responsibilities": [
         "【技能设计规范】以 AGENTS.md 驱动技能生成流程：只写「代理需要的能力与使用模式」、剔除入门内容与模型已知常识，按 core / features / best-practices / advanced 四级组织，控制上下文占用",
-        "【三源维护架构】手写偏好技能、官方文档生成技能（Git submodule 直引上游、随文档更新保持新鲜）、vendor 第三方同步三类来源分策略维护，覆盖 CLI 开发、Python 工程规范、简历诊断、论文解读等场景",
-        "【跨客户端分发 CLI】自动检测 20+ AI 编辑器 / CLI 的技能目录，软链接全量对齐 + 删除清理保证多工具间技能一致，提供 --target / --skill / --dry-run / --uninstall 细粒度控制"
+        "【三源维护架构】手写偏好技能（shenyan）、官方文档生成技能（Git submodule 直引 vue / vite / pnpm 上游、随文档更新保持新鲜）、vendor 第三方同步（tsdown / turborepo）三类来源分策略维护，覆盖 CLI 开发、包管理、简历诊断、论文解读等场景",
+        "【跨客户端分发 CLI】自动检测 20+ AI 编辑器 / CLI 的技能目录，软链接全量对齐 + 删除清理保证多工具间技能一致，提供 --target（指定客户端）/ --skill（选技能子集）/ --dry-run（预览不写入）/ --uninstall（一键回滚）细粒度调优，按需引入以规避上下文窗口超限",
+        "【自动化工作流】init / sync / cleanup 子命令（基于 degit + tsx）编排子模块克隆与第三方技能同步，meta.ts 集中声明 submodule URL、技能映射与重命名策略，一条命令保持全库与上游新鲜"
       ]
     },
     {
       "name": "fine-tuning",
-      "displayName": "大模型 LoRA 微调实战（fine-tuning）",
+      "displayName": "基于AutoDL端 Qwen微调 LoRA 实战",
       "summary": "Qwen2.5-Instruct LoRA 微调全流程：从理论到数据准备、训练、推理调优，掌握「仅微调约 0.4% 参数即可接近全量效果」的工程平衡；细节上严格区分训练与推理解码格式、双停止符配置，理解 QLoRA 量化方案在资源受限时如何进一步压缩",
       "primaryLanguage": [
         "Python",
@@ -497,18 +466,13 @@
         "transformers",
         "QLoRA"
       ],
-      "brief": true
-    },
-    {
-      "name": "sy-llm",
-      "displayName": "统一 LLM 调用封装库（sy-llm）",
-      "summary": "零运行时依赖的 LLM 统一封装：抽象基类支持 Ollama 本地 / DeepSeek 云端一键切换，同步异步双链路复用一份代码；密钥全走环境变量、业务代码零明文，配套标准 src-layout 包工程",
-      "primaryLanguage": [
-        "Python",
-        "标准库",
-        "Ollama"
-      ],
-      "brief": true
+      "showPDF": false,
+      "responsibilities": [
+        "【数据准备与格式对齐】整理指令数据集并转成 ChatML 对话格式，用 loss mask 只对 assistant 回复段计算损失，避免 prompt 部分污染训练信号",
+        "【LoRA 训练配置】基于 PEFT 注入低秩适配器（仅约 0.4% 参数可训练），对比 rank / alpha / dropout 与目标模块（q_proj / v_proj 等）对收敛与显存的影响，在消费级单卡跑通 Qwen2.5-Instruct 微调",
+        "【训练与推理解码一致性】严格区分训练拼接格式与推理 generate 模板，配置双停止符（EOS + 自定义 stop token）防越界续写，调优 temperature / top_p 平衡稳定性与多样性",
+        "【QLoRA 资源优化】掌握 QLoRA 4bit 量化 + LoRA 组合在显存受限时如何进一步压缩，理解 offline / online 量化与 paged optimizer 的取舍"
+      ]
     }
   ]
 }

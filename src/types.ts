@@ -149,6 +149,14 @@ export interface Project {
    */
   printHidden?: boolean
   /**
+   * 是否在 PDF（打印）中显示该项目
+   *
+   * 与 printHidden 语义相反、以 showPDF 为准：显式声明 showPDF 时，
+   * false = 打印不显示、true = 打印显示；未声明 showPDF 时回退到
+   * printHidden 旧语义，保证已有数据源不受影响。
+   */
+  showPDF?: boolean
+  /**
    * 概述型条目（一句话项目）
    *
    * 这类项目只写 summary 一行定位、不展开职责。模板默认在打印时隐藏 summary，

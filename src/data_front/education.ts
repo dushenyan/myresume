@@ -8,26 +8,29 @@ import type { Resume } from '../types'
 
 /**
  * 教育与持续学习经历
+ *
+ * 参照 data 的处理：学历条目不隐藏学校与专业，但去掉 studyType「专科」标签；
+ * 自学板块不强调「自学」来源，改以通用领域表述记录体系补齐，
+ * 与求职方向（前端 × AI 双轨）形成呼应——只强调覆盖范围。
  */
 export const education: Resume['education'] = [
   {
     institution: '江西交通职业技术学院',
     area: '计算机网络技术',
     department: '信息工程系',
-    studyType: '专科',
+    // studyType: '专科',
     startDate: '2018-09-01',
     endDate: '2021-06-01',
     description: '主修课程：计算机网络、Web前端开发、数据库原理、软件工程等',
     activities: '担任技术社团负责人，组织多次技术分享与实践活动',
-    courses: ['Web前端开发', 'JavaScript编程', '计算机网络', '数据库原理'],
+    courses: ['计算机网络', '数据库原理', 'Web前端开发', '软件工程'],
   },
   {
-    institution: '自学与在线课程',
-    area: '前端架构与性能优化',
-    studyType: '持续学习',
+    institution: '前端与 AI 工程体系',
+    area: '前端架构 · 性能优化 · AI 应用开发',
+    studyType: '体系化学习',
     startDate: '2021-06-01',
     endDate: '',
-    description: '持续学习前沿前端技术与架构实践，参与多个在线课程与技术社区交流',
-    courses: ['前端架构设计与实践', '大型应用性能优化策略', '微前端架构与实践', 'TypeScript编程'],
+    description: '按「框架源码、架构实践、AI 工程化」三阶持续补齐前端纵深与 AI 应用落地两条链路',
   },
 ]
