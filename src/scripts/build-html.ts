@@ -7,7 +7,7 @@ import process from 'node:process'
  *   npx esno src/scripts/build-html.ts --profile=social   只构建指定简历
  */
 import fsExtra from 'fs-extra'
-import { buildProfileHtml } from '../build/html'
+import { buildDataFrontHtml, buildProfileHtml } from '../build/html'
 import { parseProfileFilter, selectProfiles } from '../core/profiles'
 
 async function main(): Promise<void> {
@@ -20,6 +20,10 @@ async function main(): Promise<void> {
 
   for (const profile of selected)
     await buildProfileHtml(profile)
+
+  // data_front 不在 profiles 注册表里（独立平行数据源），固定跟随构建，
+  // 保证线上 /data_front 与 dev 实时路由一致；指定 --profile 时也重新渲染它
+  await buildDataFrontHtml()
 }
 
 main().catch((error) => {

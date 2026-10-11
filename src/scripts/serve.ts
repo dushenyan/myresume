@@ -11,7 +11,8 @@
  * 目录大纲无运行期依赖，dev 与生产共用同一份注入。
  *
  * /data_front 路由：实时渲染 src/data_front/ 下的前端方向简历数据，
- * 不经过 JSON 生成管线，改完数据刷新浏览器即可看到。
+ * 不经过 JSON 生成管线，改完数据刷新浏览器即可看到；生产侧由
+ * buildDataFrontHtml 把同一数据源静态化到 dist/data_front/，两端 URL 一致。
  */
 import type { Resume } from '../types'
 import { Buffer } from 'node:buffer'
@@ -158,11 +159,11 @@ async function proxyToDemo(req: http.IncomingMessage, res: http.ServerResponse) 
   }
 }
 
-/** data_front 预览目录（dev 专属）：前端方向的平行数据源，不落 JSON，按请求直接渲染 */
+/** data_front 预览目录（dev 实时预览）：前端方向的平行数据源，不落 JSON，按请求直接渲染 */
 const DATA_FRONT_DIR = path.resolve(__dirname, '../data_front')
 
 /**
- * 渲染 data_front 简历（dev 专属）：先按目录前缀清除 require 缓存
+ * 渲染 data_front 简历（dev 实时预览）：先按目录前缀清除 require 缓存
  * （拆分成模块后仅清入口不够，basics.ts 等子模块会命中旧缓存），
  * 再动态 require 组装数据、渲染 HTML 并注入 dev 面板。
  */

@@ -7,6 +7,7 @@ import fsExtra from 'fs-extra'
 import { renderMarkdown } from '../core/mdRenderer'
 import { loadQuizBanks } from '../core/quiz'
 import { renderHtml } from '../core/render'
+import { assembleBaseResume } from '../data_front'
 import { DOC_VIEWER_FILE, injectDocViewer } from '../dev/injectDocViewer'
 import { injectQuizPanel } from '../dev/injectQuizPanel'
 import { injectTocPanel } from '../dev/injectTocPanel'
@@ -57,6 +58,21 @@ export function injectResumePanels(html: string): string {
     injectQuizPanel(html, banks, { inlineAnswers: true, frameOrigin: DEMO_ORIGIN }),
     docHtml,
   ))
+}
+
+/** data_front 生产产物：目录形式落地，Netlify 与 nginx（try_files $uri/）都能直接命中 /data_front */
+const DATA_FRONT_OUTPUT = 'dist/data_front/index.html'
+
+/**
+ * 构建前端方向简历的生产页：直接从 src/data_front 组装数据渲染，
+ * 不走 JSON 生成管线（与 dev 的 /data_front 实时路由同一数据源），
+ * 面板注入与主页同一套 injectResumePanels，保证两端 URL 与内容一致。
+ */
+export async function buildDataFrontHtml(): Promise<void> {
+  const html = injectResumePanels(renderHtml(assembleBaseResume()))
+  await fsExtra.ensureDir(path.dirname(DATA_FRONT_OUTPUT))
+  fs.writeFileSync(DATA_FRONT_OUTPUT, html, 'utf-8')
+  console.log(`✅ [data_front] HTML生成完成: ${DATA_FRONT_OUTPUT}`)
 }
 
 /**
