@@ -12,6 +12,7 @@ export const socialProfile: ResumeProfile = {
   displayName: 'AI Agent 工程师',
   jsonOutput: 'resume/resume.json',
   htmlOutput: 'dist/index.html',
-  pdfOutput: 'dist/杜审言-AI Agent 工程师-社招.pdf',
+  // 与 src/data/basics.ts 的 pdfLink 保持逐字一致：页底「PDF版本」链接按相对路径命中本文件
+  pdfOutput: 'dist/杜省严-Agent开发工程师-社招-海口.pdf',
   build: base => base,
 }

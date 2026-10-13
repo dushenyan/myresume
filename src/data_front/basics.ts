@@ -11,8 +11,9 @@ import type { Resume } from '../types'
  * 个人基本信息（姓名、联系方式、社交账号、个人简介等）
  */
 export const basicInfo: Resume['basics'] = {
-  name: '杜审言',
-  picture: 'https://avatars.githubusercontent.com/u/63347504',
+  name: '杜省严',
+  // 头像走仓库内本地文件：渲染时由 transform 内联成 data URI，不依赖外网头像域
+  picture: 'assets/images/avatar.jpg',
   label: '前端开发工程师 / AI 应用开发',
   headline: '5年前端开发经验 | Vue3 技术专家 · 微前端 · 数据可视化 | AI 应用开发 & MCP / Agent 工程化',
   // 参照 data 的写法：按招聘官 6 秒扫描写——首句即定位（年限+成长轨迹+差异化主张），
@@ -31,7 +32,7 @@ export const basicInfo: Resume['basics'] = {
   image_avatar: 'https://avatars.githubusercontent.com/u/63347504',
   username: 'dushenyan',
   email: 'dushenyan88@gmail.com',
-  html_title: '杜审言-前端-AI应用',
+  html_title: '杜省严-前端-AI应用',
   languages: '中文',
   phone: '18379514819',
   wechat: 'Sy508080',

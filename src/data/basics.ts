@@ -11,8 +11,10 @@ import type { Resume } from '../types'
  * 个人基本信息（姓名、联系方式、社交账号、个人简介等）
  */
 export const basicInfo: Resume['basics'] = {
-  name: '杜审言',
-  picture: 'https://avatars.githubusercontent.com/u/63347504',
+  name: '杜省严',
+  // 头像走仓库内本地文件：渲染时由 transform 内联成 data URI，
+  // 屏上/打印/部署不再依赖 GitHub 头像域（原图 https://avatars.githubusercontent.com/u/63347504 ）
+  picture: 'assets/images/avatar.jpg',
   label: 'Agent 开发工程师',
   headline: 'Agent 开发 · 多 Agent 编排 · RAG · 智能体平台 · LLM 微调与推理',
   // 合并原「自我评价」区块后的总述：按招聘官 6 秒扫描写——首句即定位（方向+落地数字），
@@ -30,8 +32,8 @@ export const basicInfo: Resume['basics'] = {
   image_avatar: 'https://avatars.githubusercontent.com/u/63347504',
   username: 'dushenyan',
   email: 'dushenyan88@gmail.com',
-  html_title: '杜审言-Agent 开发工程师',
-  pdfLink: '杜审言-Agent 开发工程师-社招.pdf',
+  html_title: '杜省严-Agent 开发工程师',
+  pdfLink: '杜省严-Agent开发工程师-社招-海口.pdf',
   languages: '中文',
   phone: '18379514819',
   wechat: 'Sy508080',

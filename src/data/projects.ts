@@ -55,6 +55,7 @@ export const projects: Resume['projects'] = [
       '【多渠道答案适配引擎】抽象多视角答案适配引擎，支持按微信、App、Web 等渠道动态下发文本、富文本与交互卡片，同一问题在不同渠道返回差异化答案；预留标准化钉钉/企微 Webhook 接入层，问答能力经统一消息协议无缝嵌入多 IM 业务生态，新渠道接入不改动问答核心链路',
       '【高并发工程吞吐】基于 FastAPI 异步并发框架构建全异步服务链路，SSE 流式响应驱动打字机式交互体验；按 routers / schemas / models / services 分层组织代码，优化 SQLAlchemy 2.0 批量处理链路，支撑 5 万级条目高效导出与 3000 条大文件异步批量导入',
     ],
+    showPDF: true
   },
   {
     name: 'government-advanced-rag',
@@ -87,6 +88,7 @@ export const projects: Resume['projects'] = [
       '【过程可审计】通过 LangGraph 状态快照与 on_progress 回调逐轮记录中间状态（步骤 / 草稿 / 来源），研究过程可落盘、可回放、可断点恢复；来源按 URL 去重，置信度基于来源时间分布确定性计算，无来源结论显式标注为模型推断',
       '【上下文工程】采用 Jinja2 模块化模板集中管理 5 类 Agent 提示词，实现提示词资产版本化（git diff 可读）与控制流完全解耦，支持热更新与按角色独立灰度调优（A/B 不阻塞主流程），大幅降低复杂多智能体系统的提示词维护成本',
     ],
+    showPDF: true
   },
   {
     name: 'mcp-servers',
@@ -104,6 +106,7 @@ export const projects: Resume['projects'] = [
       '【企业网关凭证隔离】把内部 HR / 项目系统包装为 MCP 工具，下游 service-token 由网关代持注入，客户端永远接触不到内部凭证；传输层 X-API-Token 统一校验，无 token 返回 401',
       '【四道防线与服务化】路径白名单、只读模式、SQL 守卫、Token 鉴权四道防线经 9 组安全回归用例（目录穿越 / 越权写 / 危险 SQL / 无凭证访问）全部拦截验证；经 FastAPI 暴露统一 MCP 端点，token / 白名单 / 只读开关均由环境变量注入，Docker 一键部署',
     ],
+    showPDF: true
   },
   {
     name: 'debate-agents',
@@ -121,24 +124,26 @@ export const projects: Resume['projects'] = [
       '【WebSocket 实时可视化】每阶段产出结构化事件流，后台线程 + asyncio 队列桥接逐阶段实时推送，前端可直接渲染辩论过程与 ASCII 评分条',
       '【实测闭环与服务化】暴露 /debate HTTP 入口与 /ws/debate 实时通道，实测单场辩论 11 阶段事件全量产出，裁决三态（明确胜出 / 势均力敌转人工 / 坍缩中止）均可复现回放，决策过程可审计',
     ],
+    showPDF: false
   },
-  // {
-  //   name: 'multi-tenant-rag',
-  //   displayName: '多租户知识库问答 Agent',
-  //   summary: 'SaaS 知识库纵深防御架构：向量库按租户分区物理隔离 + chunk 级 ACL 过滤召回 + 防泄漏后置校验三重防线，配套租户身份网关注入与问答审计计费，确保跨租户数据零泄漏',
-  //   primaryLanguage: ['Java', 'Spring Boot', 'Spring AI', 'Milvus', 'PostgreSQL', 'Redis'],
-  //   role: '独立设计与开发',
-  //   duration: '2026-04 ~ 2026-06',
-  //   description: '多租户 SaaS 知识库的核心风险是「绝不能让 A 公司检索到 B 公司的文档」；据此构建「租户上下文 → 分区召回 → ACL 过滤 → 防泄漏后置校验 → LLM 问答 → 审计计费」的纵深防御架构，兼顾数据隔离、商业化合规与可解释引用',
-  //   responsibilities: [
-  //     '【双重隔离】向量库按 tenantId 分区存储 / 检索（Milvus partition 等价），检索只扫本租户分区、跨租户数据在数据结构层面不可达；chunk 级文档 ACL 元数据过滤构成第二层隔离',
-  //     '【权限检索器三层防线】分区召回 → 文档级 ACL 过滤（候选多取 topK×3 再过滤，避免过滤成 0；过滤为空时明确提示「有 N 条命中因权限被过滤」）→ 防泄漏后置校验（返回前逐条断言 chunk.tenantId == 请求租户，不一致即熔断抛异常并记 BLOCKED_TENANT 审计），即使上游逻辑改坏也不泄漏',
-  //     '【租户身份安全】TenantContext 强制非空构造（禁止匿名检索），租户标识由 API 网关鉴权后注入 X-Tenant-Id 头，应用层不信任客户端自报租户',
-  //     '【问答审计与计费】每次问答落审计流水（租户 / 用户 / 问题 / 命中数 / token 估算 / 拦截原因），按租户聚合计费 + 安全巡检（被拦截访问清单），SaaS 商业化合规有据',
-  //     '【LLM 网关接口化】LLM 网关经接口抽象提供 Spring AI 在线生成与 Mock 离线回归双实现，「检索 → 生成 → 审计落账」链路不依赖模型服务即可离线编译验证，隔离防线可独立回归',
-  //     '【REST 服务化】提供 /ask /audit /billing 接口，租户与用户上下文统一由 API 网关鉴权后经 X-Tenant-Id / X-User 头注入',
-  //   ],
-  // },
+  {
+    name: 'multi-tenant-rag',
+    displayName: '多租户知识库问答 Agent',
+    summary: 'SaaS 知识库纵深防御架构：向量库按租户分区物理隔离 + chunk 级 ACL 过滤召回 + 防泄漏后置校验三重防线，配套租户身份网关注入与问答审计计费，确保跨租户数据零泄漏',
+    primaryLanguage: ['Java', 'Spring Boot', 'Spring AI', 'Milvus', 'PostgreSQL', 'Redis'],
+    role: '独立设计与开发',
+    duration: '2026-04 ~ 2026-06',
+    description: '多租户 SaaS 知识库的核心风险是「绝不能让 A 公司检索到 B 公司的文档」；据此构建「租户上下文 → 分区召回 → ACL 过滤 → 防泄漏后置校验 → LLM 问答 → 审计计费」的纵深防御架构，兼顾数据隔离、商业化合规与可解释引用',
+    responsibilities: [
+      '【双重隔离】向量库按 tenantId 分区存储 / 检索（Milvus partition 等价），检索只扫本租户分区、跨租户数据在数据结构层面不可达；chunk 级文档 ACL 元数据过滤构成第二层隔离',
+      '【权限检索器三层防线】分区召回 → 文档级 ACL 过滤（候选多取 topK×3 再过滤，避免过滤成 0；过滤为空时明确提示「有 N 条命中因权限被过滤」）→ 防泄漏后置校验（返回前逐条断言 chunk.tenantId == 请求租户，不一致即熔断抛异常并记 BLOCKED_TENANT 审计），即使上游逻辑改坏也不泄漏',
+      '【租户身份安全】TenantContext 强制非空构造（禁止匿名检索），租户标识由 API 网关鉴权后注入 X-Tenant-Id 头，应用层不信任客户端自报租户',
+      '【问答审计与计费】每次问答落审计流水（租户 / 用户 / 问题 / 命中数 / token 估算 / 拦截原因），按租户聚合计费 + 安全巡检（被拦截访问清单），SaaS 商业化合规有据',
+      '【LLM 网关接口化】LLM 网关经接口抽象提供 Spring AI 在线生成与 Mock 离线回归双实现，「检索 → 生成 → 审计落账」链路不依赖模型服务即可离线编译验证，隔离防线可独立回归',
+      '【REST 服务化】提供 /ask /audit /billing 接口，租户与用户上下文统一由 API 网关鉴权后经 X-Tenant-Id / X-User 头注入',
+    ],
+    showPDF: false
+  },
   {
     name: 'devops-agent',
     displayName: 'DevOps 运维诊断 Agent',
@@ -172,14 +177,16 @@ export const projects: Resume['projects'] = [
       '【题库结构化与判题】题库按 3 知识点 × L1-L3 难度 × 考查技能三元组建模，答案归一化判题（全角 / 空格容错），难度档耗尽自动就近降档兜底',
       '【画像可解释与服务化】掌握度、答题数、正确数三本账可查，薄弱知识点自动排序驱动选题；REST 服务支持按画像选题、提交答题、查询画像，全链路离线可运行',
     ],
+    showPDF: false
   },
-  // {
-  //   name: 'intent-classify',
-  //   displayName: '意图识别服务（四方案选型起步）',
-  //   summary: '规则、TF-IDF、BERT 微调、动态 Few-shot LLM 四方案对比与压测：BERT 微调方案准确率 95%+、推理 P99 < 50ms，按成本与语义复杂度递进选型，模型推理统一集成 FastAPI',
-  //   primaryLanguage: ['Python', 'FastAPI', 'transformers', 'scikit-learn'],
-  //   role: '独立开发与选型评估',
-  //   duration: '2024-06 ~ 2024-09',
-  //   brief: true,
-  // },
+  {
+    name: 'intent-classify',
+    displayName: '意图识别服务（四方案选型起步）',
+    summary: '规则、TF-IDF、BERT 微调、动态 Few-shot LLM 四方案对比与压测：BERT 微调方案准确率 95%+、推理 P99 < 50ms，按成本与语义复杂度递进选型，模型推理统一集成 FastAPI',
+    primaryLanguage: ['Python', 'FastAPI', 'transformers', 'scikit-learn'],
+    role: '独立开发与选型评估',
+    duration: '2024-06 ~ 2024-09',
+    brief: true,
+    showPDF: false
+  },
 ]

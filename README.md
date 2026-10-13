@@ -1,10 +1,10 @@
-# 杜审言-前端简历项目
+# 杜省严-前端简历项目
 
 ## 项目简介
 
 基于前端技术栈的个人简历生成项目，支持热更新、自动构建、多份简历配置和多格式输出（HTML、PDF）。
 
-- **在线预览**：[杜审言-前端简历](https://dushenyan-resume.netlify.app/)
+- **在线预览**：[杜省严-前端简历](https://dushenyan-resume.netlify.app/)
 - **技术栈**：TypeScript、Grunt（构建工具，负责任务管理、文件监听、编译等）、Less、Handlebars（模板引擎）
 - **特性**：热更新、自动构建、多简历配置、响应式设计、多格式输出
 
@@ -77,12 +77,12 @@ export const aiProfile: ResumeProfile = {
   displayName: 'AI应用方向',
   jsonOutput: 'resume/ai.json',
   htmlOutput: 'dist/ai/index.html',
-  pdfOutput: 'dist/杜审言-前端-AI应用方向.pdf',
+  pdfOutput: 'dist/杜省严-前端-AI应用方向.pdf',
   build: base => ({
     ...base,
     basics: {
       ...base.basics,
-      html_title: '杜审言-前端-AI应用方向',
+      html_title: '杜省严-前端-AI应用方向',
     },
     // 例：只展示与 AI 相关的个人项目
     personalProjects: base.personalProjects?.filter(p =>

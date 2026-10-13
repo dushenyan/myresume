@@ -118,8 +118,15 @@ export async function buildProfilePdf(profile: ResumeProfile, html: string): Pro
       timeout: 60000,
     })
 
-    // 等待样式渲染稳定
-    await new Promise(resolve => setTimeout(resolve, 1500))
+    // 等图片真正落地再出图：固定 sleep 在慢网下会在头像请求未返回时就打印，
+    // Skia 只写得出圆形遮罩（SMask）、图本体缺失，PDF 上就是一片空白头像
+    await page.waitForFunction(
+      'Array.from(document.images).every(img => img.complete && img.naturalWidth > 0)',
+      { timeout: 10000, polling: 200 },
+    ).catch(() => console.warn('⚠️ 10s 内仍有图片未加载完成，PDF 可能缺头像'))
+
+    // 图片解码与布局稳定
+    await new Promise(resolve => setTimeout(resolve, 300))
 
     const pdf = await page.pdf({
       format: 'A4',

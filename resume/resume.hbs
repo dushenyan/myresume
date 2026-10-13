@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="https://avatars.githubusercontent.com/u/63347504" type="image/png">
+    <link rel="icon" href="" type="image/jpeg">
     <title>{{#resume.basics}}{{html_title}}{{/resume.basics}}</title>
     <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -82,7 +82,7 @@
             </div>
 
             <div id="work-projects-group">
-              {{#if resume.projects}}
+              {{#if resume.projects.length}}
               <div id="projects">
                 <h4><span class="title">项目经历</span></h4>
                 <div class="list-unstyled projects">
@@ -144,6 +144,7 @@
               {{/if}}
 
               <div id="work-experience">
+                {{#if resume.work.length}}
                 <h4> <span class="title">工作经验</span> </h4>
                 <ul class="list-unstyled">
                   {{#each resume.work}}
@@ -166,10 +167,11 @@
                     </li>
                   {{/each}}
                 </ul>
+                {{/if}}
               </div>
             </div>
 
-            {{#if resume.personalProjects}}
+            {{#if resume.personalProjects.length}}
             <div id="personal-projects">
               <h4><span class="title">个人项目</span></h4>
               <div class="list-unstyled projects">
@@ -242,7 +244,7 @@
             </div>
             <div class='px10'></div>
 
-            {{#if resume.certifications}}
+            {{#if resume.certifications.length}}
             <h4 id="certifications"><span class="title">专业认证</span></h4>
             <div class="card-nested">
               <ul class="list-unstyled">
@@ -257,7 +259,7 @@
             <div class='px10'></div>
             {{/if}}
 
-            {{#if resume.publications}}
+            {{#if resume.publications.length}}
             <h4 id="publications"><span class="title">技术出版物</span></h4>
             <div class="card-nested">
               <ul class="list-unstyled">
@@ -299,7 +301,7 @@
               </ul>
             </div>
 
-            {{#if resume.awards}}
+            {{#if resume.awards.length}}
             <h4 id="awards"><span class="title">荣誉奖项</span></h4>
             <ul class="list-unstyled">
               {{#each resume.awards}}
@@ -317,7 +319,7 @@
             <div class='px10'></div>
             {{/if}}
 
-            {{#if resume.volunteer}}
+            {{#if resume.volunteer.length}}
             <h4 id="volunteer-work"><span class="title">志愿服务</span> </h4>
             <ul class="list-unstyled">
               {{#each resume.volunteer}}
@@ -347,7 +349,7 @@
             <div class='px10'></div>
             {{/if}}
 
-            {{#if resume.interests}}
+            {{#if resume.interests.length}}
             <h4 id="interests" class="print-hidden"><span class="title">兴趣领域</span> </h4>
             <div class="card-nested interests">
               <div class="interest-tags">
@@ -359,7 +361,7 @@
             <div class='px10'></div>
             {{/if}}
 
-            {{#if resume.references}}
+            {{#if resume.references.length}}
             <h4 id="references"><span class="title">推荐人</span> </h4>
             <ul class="list-unstyled">
               {{#each resume.references}}
@@ -379,7 +381,7 @@
 
             <div style="text-align:center">
               <div class="detail no-print" style="font-size:1.5rem;margin-top:2rem;">
-                <a href="{{#if resume.basics.pdfLink}}{{resume.basics.pdfLink}}{{else}}杜审言-前端-社招.pdf{{/if}}" class="info" itemprop="pdf" target="_blank">
+                <a href="{{#if resume.basics.pdfLink}}{{resume.basics.pdfLink}}{{else}}杜省严-前端-社招.pdf{{/if}}" class="info" itemprop="pdf" target="_blank">
                   PDF版本
                 </a>
               </div>
@@ -394,6 +396,11 @@
         console.log(`欢迎调试查看我的简历!`)
       }
       window.addEventListener('load', consoleWecome)
+
+      // 头像已内联成 data URI，页签图标直接复用同一份，不再请求外链头像域
+      const avatarImg = document.querySelector('img[itemprop="image"]')
+      const avatarIcon = document.querySelector('link[rel="icon"]')
+      if (avatarImg && avatarImg.src) avatarIcon.href = avatarImg.src
     </script>
   </body>
 </html>

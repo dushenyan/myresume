@@ -12,6 +12,9 @@ export interface ResumeBasics {
   label?: string
   /**
    * 头像
+   *
+   * 支持三种写法：仓库内相对路径（渲染时内联为 data URI，推荐，不依赖外网）、
+   * http(s) 外链、data URI。留空时由邮箱生成 gravatar 兜底。
    */
   picture?: string
   /**

@@ -36,14 +36,14 @@ export const skills: Resume['skills'] = [
     category: 'Agent 与 LLM 应用',
     keywords: [
       '多 Agent 编排与角色分工',
+      'Few-shot 动态样本检索',
       'LangGraph / AutoGen 多智能体框架',
+      '结构化输出与 OutputParser',
       'Function Calling / Tool Use / ReAct 诊断循环',
       'MCP（Model Context Protocol，JSON-RPC 2.0 协议层）',
+      '多租户上下文隔离与会话管理',
       '工具调用安全防线（路径白名单 / SQL 守卫 / 凭证隔离）',
       'Prompt Engineering（Jinja2 模板化）',
-      'Few-shot 动态样本检索',
-      '结构化输出与 OutputParser',
-      '多租户上下文隔离与会话管理',
     ],
   },
   {
@@ -131,10 +131,10 @@ export const skills: Resume['skills'] = [
     category: '私有化部署与运维',
     keywords: [
       'Docker / Docker Compose',
-      'XInference（vLLM 推理后端，LLM / Embedding / Rerank 一站式部署）',
-      'AutoDL GPU 租赁与按需算力',
       'Coze Studio 开源部署',
       'Linux 容器化环境',
+      'XInference（vLLM 推理后端，LLM / Embedding / Rerank 一站式部署）',
+      'AutoDL GPU 租赁与按需算力',
     ],
   },
   {
@@ -142,9 +142,9 @@ export const skills: Resume['skills'] = [
     keywords: [
       '对话工作台与流式渲染',
       '工具调用过程可视化',
-      'Vue 3',
+      'Vue 3 / React',
       '会话状态管理与持久化',
-      'Streamlit 快速原型',
+      // 'Streamlit 快速原型',
     ],
   },
   {
