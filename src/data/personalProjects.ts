@@ -62,7 +62,7 @@ export const personalProjects: Resume['personalProjects'] = [
       '【AI 调用成本与安全】批量处理管线合并文件元数据减少 AI 调用次数以适配免费层限流；dry-run 模拟执行先验后动，配合目录级自定义提示词，解决「AI 误操作不可回滚」与「命名风格不可控」两个落地问题',
       // '【配置校验与健壮性】YAML 配置经 zod schema 启动前校验并给出定位错误提示；系统代理自动检测与手动覆盖双通道保障 AI 服务连通；verbose 日志贯穿 MCP 与提供商调用链',
       '【CLI 工程底座】commander + @clack/prompts 双交互模式（命令行 / 向导式），chalk / fs-extra / yaml 支撑终端输出与文件操作，tsdown 打包输出 CLI 与类型声明，vitest 单测保障重构安全网',
-      '【可配置调优项】提供商 / 模型、批量大小与限流、dry-run 与 verbose 开关、目录级自定义提示词、系统 / 手动代理双通道均可经 YAML 配置，改一行即切换后端；-V 版本显示、子命令自定义帮助与 bumpp 一键发布收敛日常操作',
+      // '【可配置调优项】提供商 / 模型、批量大小与限流、dry-run 与 verbose 开关、目录级自定义提示词、系统 / 手动代理双通道均可经 YAML 配置，改一行即切换后端；-V 版本显示、子命令自定义帮助与 bumpp 一键发布收敛日常操作',
     ],
   },
   {

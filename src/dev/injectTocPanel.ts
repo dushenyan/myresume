@@ -29,13 +29,27 @@ const TOC_CSS = `
 .toc-body { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 8px 8px 14px; }
 .toc-list { list-style: none; margin: 0; padding: 0; }
 .toc-list li { margin: 0; }
-.toc-list a { display: block; padding: 6px 10px; border-radius: 8px; color: #4b5563; text-decoration: none; line-height: 1.5; }
+.toc-list a { position: relative; display: block; padding: 6px 10px 6px 12px; border-radius: 8px; color: #4b5563; text-decoration: none; line-height: 1.5; transition: background 0.15s ease, color 0.15s ease; }
 .toc-list a:hover { background: rgba(66, 139, 202, 0.08); color: #2c6cab; }
 .toc-list a.active { background: rgba(66, 139, 202, 0.12); color: #2c6cab; font-weight: 600; }
+/* 当前章节左侧一条竖高亮条，与右侧抽屉的 active 语汇对齐 */
+.toc-list a.active::before { content: ""; position: absolute; left: 2px; top: 50%; transform: translateY(-50%); width: 3px; height: 60%; border-radius: 999px; background: #428bca; }
 .toc-empty { margin: 10px; color: #9aa0a8; }
+/* 细节打磨：与其他抽屉同规格的细滚动条 + 键盘焦点环，尊重减弱动效 */
+.toc-body { scrollbar-width: thin; scrollbar-color: rgba(15, 23, 42, 0.18) transparent; }
+.toc-body::-webkit-scrollbar { width: 8px; height: 8px; }
+.toc-body::-webkit-scrollbar-thumb { background: rgba(15, 23, 42, 0.14); border-radius: 999px; border: 2px solid transparent; background-clip: content-box; }
+.toc-body::-webkit-scrollbar-thumb:hover { background: rgba(15, 23, 42, 0.26); background-clip: content-box; }
+.toc-toggle:focus-visible, .toc-close:focus-visible, .toc-list a:focus-visible { outline: 2px solid #428bca; outline-offset: 2px; border-radius: 8px; }
+@media (prefers-reduced-motion: reduce) {
+  .toc-drawer, .toc-list a { transition: none !important; }
+}
 @media (max-width: 768px) {
   .toc-drawer { top: 0; left: 0; bottom: 0; width: min(280px, 85vw); border: 0; border-radius: 0; box-shadow: none; transform: translateX(-100%); font-size: 14px; }
-  .toc-toggle { left: 12px; bottom: 16px; }
+  .toc-head { padding: calc(14px + env(safe-area-inset-top)) 16px 10px; }
+  .toc-body { padding: 8px 10px calc(14px + env(safe-area-inset-bottom)); }
+  .toc-list a { padding: 9px 12px; }
+  .toc-toggle { left: 12px; bottom: calc(16px + env(safe-area-inset-bottom)); }
 }
 @media print {
   .toc-toggle, .toc-drawer { display: none !important; }

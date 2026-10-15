@@ -53,7 +53,7 @@ export const projects: Resume['projects'] = [
       '【多级缓存】设计 7 类业务缓存（类目树 / FAQ 详情 / 答案视角 / 搜索结果 / 渠道配置 / 热门 FAQ / 导航目录），按访问特征设置 5 分钟～24 小时差异化 TTL，配合缓存装饰器与写操作主动失效，解决「改了知识但线上还是旧答案」的一致性问题',
       '【双环境发布】设计「测试环境配置、模拟验证、发布中心一键同步、正式环境生效」机制，用 env 字段隔离 + original_id 溯源使正式记录指向来源测试记录，让知识上线前可验证、可回滚',
       '【多渠道答案适配引擎】抽象多视角答案适配引擎，支持按微信、App、Web 等渠道动态下发文本、富文本与交互卡片，同一问题在不同渠道返回差异化答案；预留标准化钉钉/企微 Webhook 接入层，问答能力经统一消息协议无缝嵌入多 IM 业务生态，新渠道接入不改动问答核心链路',
-      '【高并发工程吞吐】基于 FastAPI 异步并发框架构建全异步服务链路，SSE 流式响应驱动打字机式交互体验；按 routers / schemas / models / services 分层组织代码，优化 SQLAlchemy 2.0 批量处理链路，支撑 5 万级条目高效导出与 3000 条大文件异步批量导入',
+      '【高并发工程吞吐】基于 FastAPI 异步并发框架构建全异步服务链路，SSE 流式响应驱动打字机式交互体验；按 routers / models  分层组织代码，优化 SQLAlchemy 2.0 批量处理链路，支撑 5 万级条目高效导出与 3000 条大文件异步批量导入',
     ],
     showPDF: true
   },
@@ -106,7 +106,7 @@ export const projects: Resume['projects'] = [
       '【企业网关凭证隔离】把内部 HR / 项目系统包装为 MCP 工具，下游 service-token 由网关代持注入，客户端永远接触不到内部凭证；传输层 X-API-Token 统一校验，无 token 返回 401',
       '【四道防线与服务化】路径白名单、只读模式、SQL 守卫、Token 鉴权四道防线经 9 组安全回归用例（目录穿越 / 越权写 / 危险 SQL / 无凭证访问）全部拦截验证；经 FastAPI 暴露统一 MCP 端点，token / 白名单 / 只读开关均由环境变量注入，Docker 一键部署',
     ],
-    showPDF: true
+    showPDF: false
   },
   {
     name: 'debate-agents',
@@ -160,6 +160,7 @@ export const projects: Resume['projects'] = [
       '【根因准确率评估】DiagnosisEvaluator 将诊断结论与事后标注根因对比打分，≥80 记命中，实测 92/100，支撑诊断质量可量化回归',
       '【证据源适配层解耦】日志 / 指标 / K8s 事件 / 变更四类证据源统一采集接口定义，适配层可插拔对接 Prometheus / ELK / K8s API / CMDB 采集器；Mock 采集器注入「发布后连接池泄漏」确定性故障场景，诊断层零改动即可全链路离线回归',
     ],
+    showPDF: false
   },
   {
     name: 'edu-tutor-agent',

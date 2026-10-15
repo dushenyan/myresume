@@ -5,7 +5,10 @@
  *   npx esno src/scripts/build-pdf.ts                    构建全部简历的 HTML + PDF
  *   npx esno src/scripts/build-pdf.ts --profile=social   只构建指定简历
  */
+import fs from 'node:fs'
+import path from 'node:path'
 import process from 'node:process'
+import fsExtra from 'fs-extra'
 import { injectResumePanels, renderProfileHtml, writeProfileHtml } from '../build/html'
 import { buildProfilePdf } from '../build/pdf'
 import { parseProfileFilter, selectProfiles } from '../core/profiles'
@@ -25,9 +28,20 @@ async function main(): Promise<void> {
       await buildProfilePdf(profile, html)
     }
     catch (error) {
-      // PDF 失败不判定构建失败（沿用旧语义）：无 Chrome 的环境（如 CI）里
-      // HTML 已生成，PDF 可从浏览器手动打印导出，不应中断部署
-      console.error(`❌ [${profile.id}] PDF构建失败，但HTML已生成:`, error)
+      // PDF 生成失败不判定构建失败：无 Chrome 的环境（如 Netlify CI）里
+      // HTML 已生成，从 docs/ 复制同名预置 PDF 兜底，保证线上链接可访问
+      console.error(`❌ [${profile.id}] PDF构建失败，尝试 docs/ 预置文件兜底:`, error)
+      const fallbackSrc = path.join('docs', path.basename(profile.pdfOutput))
+      if (fs.existsSync(fallbackSrc)) {
+        await fsExtra.ensureDir(path.dirname(profile.pdfOutput))
+        fs.copyFileSync(fallbackSrc, profile.pdfOutput)
+        console.log(`✅ [${profile.id}] 已从 docs/ 复制预置 PDF: ${profile.pdfOutput}`)
+      }
+      else {
+        console.warn(`⚠️  [${profile.id}] docs/ 中未找到 ${path.basename(profile.pdfOutput)}，PDF 链接将 404`)
+        console.warn('    请先本地运行 make build，再执行以下命令将 PDF 提交到 git：')
+        console.warn(`    cp dist/${path.basename(profile.pdfOutput)} docs/ && git add docs/${path.basename(profile.pdfOutput)}`)
+      }
     }
   }
 }

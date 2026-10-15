@@ -21,18 +21,18 @@ body.quiz-open .container { transform: translateX(var(--quiz-shift, -420px)); }
 /* 外边距 32px 与中心内容区（body padding 2rem）对齐，悬浮圆角面板 */
 .quiz-drawer { position: fixed; top: 32px; right: 32px; bottom: 32px; height: auto; width: min(420px, 92vw); background: #fff; border: 1px solid rgba(15, 23, 42, 0.06); border-radius: 16px; box-shadow: 0 12px 40px rgba(15, 23, 42, 0.16); transform: translateX(calc(100% + 32px)); transition: transform 0.26s cubic-bezier(0.22, 1, 0.36, 1); z-index: 1001; display: flex; flex-direction: column; overflow: hidden; font-size: 12px; color: #333; }
 .quiz-drawer.quiz-show { transform: none; }
-.quiz-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 10px 12px 8px; border-bottom: 1px solid #eef0f3; }
+.quiz-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 12px 14px 10px; border-bottom: 1px solid #edf0f4; flex: none; }
 /* 标题区可收缩，长题目才能单行省略 */
 .quiz-head > div { flex: 1; min-width: 0; }
 .quiz-head h3 { margin: 0; font-size: 13px; }
 .quiz-stack { margin: 1px 0 0; color: #9aa0a8; font-size: 10.5px; }
 /* 单行截断工具类（仅用于确实需要省略的场合；详情标题区不用，避免长题目被截断） */
 .quiz-single-line { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.quiz-close { width: 24px; height: 24px; flex: none; border-radius: 50%; border: 0; background: rgba(15, 23, 42, 0.04); font-size: 16px; line-height: 1; cursor: pointer; color: #999; display: inline-flex; align-items: center; justify-content: center; transition: background 0.15s ease, color 0.15s ease; }
+.quiz-close { width: 26px; height: 26px; flex: none; border-radius: 50%; border: 0; background: rgba(15, 23, 42, 0.05); font-size: 17px; line-height: 1; cursor: pointer; color: #999; display: inline-flex; align-items: center; justify-content: center; transition: background 0.15s ease, color 0.15s ease; }
 .quiz-close:hover { background: rgba(15, 23, 42, 0.08); color: #333; }
 .quiz-progress { display: flex; align-items: center; gap: 8px; padding: 8px 12px 0; }
 .quiz-progress-track { flex: 1; height: 4px; background: #e9ecef; border-radius: 2px; overflow: hidden; }
-.quiz-progress-bar { height: 100%; width: 0; background: #428bca; border-radius: 2px; transition: width 0.2s ease; }
+.quiz-progress-bar { height: 100%; width: 0; background: linear-gradient(90deg, #428bca, #6aa7dc); border-radius: 2px; transition: width 0.25s cubic-bezier(0.22, 1, 0.36, 1); }
 .quiz-progress span { color: #888; font-size: 11px; white-space: nowrap; }
 /* min-height: 0 是 flex 子项滚动的前提：默认 min-height:auto 会被内容撑开，overflow-y 永不触发 */
 .quiz-body { overflow-y: auto; min-height: 0; overscroll-behavior: contain; padding: 6px 10px 12px; flex: 1; }
@@ -114,27 +114,60 @@ body.quiz-open .container { transform: translateX(var(--quiz-shift, -420px)); }
 .quiz-hl .hl-item .q-ul { list-style: none; padding: 0; }
 .quiz-hl .hl-item .q-ul > li { position: relative; padding-left: 14px; margin: 2px 0; }
 .quiz-hl .hl-item .q-ul > li::before { content: ""; position: absolute; left: 2px; top: 8px; width: 5px; height: 5px; border-radius: 50%; background: #428bca; }
+/* 细节打磨：细滚动条（webkit + firefox）+ 键盘焦点环，桌面/平板统一 */
+.quiz-body, .quiz-detail-answer { scrollbar-width: thin; scrollbar-color: rgba(15, 23, 42, 0.18) transparent; }
+.quiz-body::-webkit-scrollbar, .quiz-detail-answer::-webkit-scrollbar { width: 8px; height: 8px; }
+.quiz-body::-webkit-scrollbar-thumb, .quiz-detail-answer::-webkit-scrollbar-thumb { background: rgba(15, 23, 42, 0.14); border-radius: 999px; border: 2px solid transparent; background-clip: content-box; }
+.quiz-body::-webkit-scrollbar-thumb:hover, .quiz-detail-answer::-webkit-scrollbar-thumb:hover { background: rgba(15, 23, 42, 0.26); background-clip: content-box; }
+.quiz-trigger:focus-visible, .quiz-close:focus-visible, .quiz-back:focus-visible, .q-text:focus-visible, .quiz-frame-bar button:focus-visible, .skill-keyword.has-quiz:focus-visible { outline: 2px solid #428bca; outline-offset: 2px; border-radius: 8px; }
+/* 平板档：抽屉收窄一档，给正文留更多呼吸空间（让位量按实测宽度自适应，无需改 JS） */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .quiz-drawer { width: min(380px, 82vw); }
+}
+/* PC 三栏工作台：抽屉打开时把正文容器拆成「用户信息 | 简历正文」两栏，
+   右侧固定抽屉自然成为第三栏（抽屉宽度已由让位逻辑预留，无需改 JS）。
+   押题抽屉与诊断报告抽屉共用 body.quiz-open，两者触发同一三栏形态。 */
+@media (min-width: 1200px) {
+  body.quiz-open .container { display: flex; align-items: flex-start; gap: 10px; }
+  body.quiz-open .container > .row { margin-left: 0; margin-right: 0; }
+  /* 三栏下去掉 card-wrapper 外边距并收紧正文卡左右内边距，缩小栏间视觉间隔 */
+  body.quiz-open .container > .row .card-wrapper { padding: 0; }
+  body.quiz-open .container > section.row.page .card { padding-left: 1.25rem; padding-right: 1.25rem; }
+  /* 第一栏：用户信息（头像 / 姓名 / 联系方式）收成左侧信息栏，随正文滚动保持可见 */
+  body.quiz-open .container > section.row:first-child { flex: 0 0 240px; position: sticky; top: 32px; }
+  body.quiz-open .container > section.row:first-child .card { padding: 1.25rem 1rem; }
+  body.quiz-open .container > section.row:first-child .profile-card { text-align: center; }
+  body.quiz-open .container > section.row:first-child .profile-pic { padding: 0.25rem 0 0.5rem; }
+  body.quiz-open .container > section.row:first-child .profile-pic img { width: 92px; height: 92px; }
+  body.quiz-open .container > section.row:first-child .social-links { justify-content: center; }
+  /* 第二栏：自我描述与简历正文，占满剩余宽度（min-width:0 防长内容撑破栏宽） */
+  body.quiz-open .container > section.row.page { flex: 1 1 auto; min-width: 0; }
+}
+/* 尊重系统「减弱动效」偏好：抽屉平移与卡片微交互全部关闭 */
+@media (prefers-reduced-motion: reduce) {
+  .container, .quiz-drawer, .quiz-list li, .q-caret, .quiz-close, .quiz-progress-bar { transition: none !important; }
+}
 /* 移动端：抽屉改为全屏覆盖式上滑面板（不做容器让位），重设间距与可点区域，避免样式错乱 */
 @media (max-width: 768px) {
   .quiz-drawer { top: 0; right: 0; bottom: 0; left: 0; width: 100%; max-width: 100%; height: 100%; border: 0; border-radius: 0; box-shadow: none; transform: translateY(100%); transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1); font-size: 14px; }
   .quiz-drawer.quiz-show { transform: none; }
   body.quiz-open { overflow: hidden; }
   body.quiz-open .container { transform: none !important; }
-  .quiz-head { padding: 14px 16px 10px; }
+  .quiz-head { padding: calc(14px + env(safe-area-inset-top)) 16px 10px; }
   .quiz-head h3 { font-size: 16px; }
   .quiz-drawer.quiz-detail .quiz-stack { font-size: 15px; }
   .quiz-stack { font-size: 12px; }
-  .quiz-close { width: 34px; height: 34px; font-size: 22px; }
+  .quiz-close { width: 36px; height: 36px; font-size: 22px; }
   .quiz-progress { padding: 12px 16px 0; }
-  .quiz-body { padding: 10px 16px 28px; }
+  .quiz-body { padding: 10px 16px calc(24px + env(safe-area-inset-bottom)); }
   .quiz-body h4 { font-size: 12px; margin: 6px 2px 8px; }
   .quiz-list li { padding: 11px 12px; border-radius: 10px; margin-bottom: 8px; }
   .quiz-list .q-row { gap: 9px; }
-  .quiz-list input[type=checkbox] { width: 17px; height: 17px; margin-top: 4px; }
+  .quiz-list input[type=checkbox] { width: 19px; height: 19px; margin-top: 4px; }
   .quiz-answer { margin: 8px 0 0 26px; padding: 10px 12px; line-height: 1.7; }
   .quiz-hl { margin-top: 14px; padding-top: 10px; }
   .quiz-hl summary { font-size: 14px; }
-  .quiz-detail-answer { margin: 4px 16px 20px; font-size: 14px; line-height: 1.7; }
+  .quiz-detail-answer { margin: 4px 16px calc(20px + env(safe-area-inset-bottom)); font-size: 14px; line-height: 1.7; }
   .quiz-frame-bar { margin: 10px 0 4px; }
   .quiz-frame-bar button { padding: 7px 12px; font-size: 13px; }
   .quiz-frame { min-height: 220px; }
@@ -145,7 +178,9 @@ body.quiz-open .container { transform: translateX(var(--quiz-shift, -420px)); }
   .quiz-trigger, .quiz-drawer, .dv-drawer { display: none !important; }
   /* 技能词条可点样式不打印：回退为普通文本，不留虚线下划线 */
   .skill-keyword.has-quiz { cursor: auto; border-bottom: 0; color: inherit; background: none; }
-  body.quiz-open .container { transform: none !important; }
+  body.quiz-open .container { transform: none !important; display: block; }
+  /* 三栏形态不打印：信息栏解除 sticky 与固定栏宽，回退为原始纵向堆叠 */
+  body.quiz-open .container > section.row:first-child { position: static; flex: none; }
 }
 `
 
@@ -213,18 +248,40 @@ const PANEL_JS = `
   // 先左移（不超出屏幕左缘）；若正文右缘仍会与面板重叠（含 GAP 间距），
   // 则改为「固定左缘 + 压缩宽度」——不能只缩宽度，否则 bootstrap 的 margin:auto
   // 会重新居中，平移量失效
-  function applyShift(panelWidth) {
+  function applyShift(panel) {
     var container = document.querySelector('.container');
     var GAP = 48; // 右侧总预留 = 抽屉外边距 32 + 正文与抽屉间距 16，保证与悬浮边距匹配
     if (!container) return;
     if (isMobile()) {
       // 移动端全屏覆盖面板：清除桌面让位遗留的内联样式，避免与整页布局冲突；
       // quiz-open 类仍需加上，供 body.quiz-open { overflow: hidden } 锁定背景
+      if (panel) { panel.style.width = ''; panel.style.right = ''; panel.style.left = ''; panel.style.top = ''; }
       container.style.setProperty('--quiz-shift', '0px');
       container.style.width = ''; container.style.maxWidth = ''; container.style.marginLeft = '';
       document.body.classList.add('quiz-open');
       return;
     }
+    // PC 三栏（视口 ≥ 1200px）：第一栏固定宽度，剩余宽度按 60%(正文) / 40%(抽屉) 平分。
+    // 抽屉由 fixed 定位在右缘，正文容器锁定在左缘并算出宽度（= 第一栏 + 栏间距 + 正文栏），
+    // 抽屉内联宽度 = 40% 剩余，与 CSS flex 里 flex:1 的第二栏自动对齐到 60%。
+    if (window.innerWidth >= 1200 && panel) {
+      var COL1 = 240, G1 = 10, G2 = 10, M = 20; // 第一栏宽 / 栏内间距 / 正文与抽屉间距 / 两侧外边距
+      var R = Math.max(0, window.innerWidth - (COL1 + G1 + G2 + M * 2)); // 待平分的剩余宽度
+      var col3 = Math.round(R * 0.4), col2 = R - col3;
+      panel.style.left = 'auto'; panel.style.right = M + 'px'; panel.style.width = col3 + 'px';
+      container.style.setProperty('--quiz-shift', '0px');
+      container.style.maxWidth = 'none';
+      container.style.marginLeft = M + 'px';
+      container.style.width = (COL1 + G1 + col2) + 'px';
+      // 顶部对齐：抽屉 top 锁到正文卡片的实际顶边（三栏下 card-wrapper 去内边距，
+      // 卡片上移到 body 内边距处，固定 32px 的抽屉会低一截），实测值随根字号/内边距自适应
+      var cardEl = container.querySelector('.card');
+      if (cardEl) panel.style.top = Math.round(cardEl.getBoundingClientRect().top) + 'px';
+      document.body.classList.add('quiz-open');
+      return;
+    }
+    if (panel) { panel.style.width = ''; panel.style.right = ''; panel.style.left = ''; panel.style.top = ''; } // 清除三栏遗留内联宽度/顶边，回到让位模式
+    var panelWidth = panel ? panel.getBoundingClientRect().width : 420;
     if (!document.body.classList.contains('quiz-open') || !baseGeom) {
       // 捕获基准几何必须先终止让位过渡：容器带 width/margin-left transition，
       // 若刚执行过 clearShift（如从押题切到报告），rect 读到的是动画中间态，
@@ -263,7 +320,7 @@ const PANEL_JS = `
     // 互斥：同位对齐的诊断报告抽屉若开着，先收起（两者几何相同，叠放会遮住押题面板）
     var dv = document.querySelector('.dv-drawer.dv-show');
     if (dv) dv.classList.remove('dv-show');
-    applyShift(drawer.getBoundingClientRect().width);
+    applyShift(drawer);
     drawer.classList.add('quiz-show');
   }
   function close() {

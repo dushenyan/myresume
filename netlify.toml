@@ -1,0 +1,8 @@
+[build]
+  command = "pnpm run build"
+  publish = "dist"
+
+[build.environment]
+  # 跳过 Puppeteer 自动下载 Chromium，使用 Netlify 构建镜像内置的浏览器
+  # 若找不到可用浏览器，build-pdf.ts 会自动从 docs/ 复制预置 PDF 兜底
+  PUPPETEER_SKIP_CHROMIUM_DOWNLOAD = "true"

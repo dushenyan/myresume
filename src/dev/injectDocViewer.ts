@@ -43,8 +43,26 @@ const VIEWER_CSS = `
 .dv-body .q-quote { margin: 3px 0; padding: 1px 0 1px 9px; border-left: 2px solid #cbd5e1; font-style: normal; font-size: 12px; line-height: 1.55; color: #6b7280; }
 .dv-body .q-quote > .q-p { margin: 2px 0; }
 .dv-body .q-hr { border: 0; border-top: 1px dashed #d1d5db; margin: 7px 0; }
+/* 细节打磨：与押题抽屉同规格的细滚动条 + 键盘焦点环（焦点环取入口琥珀色） */
+.dv-body { scrollbar-width: thin; scrollbar-color: rgba(15, 23, 42, 0.18) transparent; }
+.dv-body::-webkit-scrollbar { width: 8px; height: 8px; }
+.dv-body::-webkit-scrollbar-thumb { background: rgba(15, 23, 42, 0.14); border-radius: 999px; border: 2px solid transparent; background-clip: content-box; }
+.dv-body::-webkit-scrollbar-thumb:hover { background: rgba(15, 23, 42, 0.26); background-clip: content-box; }
+.dv-inline:focus-visible, .dv-close:focus-visible { outline: 2px solid #8a6d3b; outline-offset: 2px; border-radius: 8px; }
+/* 平板档：与押题抽屉同宽收窄，保证两面板切换时几何一致 */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .dv-drawer { width: min(380px, 82vw); }
+}
+/* 尊重系统「减弱动效」偏好 */
+@media (prefers-reduced-motion: reduce) {
+  .dv-drawer, .container { transition: none !important; }
+}
+/* 移动端：全屏上滑面板，头部/正文内边距叠加刘海安全区 */
 @media (max-width: 768px) {
   .dv-drawer { top: 0; right: 0; bottom: 0; left: 0; width: 100%; max-width: 100%; border: 0; border-radius: 0; box-shadow: none; transform: translateY(100%); font-size: 14px; }
+  .dv-head { padding: calc(14px + env(safe-area-inset-top)) 16px 10px; }
+  .dv-close { width: 36px; height: 36px; font-size: 22px; }
+  .dv-body { padding: 12px 16px calc(20px + env(safe-area-inset-bottom)); }
 }
 @media print {
   .dv-inline, .dv-drawer { display: none !important; }
@@ -84,7 +102,7 @@ const VIEWER_JS = `
   function open() {
     closeQuizDrawer();
     drawer.classList.add('dv-show');
-    if (window.__quizLayout) window.__quizLayout.apply(drawer.getBoundingClientRect().width);
+    if (window.__quizLayout) window.__quizLayout.apply(drawer);
     if (cache) { setBody(cache); return; }
     setBody('<p class="q-p">加载中…</p>');
     fetch('/api/doc?file=' + encodeURIComponent(FILE))
